@@ -1,0 +1,176 @@
+#+TITLE: Arch Linux Installation 1.0
+#+OPTIONS: ^:nil
+
+| Author | Data             | Version |
+|--------+------------------+---------|
+| lzy    | 2012-06-17 Sun   |     1.0 |
+
+* Preparation
+** Wireless Configuration[fn:1]
+1. mv /etc/wpa_supplicant.conf /etc/wpa_supplicant.original
+2. wpa_passphrase "wireless link name" "passwd" > /etc/wpa_supplicant.conf
+3. wpa_supplicant -B -Dwext -i wlan0 -c /etc/wpa_supplicant.conf
+4. dhcpcd wlan0
+
+* Installation
+** Basic Installation
+1. download source from [[http:www.archlinux.org][Arch Linux]]
+2. install basic arch linux following [[https://wiki.archlinux.org/index.php/Official_Arch_Linux_Install_Guide][Arch Official Installation Guide]]
+** system update
+1. pacman -Sy (update mirror list)
+2. pacman -S tzdata (in order to fix file conflict problem)
+3. pacman -S pacman (update pacman package)
+   (after that, you should modified /etc/pacman.con and replace SigLever = ... with SigLever = Never)
+4. rm -rf /etc/profile.d/locale.sh /var/run /var/lock
+5. pacman -S filesystem -f
+6. pacman -Syu
+7. adduser (add normal user)
+** X11 and WM Installation
+1. pacman -S xorg
+2. pacman -S xorg-twm
+3. pacman -S rxvt-unicode urxvt-perls (will be configured by ~/.Xdefaults)
+4. pacman -S xorg-xinit
+5. pacman -S xorg-xclock
+6. pacman -S xf86-video-intel/nvidia/ati
+7. pacman -S dbus
+8. pacman -S ntfs-3g
+9. add dbus into DAEMONS option in /etc/rc.conf
+10. modify /etc/inittab and comment id:3.... and uncomment id:5... to enable graphics mode
+11. pacman -S archlinux-themes-slim slim-themes slim (one lightweight display manager)
+12. modify /etc/slim.conf like this, then add slim int DAEMONS option in rc.conf
+13. sudo cp SlimTheme /usr/share/slim/themes/my-theme/ -rv
+    #+begin_example
+    welcome_msg Welcome to %host:Arch linux
+    default_user lzy
+    focus_password yes
+    theme my-theme
+    #+end_example
+** Add normal user into sudo group
+1. modify /etc/sudoers
+   #+begin_example
+   root ALL=(ALL) ALL
+   lzy  ALL=(ALL) ALL
+   #+end_example
+2. add the following codes into .bashrc
+   #+begin_example
+   #Enabling tab-completion
+   complete -cf sudo
+   complete -cf man
+   #+end_example
+** install chinese locale
+1. modify /etc/locale.gen and uncomment the following lines
+   #+begin_example
+   zh_CN.GB2312
+   zh_CN.GBK
+   zh_CN.UTF-8
+   zh_CN.GB18030
+   #+end_example
+2. locale-gen && locale -a
+3. set chinese locale, there are several ways to set
+   - .rc.conf (set LOCAL=en_US.UTF-8, but not recommend)
+   - .bashrc (will be loaded by terminal during start time)
+   - .xinitrc (loaed by X)
+   - .xprofile (loaded by display manager)
+     you can add the following code into your .bashrc and .xinitrc file
+     #+begin_example
+     #export LANG=zh_CN.UTF-8
+     export LC_CTYPE=zh_CN.UTF-8
+     #+end_example
+4. install chinese character fontset
+   #+begin_example
+   pacman -S wqy-bitmapfont wqy-zenhei
+   #+end_example
+5. install chinese input method
+   - pacman -S scim scim-pinyin
+   - add the following lines into your .xinitrc file (you can install .xinitrc with install.sh
+     script in XMonad directory)
+     #+begin_example
+     export XIM=SCIM
+     export XIM_PROGRAM=scim
+     export GTK_IM_MODULE=scim
+     export QT_IM_MODULE=scim
+     #+end_example
+   - add "scim -d" into .xinitrc
+** Sync time by network
+1. sudo pacman -S openntpd
+2. start service: sudo /etc/rc.d/openntpd start
+3. add @openntpd to DAEMONS list in /etc/rc.conf
+** font type
+1. install yaourt (add following code into /etc/pacman.conf)
+   #+begin_example
+   [archlinuxfr]
+   Server = http://repo.archlinux.fr/$arch
+
+   or
+   
+   [archlinuxfr]
+   Server = http://repo-fr.archlinuxcn.org/$arch
+   #+end_example
+2. # sudo pacman -Syu yaourt (install yaourt)
+3. uninstall cairo fontconfig freetype2 libxft
+   sudo pacman -Rdd cairo fontconfig freetype2 libxft
+4. install cario-ubuntu freetype2-ubuntu libxft-ubuntu fontconfig-ubuntu
+   #+begin_example
+   sudo yaourt libxft-ubuntu
+   sudo yaourt cairo-ubuntu
+   sudo yaourt freetype2-ubuntu
+   sudo yaourt fontconfig-ubuntu
+   #+end_example
+** other softwares Installation
+1. pacman -S chromium (install other theme will be perfect)
+2. pacman -S flashplugin
+3. pacman -S alsa-lib alsa-utils alsa-oss and then add alsa into DAEMONS option
+4. pacman -S git
+5. pacman -S emacs
+6. pacman -S mplayer gnome-mplayer (modify ~/.mplayer/config)
+   #+begin_example
+   font='文泉驿正黑'
+   subcp=enca:zh:ucs-2
+   #+end_example
+7. pacman -S openssh (add sshd into DAEMONS of rc.conf)
+8. pacman -S eog eog-plugin (picture browser)
+9. pacman -S lftp
+10. pacman -S python
+11. pacman -S chmsee xpdf gcalctool
+** install Xmonad
+1. pacman -S xmonad xmonad-contrib dmenu trayer feh xlockmore xmobar
+2. install GNOME's applets, these applets will be shown on trayer panel
+   + pacman -S network-manager-applet gnome-keyring
+   + You must remove the default network daemon and add the networkmanager daemon, after the dbus
+     daemon
+     #+begin_example
+     DAEMONS=(...dbus networkmanager...)
+     #+end_example
+     To be albel to add a network connection, a non-root user must first have an active ConsoleKit
+     session running.
+     #+begin_example
+     exec ck-launch-session xmonad
+     instead of
+     exec xmonad
+     #+end_example
+     if your problems still persist, try:
+     #+begin_example
+     exec ck-launch-session dbus-launch xmonad
+     #+end_example
+     add "nm-applet --sm-disable&" into .xinitrc
+4. install xmonad Configuration files with install.sh script (~/My_Software_Dir/XMonad/install.sh)
+** set local time
+sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+sudo hwclock --hctosys
+sudo hwclock --set --date="YYYY-MM-DD hh:mm:ss"
+** configure zsh
+sudo usermod -s /bin/zsh logname
+*** Optional Configuration
+install oh-my-zsh
+   + curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+configure zsh
+   + emacs ~/.zshrc
+   + ZSH_THEME="fox"
+   + plugins=(git git-flow gnu-utils archlinux battery python ssh-agent terminator rultools)
+
+* Footnotes
+
+[fn:1] http://blog.csdn.net/leo_wanta/article/details/6885821
+
+
+

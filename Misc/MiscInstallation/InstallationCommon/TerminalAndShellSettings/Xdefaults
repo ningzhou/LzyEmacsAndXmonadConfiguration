@@ -1,0 +1,124 @@
+!! fonts
+Xft.dpi: 102
+Xft.antialias: true
+Xft.hinting: true
+!! hintnone, hintslight, hintmedium, hintfull
+Xft.hintstyle: hintfull
+Xft.rgba: rgb
+!! lcdnone, lcddefault, lcdlight, lcdlegacy
+Xft.lcdfilter: lcddefault
+!Xcursor.theme: OpenZone_White_Slim
+Xcursor.theme: ComixCursors-Black-Small
+
+!!! config for xterm
+XTerm*termName: xterm-color
+XTerm*visualBell: false
+XTerm*marginBell: false
+XTerm*alwaysHighlight: false
+
+XTerm*locale: true
+xterm.utf8: true
+XTerm*utf8Title: true
+xterm*xftAntialias: true
+XTerm*fontMenu*fontdefault*Label: Default
+XTerm*faceName: Bitstream Vera Sans Mono:antialias=True:pixelsize=16
+
+XTerm*faceSize: 12
+XTerm*faceSize1: 12
+XTerm*faceSize2: 12
+XTerm*faceSize3: 12
+XTerm*faceSize4: 12
+XTerm*faceSize5: 12
+XTerm*faceSize6: 12
+XTerm.cjkWidth:true
+
+XTerm*background: black
+XTerm*foreground: green
+
+XTerm*scrollBar: falseXTerm*rightScrollBar: false
+XTerm*jumpScroll: true
+XTerm*scrollKey: false
+XTerm*scrollTtyOutput: false
+XTerm*SaveLines: 1000
+
+!中文支持
+xterm*faceNameDoublesize: wenquanyi bitmap song:pixelsize=16:antialias=True
+XTerm*XimFont: -wenquanyi-wenquanyi bitmap song-medium-r-normal--16-160-75-75-p-80-iso10646-1
+
+XTerm*loginShell: true
+xterm.geometry: 80x36
+xterm.borderLess: true
+xterm.cursorBlink: false
+xterm*colorUL: yellow
+xterm*colorBD: white
+XTerm*VT100.Translations: #override \
+Ctrl <KeyPress> y: insert-selection(CLIPBOARD,PRIMARY,CUT_BUFFER0) \n\
+<BtnUp>: select-end(CLIPBOARD,PRIMARY,CUT_BUFFER0) \n\
+
+!!! config for urxvt
+! color set
+URxvt.background:black
+URxvt.foreground:wheat
+URxvt.colorBD:yellow
+URxvt.colorUL:green
+URxvt.cursorColor:skyblue
+URxvt.color0:black
+URxvt.color1:red3
+URxvt.color2:springgreen
+URxvt.color3:wheat3
+URxvt.color4:navy
+URxvt.color5:green
+URxvt.color6:steelblue1
+URxvt.color7:gray85
+URxvt.color8:gray10
+URxvt.color9:orangered2
+URxvt.color10:chartreuse3
+URxvt.color11:lightgoldenrod2
+URxvt.color12:skyblue1
+URxvt.color13:pink1
+URxvt.color14:lightblue1
+URxvt.color15:#EEEEEC
+
+! scroll set
+URxvt.scrollBar:false
+URxvt.scrollBar_right:True
+URxvt.scrollBar_floating:True
+URxvt.scrollstyle:plain
+URxvt.scrollWithBuffer:false
+URxvt.saveLines:5000
+
+! font set
+URxvt*font:xft:Bitstream Vera Sans Mono:antialias=True:pixelsize=16
+URxvt*mfont:xft:Bitstream Vera Sans Mono:antialias=True:pixelsize=16
+URxvt*boldfont:xft:Bitstream Vera Sans Mono:antialias=True:pixelsize=16:Bold
+URxvt*italicFont:xft:Bitstream Vera Sans Mono:antialias=True:pixelsize=16:Bold          
+URxvt*bolditalicFont:xft:Bitstream Vera Sans Mono:antialias=True:pixelsize=16:Bold
+
+URxvt.cutchars:"()*,<>[]{}|'"
+URxvt.buffered:true
+URxvt.thickness:0
+URxvt.termName:rxvt
+URxvt.title:Rxvt-Unicode
+URxvt.tintColor:lightgray
+URxvt.perl-ext-common:default,matcher,clipboard,keyboard-select,url-select
+URxvt.keysym.Mod4-u:perl:url-select:select_next
+URxvt.keysym.M-w:perl:clipboard:copy
+URxvt.keysym.C-y:perl:clipboard:paste
+URxvt.keysym.Mod4-C-v:perl:clipboard:paste_escaped
+URxvt.keysym.Mod4-s:perl:keyboard-select:search
+URxvt.urlLauncher:chromium
+URxvt.matcher.button:1
+URxvt.underlineURLs:true
+
+! Input Method set
+URxvt.imFont:-misc-*-*-r-*-*-*-*-*-*-*-*-*-*
+URxvt.preeditType:OverTheSpot
+URxvt.inputMethod:SCIM
+
+! bg transparent set
+URxvt.inheritPixmap: true
+URxvt.tintCddolor: white
+URxvt.shading: 16
+
+URxvt.depth:32
+URxvt.background:rgba:0000/0000/0000/dddd

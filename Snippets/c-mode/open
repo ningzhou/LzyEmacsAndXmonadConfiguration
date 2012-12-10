@@ -1,0 +1,4 @@
+#name int *fd = open(..., ..., ...);
+#key: open
+# --
+open (${1:pathname}, ${2:O_RDWR}, ${3:755});

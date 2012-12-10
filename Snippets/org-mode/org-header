@@ -1,0 +1,9 @@
+# contributor: zhengyu li <lizhengyu419@gmail.com>
+# name: org-header
+# key: orgheader
+# --
+#+TITLE: $1
+#+AUTHOR: zhengyu li
+#+OPTIONS: ^:nil
+
+$0

@@ -1,0 +1,824 @@
+
+<!DOCTYPE html>
+<!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+		 Alex Russell (slightlyoff@chromium.org)
+		 Brad Neuberg
+-->
+<html>
+<head>
+<title>HTML Threat, Defense &amp; Strategic Plan</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf8"/>
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-11-06"/>
+<meta name="author" content="zhengyu li"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top; font-size: 30px; }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<style>
+     .notes { display: none; }
+     .stroke {
+   -webkit-text-stroke-color: red;
+   -webkit-text-stroke-width: 1px;
+   -moz-text-stroke-color: red;
+   -moz-text-stroke-width: 1px;
+      }
+
+     body {
+   font: 16px "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+   padding: 0;
+   margin: 0;
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   left: 0px;
+   top: 0px;
+   -webkit-font-smoothing: antialiased;
+     }
+
+     div.presentation {
+   position: absolute;
+   height: 100%;
+   width: 100%;
+   left: 0px;
+   top: 0px;
+   display: block;
+   overflow: hidden;
+   background: #000000;
+     }
+
+     .slides {
+   width: 100%;
+   height: 100%;
+   left: 0;
+   top: 0;
+   position: absolute;
+   display: none;
+   -webkit-transition: -webkit-transform 1.5s ease-in-out;
+   -moz-transition: -moz-transform 1.5s ease-in-out;
+   -o-transition: -o-transform 1.5s ease-in-out;
+   transition: transform 1.5s ease-in-out;
+     }
+
+     .slide {
+   display: none;
+   position: absolute;
+   overflow: hidden;
+   width: 900px;
+   height: 700px;
+   left: 50%;
+   top: 50%;
+   margin-top: -350px;
+   background-color: #eeeeee;
+   border-radius: 8px;
+   -moz-border-radius: 8px;
+   opacity: 0.35;
+
+   -webkit-transform: scale(0.8) translateZ(0);
+   -moz-transform: scale(0.8);
+   -o-transform: scale(0.8);
+
+   -webkit-transition-property: margin, -webkit-transform, opacity;
+   -webkit-transition-duration: 0.3s, 0.3s, 0.3s;
+   -webkit-transition-timing-function: ease-in-out;
+
+   -moz-transition-property: margin, -moz-transform, opacity;
+   -moz-transition-duration: 0.3s, 0.3s, 0.3s;
+   -moz-transition-timing-function: ease-in-out;
+
+   -o-transition-property: margin, -moz-transform, opacity;
+   -o-transition-duration: 0.3s, 0.3s, 0.3s;
+   -o-transition-timing-function: ease-in-out;
+     }
+
+      .slide:nth-child(even) {
+    <!-- border-radius: 10px 30px 10px 30px; -->
+    <!-- -moz-border-radius: 10px 20px 10px 20px; -->
+     }
+
+     .slide:nth-child(odd) {
+   <!-- border-radius: 20px 10px 20px 10px; -->
+   <!-- -moz-border-radius: 20px 10px 20px 10px; -->
+     }
+
+     .slide p, .slide textarea {
+   font-size: 20px;
+     }
+
+     .slide:not(.transitionSlide) .counter:after {
+   content: '';
+   width: 32px;
+   height: 32px;
+   background-repeat: no-repeat;
+   background-position: right bottom;
+   position: absolute;
+   bottom: 0;
+   right: 45px;
+   opacity: 0.25;
+     }
+
+     .slide.far-past {
+   display: block;
+   margin-left: -2400px;
+     }
+
+     .slide.past {
+   visibility: visible;
+   display: block;
+   margin-left: -1400px;
+     }
+
+     .slide.current {
+   visibility: visible;
+   display: block;
+   margin-left: -450px;
+   -webkit-transform: scale(1.0);
+   -moz-transform: scale(1.0);
+   -o-transform: scale(1.0);
+   opacity: 1.0;
+     }
+
+      .slide.future {
+    visibility: visible;
+    display: block;
+    margin-left: 500px;
+     }
+
+      .slide.far-future {
+    display: block;
+    margin-left: 1500px;
+     }
+
+      body.three-d div.slides {
+    -webkit-transform: translateX(50px) scale(0.8) rotateY(10deg);
+    -moz-transform: translateX(50px) scale(0.8) rotateY(10deg);
+    -o-transform: translateX(50px) scale(0.8) rotateY(10deg);
+    transform: translateX(50px) scale(0.8) rotateY(10deg);
+      }
+
+      section.intro p {
+	font-size: 35px;
+      }
+
+      button {
+	font-size: 20px;
+      }
+
+      .summary {
+       font-size: 30px;
+      }
+
+      .sub-summary {
+       font-size: 25px;
+      }
+
+      .sub-summary li {
+       padding: 5px 0;
+      }
+
+      .bullets {
+       font-size: 20px;
+      }
+
+
+      /* Content */
+
+      @font-face { font-family: 'Junction'; src: url(src/Junction02.otf); }
+      @font-face { font-family: 'LeagueGothic'; src: url(src/LeagueGothic.otf); }
+
+      header {
+	font-family: 'Junction';
+	font-weight: normal;
+	font-size: 50px;
+	letter-spacing: -.05em;
+	color: white;
+	color: black;
+	text-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px;
+	position: absolute;
+	left: 30px;
+	top: 25px;
+	margin: 0;
+	padding: 0;
+      }
+
+      .intro h1 {
+	color: black;
+	padding: 0;
+	margin: 0;
+	letter-spacing: -2px;
+	font-size: 96px;
+      }
+
+      .intro h2 {
+	color: black;
+	font-family: 'LeagueGothic';
+	padding: 0;
+	margin: 0;
+	margin-top: -5px;
+	font-size: 68px;
+	letter-spacing: -1px;
+      }
+
+      h1 {
+	display: inline;
+	font-size: 100%;
+	font-weight: normal;
+	padding: 0;
+	margin: 0;
+      }
+
+      h2 {
+	font-family: 'Junction';
+	color: black;
+	font-size: 20px;
+	margin-left: 20px;
+	margin-top: 50px;
+      }
+
+      h2:first-child {
+	margin-top: 0;
+      }
+
+      section {
+	font-family: 'Junction';
+	font-size: 50px;
+	color: #3f3f3f;
+	text-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px;
+	margin-left: 30px;
+	margin-right: 30px;
+	margin-top: 100px;
+	display: block;
+	overflow: hidden;
+      }
+
+      section.no-heading {
+	margin-top: 20px;
+      }
+
+      a {
+	color: inherit;
+	display: inline-block;
+	text-decoration: none;
+	line-height: 110%;
+	border-bottom: 2px solid #3f3f3f;
+      }
+
+      #wmap a {
+	line-height: 100%;
+	border-bottom: none;
+      }
+
+      section.left {
+	float: left;
+	width: 390px;
+      }
+
+      section.small {
+	font-size: 24px;
+      }
+
+      section.small ul {
+	margin: 0 0 0 15px;
+	padding: 0;
+      }
+
+      section.small li {
+	padding-bottom: 0;
+      }
+
+      h2 {
+	padding: 0;
+	margin: 15px 0 5px 0;
+/*	font-family: GG240;*/
+      }
+
+      section.center {
+	line-height: 180%;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+	height: 700px;
+	width: 900px;
+      }
+
+      pre {
+	text-align: left;
+	font-size: 16px;
+	font-family: Monaco, Courier;
+	padding-bottom: 10px;
+
+	padding: 10px 20px;
+	background: rgba(0, 0, 0, 0.9);
+
+    -webkit-box-shadow: rgba(0, 0, 128, 0.28) 2px 2px 9px;
+    -moz-box-shadow: rgba(0, 0, 128, 0.28) 2px 2px 9px;
+    -o-box-shadow: rgba(0, 0, 128, 0.28) 2px 2px 9px;
+    box-shadow: rgba(10, 10, 10, 0.5) 5px 4px 10px;
+      }
+      .two-column {
+	-webkit-column-count: 2;
+	-moz-column-count: 2;
+      }
+
+      pre select {
+	font-size: 16px;
+	font-family: Monaco, Courier;
+	border: 1px solid #c61800;
+      }
+
+      input {
+	font-size: 16px;
+	font-family: Helvetica;
+	padding: 3px;
+      }
+      input[type="range"] {
+	width: 100%;
+      }
+
+      button {
+	font-family: Verdana;
+      }
+
+      button.large {
+	font-size: 32px;
+      }
+
+      pre b {
+	font-weight: normal;
+	color: #c61800;
+	text-shadow: #c61800 0 0 1px;
+	/*letter-spacing: -1px;*/
+      }
+      pre em {
+	font-weight: normal;
+	font-style: normal;
+	color: #18a600;
+	text-shadow: #18a600 0 0 1px;
+      }
+      pre input[type="range"] {
+	height: 6px;
+	cursor: pointer;
+	width: auto;
+      }
+      example {
+	font-size: 16px;
+	display: block;
+	padding: 10px 20px;
+	color: black;
+	background: rgba(255, 255, 255, 0.4);
+	border-radius: 8px;
+	margin-bottom: 10px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+      }
+      video {
+	border-radius: 8px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+      }
+
+      .css,
+      .js,
+      .html,
+      .key {
+	font-family: 'Junction';
+	color: black;
+	display: inline-block;
+	padding: 6px 10px 3px 10px;
+	font-size: 25px;
+	line-height: 30px;
+	text-shadow: none;
+	letter-spacing: 0;
+	bottom: 10px;
+	position: relative;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	background: white;
+	box-shadow: rgba(0, 0, 0, 0.1) 0 2px 5px;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 2px 5px;
+	-moz-box-shadow: rgba(0, 0, 0, 0.1) 0 2px 5px;
+      }
+
+      .key { font-family: Arial; }
+
+      :not(header) > .css,
+      :not(header) > .js,
+      :not(header) > .html,
+      :not(header) > .key {
+	margin: 0 5px;
+	bottom: 4px;
+      }
+
+      .css {
+	background: -webkit-gradient(linear, left top, left bottom, from(#ff4), to(#ffa));
+	background-color: #ff4;
+	background: -moz-linear-gradient(left top, #ff4, #ffa);
+      }
+      .js {
+	background: -webkit-gradient(linear, left top, left bottom, from(#4f4), to(#afa));
+	background-color: #4f4;
+	background: -moz-linear-gradient(left top, #4f4, #afa);
+      }
+      .html {
+	background: -webkit-gradient(linear, left top, left bottom, from(#e88), to(#fee));
+	background-color: #e88;
+	background: -moz-linear-gradient(left top, #e88, #fee);
+      }
+
+      li {
+	list-style: none;
+	padding: 10px 0;
+      }
+
+      .summary li::before, .sub-summary li::before, .bullets li::before {
+	content: '· ';
+      }
+
+      info {
+	display: block;
+	font-size: 50%;
+	text-align: center;
+      }
+
+      #video-column {
+    float: left;
+    width: 50%;
+    margin-top: 20px;
+      }
+
+      #audio-column {
+    float: left;
+    width: 50%;
+    margin-top: 20px;
+      }
+
+</style>
+<body>
+<div class="presentation">
+<div id="content">
+
+
+<div class="slide">
+  <section class="center intro">
+    <style>
+      span.strike { text-decoration:line-through;}
+    </style>
+    <h2>
+      HTML Threat, Defense &amp; Strategic Plan
+    </h2>
+    <p style="margin-top:100px">
+      zhengyu li <span style="font-size:20px">2012-11-06</span>
+    </p>
+  </section>
+</div>
+
+<div class="slide">
+<header><h1><span class="section-number-2">1</span> What is HTML5 </h1></header>
+
+<section>
+<ol class="summary">
+<li>Abundle of features required by Web developer.
+   hello world                                         
+<ol class="summary">
+<li>Canvas <img src="1.jpg"  alt="1.jpg" />
+</li>
+<li>Cideo/Audio             
+</li>
+<li>Web Messaging                 
+</li>
+<li>Drag and Drop                 
+</li>
+<li>Web Storage
+</li>
+</ol>
+
+</li>
+</ol>
+
+
+</section>
+
+</div>
+
+<div class="slide">
+<header><h1><span class="section-number-2">2</span> Video/Audio play </h1></header>
+
+<section>
+<p><audio id="audio-column" src="2.mp3" controls>2.mp3</audio>
+<video id="video-column" src="http://slides.html5rocks.com/src/chrome_japan.webm" controls>http://slides.html5rocks.com/src/chrome_japan.webm</video>
+</p>
+</section>
+
+</div>
+
+<div class="slide">
+<header><h1><span class="section-number-2">3</span> source code </h1></header>
+
+<section>
+
+
+
+<pre class="src src-C"><span style="color: #ffff00; font-size: 110%;">#include</span> <span style="color: #ee0000;">&lt;stdio.h&gt;</span>
+
+<span style="color: #00ffff;">struct</span> <span style="color: #00ee00;">data</span>
+<span style="color: #33ffcc;">{</span>
+    <span style="color: #00ee00;">int</span> <span style="color: #ff1493;">a</span><span style="color: #00ffff;">;</span>
+    <span style="color: #00ee00;">int</span> <span style="color: #ff1493;">b</span><span style="color: #00ffff;">;</span>
+    <span style="color: #00ee00;">double</span> <span style="color: #ff1493;">c</span><span style="color: #00ffff;">;</span>
+<span style="color: #33ffcc;">}</span>
+
+<span style="color: #00ee00;">int</span> <span style="color: #ee0000; font-size: 120%; font-weight: bold;">main</span> <span style="color: #1e90ff; font-size: 114%;">(</span><span style="color: #00ee00;">int</span> <span style="color: #ff1493;">argc</span><span style="color: #00ffff;">,</span> <span style="color: #00ee00;">char</span> <span style="color: #00ff7f;">*</span><span style="color: #ff1493;">argv</span><span style="color: #ee0000; font-size: 114%;">[]</span><span style="color: #1e90ff; font-size: 114%;">)</span>
+<span style="color: #33ffcc;">{</span>
+    <span style="color: #00ee00;">int</span> <span style="color: #ff1493;">ret</span><span style="color: #00ffff;">;</span>
+    ret<span style="color: #ffff00;"> = </span><span style="color: #ffffff;">0</span><span style="color: #00ffff;">;</span>
+    <span style="color: #00ffff;">struct</span> <span style="color: #00ee00;">data</span> <span style="color: #ff1493;">dd</span><span style="color: #00ffff;">;</span>
+    dd<span style="color: #ee0000;">.</span><span style="color: #ffff00;">a</span><span style="color: #ffff00;"> = </span><span style="color: #ffffff;">1</span><span style="color: #00ffff;">;</span>
+    dd<span style="color: #ee0000;">.</span><span style="color: #ffff00;">b</span><span style="color: #ffff00;"> = </span><span style="color: #ffffff;">2</span><span style="color: #00ffff;">;</span>
+    dd<span style="color: #ee0000;">.</span><span style="color: #ffff00;">c</span><span style="color: #ffff00;"> = </span><span style="color: #ffffff;">1</span><span style="color: #ee0000;">.</span><span style="color: #ffff00;">00f</span><span style="color: #00ffff;">;</span>
+    <span style="color: #00ffff;">return</span> <span style="color: #ffffff;">0</span><span style="color: #00ffff;">;</span>
+<span style="color: #33ffcc;">}</span>
+
+</pre>
+
+</section>
+</div>
+
+</div>
+<script>
+  (function() {
+    // Since we don't have the fallback of attachEvent and
+    // other IE only stuff we won't try to run JS for IE.
+    // It will run though when using Google Chrome Frame
+    if (document.all) { return; }
+
+    var currentSlideNo;
+    var notesOn = false;
+    var slides = document.getElementsByClassName('slide');
+    var touchStartX = 0;
+
+    // var slide_hash = window.location.hash.replace(/#/, '');
+    // if (slide_hash) {
+    //   for (var i = 0, len = slides.length; i < len; i++) {
+    //     if (slides[i].id == slide_hash) {
+    //       currentSlideNo = i;
+    //       updateSlideClasses();
+    //     }
+    //   }
+    // }
+
+    var spaces = /\s+/, a1 = [""];
+
+    var str2array = function(s) {
+      if (typeof s == "string" || s instanceof String) {
+	if (s.indexOf(" ") < 0) {
+	  a1[0] = s;
+	  return a1;
+	} else {
+	  return s.split(spaces);
+	}
+      }
+      return s;
+    };
+
+    var trim = function(str) {
+      return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+    };
+
+    var addClass = function(node, classStr) {
+      classStr = str2array(classStr);
+      var cls = " " + node.className + " ";
+      for (var i = 0, len = classStr.length, c; i < len; ++i) {
+	c = classStr[i];
+	if (c && cls.indexOf(" " + c + " ") < 0) {
+	  cls += c + " ";
+	}
+      }
+      node.className = trim(cls);
+    };
+
+    var removeClass = function(node, classStr) {
+      var cls;
+      if (classStr !== undefined) {
+	classStr = str2array(classStr);
+	cls = " " + node.className + " ";
+	for (var i = 0, len = classStr.length; i < len; ++i) {
+	  cls = cls.replace(" " + classStr[i] + " ", " ");
+	}
+	cls = trim(cls);
+      } else {
+	cls = "";
+      }
+      if (node.className != cls) {
+	node.className = cls;
+      }
+    };
+
+    var getSlideEl = function(slideNo) {
+      if (slideNo > 0) {
+	return slides[slideNo - 1];
+      } else {
+	return null;
+      }
+    };
+
+    var getSlideTitle = function(slideNo) {
+      var el = getSlideEl(slideNo);
+
+      if (el) {
+	return el.getElementsByTagName('header')[0].innerHTML;
+      } else {
+	return null;
+      }
+    };
+
+    var changeSlideElClass = function(slideNo, className) {
+      var el = getSlideEl(slideNo);
+
+      if (el) {
+	removeClass(el, 'far-past past current future far-future');
+	addClass(el, className);
+      }
+    };
+
+    var updateSlideClasses = function() {
+      window.location.hash = "slide" + currentSlideNo;
+      changeSlideElClass(currentSlideNo - 2, 'far-past');
+      changeSlideElClass(currentSlideNo - 1, 'past');
+      changeSlideElClass(currentSlideNo, 'current');
+      changeSlideElClass(currentSlideNo + 1, 'future');
+      changeSlideElClass(currentSlideNo + 2, 'far-future');
+    };
+
+    var nextSlide = function() {
+      if (currentSlideNo < slides.length) {
+	currentSlideNo++;
+      }
+
+      updateSlideClasses();
+    };
+
+    var prevSlide = function() {
+      if (currentSlideNo > 1) {
+	currentSlideNo--;
+      }
+      updateSlideClasses();
+    };
+
+    var showNotes = function() {
+      var notes = document.querySelectorAll('.notes');
+      for (var i = 0, len = notes.length; i < len; i++) {
+	notes[i].style.display = (notesOn) ? 'none':'block';
+      }
+      notesOn = (notesOn) ? false:true;
+    };
+
+    var switch3D = function() {
+      if (document.body.className.indexOf('three-d') == -1) {
+	document.getElementsByClassName('presentation')[0].style.webkitPerspective = '1000px';
+	document.body.className += ' three-d';
+      } else {
+	window.setTimeout("document.getElementsByClassName('presentation')[0].style.webkitPerspective = '0';", 2000);
+	document.body.className = document.body.className.replace(/three-d/, '');
+      }
+    };
+
+    var handleBodyKeyDown = function(event) {
+      // console.log(event.keyCode);
+      switch (event.keyCode) {
+	case 37: // left arrow
+	  prevSlide();
+	  break;
+	case 39: // right arrow
+	// case 32: // space
+	  nextSlide();
+	  break;
+	case 50: // 2
+	  showNotes();
+	  break;
+	case 51: // 3
+	  switch3D();
+	  break;
+      }
+    };
+
+    var addTouchListeners = function() {
+      document.addEventListener('touchstart', function(e) {
+	touchStartX = e.touches[0].pageX;
+      }, false);
+      document.addEventListener('touchend', function(e) {
+	var pixelsMoved = touchStartX - e.changedTouches[0].pageX;
+	var SWIPE_SIZE = 150;
+	if (pixelsMoved > SWIPE_SIZE) {
+	  nextSlide();
+	}
+	else if (pixelsMoved < -SWIPE_SIZE) {
+	 prevSlide();
+	}
+      }, false);
+    };
+
+    // initialize
+
+    (function() {
+      if (window.location.hash != "") {
+	currentSlideNo = Number(window.location.hash.replace('#slide', ''));
+      } else {
+	currentSlideNo = 1;
+      }
+
+      document.addEventListener('keydown', handleBodyKeyDown, false);
+
+      var els = slides;
+      for (var i = 0, el; el = els[i]; i++) {
+	addClass(el, 'slide far-future');
+      }
+      updateSlideClasses();
+
+      // add support for finger events (filter it by property detection?)
+      addTouchListeners();
+    })();
+  })();
+</script>
+</body>
+</html>
