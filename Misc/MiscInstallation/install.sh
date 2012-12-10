@@ -3,10 +3,15 @@
 # misc installation for ubuntu and arch linux
 
 BASE_DIR=$(dirname $0)
-OS=$(grep "DISTRIB_ID" /etc/lsb-release|cut -d "=" -f 2)
 SCREEN_XRES=$(xrandr|grep "current"|cut -d " " -f 8)
 TMP_DIR=$HOME/misc_tmp_dir
 INSTALL_CMD="sudo pacman -S"
+
+if [ -e /etc/lsb-release ]; then
+    OS=$(grep "DISTRIB_ID" /etc/lsb-release|cut -d "=" -f 2)
+else
+    OS="Arch"
+fi
 
 if [ $OS = "Ubuntu" ]; then
     INSTALL_CMD="sudo apt-get install"
@@ -102,5 +107,5 @@ if [ ! -e "/usr/bin/scrot" ] && [ ! -e "/usr/local/bin/scrot" ]; then
 fi
 
 if [ -e "/usr/share/slim/themes" ]; then
-    sudo cp SlimTheme /usr/share/slim/themes/my-theme -rv
+    sudo cp $BASE_DIR/InstallationCommon/SlimTheme /usr/share/slim/themes/my-theme -rv
 fi

@@ -1,13 +1,17 @@
 #!/bin/bash
 
-# Time-stamp: <2012-12-10 15:08:40 Monday by lzy>
+# Time-stamp: <2012-12-11 05:35:20 Tuesday by lzy>
 
 BASE_DIR=$(dirname $0|pwd)
-OS=$(grep "DISTRIB_ID" /etc/lsb-release|cut -d "=" -f 2)
 INSTALL_CMD="sudo pacman -S"
 DOT_EMACS=$HOME/.emacs
 
-
+if [ -e /etc/lsb-release ]; then
+    OS=$(grep "DISTRIB_ID" /etc/lsb-release|cut -d "=" -f 2)
+else
+    OS="Arch"
+fi
+    
 cp $BASE_DIR/emacs.config $BASE_DIR/.emacs.local
 sed -i -e s:_EMACS_DIR_:$BASE_DIR/:g $BASE_DIR/.emacs.local
 
