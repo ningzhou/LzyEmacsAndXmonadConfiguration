@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; basic-tools.el ---
-;; Time-stamp: <2012-12-06 10:37:47 Thursday by lzy>
+;; Time-stamp: <2012-12-10 16:58:31 星期一 by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -53,5 +53,18 @@
   "display `major-mode' and `mode-name'"
   (interactive)
   (message "major-mode: %s, mode-name: %s" major-mode mode-name))
+
+;; get word under point
+(defun get-current-word ()
+  (interactive)
+  (let ((begin (point-min)) (end (point-max)))
+    (save-excursion      
+      (when (not mark-active)
+        (forward-char)
+        (backward-word)
+        (mark-word))
+      (setq begin (region-beginning)
+            end (region-end)))
+    (buffer-substring-no-properties begin end)))
 
 ;;; basic-tools.el ends here

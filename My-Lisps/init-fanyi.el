@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-fanyi.el ---
-;; Time-stamp: <2012-12-10 11:20:50 Monday by lzy>
+;; Time-stamp: <2012-12-10 16:59:04 星期一 by lzy>
 
 ;; Copyright (C) 2012 zhengyu li
 ;;
@@ -37,20 +37,7 @@
 (require 'xml)
 (require 'pos-tip)
 (require 'xml-parse)
-
-
-;; get words to translate
-(defun get-current-word ()
-  (interactive)
-  (let ((begin (point-min)) (end (point-max)))
-    (save-excursion      
-      (when (not mark-active)
-        (forward-char)
-        (backward-word)
-        (mark-word))
-      (setq begin (region-beginning)
-            end (region-end)))
-    (buffer-substring-no-properties begin end)))
+(require 'basic-tools)
 
 ;; get results of translation
 (defun get-translate-result (word)
