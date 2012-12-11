@@ -102,7 +102,12 @@ fi
 sudo cp $TMP_DIR/single_screen.sh /usr/bin/ -v
 sudo cp $TMP_DIR/dual_screen.sh /usr/bin/ -v
 
-#rm $TMP_DIR -rf
+rm $TMP_DIR -rf
+
+echo "installing conky theme..."
+mkdir -p $HOME/.lua/scripts
+cp $BASE_DIR/InstallationCommon/Conky/conkyrc $HOME/.conkyrc -v
+cp $BASE_DIR/InstallationCommon/Conky/clock_rings.lua $HOME/.lua/scripts -v
 
 if [ ! -e "/usr/bin/scrot" ] && [ ! -e "/usr/local/bin/scrot" ]; then
     $INSTALL_CMD scrot
