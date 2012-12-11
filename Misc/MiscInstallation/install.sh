@@ -30,6 +30,8 @@ fi
 cp $BASE_DIR/InstallationCommon/Backgrounds/background* $HOME/.WallPaper -v
 sudo cp $BASE_DIR/InstallationCommon/Backgrounds/wallpaper.sh /usr/bin/wallpaper.sh -v
 
+cp $BASE_DIR/InstallationCommon/Conky/conkyrc $HOME/.conkyrc -v
+
 if [ ! -e $HOME/.oh-my-zsh ]; then
     echo "installing oh-my-zsh ... .. ."
     curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh

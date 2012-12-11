@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-hack.el ---
-;; Time-stamp: <2012-12-10 17:13:40 星期一 by lzy>
+;; Time-stamp: <2012-12-11 10:47:18 星期二 by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -56,9 +56,5 @@
    (list (search-read-words)))
   (search-backward words)
   )
-
-(lazy-set-key
- '(("C-s" . search-forward-hack)
-   ("C-r" . search-backward-hack)))
 
 ;;; init-hack.el ends here

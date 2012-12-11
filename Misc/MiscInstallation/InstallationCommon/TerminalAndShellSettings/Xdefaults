@@ -58,7 +58,7 @@ Ctrl <KeyPress> y: insert-selection(CLIPBOARD,PRIMARY,CUT_BUFFER0) \n\
 !!! config for urxvt
 ! color set
 URxvt.background:black
-URxvt.foreground:wheat
+URxvt.foreground:green
 URxvt.colorBD:yellow
 URxvt.colorUL:green
 URxvt.cursorColor:skyblue
@@ -118,7 +118,7 @@ URxvt.inputMethod:SCIM
 ! bg transparent set
 URxvt.inheritPixmap: true
 URxvt.tintCddolor: white
-URxvt.shading: 16
+URxvt.shading: 30
 
 URxvt.depth:32
 URxvt.background:rgba:0000/0000/0000/dddd

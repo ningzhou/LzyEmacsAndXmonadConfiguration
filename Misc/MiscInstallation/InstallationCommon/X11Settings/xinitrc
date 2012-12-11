@@ -27,7 +27,8 @@ export QT_IM_MODULE=scim
 scim -d
 
 nm-applet --sm-disable&
-./.wallpaper.sh&
+wallpaper.sh&
+conky&
 
 trayer --edge top --align right --SetDockType true --expand true --width 8 --transparent true --tint 0x000000 --alpha 0 --height 19&
 # set the cursor
