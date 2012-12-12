@@ -3,7 +3,7 @@
 # Arch Linux is a recognized trademark.
 
 # messages (ie: shutdown, session options, etc)
-msg_color               #FFFFFF
+msg_color               #000000
 msg_font                Sans:size=10:bold:dpi=96
 msg_x                   50%
 msg_y                   70%
@@ -17,9 +17,9 @@ input_font          	Sans:size=10:bold:dpi=96
 input_fgcolor           #000000
 
 # panel location
-input_panel_x           18%
-input_panel_y           25%
-input_name_x            130
+input_panel_x           50%
+input_panel_y           40%
+input_name_x            168
 input_name_y            214
 
 # force single input box (gdm style)
@@ -28,10 +28,10 @@ input_pass_y            -1
 
 # username / password request (actual text)
 username_font          	Sans:size=10:bold:dpi=96
-username_color        	#ffffff
-username_x              126
+username_color        	#000000
+username_x              168
 username_y              190
-password_x              126
+password_x              168
 password_y              190
 username_msg            Username
 password_msg            Password
@@ -40,5 +40,5 @@ password_msg            Password
 #welcome_x             	50%
 #welcome_y             	22
 #welcome_font          	Sans:size=10:bold:dpi=96
-#welcome_color         	#ffffff
+#welcome_color         	#000000
 

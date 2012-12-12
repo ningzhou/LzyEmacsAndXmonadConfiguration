@@ -27,10 +27,25 @@ echo "installing backgrounds... .. ."
 if [ ! -e $HOME/.WallPaper ]; then
     mkdir -p $HOME/.WallPaper
 fi
-cp $BASE_DIR/InstallationCommon/Backgrounds/background* $HOME/.WallPaper -v
+cp $BASE_DIR/InstallationCommon/Backgrounds/src/* $HOME/.WallPaper -v
 sudo cp $BASE_DIR/InstallationCommon/Backgrounds/wallpaper.sh /usr/bin/wallpaper.sh -v
 
-cp $BASE_DIR/InstallationCommon/Conky/conkyrc $HOME/.conkyrc -v
+echo "installing conky... .. ."
+mkdir -p $HOME/.lua/scripts
+ocp $BASE_DIR/InstallationCommon/Conky/clock_rings.lua $HOME/.lua/scripts -v
+if [ $SCREEN_XRES -ge 1600 ]; then
+    cp $BASE_DIR/InstallationCommon/Conky/conkyrc_large $HOME/.conkyrc -v
+else
+    cp $BASE_DIR/InstallationCommon/Conky/conkyrc_small $HOME/.conkyrc -v
+fi
+
+echo "installing mouse theme... .. ."
+mkdir -p $HOME/.icons
+rm $HOME/.icons/* -rf
+sudo cp $BASE_DIR/InstallationCommon/CursorThemes/* /usr/share/icons/ -r
+ln -s /usr/share/icons/Pulse-Glass $HOME/.icons/default
+sudo rm /usr/share/icons/default -rf
+sudo ln -s /usr/share/icons/Pulse-Glass /usr/share/icons/default
 
 if [ ! -e $HOME/.oh-my-zsh ]; then
     echo "installing oh-my-zsh ... .. ."
@@ -45,7 +60,7 @@ fi
 echo "installing Xdefaults and Xresources ... .. ."
 cp $BASE_DIR/InstallationCommon/TerminalAndShellSettings/Xdefaults $TMP_DIR
 cp $BASE_DIR/InstallationCommon/TerminalAndShellSettings/Xresources $TMP_DIR
-if [ $SCREEN_XRES -ge 1440 ]; then
+if [ $SCREEN_XRES -ge 1600 ]; then
     sed -i -e 's/Xft.dpi:.*/Xft.dpi: 105/g' $TMP_DIR/Xdefaults
     sed -i -e 's/Xft.dpi:.*/Xft.dpi: 105/g' $TMP_DIR/Xresources
 else
@@ -103,11 +118,6 @@ sudo cp $TMP_DIR/single_screen.sh /usr/bin/ -v
 sudo cp $TMP_DIR/dual_screen.sh /usr/bin/ -v
 
 rm $TMP_DIR -rf
-
-echo "installing conky theme..."
-mkdir -p $HOME/.lua/scripts
-cp $BASE_DIR/InstallationCommon/Conky/conkyrc $HOME/.conkyrc -v
-cp $BASE_DIR/InstallationCommon/Conky/clock_rings.lua $HOME/.lua/scripts -v
 
 if [ ! -e "/usr/bin/scrot" ] && [ ! -e "/usr/local/bin/scrot" ]; then
     $INSTALL_CMD scrot

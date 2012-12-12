@@ -2,7 +2,7 @@
 
 shopt -s nullglob
 
-cd ~/.WallPaper
+cd $HOME/.WallPaper
 
 while true; do
 	files=()
@@ -10,8 +10,14 @@ while true; do
 		[[ -f $i ]] && files+=("$i")
 	done
 	range=${#files[@]}
-
-	((range)) && feh --bg-max "${files[RANDOM % range]}"
+    ((range))
+    
+    file="${files[RANDOM % range]}"
+    if [ "mars.jpg" = $file ]; then
+        feh --bg-max "${files[RANDOM % range]}"
+    else
+        feh --bg-scale "${files[RANDOM % range]}"
+    fi
 
 	sleep 10m
 done

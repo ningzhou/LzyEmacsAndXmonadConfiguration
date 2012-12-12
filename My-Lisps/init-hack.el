@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-hack.el ---
-;; Time-stamp: <2012-12-11 10:47:18 星期二 by lzy>
+;; Time-stamp: <2012-12-12 11:35:26 Wednesday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;

@@ -8,4 +8,4 @@ Xft.rgba: rgb
 !! lcdnone, lcddefault, lcdlight, lcdlegacy
 Xft.lcdfilter: lcddefault
 !Xcursor.theme: OpenZone_White_Slim
-Xcursor.theme: ComixCursors-Black-Small
+Xcursor.theme: Pulse-Glass

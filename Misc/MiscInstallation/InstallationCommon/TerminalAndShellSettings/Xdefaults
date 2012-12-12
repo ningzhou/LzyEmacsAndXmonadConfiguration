@@ -8,7 +8,7 @@ Xft.rgba: rgb
 !! lcdnone, lcddefault, lcdlight, lcdlegacy
 Xft.lcdfilter: lcddefault
 !Xcursor.theme: OpenZone_White_Slim
-Xcursor.theme: ComixCursors-Black-Small
+Xcursor.theme: Pulse-Glass
 
 !!! config for xterm
 XTerm*termName: xterm-color
@@ -57,7 +57,6 @@ Ctrl <KeyPress> y: insert-selection(CLIPBOARD,PRIMARY,CUT_BUFFER0) \n\
 
 !!! config for urxvt
 ! color set
-URxvt.background:black
 URxvt.foreground:green
 URxvt.colorBD:yellow
 URxvt.colorUL:green
@@ -119,6 +118,5 @@ URxvt.inputMethod:SCIM
 URxvt.inheritPixmap: true
 URxvt.tintCddolor: white
 URxvt.shading: 30
-
 URxvt.depth:32
 URxvt.background:rgba:0000/0000/0000/dddd
