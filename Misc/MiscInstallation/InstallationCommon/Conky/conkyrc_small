@@ -55,7 +55,7 @@ lua_load ~/.lua/scripts/clock_rings.lua
 lua_draw_hook_pre clock_rings
 
 TEXT
-${voffset -10}${color FFA01F}${font Monospace:size=26}${time %A}${font}${voffset 10}${alignr 50}${color FFFFFF}${font Monospace:size=28}${time %e}${font}
+${voffset -10}${color FFA01F}${font Monospace:size=20}${time %A}${font}${voffset 10}${alignr 50}${color FFFFFF}${font Monospace:size=28}${time %e}${font}
 ${color FFFFFF}${voffset -30}${color FFFFFF}${font Monospace:size=18}${time %b}${font}${voffset -10} ${color FFFFFF}${font Monospace:size=25}${time %Y}${font}${color 0066FF}${hr}
 ${voffset 140}${font Monospace:size=10}${alignr}HOME${font}
 ${font Monospace:size=12}${color FFFFFF}${alignr}${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ ZSNJ temperature temperature 30} °C${font}
