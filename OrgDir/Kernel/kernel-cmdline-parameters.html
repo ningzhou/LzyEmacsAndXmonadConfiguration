@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>kernel command line parameters</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="kernel command line parameters"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-12-20 13:29:21 CST"/>
+<meta name="author" content="zhengyu li"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+2  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+
+  body {
+    background: #e0e0e0;
+  }
+
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+
+  pre.src {
+	border: 2pt solid #000000;
+    background-color: #0a0a0a;
+    color: #006fff;
+	font-family: Monaco, Monospace;
+    font-size: 95%;
+  }
+
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">kernel command line parameters</h1>
+
+<p>Linux 提供了一种通过 bootloader 向其传输启动参数的功能，内核开发者可以通过这种方式来向内核传输数据，从而控制内核启动行为。
+通常的使用方式是，定义一个分析参数的函数，而后使用内核提供的宏 __setup把它注册到内核中，该宏定义在 linux/init.h 中，因此要使用它必须包含该头文件：
+__setup("para_name=", parse_func)
+para_name 为参数名，parse_func 为分析参数值的函数，它负责把该参数的值转换成相应的内核变量的值并设置
+那个内核变量。内核为整数参数值的分析提供了函数 get_option 和 get_options，前者用于分析参数值为一个整
+数的情况，而后者用于分析参数值为逗号分割的一系列整数的情况，对于参数值为字符串的情况，需要开发者自定
+义相应的分析函数。在源代码包中的内核程序kern-boot-params.c 说明了三种情况的使用。该程序列举了参数
+为一个整数、逗号分割的整数串以及字符串三种情况，读者要想测试该程序，需要把该程序拷贝到要使用的内核的
+源码目录树的一个目录下，为了避免与内核其他部分混淆，作者建议在内核源码树的根目录下创建一个新目录，如
+examples，然后把该程序拷贝到 examples 目录下并重新命名为 setup_example.c，并且为该目录创建一个
+Makefile 文件：<br/>
+obj-y = setup_example.o<br/>
+Makefile 仅许这一行就足够了，然后需要修改源码树的根目录下的 Makefile文件的一行，把下面行<br/>
+core-y          := usr/<br/>
+修改为<br/>
+core-y          := usr/ examples/<br/>
+注意：如果读者创建的新目录和重新命名的文件名与上面不同，需要修改上面所说 Makefile 文件相应的位置。
+做完以上工作就可以按照内核构建步骤去构建新的内核，在构建好内核并设置好lilo或grub为该内核的启动条目后，
+就可以启动该内核，然后使用lilo或grub的编辑功能为该内核的启动参数行增加如下参数串：
+setup_example_int=1234 setup_example_int_array=100,200,300,400 setup_example_string=Thisisatest
+当然，该参数串也可以直接写入到lilo或grub的配置文件中对应于该新内核的内核命令行参数串中。读者可以使用其它参数值来测试该功能。
+下面是作者系统上使用上面参数行的输出：
+setup_example_int=1234<br/>
+setup_example_int_array=100,200,300,400<br/>
+setup_example_int_array includes 4 intergers<br/>
+setup_example_string=Thisisatest<br/>
+</p>
+<p>
+读者可以使用$dmesg | grep setup  来查看该程序的输出。
+</p>
+
+
+
+<pre class="src src-c"><span style="color: #ffff00; font-size: 104%;">#include</span> <span style="color: #ee0000;">&lt;linux/kernel.h&gt;</span>
+<span style="color: #ffff00; font-size: 104%;">#include</span> <span style="color: #ee0000;">&lt;linux/init.h&gt;</span>
+<span style="color: #ffff00; font-size: 104%;">#include</span> <span style="color: #ee0000;">&lt;linux/string.h&gt;</span>
+
+<span style="color: #ffff00; font-size: 104%;">#define</span> <span style="color: #ff1493;">MAX_SIZE</span> <span style="color: #ffffff;">5</span>
+<span style="color: #00ffff;">static</span> <span style="color: #00ee00;">int</span> <span style="color: #ff1493;">setup_example_int</span><span style="color: #00ffff;">;</span>
+<span style="color: #00ffff;">static</span> <span style="color: #00ee00;">int</span> <span style="color: #ff1493;">setup_example_int_array</span><span style="color: #ee0000; font-size: 114%;">[</span>MAX_SIZE<span style="color: #ee0000; font-size: 114%;">]</span><span style="color: #00ffff;">;</span>
+<span style="color: #00ffff;">static</span> <span style="color: #00ee00;">char</span> <span style="color: #ff1493;">setup_example_string</span><span style="color: #ee0000; font-size: 114%;">[</span><span style="color: #ffffff;">16</span><span style="color: #ee0000; font-size: 114%;">]</span><span style="color: #00ffff;">;</span>
+
+<span style="color: #00ffff;">static</span> <span style="color: #00ee00;">int</span> <span style="color: #ee0000; font-size: 120%; font-weight: bold;">__init</span> <span style="color: #0088ff; font-weight: bold;">parse_int</span><span style="color: #1e90ff; font-size: 114%;">(</span><span style="color: #00ee00;">char</span> <span style="color: #00ff7f;">*</span> <span style="color: #ff1493;">s</span><span style="color: #1e90ff; font-size: 114%;">)</span>
+<span style="color: #33ffcc;">{</span>
+    <span style="color: #00ee00;">int</span> <span style="color: #ff1493;">ret</span><span style="color: #00ffff;">;</span>
+
+    ret<span style="color: #ffff00;"> = </span><span style="color: #0088ff; font-weight: bold;">get_option</span><span style="color: #1e90ff; font-size: 114%;">(</span><span style="color: #ffd700;">&amp;</span>s<span style="color: #00ffff;">,</span> <span style="color: #ffd700;">&amp;</span>setup_example_int<span style="color: #1e90ff; font-size: 114%;">)</span><span style="color: #00ffff;">;</span>
+    <span style="color: #00ffff;">if</span> <span style="color: #1e90ff; font-size: 114%;">(</span>ret <span style="color: #ee0000;">==</span> <span style="color: #ffffff;">1</span><span style="color: #1e90ff; font-size: 114%;">)</span> <span style="color: #33ffcc;">{</span>
+        <span style="color: #0088ff; font-weight: bold;">printk</span><span style="color: #1e90ff; font-size: 114%;">(</span><span style="color: #ee0000;">"setup_example_int=%d\n"</span><span style="color: #00ffff;">,</span> setup_example_int<span style="color: #1e90ff; font-size: 114%;">)</span><span style="color: #00ffff;">;</span>
+    <span style="color: #33ffcc;">}</span>
+    <span style="color: #00ffff;">return</span> <span style="color: #ffffff;">1</span><span style="color: #00ffff;">;</span>
+<span style="color: #33ffcc;">}</span>
+
+<span style="color: #00ffff;">static</span> <span style="color: #00ee00;">int</span> <span style="color: #ee0000; font-size: 120%; font-weight: bold;">__init</span> <span style="color: #0088ff; font-weight: bold;">parse_int_string</span><span style="color: #1e90ff; font-size: 114%;">(</span><span style="color: #00ee00;">char</span> <span style="color: #00ff7f;">*</span><span style="color: #ff1493;">s</span><span style="color: #1e90ff; font-size: 114%;">)</span>
+<span style="color: #33ffcc;">{</span>
+    <span style="color: #00ee00;">char</span> <span style="color: #00ff7f;">*</span> <span style="color: #ff1493;">ret_str</span><span style="color: #00ffff;">;</span>
+    <span style="color: #00ee00;">int</span> <span style="color: #ff1493;">i</span><span style="color: #00ffff;">;</span>
+
+    ret_str<span style="color: #ffff00;"> = </span><span style="color: #0088ff; font-weight: bold;">get_options</span><span style="color: #1e90ff; font-size: 114%;">(</span>s<span style="color: #00ffff;">,</span> MAX_SIZE<span style="color: #00ffff;">,</span> setup_example_int_array<span style="color: #1e90ff; font-size: 114%;">)</span><span style="color: #00ffff;">;</span>
+    <span style="color: #00ffff;">if</span> <span style="color: #1e90ff; font-size: 114%;">(</span><span style="color: #00ff7f;">*</span>ret_str <span style="color: #ee0000;">!=</span> <span style="color: #ee0000;">'\0'</span><span style="color: #1e90ff; font-size: 114%;">)</span> <span style="color: #33ffcc;">{</span>
+        <span style="color: #0088ff; font-weight: bold;">printk</span><span style="color: #1e90ff; font-size: 114%;">(</span><span style="color: #ee0000;">"incorrect setup_example_int_array paramters: %s\n"</span><span style="color: #00ffff;">,</span> ret_str<span style="color: #1e90ff; font-size: 114%;">)</span><span style="color: #00ffff;">;</span>
+    <span style="color: #33ffcc;">}</span>
+    <span style="color: #00ffff;">else</span> <span style="color: #33ffcc;">{</span>
+        <span style="color: #0088ff; font-weight: bold;">printk</span><span style="color: #1e90ff; font-size: 114%;">(</span><span style="color: #ee0000;">"setup_example_int_array="</span><span style="color: #1e90ff; font-size: 114%;">)</span><span style="color: #00ffff;">;</span>
+        <span style="color: #00ffff;">for</span> <span style="color: #1e90ff; font-size: 114%;">(</span>i=<span style="color: #ffffff;">1</span><span style="color: #00ffff;">;</span> i<span style="color: #ee0000;">&lt;</span>MAX_SIZE<span style="color: #00ffff;">;</span> i<span style="color: #00ff7f;">++</span><span style="color: #1e90ff; font-size: 114%;">)</span> <span style="color: #33ffcc;">{</span>
+            <span style="color: #0088ff; font-weight: bold;">printk</span><span style="color: #1e90ff; font-size: 114%;">(</span><span style="color: #ee0000;">"%d"</span><span style="color: #00ffff;">,</span> setup_example_int_array<span style="color: #ee0000; font-size: 114%;">[</span>i<span style="color: #ee0000; font-size: 114%;">]</span><span style="color: #1e90ff; font-size: 114%;">)</span><span style="color: #00ffff;">;</span>
+            <span style="color: #00ffff;">if</span> <span style="color: #1e90ff; font-size: 114%;">(</span>i <span style="color: #ee0000;">&lt;</span> <span style="color: #1e90ff; font-size: 114%;">(</span>MAX_SIZE <span style="color: #00ff7f;">-</span><span style="color: #ffffff;">1</span><span style="color: #1e90ff; font-size: 114%;">))</span> <span style="color: #33ffcc;">{</span>
+                <span style="color: #0088ff; font-weight: bold;">printk</span><span style="color: #1e90ff; font-size: 114%;">(</span><span style="color: #ee0000;">","</span><span style="color: #1e90ff; font-size: 114%;">)</span><span style="color: #00ffff;">;</span>
+            <span style="color: #33ffcc;">}</span>
+        <span style="color: #33ffcc;">}</span>
+        <span style="color: #0088ff; font-weight: bold;">printk</span><span style="color: #1e90ff; font-size: 114%;">(</span><span style="color: #ee0000;">"\n"</span><span style="color: #1e90ff; font-size: 114%;">)</span><span style="color: #00ffff;">;</span>
+        <span style="color: #0088ff; font-weight: bold;">printk</span><span style="color: #1e90ff; font-size: 114%;">(</span><span style="color: #ee0000;">"setup_example_int_array includes %d intergers\n"</span><span style="color: #00ffff;">,</span> setup_example_int_array<span style="color: #ee0000; font-size: 114%;">[</span><span style="color: #ffffff;">0</span><span style="color: #ee0000; font-size: 114%;">]</span><span style="color: #1e90ff; font-size: 114%;">)</span><span style="color: #00ffff;">;</span>
+    <span style="color: #33ffcc;">}</span>
+    <span style="color: #00ffff;">return</span> <span style="color: #ffffff;">1</span><span style="color: #00ffff;">;</span>
+<span style="color: #33ffcc;">}</span>
+
+<span style="color: #00ffff;">static</span> <span style="color: #00ee00;">int</span> <span style="color: #ee0000; font-size: 120%; font-weight: bold;">__init</span> <span style="color: #0088ff; font-weight: bold;">parse_string</span><span style="color: #1e90ff; font-size: 114%;">(</span><span style="color: #00ee00;">char</span> <span style="color: #00ff7f;">*</span><span style="color: #ff1493;">s</span><span style="color: #1e90ff; font-size: 114%;">)</span>
+<span style="color: #33ffcc;">{</span>
+    <span style="color: #00ffff;">if</span> <span style="color: #1e90ff; font-size: 114%;">(</span><span style="color: #0088ff; font-weight: bold;">strlen</span><span style="color: #1e90ff; font-size: 114%;">(</span>s<span style="color: #1e90ff; font-size: 114%;">)</span> <span style="color: #ee0000;">&gt;</span> <span style="color: #ffffff;">15</span><span style="color: #1e90ff; font-size: 114%;">)</span> <span style="color: #33ffcc;">{</span>
+        <span style="color: #0088ff; font-weight: bold;">printk</span><span style="color: #1e90ff; font-size: 114%;">(</span><span style="color: #ee0000;">"Too long setup_example_string parameter, \n"</span><span style="color: #1e90ff; font-size: 114%;">)</span><span style="color: #00ffff;">;</span>
+        <span style="color: #0088ff; font-weight: bold;">printk</span><span style="color: #1e90ff; font-size: 114%;">(</span><span style="color: #ee0000;">"maximum length is less than or equal to 15\n"</span><span style="color: #1e90ff; font-size: 114%;">)</span><span style="color: #00ffff;">;</span>
+    <span style="color: #33ffcc;">}</span>
+    <span style="color: #00ffff;">else</span> <span style="color: #33ffcc;">{</span>
+        <span style="color: #0088ff; font-weight: bold;">memcpy</span><span style="color: #1e90ff; font-size: 114%;">(</span>setup_example_string<span style="color: #00ffff;">,</span> s<span style="color: #00ffff;">,</span> <span style="color: #0088ff; font-weight: bold;">strlen</span><span style="color: #1e90ff; font-size: 114%;">(</span>s<span style="color: #1e90ff; font-size: 114%;">)</span> <span style="color: #00ff7f;">+</span> <span style="color: #ffffff;">1</span><span style="color: #1e90ff; font-size: 114%;">)</span><span style="color: #00ffff;">;</span>
+        <span style="color: #0088ff; font-weight: bold;">printk</span><span style="color: #1e90ff; font-size: 114%;">(</span><span style="color: #ee0000;">"setup_example_string=%s\n"</span><span style="color: #00ffff;">,</span> setup_example_string<span style="color: #1e90ff; font-size: 114%;">)</span><span style="color: #00ffff;">;</span>
+    <span style="color: #33ffcc;">}</span>
+    <span style="color: #00ffff;">return</span> <span style="color: #ffffff;">1</span><span style="color: #00ffff;">;</span>
+<span style="color: #33ffcc;">}</span>
+
+<span style="color: #ff0000; font-size: 104%;">/*</span><span style="color: #ff0000; font-size: 104%; font-style: italic;">&#23439;__setup()&#23558;&#20998;&#26512;&#21442;&#25968;&#30340;&#20989;&#25968;&#27880;&#20876;&#21040;&#20869;&#26680;&#20013;</span><span style="color: #ff0000; font-size: 104%;">*/</span>
+<span style="color: #0088ff; font-weight: bold;">__setup</span><span style="color: #1e90ff; font-size: 114%;">(</span><span style="color: #ee0000;">"setup_example_int="</span><span style="color: #00ffff;">,</span> parse_int<span style="color: #1e90ff; font-size: 114%;">)</span><span style="color: #00ffff;">;</span>
+<span style="color: #0088ff; font-weight: bold;">__setup</span><span style="color: #1e90ff; font-size: 114%;">(</span><span style="color: #ee0000;">"setup_example_int_array="</span><span style="color: #00ffff;">,</span> parse_int_string<span style="color: #1e90ff; font-size: 114%;">)</span><span style="color: #00ffff;">;</span>
+<span style="color: #0088ff; font-weight: bold;">__setup</span><span style="color: #1e90ff; font-size: 114%;">(</span><span style="color: #ee0000;">"setup_example_string="</span><span style="color: #00ffff;">,</span> parse_string<span style="color: #1e90ff; font-size: 114%;">)</span><span style="color: #00ffff;">;</span>
+</pre>
+
+
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2012-12-20 13:29:21 CST</p>
+<p class="author">Author: zhengyu li</p>
+<p class="creator">Org version 7.8.09 with Emacs version 23</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>
