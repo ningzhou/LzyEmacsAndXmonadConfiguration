@@ -18,7 +18,7 @@ input_fgcolor           #000000
 
 # panel location
 input_panel_x           50%
-input_panel_y           40%
+input_panel_y           45%
 input_name_x            168
 input_name_y            214
 
