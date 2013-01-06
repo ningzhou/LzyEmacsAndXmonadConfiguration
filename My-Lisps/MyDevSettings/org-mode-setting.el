@@ -1,5 +1,5 @@
 ;;; org-mode-setting.el --- 
-;; Time-stamp: <2012-12-07 06:35:40 Friday by lzy>
+;; Time-stamp: <2013-01-06 11:28:12 Sunday by lzy>
 
 ;; Copyright (C) 2012  zhengyu li
 
@@ -72,8 +72,6 @@
   (setq org-agenda-files
         (list org-routines-file
               org-tasks-file
-              org-notes-file
-              org-tricks-file
               diary-file))
 
   (setq org-todo-keywords
