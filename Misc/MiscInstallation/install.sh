@@ -124,5 +124,6 @@ if [ ! -e "/usr/bin/scrot" ] && [ ! -e "/usr/local/bin/scrot" ]; then
 fi
 
 if [ -e "/usr/share/slim/themes" ]; then
+    sudo rm $BASE_DIR/InstallationCommon/SlimTheme /usr/share/slim/themes/my-theme -rf
     sudo cp $BASE_DIR/InstallationCommon/SlimTheme /usr/share/slim/themes/my-theme -rv
 fi
