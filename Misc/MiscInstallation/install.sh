@@ -125,7 +125,7 @@ fi
 
 if [ -e "/usr/share/slim/themes" ]; then
     if [ -e "/usr/share/slim/themes/my-theme" ]; then
-        sudo rm $BASE_DIR/InstallationCommon/SlimTheme /usr/share/slim/themes/my-theme -rf
+        sudo rm /usr/share/slim/themes/my-theme -rf
     fi
     sudo cp $BASE_DIR/InstallationCommon/SlimTheme /usr/share/slim/themes/my-theme -rv
 fi
