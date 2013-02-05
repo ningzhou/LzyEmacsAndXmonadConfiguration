@@ -5,18 +5,29 @@
 BASE_DIR=$(dirname $0)
 SCREEN_XRES=$(xrandr|grep "current"|cut -d " " -f 8)
 TMP_DIR=$HOME/misc_tmp_dir
-INSTALL_CMD="sudo pacman -S"
 
-if [ -e /etc/lsb-release ]; then
-    OS=$(grep "DISTRIB_ID" /etc/lsb-release|cut -d "=" -f 2)
+if [ -z $1 ]; then
+    echo "Please input OS: (e.g. centos, arch, ubuntu, fedora)"
+    read OS
+    if [ -z $OS ]; then
+        echo "Invalide OS type!"
+        exit 1
+    fi
 else
-    OS="Arch"
+    OS=$1
 fi
 
-if [ $OS = "Ubuntu" ]; then
+OS="$(echo $OS | tr '[A-Z]' '[a-z]')"
+if [ $OS = "ubuntu" ]; then
     INSTALL_CMD="sudo apt-get install"
 else
-    INSTALL_CMD="sudo pacman -S"
+    if [ $OS = "arch" ]; then
+        INSTALL_CMD="sudo pacman -S"
+    else
+        if [ $OS = "centos" ] || [ $OS = "fedora" ]; then
+            INSTALL_CMD="sudo yum install"
+        fi
+    fi
 fi
 
 # create temporary directory
@@ -69,7 +80,7 @@ else
 fi
 cp $TMP_DIR/Xdefaults $HOME/.Xdefaults -v
 cp $TMP_DIR/Xresources $HOME/.Xresources -v
-if [ $OS = "Ubuntu" ];then
+if [ $OS = "ubuntu" ];then
     sudo cp $BASE_DIR/InstallationCommon/X11Settings/xmonad.start /usr/bin/ -v
 else
     cp $BASE_DIR/InstallationCommon/X11Settings/xinitrc $HOME/.xinitrc
@@ -104,7 +115,7 @@ fi
 cp $TMP_DIR/xmobar.hs $HOME/.xmonad/xmobar.hs
 cp $TMP_DIR/xmobar_dual_screen.hs $HOME/.xmonad/xmobar_dual_screen.hs
 
-if [ $OS = "Ubuntu" ]; then
+if [ $OS = "ubuntu" ]; then
     cp $TMP_DIR/ubuntu_xmonad.hs $HOME/.xmonad/xmonad.hs -v
     cp $TMP_DIR/ubuntu_xmonad.hs $HOME/.xmonad/back/xmonad.hs -v
     cp $TMP_DIR/ubuntu_xmonad_dual_screen.hs $HOME/.xmonad/back/xmonad_dual_screen.hs -v
