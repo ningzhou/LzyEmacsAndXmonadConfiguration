@@ -130,6 +130,12 @@ sudo cp $TMP_DIR/dual_screen.sh /usr/bin/ -v
 
 rm $TMP_DIR -rf
 
+echo "installing tmux... .. ."
+if [ ! -e "/usr/bin/tmux" ] && [ ! -e "/usr/local/bin/tmux" ]; then
+    $INSTALL_CMD tmux
+fi
+cp $BASE_DIR/InstallationCommon/Tmux/tmux.conf $HOME/.tmux.conf -v
+
 if [ ! -e "/usr/bin/scrot" ] && [ ! -e "/usr/local/bin/scrot" ]; then
     $INSTALL_CMD scrot
 fi
