@@ -1,5 +1,5 @@
 ;;; org-mode-setting.el --- 
-;; Time-stamp: <2013-01-06 11:28:12 Sunday by lzy>
+;; Time-stamp: <2013-03-02 06:55:54 Saturday by lzy>
 
 ;; Copyright (C) 2012  zhengyu li
 
@@ -118,6 +118,7 @@
   (interactive)
   (require 'org)
   (org-store-link))
+
 (defun org-capture-preload ()
   "preload edition."
   (interactive)

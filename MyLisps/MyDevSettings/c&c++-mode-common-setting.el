@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; c&c++-mode-common-setting.el ---
-;; Time-stamp: <2012-12-07 06:32:44 Friday by lzy>
+;; Time-stamp: <2013-03-02 06:46:12 Saturday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -34,12 +34,10 @@
 
 
 (defvar c/c++-hightligh-included-files-key-map nil)
-
 (defconst c/c++-system-head-file-dir '("/usr/include"
                                        "/usr/local/include"
                                        "/usr/include/linux")
   "system header files directory")
-
 (defconst c/c++-user-head-file-dir  '("."
                                       "./include"
                                       "../include"

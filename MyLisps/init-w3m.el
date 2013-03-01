@@ -1,5 +1,5 @@
 ;;; init-w3m.el --- 
-;; Time-stamp: <2013-03-01 17:47:01 Friday by lzy>
+;; Time-stamp: <2013-03-02 06:24:24 Saturday by lzy>
 
 ;; Copyright (C) 2012  zhengyu li
 
@@ -29,7 +29,7 @@
 (provide 'init-w3m)
 
 
-;; require features
+;; required features
 (require 'w3m)                          ;W3M
 (require 'w3m-search)                   ;w3m搜索
 (require 'w3m-bookmark)                 ;w3m书签

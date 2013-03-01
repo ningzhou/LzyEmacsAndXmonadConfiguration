@@ -1,5 +1,5 @@
 ;;; init-moccur.el --- 
-;; Time-stamp: <2012-12-07 07:03:48 Friday by lzy>
+;; Time-stamp: <2013-03-02 04:16:06 Saturday by lzy>
 
 ;; Copyright (C) 2012  zhengyu li
 
@@ -34,7 +34,8 @@
 (require 'moccur-edit)
 (require 'color-moccur)
 
-(defadvice moccur-edit-change-file         ;编辑过后自动保存buffer
+;; save buffer after modification
+(defadvice moccur-edit-change-file         
   (after save-after-moccur-edit-buffer activate)
   "Automatically save buffer when edit in moccur."
   (save-buffer))
@@ -42,9 +43,9 @@
 (defun moccur-setting ()
   "setting for moccur and moccur-edit"
 
-  (setq moccur-kill-moccur-buffer t) ;kill buffer when exit
-  (setq moccur-edit-highlight-edited-text t) ;highlight text regions been changed
-  (setq moccur-grep-default-word-near-point t) ;get a word near the point as default regexp string
+  (setq moccur-kill-moccur-buffer t) ; kill buffer when exit
+  (setq moccur-edit-highlight-edited-text t) ; highlight text regions been changed
+  (setq moccur-grep-default-word-near-point t) ; get a word near the point as default regexp string
 
   (lazy-set-key
    '(("C-x C-u"  . occur-by-moccur)

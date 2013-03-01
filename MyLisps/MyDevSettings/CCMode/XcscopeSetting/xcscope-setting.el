@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; xcscope-setting.el ---
-;; Time-stamp: <2012-12-10 10:05:54 Monday by lzy>
+;; Time-stamp: <2013-03-02 06:44:14 Saturday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -33,12 +33,11 @@
 (provide 'xcscope-setting)
 
 
-(defun cscope-setting ()
+(defun xcscope-setting ()
   "setting for cscope"
   ;; required features
-  (require 'xcscope)
-  )
+  (require 'xcscope))
 
-(add-hook 'c-mode-common-hook 'cscope-setting)
+(add-hook 'c-mode-common-hook 'xcscope-setting)
 
 ;;; xcscope-setting.el ends here

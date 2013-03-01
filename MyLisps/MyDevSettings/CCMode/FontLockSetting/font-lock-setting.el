@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; font-lock-setting.el ---
-;; Time-stamp: <2012-12-07 06:30:28 Friday by lzy>
+;; Time-stamp: <2013-03-02 06:40:40 Saturday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -33,10 +33,6 @@
 (provide 'font-lock-setting)
 
 
-(defun default-font-lock-setting ()
-  "default font lock for cc-mode"
-  (font-lock-mode t))
-
 (defun c/c++-font-lock-setting ()
   "setting for font lock"
   ;; required features
@@ -49,10 +45,10 @@
   (zjl-hl-enable-global-all-modes)
   )
 
-;; common setting for cc mode
-(add-hook 'c-mode-common-hook 'default-font-lock-setting)
 ;; specific setting for c/c++ mode
 (add-hook 'c-mode-hook 'c/c++-font-lock-setting)
 (add-hook 'c++-mode-hook 'c/c++-font-lock-setting)
+
+(global-font-lock-mode t)
 
 ;;; font-lock-setting.el ends here

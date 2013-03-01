@@ -1,5 +1,5 @@
 ;;; init-dired.el --- 
-;; Time-stamp: <2013-03-01 17:34:26 Friday by lzy>
+;; Time-stamp: <2013-03-02 04:10:52 Saturday by lzy>
 
 ;; Copyright (C) 2012  zhengyu li
 
@@ -47,7 +47,7 @@
    dired-mode-map)
 
   (lazy-set-key
-   `(("C-x d" . ido-dired)
+   `(("C-x d" . dired-jump)
      ("C-x C-d" . ido-dired))
    global-map)
 
@@ -101,6 +101,7 @@
      ("C-c n"       . wuxch-get-file-name-without-path)
      ("C-c p"       . wuxch-get-file-name-only-path)
      ("C-c f"       . wuxch-get-file-name-with-path)
+     ("C-x d"       . ido-dired)
      (";"           . dired-view-minor-mode-toggle)
      (":"           . dired-view-minor-mode-dired-toggle))
    dired-mode-map))

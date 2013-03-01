@@ -1,5 +1,5 @@
 ;;; init-gnus.el ---
-;; Time-stamp: <2012-12-07 06:52:51 Friday by lzy>
+;; Time-stamp: <2013-03-02 04:18:33 Saturday by lzy>
 
 ;; Copyright (C) 2012 zhengyu li
 ;;
@@ -34,7 +34,6 @@
 (defun gnus-setting ()
   "setting for gnus"
   ;;; required features
-  (require 'gnus)
   (require 'gnus-notify)
 
   ;; directory setting
@@ -106,9 +105,9 @@
                (article 1.0))))
 
   ;; show setting
-  (setq mm-text-html-renderer 'w3m)                     ;display html with w3m
-  ;; (setq mm-inline-large-images t)                       ;show image
-  (auto-image-file-mode)                                ;load image automatically
+  (setq mm-text-html-renderer 'w3m)                     ; display html with w3m
+  ;; (setq mm-inline-large-images t)                       ; show image
+  (auto-image-file-mode)                                ; load image automatically
   (add-to-list 'mm-attachment-override-types "image/*") 
 
   (setq gnus-summary-gather-subject-limit 'fuzzy)

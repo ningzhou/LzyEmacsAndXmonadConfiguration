@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-03-01 16:28:27 Friday by lzy>
+;; Time-stamp: <2013-03-02 05:01:08 Saturday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -96,16 +96,15 @@
 (require 'init-one-key)                      ;; key binding setting for one key menu
 (require 'init-misc)                         ;; other setting
 (require 'init-chart)                        ;; chart of emacs storage
-;;(require 'init-git)                          ;; git-emacs
+(require 'init-git)                          ;; git-emacs
 (require 'init-moccur)                       ;; setting for multi occurence
 (require 'init-timestamp)                    ;; update file timestamp dynamically
 (require 'init-gnus)                         ;; setting for gnus
 (require 'init-erc)                          ;; erc setting
 (require 'init-newsticker)                   ;; setting for newsticker
 (require 'init-cua)                          ;; setting for cua mode
-(require 'init-hack)                         ;; in-built functions hack
 (require 'init-doubanfm)                     ;; douban fm setting
-(if (window-system)
-    (require 'init-weather))                 ;; show weather in mode line
+(require 'init-weather)                      ;; show weather in mode line
+(require 'init-hack)                         ;; in-built functions hack
 
 ;;; LzySetup.el ends here

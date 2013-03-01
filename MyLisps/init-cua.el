@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-cua.el ---
-;; Time-stamp: <2012-12-04 05:58:21 Tuesday by lzy>
+;; Time-stamp: <2013-03-02 04:28:01 Saturday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -34,7 +34,7 @@
 
 
 ;; required features
-(require 'cua-base)                     ;emulate CUA key bindings
+(require 'cua-base)
 
 (defun cua-settings ()
   "settings for `cua'."

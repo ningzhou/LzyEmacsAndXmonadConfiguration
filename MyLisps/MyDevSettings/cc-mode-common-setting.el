@@ -1,5 +1,5 @@
 ;;; cc-mode-common-setting.el --- 
-;; Time-stamp: <2013-03-01 18:08:42 Friday by lzy>
+;; Time-stamp: <2013-03-02 07:29:16 Saturday by lzy>
 
 ;; Copyright (C) 2012  zhengyu li
 
@@ -48,6 +48,8 @@
      ("C-c i e" . show-ifdef-block)
      ("C-c i E" . show-ifdefs)
      ("C-c i m" . mark-ifdef)
+     ("C-c M-a" . beginning-of-defun)
+     ("C-c M-e" . end-of-defun)
      ("RET" . newline-and-indent)
      ("C-j" . newline-and-indent)
      ("C-c C-c" . comment)

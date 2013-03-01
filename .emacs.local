@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
-;;; .emacs.local ---
-;; Time-stamp: <2013-03-01 16:32:47 Friday by lzy>
+;;; emacs.config ---
+;; Time-stamp: <2013-03-01 16:28:53 Friday by lzy>
 
 ;; Copyright (C) 2012 zhengyu li
 ;;
@@ -46,9 +46,9 @@
 (my-add-subdirs-to-load-path my-emacs-site-lisps-path)
 
 (require 'LzyFont)       ;; load fontset
-(require 'LzySetup)      ;; setup all kinds of plugins
-(require 'LzyRedefine)   ;; some redefined functions
-(require 'LzyTheme)      ;; Theme
+(require 'LzySetup)      ;; all kinds of plugins
+(require 'LzyRedefine)   ;; redefined functions
+(require 'LzyTheme)      ;; Theme settings
 (require 'LzyStartup)    ;; startup options
 
 ;;; emacs.config ends here

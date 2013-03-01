@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-fringe-related.el ---
-;; Time-stamp: <2012-12-06 17:29:36 Thursday by lzy>
+;; Time-stamp: <2013-03-02 06:33:32 Saturday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -35,6 +35,7 @@
 
 ;; required features
 (require 'flymake)
+(require 'hideshowvis)
 (require 'fringe-helper)
 (require 'hideshow-fringe)
 
@@ -56,6 +57,20 @@
                                               activate compile)
   (mapc 'fringe-helper-remove flymake-fringe-overlays)
   (setq flymake-fringe-overlays nil))
+
+(defun hideshowvis-settings ()
+  "settings for hideshowvis"
+  ;; (setq hideshowvis-ignore-same-line nil)
+  ;; (hideshowvis-enable)
+  ;; (hideshowvis-symbols)
+  )
+
+(dolist (hook (list 'c-mode-common-hook
+                    'lisp-mode-hook
+                    'emacs-lisp-mode-hook
+                    'lisp-interaction-mode-hook
+                    ))
+  (add-hook hook 'hideshowvis-settings))
 
 (set-fringe-mode '(1 . 1))
 

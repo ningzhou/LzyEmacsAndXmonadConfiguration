@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-newsticker.el ---
-;; Time-stamp: <2012-12-07 07:05:39 Friday by lzy>
+;; Time-stamp: <2013-03-02 04:23:41 Saturday by lzy>
 
 ;; Copyright (C) 2012 zhengyu li
 ;;
