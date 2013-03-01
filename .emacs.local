@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
-;;; emacs.config ---
-;; Time-stamp: <2012-12-10 14:40:03 Monday by lzy>
+;;; .emacs.local ---
+;; Time-stamp: <2013-03-01 16:32:47 Friday by lzy>
 
 ;; Copyright (C) 2012 zhengyu li
 ;;
@@ -36,8 +36,8 @@
 ;;; require features:
 
 (defconst my-emacs-path                "/home/lzy/My_Software_Dir/LzyEmacsAndXmonadConfiguration/" "directories of my emacs configuration files")
-(defconst my-emacs-my-lisps-path       (concat my-emacs-path "My-Lisps/") "my own configuration packages")
-(defconst my-emacs-site-lisps-path     (concat my-emacs-path "Site-Lisps/") "3rd-party configuration packages")
+(defconst my-emacs-my-lisps-path       (concat my-emacs-path "MyLisps/") "my own configuration packages")
+(defconst my-emacs-site-lisps-path     (concat my-emacs-path "MySiteLisps/") "3rd-party configuration packages")
 (defconst my-emacs-templates-path      (concat my-emacs-path "Templates/") "templates for yasnippets")
 
 ;; add `my-emacs-lisps-path' and subdirectories to `load-path'

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Time-stamp: <2013-03-01 14:45:29 Friday by lzy>
+
 shopt -s nullglob
 
 cd $HOME/.WallPaper

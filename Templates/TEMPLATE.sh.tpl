@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-# Time-stamp: <2012-02-17 14:03:22 Friday by lzy>
+# Time-stamp: <2013-03-01 14:49:01 Friday by lzy>
 
 (>>>POINT<<<)

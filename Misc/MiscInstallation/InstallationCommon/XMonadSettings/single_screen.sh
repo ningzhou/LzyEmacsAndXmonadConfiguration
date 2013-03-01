@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Time-stamp: <2013-03-01 14:49:22 Friday by lzy>
+
 rm ~/.xmonad/xmonad.hs
 cp ~/.xmonad/back/xmonad.hs ~/.xmonad/xmonad.hs
 
