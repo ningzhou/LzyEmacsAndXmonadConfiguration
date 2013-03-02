@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-yasnippet.el ---
-;; Time-stamp: <2012-12-07 07:23:05 Friday by lzy>
+;; Time-stamp: <2013-03-02 20:14:48 Saturday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -36,26 +36,18 @@
 ;; required features
 (require 'yasnippet)
 
-(defun yasnippet-unbind-trigger-key ()
-  "Unbind `yas/trigger-key'."
-  (let ((key yas/trigger-key))
-    (setq yas/trigger-key nil)
-    (yas/trigger-key-reload key)))
-
 (defun yasnippet-reload-after-save ()
   (let* ((bfn (expand-file-name (buffer-file-name)))
          (root (expand-file-name yas/root-directory)))
     (when (string-match (concat "^" root) bfn)
-      (yas/load-snippet-buffer))))
+      (yas-load-snippet-buffer))))
 
 (defun yasnippet-setting ()
   "setting for yasnippet"
-  (setq yas/root-directory (concat my-emacs-path "Snippets"))
-  (setq yas/snippet-dirs yas/root-directory)
-  (yas/load-directory yas/root-directory)
-  (yasnippet-unbind-trigger-key)
+  (setq yas-snippet-dirs (concat my-emacs-path "Snippets"))
+  (yas-load-directory yas-snippet-dirs)
   (add-hook 'after-save-hook 'yasnippet-reload-after-save)
-  (yas/global-mode 1))
+  (yas-global-mode 1))
 
 (eval-after-load "init-yasnippet"
   '(yasnippet-setting))

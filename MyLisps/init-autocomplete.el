@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-autocomplete.el ---
-;; Time-stamp: <2012-12-06 17:13:11 Thursday by lzy>
+;; Time-stamp: <2013-03-02 19:59:03 Saturday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -38,7 +38,7 @@
 (require 'auto-complete-config)
 
 (defvar auto-complete-dict-dir
-  (concat my-emacs-site-lisps-path "AutoComplete/auto-complete-1.3.1-base/dict"))
+  (concat my-emacs-site-lisps-path "AutoComplete/auto-complete-1.4-base/dict"))
 
 (defadvice ac-error
   (after reopen-ac-mode activate)

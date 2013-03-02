@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-fringe-related.el ---
-;; Time-stamp: <2013-03-02 06:33:32 Saturday by lzy>
+;; Time-stamp: <2013-03-02 18:25:08 Saturday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -60,9 +60,9 @@
 
 (defun hideshowvis-settings ()
   "settings for hideshowvis"
-  ;; (setq hideshowvis-ignore-same-line nil)
-  ;; (hideshowvis-enable)
-  ;; (hideshowvis-symbols)
+  (set-fringe-mode '(5 . 0))
+  (setq hideshowvis-ignore-same-line nil)
+  (hideshowvis-symbols)
   )
 
 (dolist (hook (list 'c-mode-common-hook
@@ -71,7 +71,5 @@
                     'lisp-interaction-mode-hook
                     ))
   (add-hook hook 'hideshowvis-settings))
-
-(set-fringe-mode '(1 . 1))
 
 ;;; init-fringe-related.el ends here
