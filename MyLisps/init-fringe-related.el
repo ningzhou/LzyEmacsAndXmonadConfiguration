@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-fringe-related.el ---
-;; Time-stamp: <2013-03-02 18:25:08 Saturday by lzy>
+;; Time-stamp: <2013-03-03 05:00:04 Sunday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -39,7 +39,6 @@
 (require 'fringe-helper)
 (require 'hideshow-fringe)
 
-(defvar flymake-fringe-overlays nil)
 (make-variable-buffer-local 'flymake-fringe-overlays)
 
 (defadvice flymake-make-overlay (after add-to-fringe first

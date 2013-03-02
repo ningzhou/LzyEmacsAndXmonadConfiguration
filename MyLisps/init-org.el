@@ -1,5 +1,5 @@
-;;; org-mode-setting.el --- 
-;; Time-stamp: <2013-03-02 06:55:54 Saturday by lzy>
+;;; init-org.el --- 
+;; Time-stamp: <2013-03-03 05:03:46 Sunday by lzy>
 
 ;; Copyright (C) 2012  zhengyu li
 
@@ -26,7 +26,7 @@
 ;;; Code:
 
 
-(provide 'org-mode-setting)
+(provide 'init-org)
 
 (defun org-setting ()
   "setting for org mode"
@@ -144,4 +144,4 @@
    ("C-c o a" . org-agenda-preload)
    ("C-c o b" . org-iswitchb-preload)))
 
-;;; org-mode-setting.el ends here
+;;; init-org.el ends here

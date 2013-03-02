@@ -40,7 +40,6 @@
 (require 'sh-mode-setting)             ;; shell mode setting
 (require 'emacs-lisp-mode-setting)     ;; all lisp realted setting
 (require 'haskell-mode-setting)        ;; haskell mode setting
-(require 'org-mode-setting)            ;; org mode setting
 (require 'hideshow-setting)            ;; hide/show setting
 (require 'xcscope-setting)             ;; c code navigation setting
 (require 'doxymacs-setting)            ;; setting for doxymacs

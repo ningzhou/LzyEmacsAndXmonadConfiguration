@@ -49,7 +49,9 @@ MetaPost是不争的首选。
 *** git config [[http:opengit.org/open/?f%3Dprogit_07-customizing-git][Git documents]]
 git config --global user.name "name"
 git config --global user.email "mailname@gmail.com"
-git config --global color.ui.true
+git config --global color.diff auto # git diff 要顯示顏色
+git config --global color.status auto # git status 要顯示顏色
+git config --global color.branch auto
 
 ** Stardict dictionary
 get dictionary from:[[http://abloz.com/huzheng/stardict-dic/zh_CN/]]

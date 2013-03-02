@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-03-02 19:41:32 Saturday by lzy>
+;; Time-stamp: <2013-03-03 05:04:30 Sunday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -90,6 +90,7 @@
 (require 'init-emms)                         ;; emacs multi-media setting
 (require 'init-w3m)                          ;; emacs browser setting
 (require 'init-etags-extension)              ;; etags extension
+(require 'init-org)                          ;; setting for org mode
 (require 'init-dev-setting)                  ;; setting for programming environment
 (require 'init-edit-setting)                 ;; edit setting for all buffer
 (require 'init-template)                     ;; automatically insert templates
