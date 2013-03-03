@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-wget.el ---
-;; Time-stamp: <2013-03-01 17:00:50 Friday by lzy>
+;; Time-stamp: <2013-03-04 04:37:34 Monday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -35,5 +35,7 @@
 
 ;; required features
 (require 'wget)
+
+(setq wget-download-directory "./")
 
 ;;; init-wget.el ends here

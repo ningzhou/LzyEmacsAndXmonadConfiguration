@@ -1,5 +1,5 @@
 ;;; init-org.el --- 
-;; Time-stamp: <2013-03-03 05:03:46 Sunday by lzy>
+;; Time-stamp: <2013-03-04 04:52:16 Monday by lzy>
 
 ;; Copyright (C) 2012  zhengyu li
 
@@ -27,6 +27,10 @@
 
 
 (provide 'init-org)
+
+
+;; required features
+(require 'org)
 
 (defun org-setting ()
   "setting for org mode"
@@ -109,39 +113,13 @@
    org-agenda-mode-map)
   )
 
-(eval-after-load "org"
+(eval-after-load "init-org"
   '(org-setting))
-
-;; global setting
-(defun org-store-link-preload ()
-  "preload edition."
-  (interactive)
-  (require 'org)
-  (org-store-link))
-
-(defun org-capture-preload ()
-  "preload edition."
-  (interactive)
-  (require 'org)
-  (org-capture))
-
-(defun org-agenda-preload ()
-  "preload edition."
-  (interactive)
-  (require 'org)
-  (org-agenda))
-
-(defun org-iswitchb-preload ()
-  "preload edition."
-  (interactive)
-  (require 'org)
-  (org-store-link))
 
 ;; global key bindings
 (lazy-set-key
- '(("C-c o l" . org-store-link-preload)
-   ("C-c o c" . org-capture-preload)
-   ("C-c o a" . org-agenda-preload)
-   ("C-c o b" . org-iswitchb-preload)))
+ '(("C-c o l" . org-store-link)
+   ("C-c o c" . org-capture)
+   ("C-c o a" . org-agenda)))
 
 ;;; init-org.el ends here
