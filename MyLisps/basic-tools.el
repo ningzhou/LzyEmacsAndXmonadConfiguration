@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; basic-tools.el ---
-;; Time-stamp: <2012-12-10 16:58:31 星期一 by lzy>
+;; Time-stamp: <2013-03-04 12:08:09 Monday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -66,5 +66,14 @@
       (setq begin (region-beginning)
             end (region-end)))
     (buffer-substring-no-properties begin end)))
+
+;; frame transparency
+(defun toggle-transparency ()
+  (interactive)
+  (if (/=
+       (cadr (frame-parameter nil 'alpha))
+       100)
+      (set-frame-parameter nil 'alpha '(100 100))
+    (set-frame-parameter nil 'alpha '(95 50))))
 
 ;;; basic-tools.el ends here

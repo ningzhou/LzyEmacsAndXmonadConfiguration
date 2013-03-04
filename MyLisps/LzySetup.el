@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-03-03 05:04:30 Sunday by lzy>
+;; Time-stamp: <2013-03-04 12:12:28 Monday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -105,6 +105,7 @@
 (require 'init-newsticker)                   ;; setting for newsticker
 (require 'init-cua)                          ;; setting for cua mode
 (require 'init-doubanfm)                     ;; douban fm setting
+(require 'init-google-maps)                  ;; google maps setting
 (require 'init-weather)                      ;; show weather in mode line
 (require 'init-hack)                         ;; in-built functions hack
 
