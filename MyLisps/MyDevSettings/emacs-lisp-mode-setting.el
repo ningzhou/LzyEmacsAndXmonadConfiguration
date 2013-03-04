@@ -1,5 +1,5 @@
 ;;; emacs-lisp-mode-setting.el --- 
-;; Time-stamp: <2012-12-07 06:33:46 Friday by lzy>
+;; Time-stamp: <2013-03-04 11:56:00 Monday by lzy>
 
 ;; Copyright (C) 2012  zhengyu li
 
@@ -28,6 +28,12 @@
 
 (provide 'emacs-lisp-mode-setting)
 
+
+(defun paredit-setting ()
+  "setting for paredit"
+  ;; required features
+  (require 'paredit)
+  (paredit-mode t))
 
 (defun eldoc-setting ()
   "setting for `eldoc'."
@@ -88,6 +94,7 @@
 
 (add-hook 'lisp-mode-hook
           '(lambda ()
+             (paredit-setting)
              (eldoc-setting)
              (cldoc-setting)
              (edebug-clear-global-break-condition)
@@ -103,6 +110,7 @@
 
 (add-hook 'emacs-lisp-mode-hook
           '(lambda ()
+             (paredit-setting)
              (eldoc-setting)
              (cldoc-setting)
              (edebug-clear-global-break-condition)
@@ -118,6 +126,7 @@
 
 (add-hook 'lisp-interaction-mode-hook
           '(lambda ()
+             (paredit-setting)
              (eldoc-setting)
              (cldoc-setting)
              (edebug-clear-global-break-condition)

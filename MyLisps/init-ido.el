@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-ido.el ---
-;; Time-stamp: <2013-03-01 17:37:42 Friday by lzy>
+;; Time-stamp: <2013-03-04 11:47:33 Monday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -55,6 +55,48 @@
 
 (defun ido-disable-line-truncation () (set (make-local-variable 'truncate-lines) nil))
 
+(defun ido-my-keys ()
+  "Set up the keymap for `ido'."
+  ;; common keys
+  (define-key ido-mode-map "\C-e" 'ido-edit-input)   
+  (define-key ido-mode-map "\t" 'ido-complete) ;; complete partial
+
+  ;; cycle through matches
+  (define-key ido-mode-map "\C-r" 'ido-prev-match)
+  (define-key ido-mode-map "\C-s" 'ido-next-match)
+  (define-key ido-mode-map [right] 'ido-next-match)
+  (define-key ido-mode-map [left] 'ido-prev-match)
+
+  ;; keys used in file and dir environment
+  (when (memq ido-cur-item '(file dir))
+    (define-key ido-mode-map "\C-b" 'ido-enter-switch-buffer)
+    (define-key ido-mode-map "\C-d" 'ido-enter-dired)
+    (define-key ido-mode-map "\C-f" 'ido-fallback-command)
+
+    ;; cycle among directories
+    ;; use [left] and [right] for matching files
+    (define-key ido-mode-map [down] 'ido-next-match-dir)
+    (define-key ido-mode-map [up]   'ido-prev-match-dir)
+
+    ;; backspace functions
+    (define-key ido-mode-map [backspace] 'ido-delete-backward-updir)
+    (define-key ido-mode-map [(meta backspace)] 'ido-delete-backward-word-updir)
+    (define-key ido-mode-map [(control backspace)] 'ido-up-directory)
+
+  (when (eq ido-cur-item 'file)
+    (define-key ido-mode-map "\C-k" 'ido-delete-file-at-head)
+    (define-key ido-mode-map "\C-l" 'ido-toggle-literal)
+    (define-key ido-mode-map "\C-o" 'ido-copy-current-word)
+    (define-key ido-mode-map "\C-v" 'ido-toggle-vc)
+    (define-key ido-mode-map "\C-w" 'ido-copy-current-file-name)
+    )
+
+  (when (eq ido-cur-item 'buffer)
+    (define-key ido-mode-map "\C-b" 'ido-fallback-command)
+    (define-key ido-mode-map "\C-f" 'ido-enter-find-file)
+    (define-key ido-mode-map "\C-k" 'ido-kill-buffer-at-head)
+    )))
+
 (defun ido-setting ()
   (ido-mode t)
   (ido-hacks-mode t)
@@ -65,11 +107,12 @@
   (setq ido-slow-ftp-host-regexps '(".*"))
   ;; don't search files in other directories
   (setq ido-work-directory-list-ignore-regexps '(".*"))
-   ;; Display ido results vertically, rather than horizontally
+  ;; Display ido results vertically, rather than horizontally
   (setq ido-decorations
         (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
-  (add-hook 'ido-make-file-list-hook 'ido-sort-mtime)
+  (add-hook 'ido-define-mode-map-hook 'ido-my-keys)
   (add-hook 'ido-make-dir-list-hook 'ido-sort-mtime)
+  (add-hook 'ido-make-file-list-hook 'ido-sort-mtime)
   (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-truncation)
   )
 
