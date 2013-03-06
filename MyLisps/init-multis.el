@@ -1,5 +1,5 @@
 ;;; init-multis.el --- 
-;; Time-stamp: <2013-03-01 16:18:02 Friday by lzy>
+;; Time-stamp: <2013-03-06 11:44:07 Wednesday by lzy>
 
 ;; Copyright (C) 2012  zhengyu li
 
@@ -38,6 +38,8 @@
   (interactive)
   (setq buffer-face-mode-face '(:family "Monospace" :height 1.0 :weight normal))
   (buffer-face-mode)
+  ;; close yasnippet minor mode
+  (yas-minor-mode 0)
   )
 
 (defun term-send-esc ()
@@ -57,7 +59,10 @@
    '(("<f9>" . multi-scratch-new)
      ("C-<f9>" . multi-term)))
 
-  (add-hook 'term-mode-hook 'set-ansi-term-font))
+  (add-hook 'term-mode-hook 'set-ansi-term-font)
+  (add-hook 'c-mode-common-hook '(lambda ()
+                                   (require 'yasnippet)
+                                   (yas-minor-mode 0))))
 
 (eval-after-load "init-multis"
   '(multis-setting))
