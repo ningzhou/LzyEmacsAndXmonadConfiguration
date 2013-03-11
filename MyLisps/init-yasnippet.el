@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-yasnippet.el ---
-;; Time-stamp: <2013-03-02 20:14:48 Saturday by lzy>
+;; Time-stamp: <2013-03-11 13:09:22 Monday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -44,6 +44,9 @@
 
 (defun yasnippet-setting ()
   "setting for yasnippet"
+  (lazy-unset-key
+   '("TAB")
+   yas-keymap)
   (setq yas-snippet-dirs (concat my-emacs-path "Snippets"))
   (yas-load-directory yas-snippet-dirs)
   (add-hook 'after-save-hook 'yasnippet-reload-after-save)

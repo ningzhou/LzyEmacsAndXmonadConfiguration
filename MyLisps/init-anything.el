@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-anything.el ---
-;; Time-stamp: <2012-12-07 06:28:03 Friday by lzy>
+;; Time-stamp: <2013-03-11 13:26:05 Monday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -40,14 +40,12 @@
   (require 'anything-complete)            ;Anything 补全
   (require 'anything-match-plugin)        ;Anything 匹配算法的人性话提升
   (require 'anything-gtags)               ;Anything 结合 Gtags
-  (require 'anything-c-yasnippet)         ;Anything yasnippet
   (require 'anything-c-moccur)            ;Anything 和 moccur搜索
 
   ;; settings
   (setq anything-idle-delay 1.0)                        ;设定开始显示 `延迟源' 的空闲间隔时间
   (setq anything-quick-update t)                        ;不显示提示窗口外的变量, 加快刷新速度
   (setq anything-candidate-number-limit 10000)          ;候选数量限制
-  (setq anything-c-yas-display-key-on-candidate t)      ;补全 YAsnippet 时显示 YAsnippet 的名称
   (setq anything-etags-enable-tag-file-dir-cache t)     ;使用缓存的tag文件
   (setq anything-c-use-standard-keys nil)               ;不使用标准按键
   (setq anything-etags-cache-tag-file-dir "~/.emacs.d/Anything/") ;tag缓存文件的目录
@@ -59,7 +57,6 @@
          anything-c-source-ffap-guesser             ;光标处的文件
          anything-c-source-buffers                  ;Buffer
          anything-c-source-recentf                  ;最近打开的文件列表
-         anything-c-source-yasnippet                ;代码补全别名
          anything-c-source-file-name-history        ;文件名历史
          anything-c-source-locate                   ;本地文件
          anything-c-source-files-in-current-dir+    ;当前目录的文件
