@@ -1,5 +1,5 @@
 ;;; init-multis.el --- 
-;; Time-stamp: <2013-03-12 07:35:01 Tuesday by lzy>
+;; Time-stamp: <2013-03-12 11:27:27 Tuesday by lzy>
 
 ;; Copyright (C) 2012  zhengyu li
 
@@ -40,6 +40,48 @@
         '(:family "Monospace" :height 1.0 :weight normal))
   (buffer-face-mode))
 
+(defun set-ansi-term-color ()
+  "color setting for ansi term"
+  (if (and (>= emacs-major-version 24)
+           (>= (+ emacs-major-version emacs-minor-version) 27))
+      (progn
+        (set-face-background 'term "black")
+        (set-face-foreground 'term "green")
+
+        (defface term-color-light-yellow
+          '((t :foreground "yellow" :background "yellow"))
+          "Face used to render light yellow color code."
+          :group 'term)
+        (defface term-color-light-green
+          '((t :foreground "green" :background "green"))
+          "Face used to render light green color code."
+          :group 'term)
+        (defface term-color-red2
+          '((t :foreground "red2" :background "red2"))
+          "Face used to render red2 color code."
+          :group 'term)
+        (defface term-color-skyblue
+          '((t :foreground "DeepSkyBlue" :background "DeepSkyBlue"))
+          "Face used to render skyblue color code."
+          :group 'term)
+        (setq ansi-term-color-vector
+              [term
+               term-color-black
+               term-color-red2
+               term-color-light-green
+               term-color-light-yellow
+               term-color-skyblue
+               term-color-magenta
+               term-color-cyan
+               term-color-white]))
+    (progn
+        (setq term-default-fg-color "black")
+        (setq term-default-bg-color "green")
+        (setq ansi-term-color-vector
+        [unspecified "black" "red3" "green" "yellow" "DeepSkyBlue"
+                     "magenta3" "cyan3" "white"]))
+    ))
+
 (defun term-send-esc ()
   "Send ESC in term mode"
   (interactive)
@@ -54,7 +96,8 @@
    '(("<f9>" . multi-scratch-new)
      ("C-<f9>" . multi-term)))
 
-  (add-hook 'term-mode-hook 'set-ansi-term-font))
+  (add-hook 'term-mode-hook 'set-ansi-term-font)
+  (add-hook 'term-mode-hook 'set-ansi-term-color))
 
 (eval-after-load "init-multis"
   '(multis-setting))

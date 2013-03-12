@@ -81,8 +81,6 @@
       (paren-match-face . paren-face-match)
       (paren-mismatch-face . paren-face-mismatch)
       (paren-no-match-face . paren-face-no-match)
-      (term-default-bg-color . "#000000")
-      (term-default-fg-color . "#FFFDA5")
       (top-mode-mark-face . highlight)
       (view-highlight-face . highlight)
       (w3m-form-mouse-face . highlight)
