@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-yasnippet.el ---
-;; Time-stamp: <2013-03-12 08:37:32 Tuesday by lzy>
+;; Time-stamp: <2013-03-12 13:05:26 Tuesday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -37,8 +37,6 @@
 (require 'yasnippet)
 (require 'dropdown-list)
 
-
-
 (defun disable-yas-in-term ()
   "disable yasnippet in term mode"
   (interactive)
@@ -52,13 +50,14 @@
 
 (defun yasnippet-setting ()
   "setting for yasnippet"
-  (yas-global-mode 1)
+  (yas-global-mode 1)  
   (setq yas-snippet-dirs (concat my-emacs-path "Snippets"))
   (setq yas-prompt-functions '(yas-dropdown-prompt
-                             yas-ido-prompt
-                             yas-completing-prompt))
+                               yas-ido-prompt
+                               yas-completing-prompt))
   (yas-load-directory yas-snippet-dirs)
-  (add-hook 'term-mode-hook 'disable-yas-in-term))
+  (add-hook 'term-mode-hook 'disable-yas-in-term)
+  )
 
 (eval-after-load "init-yasnippet"
   '(yasnippet-setting))

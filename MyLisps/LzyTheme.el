@@ -1630,7 +1630,12 @@
 (defun my-color-theme-setting ()
   (if window-system
       (my-color-theme-x)
-    (my-color-theme)))
+    (my-color-theme))
+  (custom-set-faces '(dropdown-list-face
+                      ((t (:stipple nil :background "lightyellow" :foreground "black" :weight normal :height 1.0 :width normal)))))
+  (custom-set-faces '(dropdown-list-selection-face
+                      ((t (:stipple nil :background "DarkRed" :foreground "white" :weight normal :height 1.0 :width normal)))))
+  )
 
 (eval-after-load "LzyTheme"
   '(my-color-theme-setting))
