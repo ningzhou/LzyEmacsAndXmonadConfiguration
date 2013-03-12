@@ -1,5 +1,5 @@
 ;;; init-multis.el --- 
-;; Time-stamp: <2013-03-06 11:44:07 Wednesday by lzy>
+;; Time-stamp: <2013-03-12 07:35:01 Tuesday by lzy>
 
 ;; Copyright (C) 2012  zhengyu li
 
@@ -36,11 +36,9 @@
 (defun set-ansi-term-font ()
   "font setting for ansi term"
   (interactive)
-  (setq buffer-face-mode-face '(:family "Monospace" :height 1.0 :weight normal))
-  (buffer-face-mode)
-  ;; close yasnippet minor mode
-  (yas-minor-mode 0)
-  )
+  (setq buffer-face-mode-face
+        '(:family "Monospace" :height 1.0 :weight normal))
+  (buffer-face-mode))
 
 (defun term-send-esc ()
   "Send ESC in term mode"
@@ -50,19 +48,13 @@
 (defun multis-setting ()
   "setting for multi-shell, multi-terminal and multi-scratch"
   (setq multi-term-program "/bin/bash")
-  (setq ansi-term-color-vector
-        [unspecified "#000000" "#FF0000" "#FFFDA5" "#00FF00"
-                     "#00AAFF" "#FF2180" "#57DCDB" "#FFFFFF"]) 
 
   (add-to-list 'term-bind-key-alist '("C-c C-e" . term-send-esc))
   (lazy-set-key
    '(("<f9>" . multi-scratch-new)
      ("C-<f9>" . multi-term)))
 
-  (add-hook 'term-mode-hook 'set-ansi-term-font)
-  (add-hook 'c-mode-common-hook '(lambda ()
-                                   (require 'yasnippet)
-                                   (yas-minor-mode 0))))
+  (add-hook 'term-mode-hook 'set-ansi-term-font))
 
 (eval-after-load "init-multis"
   '(multis-setting))

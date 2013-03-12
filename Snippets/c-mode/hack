@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: hack by ..
+# key: hack
+# --
+/* HACKED: ${1:by unia} */
+$0

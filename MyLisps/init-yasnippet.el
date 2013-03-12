@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-yasnippet.el ---
-;; Time-stamp: <2013-03-11 13:09:22 Monday by lzy>
+;; Time-stamp: <2013-03-12 08:37:32 Tuesday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -35,22 +35,30 @@
 
 ;; required features
 (require 'yasnippet)
+(require 'dropdown-list)
 
-(defun yasnippet-reload-after-save ()
-  (let* ((bfn (expand-file-name (buffer-file-name)))
-         (root (expand-file-name yas/root-directory)))
-    (when (string-match (concat "^" root) bfn)
-      (yas-load-snippet-buffer))))
+
+
+(defun disable-yas-in-term ()
+  "disable yasnippet in term mode"
+  (interactive)
+  (yas-minor-mode 0))
+
+(defun yas-reload ()
+  "reload all yasnippet"
+  (interactive)
+  (yas-compile-directory yas-snippet-dirs)
+  (yas-reload-all))
 
 (defun yasnippet-setting ()
   "setting for yasnippet"
-  (lazy-unset-key
-   '("TAB")
-   yas-keymap)
+  (yas-global-mode 1)
   (setq yas-snippet-dirs (concat my-emacs-path "Snippets"))
+  (setq yas-prompt-functions '(yas-dropdown-prompt
+                             yas-ido-prompt
+                             yas-completing-prompt))
   (yas-load-directory yas-snippet-dirs)
-  (add-hook 'after-save-hook 'yasnippet-reload-after-save)
-  (yas-global-mode 1))
+  (add-hook 'term-mode-hook 'disable-yas-in-term))
 
 (eval-after-load "init-yasnippet"
   '(yasnippet-setting))
