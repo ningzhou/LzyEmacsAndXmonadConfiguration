@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
-;;; (>>>FILE<<<) ---
-;; Time-stamp: <Tue Oct  9 13:10:33 2012 (cst)>
+;;; TEMPLATE.el.tpl ---
+;; Time-stamp: <2013-03-14 16:36:35 Thursday by lzy>
 
 ;; Copyright (C) (>>>YEAR<<<) (>>>USER_NAME<<<)
 ;;
-;; Author: (>>>USER_NAME<<<) <lizhengyu419@gmail.com>
-;; Keywords: (>>>1<<<)
+;; Author: (>>>USER_NAME<<<) <(>>>AUTHOR<<<)>
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,17 +24,16 @@
 
 ;;; Commentary:
 
-;; (>>>2<<<)
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require '(>>>FILE_SANS<<<))
 
 ;;; Code:
 
+(>>>POINT<<<)
 
+;;; provide features
 (provide '(>>>FILE_SANS<<<))
-
-
-;; required features
 
 ;;; (>>>FILE<<<) ends here

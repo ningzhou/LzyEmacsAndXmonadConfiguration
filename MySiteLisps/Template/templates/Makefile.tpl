@@ -1,9 +1,5 @@
-### Makefile.tpl --- (>>>POINT<<<)
-
-## Author: (>>>AUTHOR<<<)
+## Copyright (>>>YEAR<<<) 
+## Author: (>>>USER_NAME<<<) <(>>>AUTHOR<<<)>
 ## Version: $Id: (>>>FILE<<<),v 0.0 (>>>VC_DATE<<<) (>>>LOGIN_NAME<<<) Exp $
-## Keywords: (>>>1<<<)
-## X-URL: (>>>2<<<)
-
 
 ### (>>>FILE<<<) ends here

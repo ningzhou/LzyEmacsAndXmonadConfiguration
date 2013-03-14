@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-yasnippet.el ---
-;; Time-stamp: <2013-03-12 13:05:26 Tuesday by lzy>
+;; Time-stamp: <2013-03-14 17:34:21 Thursday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -51,7 +51,7 @@
 (defun yasnippet-setting ()
   "setting for yasnippet"
   (yas-global-mode 1)  
-  (setq yas-snippet-dirs (concat my-emacs-path "Snippets"))
+  (setq yas-snippet-dirs my-emacs-snippets-path)
   (setq yas-prompt-functions '(yas-dropdown-prompt
                                yas-ido-prompt
                                yas-completing-prompt))

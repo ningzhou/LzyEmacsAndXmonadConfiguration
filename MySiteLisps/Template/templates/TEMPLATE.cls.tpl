@@ -1,4 +1,6 @@
 %%% TEMPLATE.cls.tpl --- (>>>COMMENT<<<)
+%% Time-stamp: <2012-04-14 13:56:50 Saturday by lzy>
+
 
 %% Author: (>>>AUTHOR<<<)
 %% Version: $Id: (>>>FILE<<<),v 0.0 (>>>VC_DATE<<<) (>>>LOGIN_NAME<<<) Exp $

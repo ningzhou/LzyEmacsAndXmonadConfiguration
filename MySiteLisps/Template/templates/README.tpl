@@ -1,9 +1,6 @@
-###  README.tpl --- (>>>POINT<<<)(>>>DIR<<<)
-
-## Copyright (>>>YEAR<<<) (>>>USER_NAME<<<)
-##
-## Author: (>>>AUTHOR<<<)
-## Keywords: (>>>1<<<)
+## Copyright (>>>YEAR<<<) 
+## Author: (>>>USER_NAME<<<) <(>>>AUTHOR<<<)>
+## Version: $Id: (>>>FILE<<<),v 0.0 (>>>VC_DATE<<<) (>>>LOGIN_NAME<<<) Exp $
 
 
 

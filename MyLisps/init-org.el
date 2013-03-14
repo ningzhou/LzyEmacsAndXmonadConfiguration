@@ -1,5 +1,5 @@
 ;;; init-org.el --- 
-;; Time-stamp: <2013-03-04 04:52:16 Monday by lzy>
+;; Time-stamp: <2013-03-13 17:10:11 Wednesday by lzy>
 
 ;; Copyright (C) 2012  zhengyu li
 
