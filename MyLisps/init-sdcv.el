@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-sdcv.el ---
-;; Time-stamp: <2012-12-06 17:56:26 Thursday by lzy>
+;; Time-stamp: <2013-03-15 16:30:31 Friday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,22 +24,19 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-sdcv)
 
 ;;; Code:
 
-
-(provide 'init-sdcv)
-
-
-;; required features
-(require 'sdcv-mode)
+(autoload 'sdcv-search "sdcv-mode" nil t)
 
 (lazy-set-key
  '(("C-x P" . sdcv-search)))
 
-;;; init-sdcv.el ends here
+;;; provide features
+(provide 'init-sdcv)
 
+;;; init-sdcv.el ends here

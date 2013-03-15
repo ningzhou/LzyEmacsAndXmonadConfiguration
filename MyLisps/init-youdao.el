@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
-;;; init-shell-command-and-history.el ---
-;; Time-stamp: <2012-12-06 17:58:35 Thursday by lzy>
+;;; init-youdao.el ---
+;; Time-stamp: <2013-03-15 16:38:43 Friday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,28 +24,18 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'init-shell-command-and-history)
+;;   (require 'init-youdao)
 
 ;;; Code:
 
+(autoload 'youdao-translate "youdao-translation" nil t)
 
-(provide 'init-shell-command-and-history)
+(global-set-key (kbd "C-x p") 'youdao-translate)
 
+;;; provide features
+(provide 'init-youdao)
 
-(defun shell-command-and-history-settings ()
-  "settings for shell command and history"
-  ;; required features
-  (require 'shell-history)
-  (require 'shell-command)
-  (require 'shell-command-extension)
-
-  ;; settings
-  (shell-command-completion-mode)
-  )
-
-(add-hook 'term-mode-hook 'shell-command-and-history-settings)
-
-;;; init-shell-command-and-history.el ends here
+;;; init-youdao.el ends here

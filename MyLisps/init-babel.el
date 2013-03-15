@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-babel.el ---
-;; Time-stamp: <2012-12-07 06:26:17 Friday by lzy>
+;; Time-stamp: <2013-03-15 13:49:13 Friday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,49 +24,38 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-babel)
 
 ;;; Code:
 
-
-(provide 'init-babel)
-
-
-;; required features
-(require 'babel)
-
 (defun babel-settings ()
   "settings for babel mode"
-  (setq babel-preferred-from-language "English")
-  (setq babel-preferred-to-language "Chinese")
+  (custom-set-variables
+   '(babel-preferred-from-language "English"))
+  (custom-set-variables
+   '(babel-preferred-to-language "Chinese (Simplified)"))
   (setq babel-backends
         '(("FreeTranslation" . free)
           ("Google" . google)
           ("Babelfish at Yahoo" . fish)))
   )
 
-(eval-after-load "init-babel"
+(eval-after-load "babel"
   '(babel-settings))
 
+(autoload 'babel "babel"
+  "Use a web translation service to translate the message MSG." t)
+(autoload 'babel-region "babel"
+  "Use a web translation service to translate the current region." t)
+(autoload 'babel-as-string "babel"
+  "Use a web translation service to translate MSG, returning a string." t)
+(autoload 'babel-buffer "babel"
+  "Use a web translation service to translate the current buffer." t)
+
+;;; provide features
+(provide 'init-babel)
+
 ;;; init-babel.el ends here
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

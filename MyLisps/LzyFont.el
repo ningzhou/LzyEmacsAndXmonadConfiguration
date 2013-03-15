@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyFont.el ---
-;; Time-stamp: <2013-03-01 16:35:05 Friday by lzy>
+;; Time-stamp: <2013-03-15 10:47:49 Friday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,22 +24,27 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'LzyFont)
 
 ;;; Code:
 
-
-(provide 'LzyFont)
-
-
-;;; required features
-(require 'basic-tools)
-
 (defvar default-zh-font "Monospace-11" "default chinese font") ;; default zh font
 (defvar default-font "Monospace-11" "default english font")    ;; default en font
+
+;; font setting tools
+(defun font-existsp (font)
+  (if (null (x-list-fonts font))
+      nil
+    t))
+
+(defun make-font-string (font-name font-size)
+  (if (and (stringp font-size)
+           (equal ":" (string (elt font-size 0))))
+      (format "%s%s" font-name font-size)
+    (format "%s %s" font-name font-size)))
 
 (defun font-setting ()
   "global font setting for emacs"
@@ -60,4 +67,8 @@
     (font-setting)
   (set-default-font default-font))
 
+;;; provide features
+(provide 'LzyFont)
+
 ;;; LzyFont.el ends here
+

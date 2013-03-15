@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-go2chg.el ---
-;; Time-stamp: <2013-03-01 16:59:45 Friday by lzy>
+;; Time-stamp: <2013-03-15 16:55:07 Friday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,22 +24,23 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-go2chg)
 
 ;;; Code:
 
-
-(provide 'init-go2chg)
-
-
-;; required features
-(require 'goto-chg)
+(autoload 'goto-last-change "goto-chg"
+  "Go to the point where the last edit was made in the current buffer" t)
+(autoload 'goto-last-change-reverse "goto-chg"
+  "Go to the point reverse" t)
 
 (lazy-set-key
- '(("C-c \/"  . goto-last-change)))
+ '(("C-M-\/" . goto-last-change)))
+
+;;; provide features
+(provide 'init-go2chg)
 
 ;;; init-go2chg.el ends here
 

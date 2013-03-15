@@ -1,10 +1,13 @@
-;;; init-less.el --- 
-;; Time-stamp: <2012-12-06 01:16:51 Thursday by lzy>
+;; -*- Emacs-Lisp -*-
+;;; init-less.el ---
+;; Time-stamp: <2013-03-15 18:05:13 Friday by lzy>
 
-;; Copyright (C) 2012  zhengyu li
+;; Copyright (C) 2013 chieftain
+;;
+;; Author: chieftain <lizhengyu419@gmail.com>
+;; Keywords: none
 
-;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,15 +24,31 @@
 
 ;;; Commentary:
 
-;; 
+;;
+
+;; Put this file into your load-path and the following into your ~/.emacs:
+;;   (require 'init-less)
 
 ;;; Code:
 
+(defun less-minor-mode-setting ()
+  "settings for less minor mode"
+  (lazy-set-key
+   '(("n" . less-scroll-up-one-line)
+     ("p" . less-scroll-down-one-line)
+     ("q" . less-quit))
+   less-minor-mode-map))
 
+(eval-after-load "less"
+  '(less-minor-mode-setting))
+
+(autoload 'less-minor-mode "less" nil t)
+(autoload 'less-minor-mode-on "less" nil t)
+(autoload 'auto-less-minor-mode "less" nil nil)
+
+(add-hook 'find-file-hook 'auto-less-minor-mode)
+
+;;; provide features
 (provide 'init-less)
-
-
-;; required features
-(require 'less)
 
 ;;; init-less.el ends here

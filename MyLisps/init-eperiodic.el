@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-eperiodic.el ---
-;; Time-stamp: <2013-03-01 17:06:21 Friday by lzy>
+;; Time-stamp: <2013-03-15 14:02:59 Friday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,27 +24,26 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-eperiodic)
 
 ;;; Code:
 
-
-(provide 'init-eperiodic)
-
-
-;; required features
-(require 'eperiodic)
-
-
 (defun eperiodic-setting ()
-  "setting for eperiodic mode"
-  (setq eperiodic-web-lookup-location "http://www.webelements.com/webelements/elements/text/%s/key.html")
+  "settings for eperiodic mode"
+  ;; required features
+  (require 'eperiodic)
+  ;; settings
+  (custom-set-variables
+   '(eperiodic-web-lookup-location "http://www.webelements.com/webelements/elements/text/%s/key.html"))
   )
 
-(eval-after-load "eperiodic"
+(eval-after-load "init-eperiodic"
   '(eperiodic-setting))
+
+;;; provide features
+(provide 'init-eperiodic)
 
 ;;; init-eperiodic.el ends here

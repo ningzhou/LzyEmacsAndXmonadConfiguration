@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; flymake-setting.el ---
-;; Time-stamp: <2013-03-02 06:52:29 Saturday by lzy>
+;; Time-stamp: <2013-03-15 11:55:58 Friday by lzy>
 
 ;; Copyright (C) 2012 zhengyu li
 ;;
@@ -36,8 +36,5 @@
 ;; required features
 (require 'flymake-shell)
 (require 'flymake-extension)
-
-;;use `showtip' display error or warning.
-(setq flymake-extension-use-showtip t)
 
 ;;; flymake-setting.el ends here

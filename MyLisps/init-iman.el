@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-iman.el ---
-;; Time-stamp: <2012-12-06 17:38:12 Thursday by lzy>
+;; Time-stamp: <2013-03-15 17:27:42 Friday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,21 +24,22 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-iman)
 
 ;;; Code:
 
-
-(provide 'init-iman)
-
-
-;; required features
-(require 'iman)
+(autoload 'iman "iman"
+  "Call the viewers of man pages and GNU Info with completion."
+  t)
 
 (lazy-set-key
- '(("C-c m"  . iman)))
+ '(("C-c m" . iman)))
+
+;;; provide features
+(provide 'init-iman)
 
 ;;; init-iman.el ends here
+

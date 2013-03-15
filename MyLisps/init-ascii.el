@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-ascii.el ---
-;; Time-stamp: <2013-03-01 16:43:44 Friday by lzy>
+;; Time-stamp: <2013-03-15 14:57:45 Friday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,18 +24,20 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-ascii)
 
 ;;; Code:
 
+(autoload 'ascii-on        "ascii" "Turn on ASCII code display."   t)
+(autoload 'ascii-off       "ascii" "Turn off ASCII code display."  t)
+(autoload 'ascii-display   "ascii" "Toggle ASCII code display."    t)
+(autoload 'ascii-customize "ascii" "Customize ASCII code display." t)
 
+;;; provide features
 (provide 'init-ascii)
 
-
-;; required features
-(require 'ascii)
-
 ;;; init-ascii.el ends here
+

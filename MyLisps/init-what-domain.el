@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-what-domain.el ---
-;; Time-stamp: <2013-03-01 16:45:47 Friday by lzy>
+;; Time-stamp: <2013-03-15 15:08:14 Friday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,18 +24,20 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-what-domain)
 
 ;;; Code:
 
+(autoload 'what-domain "what-domain" "alias to what-domain-a2" t)
+(autoload 'what-domain-a2 "what-domain" "`what-domain' is aliased to this" t)
+(autoload 'what-domain-a3 "what-domain" "lets you query 3-letter country codes" t)
+(autoload 'what-domain-num "what-domain" "lets you query numeric country codes" t)
+(autoload 'what-domain-apropos "what-domain" "lets you search for domain codes by name" t)
 
+;;; provide features
 (provide 'init-what-domain)
-
-
-;; required features
-(require 'what-domain)
 
 ;;; init-what-domain.el ends here

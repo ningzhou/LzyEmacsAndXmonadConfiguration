@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-03-04 12:12:28 Monday by lzy>
+;; Time-stamp: <2013-03-15 18:12:02 Friday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -29,40 +31,34 @@
 
 ;;; Code:
 
-
-(provide 'LzySetup)
-
-
 ;; required features
-(require 'basic-tools)                       ;; basic tools
-(require 'init-lazy-set-key)                 ;; global key-binding library used by the following libs
-(require 'init-showtip)                      ;; show tooltip near the cursor not the mouse
-(require 'init-eperiodic)                    ;; periodic table of chemical element
-(require 'init-top)                          ;; emacs mode for shell command `top'
-(require 'init-babel)                        ;; a web translations interface
 (require 'init-unbound)                      ;; get unbounded keys information quickly
-(require 'init-apropos)                      ;; all apropos related setting
-(require 'init-calendar)                     ;; calendar setting
-(require 'init-ascii)                        ;; show ascii table
-(require 'init-what-domain)                  ;; search country code
-(require 'init-weibo)                        ;; sina weibo
+(require 'init-cursor)                       ;; cursor changes with state
+(require 'init-fullscreen)                   ;; full screen setting
 (require 'init-windows)                      ;; resize windows/save windows configuraion
 (require 'init-alarm)                        ;; alarm based on notify-send
-(require 'init-fullscreen)                   ;; full screen setting
+(require 'init-ascii)                        ;; show ascii table
+(require 'init-calendar)                     ;; calendar setting
+(require 'init-what-domain)                  ;; search country code
+(require 'init-top)                          ;; top mode for emacs
+(require 'init-eperiodic)                    ;; periodic table of chemical element
 (require 'init-ispell)                       ;; ispell setting
 (require 'init-sdcv)                         ;; stardict console client
-(require 'init-fanyi)                        ;; youdao tanslation
-(require 'init-cursor)                       ;; cursor changes with state
-(require 'init-tramp)                        ;; transparent remote access
+(require 'init-youdao)                       ;; youdao tanslation
+(require 'init-babel)                        ;; a web translations interface
+(require 'init-weibo)                        ;; sina weibo
 (require 'init-abbrev)                       ;; save abbreviation
 (require 'init-go2chg)                       ;; go to last change place
 (require 'init-wget)                         ;; wget setting
-(require 'init-shell-command-and-history)    ;; shell command and history
-(require 'init-xray)                         ;; show inner structure of emacs object
-(require 'init-mode-line)                    ;; mode-line setting
+(require 'init-shell-cmd-history)            ;; shell command and history
+(require 'init-apropos)                      ;; all apropos related setting
 (require 'init-iman)                         ;; extend man information
 (require 'init-info+)                        ;; emacs less mode
 (require 'init-less)                         ;; extend less information
+
+(require 'init-tramp)                        ;; transparent remote access
+(require 'init-xray)                         ;; show inner structure of emacs object
+(require 'init-mode-line)                    ;; mode-line setting
 (require 'init-killring)                     ;; kill ring browse and search
 (require 'init-uniquify)                     ;; uniquify file name
 (require 'init-linum)                        ;; linum extension setting
@@ -108,5 +104,8 @@
 (require 'init-google-maps)                  ;; google maps setting
 (require 'init-weather)                      ;; show weather in mode line
 (require 'init-hack)                         ;; in-built functions hack
+
+;;; provide features
+(provide 'LzySetup)
 
 ;;; LzySetup.el ends here

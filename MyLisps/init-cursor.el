@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-cursor.el ---
-;; Time-stamp: <2013-03-01 16:57:16 Friday by lzy>
+;; Time-stamp: <2013-03-15 16:44:09 Friday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,22 +24,20 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-cursor)
 
 ;;; Code:
 
-
-(provide 'init-cursor)
-
-
-;; required features
 (require 'cursor-chg)
 
 (change-cursor-mode 1) ; On for overwrite/read-only/input mode
 (toggle-cursor-type-when-idle 1) ; On when idle
+
+;;; provide features
+(provide 'init-cursor)
 
 ;;; init-cursor.el ends here
 

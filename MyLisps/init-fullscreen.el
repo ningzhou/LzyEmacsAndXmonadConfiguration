@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-fullscreen.el ---
-;; Time-stamp: <2012-12-06 17:30:41 Thursday by lzy>
+;; Time-stamp: <2013-03-15 16:22:06 Friday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,23 +24,24 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-fullscreen)
 
 ;;; Code:
 
-
-(provide 'init-fullscreen)
-
-
-(require 'fullscreen)
-
+(autoload 'fullscreen-toggle "fullscreen"
+  "toggle fullscreen status" t)
+(autoload 'max-window-toggle "fullscreen"
+  "toggle max window status" t)
 
 (when (window-system)
     (lazy-set-key
      '(("C-<f10>" . fullscreen-toggle)
        ("M-<f10>" . max-window-toggle))))
+
+;;; provide features
+(provide 'init-fullscreen)
 
 ;;; init-fullscreen.el ends here

@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-wget.el ---
-;; Time-stamp: <2013-03-04 04:37:34 Monday by lzy>
+;; Time-stamp: <2013-03-15 17:04:29 Friday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,20 +24,24 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-wget)
 
 ;;; Code:
 
+(eval-after-load "wget"
+  '(progn
+     (setq wget-download-directory "./")))
 
+(autoload 'wget "wget"
+  "Wget interface to download URI asynchronously" t)
+(autoload 'wget-web-page "wget"
+  "Wget interface to download URI asynchronously" t)
+
+;;; provide features
 (provide 'init-wget)
 
-
-;; required features
-(require 'wget)
-
-(setq wget-download-directory "./")
-
 ;;; init-wget.el ends here
+

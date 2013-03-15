@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-ispell.el ---
-;; Time-stamp: <2013-03-01 16:54:18 Friday by lzy>
+;; Time-stamp: <2013-03-15 16:26:15 Friday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,29 +24,28 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-ispell)
 
 ;;; Code:
 
-
-(provide 'init-ispell)
-
-
-;; required features
-(require 'ispell)
-
 (defun ispell-setting ()
   "setting for ispell"
-  (setq-default ispell-program-name "aspell")     ;replace ispell with aspell
-  (setq-default ispell-extra-args '("--lang=en" "--reverse"))
-  (setq ispell-silently-savep t)
-  (setq ispell-dictionary "english")      ;set english dictionary
-  )
+  (custom-set-variables
+   '(ispell-program-name "aspell"))
+  (custom-set-variables
+   '(ispell-extra-args '("--lang=en" "--reverse")))
+  (custom-set-variables
+   '(ispell-silently-savep t))
+  (custom-set-variables
+   '(ispell-dictionary "english")))
 
 (eval-after-load "ispell"
   '(ispell-setting))
+
+;;; provide features
+(provide 'init-ispell)
 
 ;;; init-ispell.el ends here

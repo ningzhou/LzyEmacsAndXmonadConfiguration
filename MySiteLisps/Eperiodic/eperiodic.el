@@ -148,7 +148,7 @@ atomic name."
     eperiodic-colour-element-by-lattice-constant
     eperiodic-colour-element-by-lattice-c/a-ratio)
   "List of functions that use `eperiodic-colour-element-generic'.")
-
+    
 (defvar eperiodic-colour-element-functions
   (nconc
    '(eperiodic-colour-element-by-group
@@ -4253,12 +4253,12 @@ Any previous buffer contents are deleted."
               (loop for z from 1 to
                     (cdr (assoc (substring (symbol-name orbital) 1 2)
                                 eperiodic-orbital-degeneracies)) by 1
-                                do
-                                (insert string)))))
+                    do
+                    (insert string)))))
           (setq orbital-list (cdr orbital-list)))
         ;; Keep track of maximum width
         (when (> (current-column) max-width)
-          (setq max-width (current-column)))
+            (setq max-width (current-column)))
         (insert "\n"))
       (setq order (cdr order)))
     ;; Insert header
@@ -4292,10 +4292,10 @@ Any previous buffer contents are deleted."
           (loop for i from 1 to (/ (- ne-posn (current-column))
                                    (+ display-width separation))
                 do
-                ;; Need the following in XEmacs to avoid some
-                ;; weirdness associated with text properties.
-                (when eperiodic-xemacs-p
-                  (goto-char (1- he-posn)))
+		;; Need the following in XEmacs to avoid some
+		;; weirdness associated with text properties.
+		(when eperiodic-xemacs-p
+		  (goto-char (1- he-posn)))
                 (insert string)))))
     (goto-char (point-max))
     (eperiodic-insert-key))
@@ -4488,32 +4488,32 @@ ARG may be negative to move backward."
     ;; Forward.
     (while (> arg 0)
       (cond ((eobp)
-             (goto-char (point-min)))
-            (eperiodic-use-property-change
-             (goto-char (next-single-char-property-change (point) 'eperiodic-at-number)))
+	     (goto-char (point-min)))
+	    (eperiodic-use-property-change
+	     (goto-char (next-single-char-property-change (point) 'eperiodic-at-number)))
             (t
              (forward-char 1)))
       (let ((new (eperiodic-element-at)))
-        (when new
-          (unless (eq new old)
-            (setq arg (1- arg))
-            (setq old new)))))
+	(when new
+	  (unless (eq new old)
+	    (setq arg (1- arg))
+	    (setq old new)))))
     ;; Backward.
     (while (< arg 0)
       (cond ((bobp)
-             (goto-char (point-max)))
-            (eperiodic-use-property-change
-             (goto-char (previous-single-char-property-change (point) 'eperiodic-at-number)))
+	     (goto-char (point-max)))
+	    (eperiodic-use-property-change
+	     (goto-char (previous-single-char-property-change (point) 'eperiodic-at-number)))
             (t
              (backward-char 1)))
       (let ((new (eperiodic-element-at)))
-        (when new
-          (unless (eq new old)
-            (setq arg (1+ arg))))))
+	(when new
+	  (unless (eq new old)
+	    (setq arg (1+ arg))))))
     ;; Go to beginning of field.
     (let ((new (eperiodic-element-at)))
       (while (eq (eperiodic-element-at) new)
-        (backward-char)))
+	(backward-char)))
     (forward-char)))
 
 (defun eperiodic-previous-element (arg)
@@ -4634,7 +4634,7 @@ reversed."
                                 (>= (car a) (car b))))))
        (arg
         (setq list (sort list (lambda (a b)
-                                (<= (car a) (car b)))))))
+                                      (<= (car a) (car b)))))))
       (with-output-to-temp-buffer "*Eperiodic element properties*"
         (princ (format "%s" (eperiodic-format-symbol prop)))
         (if (setq unit (cdr (assoc prop eperiodic-stored-properties)))
@@ -4664,9 +4664,9 @@ symbol 'key', in which case insert key elements."
                                      eperiodic-f-block-face)))
    (t
     (cdr (assoc (substring
-                 (symbol-name
-                  (eperiodic-get-orbital-from-z arg)) 1 2)
-                eperiodic-orbital-faces)))))
+                            (symbol-name
+                             (eperiodic-get-orbital-from-z arg)) 1 2)
+                           eperiodic-orbital-faces)))))
 
 (defun eperiodic-colour-element-by-state (arg)
   "Colour elements by their state.
@@ -4830,7 +4830,7 @@ symbol 'key', in which case insert key elements."
                       orb (car orb))
                 (when (and (>= z min) (<= z max))
                   (throw 'orbital orb)))
-              eperiodic-orbital-z-value-map))))
+            eperiodic-orbital-z-value-map))))
 
 (defun eperiodic-insert-key ()
   "Insert key for the current *Eperiodic* buffer."
@@ -4965,7 +4965,7 @@ See `eperiodic-colour-element-functions'."
                     (setq string
                           (eperiodic-format-symbol (intern string)))
                     (cons string elt))
-                  eperiodic-colour-element-functions))
+                 eperiodic-colour-element-functions))
     (setq choice
           (cdr (assoc
                 (completing-read "Colour elements according to: "
@@ -5102,7 +5102,7 @@ the cursor position.
   (when (and (fboundp 'easy-menu-add)
              eperiodic-menu)
     (easy-menu-add eperiodic-menu))
-  ;;(make-local-hook 'post-command-hook)
+  ;; (make-local-hook 'post-command-hook)
   (add-hook 'post-command-hook 'eperiodic-update-element-info t t)
   (run-hooks 'eperiodic-mode-hook))
 

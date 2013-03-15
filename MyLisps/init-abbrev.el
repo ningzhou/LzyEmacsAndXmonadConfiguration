@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-abbrev.el ---
-;; Time-stamp: <2013-03-01 16:58:57 Friday by lzy>
+;; Time-stamp: <2013-03-15 16:47:15 Friday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,21 +24,26 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-abbrev)
 
 ;;; Code:
 
+(defun save-abbreviation-setting ()
+  "settings for save abbreviation"
+  ;; required features
+  (require 'save-abbreviation-mode)
+  ;; settings
+  (setq save-abbreviation-file
+        "~/.emacs.d/SaveAbbreviationFile")
+  (save-abbreviation-mode 1))
 
+(eval-after-load "abbrev"
+  '(save-abbreviation-setting))
+
+;;; provide features
 (provide 'init-abbrev)
-
-
-;; required features
-(require 'save-abbreviation-mode)
-
-(setq save-abbreviation-file "~/.emacs.d/SaveAbbreviationFile")
-(save-abbreviation-mode 1)
 
 ;;; init-abbrev.el ends here

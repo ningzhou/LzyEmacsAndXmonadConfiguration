@@ -1,5 +1,5 @@
 ;;; init-w3m.el --- 
-;; Time-stamp: <2013-03-02 06:24:24 Saturday by lzy>
+;; Time-stamp: <2013-03-15 11:41:34 Friday by lzy>
 
 ;; Copyright (C) 2012  zhengyu li
 
@@ -40,7 +40,6 @@
 (require 'w3m-util)                     ;w3m 工具
 (require 'w3m-symbol)                   ;w3m 符号处理
 (require 'w3m-extension)
-(require 'lazycat-toolkit-)
 
 ;; w3m proxy
 (defun w3m-toggle-proxy (&optional proxy)

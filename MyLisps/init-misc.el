@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-misc.el ---
-;; Time-stamp: <2013-03-01 17:55:49 Friday by lzy>
+;; Time-stamp: <2013-03-15 11:12:11 Friday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -35,7 +35,6 @@
 
 ;; required features
 (require 'generic-x)
-(require 'basic-tools)
 
 (menu-bar-mode -1)                      ;disable menu bar
 (tool-bar-mode -1)                      ;disable tool bar

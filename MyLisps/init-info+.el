@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-info+.el ---
-;; Time-stamp: <2013-03-01 17:06:05 Friday by lzy>
+;; Time-stamp: <2013-03-15 17:43:01 Friday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,27 +24,27 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-info+)
 
 ;;; Code:
 
-
-(provide 'init-info+)
-
-
-;; required features
-(require 'info+)
-
 (defun info+-setting ()
   "setting for info"
-  (setq special-display-buffer-names
-        (cons '("*info*" (background-color . "black"))
-              special-display-buffer-names)))
+  ;; required features
+  (require 'info+)
+  ;; settings
+  (custom-set-variables
+   '(special-display-buffer-names
+     (cons '("*info*" (background-color . "black"))
+           special-display-buffer-names))))
 
-(eval-after-load "info+"
+(eval-after-load "info"
   '(info+-setting))
+
+;;; provide features
+(provide 'init-info+)
 
 ;;; init-info+.el ends here

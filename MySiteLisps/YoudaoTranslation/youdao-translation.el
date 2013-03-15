@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
-;;; init-fanyi.el ---
-;; Time-stamp: <2013-03-01 16:56:27 Friday by lzy>
+;;; youdao-translation.el ---
+;; Time-stamp: <2013-03-15 16:38:18 Friday by lzy>
 
-;; Copyright (C) 2012 zhengyu li
+;; Copyright (C) 2013 chieftain
 ;;
-;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Author: chieftain <lizhengyu419@gmail.com>
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,26 +24,16 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'init-youdao-fanyi)
+;;   (require 'youdao-translation)
 
 ;;; Code:
 
-
-(provide 'init-fanyi)
-
-
-;;; require features:
-(require 'xml)
-(require 'pos-tip)
-(require 'xml-parse)
-(require 'basic-tools)
-
-;; get results of translation
 (defun get-translate-result (word)
-  (shell-command-to-string (concat (format "curl --max-time 2 'http://fanyi.youdao.com/openapi.do?keyfrom=hellochieftain&key=979553915&type=data&doctype=xml&version=1.1&q=%s' 2>/dev/null" word))))
+  (shell-command-to-string
+   (concat (format "curl --max-time 2 'http://fanyi.youdao.com/openapi.do?keyfrom=hellochieftain&key=979553915&type=data&doctype=xml&version=1.1&q=%s' 2>/dev/null" word))))
 
 ;; analysis translation result
 (defun analytic-translate-result (translateresult)
@@ -78,9 +70,14 @@
                     do (setq explains-texts (concat explains-texts  (car (xml-node-children ex)) "\n"))))))
     explains-texts))
 
-(defun lookup-word ()
+;;; autoload
+(defun youdao-translate ()
   "translate world from youdao fanyi or sdcv"
   (interactive)
+  ;;; require features:
+  (require 'xml)
+  (require 'xml-parse)
+  (require 'pos-tip)
   (let* ((word (get-current-word))
          (sdcv-command (format "sdcv -n %s" word))
          (print sdcv-command)
@@ -91,6 +88,7 @@
     (pos-tip-show explains-texts '("blue3" . "light yellow") nil nil -1))
   )
 
-(global-set-key (kbd "C-x p") 'lookup-word)
+;;; provide features
+(provide 'youdao-translation)
 
-;;; init-fanyi.el ends here
+;;; youdao-translation.el ends here

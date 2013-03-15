@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-hack.el ---
-;; Time-stamp: <2012-12-12 11:35:26 Wednesday by lzy>
+;; Time-stamp: <2013-03-15 11:12:04 Friday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -31,10 +31,6 @@
 
 
 (provide 'init-hack)
-
-
-;; required features
-(require 'basic-tools)
 
 (defun search-read-words ()
   "reads words"

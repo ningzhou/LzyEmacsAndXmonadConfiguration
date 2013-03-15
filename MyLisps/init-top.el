@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-top.el ---
-;; Time-stamp: <2013-03-01 16:41:32 Friday by lzy>
+;; Time-stamp: <2013-03-15 13:29:16 Friday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,18 +24,16 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-top)
 
 ;;; Code:
 
+(autoload 'top "top-mode" "Runs 'top' in an emacs buffer." t)
 
+;;; provide features
 (provide 'init-top)
-
-
-;; required features
-(require 'top-mode)
 
 ;;; init-top.el ends here

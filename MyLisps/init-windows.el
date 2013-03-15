@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-windows.el ---
-;; Time-stamp: <2013-03-01 16:52:00 Friday by lzy>
+;; Time-stamp: <2013-03-15 16:13:56 Friday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,49 +24,46 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-windows)
 
 ;;; Code:
 
+;;; revive settings
 
-(provide 'init-windows)
+;; settings
+(eval-after-load "revive"
+  '(progn
+     (setq revive:configuration-file "~/.emacs.d/ReviveConfigure")))
 
+(autoload 'save-current-configuration "revive" "Save status" t)
+(autoload 'resume "revive" "Resume Emacs" t)
+(autoload 'wipe "revive" "Wipe Emacs" t)
+(autoload 'toggle-one-window "window-extension" t)
 
-;; required features
-(require 'revive)
-(require 'windows)
-(require 'winpoint)
-(require 'windresize)
-(require 'window-number)
-(require 'window-extension)
-
-;; revive settings
-(setq revive:configuration-file "~/.emacs.d/ReviveConfigure") 
 (lazy-set-key
  '(("C-c w s" . save-current-configuration)
    ("C-c w f" . resume)
    ("C-c w k" . wipe)
-   ("C-c w 0" . toggle-one-window))
- global-map)
+   ("C-c w 0" . toggle-one-window)))
 
-;; windows settings
-(setq win:configuration-file "~/.emacs.d/WindowsConfigure")
+;;; windows settings
+;; required features
+(require 'window-number)
+;; settings
 (window-number-mode t)
-(window-number-meta-mode t)  
+(window-number-meta-mode t)
 
-;; winpoint settings
-(setq window-point-remember-mode 1)
-(setq winpoint-non-restore-buffer-list
-      '("*Group*"))
-
-;; windresize settings
+;;; window resize settings
 (lazy-set-key
  '(("C-<left>"  . shrink-window-horizontally)
    ("C-<right>" . enlarge-window-horizontally)
    ("C-<down>"  . shrink-window)
    ("C-<up>"    . enlarge-window)))
+
+;;; provide features
+(provide 'init-windows)
 
 ;;; init-windows.el ends here

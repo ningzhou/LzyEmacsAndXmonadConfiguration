@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-unbound.el ---
-;; Time-stamp: <2013-03-01 16:42:11 Friday by lzy>
+;; Time-stamp: <2013-03-15 13:55:03 Friday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,18 +24,17 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-unbound)
 
 ;;; Code:
 
+(autoload 'describe-unbound-keys "unbound.el"
+  "Display a list of unbound keystrokes of complexity no greater than MAX." t)
 
+;;; provide features
 (provide 'init-unbound)
-
-
-;; required features
-(require 'unbound)
 
 ;;; init-unbound.el ends here

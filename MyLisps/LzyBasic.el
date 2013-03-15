@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
-;;; init-lazy-set-key.el ---
-;; Time-stamp: <2013-03-01 16:37:36 Friday by lzy>
+;;; LzyBasic.el ---
+;; Time-stamp: <2013-03-15 11:23:01 Friday by lzy>
 
-;; Copyright (C) 2012 zhengyu li
+;; Copyright (C) 2013 chieftain
 ;;
-;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Author: chieftain <lizhengyu419@gmail.com>
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,18 +24,38 @@
 
 ;;; Commentary:
 
-;; 
+;; basic packages and functions defined by Author, these packages and
+;; basic functions will be used by other packages
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'init-lazy-set-key)
+;;   (require 'LzyBasic)
 
 ;;; Code:
 
+(require 'cl)
+(require 'ffap)
+(require 'recentf)
+(require 'uniquify)
+(require 'saveplace)
+(require 'ansi-color)
 
-(provide 'init-lazy-set-key)
+(defun get-mode-name ()
+  "display `major-mode' and `mode-name'"
+  (interactive)
+  (message "major-mode: %s, mode-name: %s" major-mode mode-name))
 
-
-;; required features
+(defun get-current-word ()
+  (interactive)
+  (let ((begin (point-min))
+        (end (point-max)))
+    (save-excursion
+      (when (not mark-active)
+        (forward-char)
+        (backward-word)
+        (mark-word))
+      (setq begin (region-beginning)
+            end (region-end)))
+    (buffer-substring-no-properties begin end)))
 
 (defun lazy-set-key (key-alist &optional keymap key-prefix)
   "This function is to little type when define key binding.
@@ -65,4 +87,9 @@
             (t (signal 'wrong-type-argument (list 'array key))))
       (define-key keymap key nil))))
 
-;;; init-lazy-set-key.el ends here
+
+;;; provide features
+(provide 'LzyBasic)
+
+;;; LzyBasic.el ends here
+
