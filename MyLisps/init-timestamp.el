@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-timestamp.el ---
-;; Time-stamp: <2012-12-06 18:05:26 Thursday by lzy>
+;; Time-stamp: <2013-03-16 22:19:51 Saturday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,24 +24,28 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-timestamp)
 
 ;;; Code:
 
+(defun time-stamp-setting ()
+  "settings for time stamp"
+  (setq time-stamp-format "%04y-%02m-%02d %02H:%02M:%02S %:a by %u")
+  (setq time-stamp-active t)
+  (setq time-stamp-warn-inactive t))
 
-(provide 'init-timestamp)
+(eval-after-load "time-stamp"
+  '(time-stamp-setting))
 
+(autoload 'time-stamp "time-stamp"
+  "Update the time stamp string(s) in the buffer" t)
 
-;; required features
-(require 'time-stamp)
-
-
-(setq time-stamp-format "%04y-%02m-%02d %02H:%02M:%02S %:a by %u"
-      time-stamp-active t
-      time-stamp-warn-inactive t)
 (add-hook 'write-file-hooks 'time-stamp)
 
+;;; provide features
 (provide 'init-timestamp)
+
+;;; init-timestamp.el ends here

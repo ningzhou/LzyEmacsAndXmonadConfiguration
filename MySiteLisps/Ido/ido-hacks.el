@@ -1,3 +1,4 @@
+
 (require 'ido)
 
 ;; This file contains a couple of advices, mostly to make ido the
@@ -93,14 +94,14 @@ history, instead of the incomplete input."
     ad-do-it
 
     (apply 'remove-hook hook (list 'ido-hacks-fix-default-hook))
-    (unless (eq hist 'command-history)
-      (setq hist (if hist
-                     (if (symbolp hist)
-                         hist
-                       (car hist))
-                   'minibuffer-history))
+    (unless (eq history 'command-history)
+      (setq history (if history
+                        (if (symbolp history)
+                            history
+                          (car history))
+                      'minibuffer-history))
       (when (> (length ad-return-value) 0)
-        (add-to-history hist ad-return-value)))))
+        (add-to-history history ad-return-value)))))
 
 
 (defun ido-hacks-fix-default-hook ()
@@ -239,7 +240,7 @@ is minibuffer. (Stolen from icomplete.)"
                       ">"))))))
 
 
-(defun ido-completions (name)
+(defun ido-completions (name candidates predicate require-match)
   ;; Return the string that is displayed after the user's text.
   ;; Modified from `icomplete-completions'.
   ;; Redefined for sake of performance by ido-hacks.
@@ -323,4 +324,4 @@ is minibuffer. (Stolen from icomplete.)"
               (nth 1 ido-decorations)))))))
 
 
-(provide 'ido-hacks-24)
+(provide 'ido-hacks)

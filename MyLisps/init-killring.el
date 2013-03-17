@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-killring.el ---
-;; Time-stamp: <2013-03-01 17:07:01 Friday by lzy>
+;; Time-stamp: <2013-03-16 23:08:43 Saturday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,23 +24,21 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-killring)
 
 ;;; Code:
 
+(require 'browse-kill-ring)
 
+(lazy-set-key
+ '(("k" . browse-kill-ring-delete))
+ browse-kill-ring-mode-map)
+(browse-kill-ring-default-keybindings)
+
+;;; provide features
 (provide 'init-killring)
 
-
-;; required features
-(require 'browse-kill-ring)
-(require 'kill-ring-search)
-
-(eval-after-load "init-killring"
-  '(browse-kill-ring-default-keybindings))
-
 ;;; init-killring.el ends here
-

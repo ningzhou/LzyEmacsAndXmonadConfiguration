@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-template.el ---
-;; Time-stamp: <2012-12-06 18:05:06 Thursday by lzy>
+;; Time-stamp: <2013-03-17 00:27:35 Sunday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,31 +24,30 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-template)
 
 ;;; Code:
 
-
-(provide 'init-template)
-
-
-;; required features
-(require 'ido)
-(require 'template)
-
-(defun template-settings ()
+(defun template-setting ()
   "settings for tempalte"
   (template-initialize)       ;;; initialize template package
   (setq template-auto-insert 'query)
-  (add-to-list 'template-find-file-commands 'ido-exit-minibuffer)
-  (setq template-default-directories (cons my-emacs-templates-path template-default-directories))
-  (lazy-set-key
-   '(("C-c C-f" . template-expand-template))))
+  (setq template-default-directories
+        (cons my-emacs-templates-path template-default-directories)))
 
-(eval-after-load "init-template"
-  '(template-settings))
+(eval-after-load "template"
+  '(template-setting))
+
+(autoload 'template-expand-template "template"
+  "Expand template file TEMPLATE and insert result in current buffer" t)
+
+(lazy-set-key
+   '(("C-c C-f" . template-expand-template)))
+
+;;; provide features
+(provide 'init-template)
 
 ;;; init-template.el ends here

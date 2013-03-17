@@ -12,7 +12,8 @@
    5) Web Storage
       
 * Video/Audio play
-[[file:2.mp3]]
+
+[[file:~/Music/琵琶相/琵琶语.mp3]]
 [[http://slides.html5rocks.com/src/chrome_japan.webm]]
 
 * source code

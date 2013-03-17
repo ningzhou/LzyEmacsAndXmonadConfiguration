@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-tabbar.el ---
-;; Time-stamp: <2012-12-06 18:04:18 Thursday by lzy>
+;; Time-stamp: <2013-03-16 08:02:47 Saturday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,22 +24,18 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-tabbar)
 
 ;;; Code:
 
-
-(provide 'init-tabbar)
-
-
-;; required features
-(require 'tabbar-extension)
-
 (defun tarbar-setting ()
   "setting for tabbar mode"
+  ;; required features
+  (require 'tabbar-extension)
+  ;; settings
   (setq tabbar-separator '(0.3))
   (tabbar-mode 1)
   (lazy-set-key
@@ -49,5 +47,8 @@
 
 (eval-after-load "init-tabbar"
   '(tarbar-setting))
+
+;;; provide features
+(provide 'init-tabbar)
 
 ;;; init-tabbar.el ends here

@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-chart.el ---
-;; Time-stamp: <2013-03-01 18:08:28 Friday by lzy>
+;; Time-stamp: <2013-03-17 00:00:24 Sunday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,20 +24,16 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-chart)
 
 ;;; Code:
 
+(if )
 
+;;; provide features
 (provide 'init-chart)
-
-
-;; required features
-(if (and (>= emacs-major-version 23)
-         (>= (+ emacs-major-version emacs-minor-version) 25))
-    (require 'chart))
 
 ;;; init-chart.el ends here

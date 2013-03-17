@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-misc.el ---
-;; Time-stamp: <2013-03-15 11:12:11 Friday by lzy>
+;; Time-stamp: <2013-03-16 19:23:47 Saturday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -41,7 +41,6 @@
 (scroll-bar-mode -1)                    ;disable scroll bar
 (blink-cursor-mode -1)                  ;don't blink cursor
 (column-number-mode t)                  ;show line number
-(global-hl-line-mode t)                 ;turn on global highlight current line mode
 (transient-mark-mode 1)                 ;highlight transient mark region
 (auto-compression-mode 1)               ;turn on compression mode before openning compressed file
 (setq echo-keystrokes 0.1)              ;show key sequence quickly

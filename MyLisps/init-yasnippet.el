@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-yasnippet.el ---
-;; Time-stamp: <2013-03-14 17:34:21 Thursday by lzy>
+;; Time-stamp: <2013-03-17 19:03:54 Sunday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,25 +24,15 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-yasnippet)
 
 ;;; Code:
 
-
-(provide 'init-yasnippet)
-
-
-;; required features
 (require 'yasnippet)
 (require 'dropdown-list)
-
-(defun disable-yas-in-term ()
-  "disable yasnippet in term mode"
-  (interactive)
-  (yas-minor-mode 0))
 
 (defun yas-reload ()
   "reload all yasnippet"
@@ -48,18 +40,13 @@
   (yas-compile-directory yas-snippet-dirs)
   (yas-reload-all))
 
-(defun yasnippet-setting ()
-  "setting for yasnippet"
-  (yas-global-mode 1)  
-  (setq yas-snippet-dirs my-emacs-snippets-path)
-  (setq yas-prompt-functions '(yas-dropdown-prompt
-                               yas-ido-prompt
-                               yas-completing-prompt))
-  (yas-load-directory yas-snippet-dirs)
-  (add-hook 'term-mode-hook 'disable-yas-in-term)
-  )
+(setq yas-snippet-dirs my-emacs-snippets-path)
+(yas-global-mode 1)
 
-(eval-after-load "init-yasnippet"
-  '(yasnippet-setting))
+(add-hook 'term-mode-hook '(lambda ()
+                             (yas-minor-mode 0)))
+
+;;; provide features
+(provide 'init-yasnippet)
 
 ;;; init-yasnippet.el ends here

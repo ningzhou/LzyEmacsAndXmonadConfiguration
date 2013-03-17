@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-pick-backup.el ---
-;; Time-stamp: <2012-12-07 07:07:57 Friday by lzy>
+;; Time-stamp: <2013-03-16 23:10:35 Saturday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,19 +24,16 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-pick-backup)
 
 ;;; Code:
 
-
-(provide 'init-pick-backup)
-
-
-;; required features
 (require 'pick-backup)
 
+;;; provide features
+(provide 'init-pick-backup)
 
 ;;; init-pick-backup.el ends here

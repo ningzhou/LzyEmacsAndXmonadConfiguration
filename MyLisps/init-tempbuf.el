@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
-;;; init-doc-view.el ---
-;; Time-stamp: <2012-12-06 17:11:29 Thursday by lzy>
+;;; init-tempbuf.el ---
+;; Time-stamp: <2013-03-16 21:39:33 Saturday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,18 +24,21 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'init-doc-view)
+;;   (require 'init-tmpbuf)
 
 ;;; Code:
 
+(autoload 'turn-on-tempbuf-mode "tempbuf"
+  "Turn on tempbuf mode" nil)
 
-(provide 'init-doc-view)
+(add-hook 'Custom-mode-hook 'turn-on-tempbuf-mode)
+(add-hook 'Man-mode-hook 'turn-on-tempbuf-mode)
+(add-hook 'view-mode-hook 'turn-on-tempbuf-mode)
 
+;;; provide features
+(provide 'init-tempbuf)
 
-;; required features
-(require 'doc-view-extension)
-
-;;; init-doc-view.el ends here
+;;; init-tempbuf.el ends here

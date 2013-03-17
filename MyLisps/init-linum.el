@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-linum.el ---
-;; Time-stamp: <2013-03-01 17:57:30 Friday by lzy>
+;; Time-stamp: <2013-03-16 17:15:33 Saturday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,21 +24,18 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-linum)
 
 ;;; Code:
 
-
-(provide 'init-linum)
-
-
 ;; required features
 (require 'linum+)
 
-(defcustom linum-disabled-modes-list '(org-mode w3m-mode dired-mode image-mode CHART)
+(defcustom linum-disabled-modes-list
+  '(org-mode w3m-mode dired-mode image-mode CHART)
   "* List of modes disabled when global linum mode is on *"
   :type '(repeat (sexp :tag "Major mode"))
   :tag "Major modes where linum is disabled:"
@@ -60,22 +59,7 @@ like *scratch*"
 
 (global-linum-mode t)
 
+;;; provide features
+(provide 'init-linum)
+
 ;;; init-linum.el ends here
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

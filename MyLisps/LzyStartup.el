@@ -1,5 +1,5 @@
 ;;; LzyStartup.el ---
-;; Time-stamp: <2013-03-03 04:58:31 Sunday by lzy>
+;; Time-stamp: <2013-03-17 22:49:38 Sunday by lzy>
 
 ;; Copyright (C) 2012 zhengyu li
 ;;
@@ -31,11 +31,11 @@
 
 (provide 'LzyStartup)
 
-
 (server-force-delete)                 ;; close emacs server
-(server-start)                        ;; start emacs server
 (kill-buffer "*scratch*")             ;; kill init scratch buffer
 (kill-buffer "*Compile-Log*")         ;; kill init compile log buffer
 (kill-buffer "*Messages*")            ;; kill init Message buffer
+(kill-buffer ".bash_history")         ;; kill init .bash_history buffer
+(server-start)                        ;; start emacs server
 
 ;;; LzyStartup.el ends here

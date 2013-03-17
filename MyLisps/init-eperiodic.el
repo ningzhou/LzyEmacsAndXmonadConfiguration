@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-eperiodic.el ---
-;; Time-stamp: <2013-03-15 14:02:59 Friday by lzy>
+;; Time-stamp: <2013-03-16 22:22:08 Saturday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;

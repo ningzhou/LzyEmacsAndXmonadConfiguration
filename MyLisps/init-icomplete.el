@@ -1,10 +1,13 @@
+;; -*- Emacs-Lisp -*-
 ;;; init-icomplete.el ---
-;; Time-stamp: <Tue Oct  9 12:54:00 2012 (cst)>
+;; Time-stamp: <2013-03-17 00:32:49 Sunday by lzy>
 
-;; Copyright (C) 2012 zhengyu li
+;; Copyright (C) 2013 chieftain
 ;;
-;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Author: chieftain <lizhengyu419@gmail.com>
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,21 +24,19 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-icomplete)
 
 ;;; Code:
 
-
-(provide 'init-icomplete)
-
-
-;;; required features:
 (require 'icomplete+)
 
 (icomplete-mode t)
+
+;;; provide features
+(provide 'init-icomplete)
 
 ;;; init-icomplete.el ends here
 

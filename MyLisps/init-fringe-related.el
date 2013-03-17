@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-fringe-related.el ---
-;; Time-stamp: <2013-03-03 05:00:04 Sunday by lzy>
+;; Time-stamp: <2013-03-16 22:03:12 Saturday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,53 +24,29 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-fringe-related)
 
 ;;; Code:
 
-
-(provide 'init-fringe-related)
-
-
-;; required features
-(require 'flymake)
-(require 'hideshowvis)
-(require 'fringe-helper)
-(require 'hideshow-fringe)
-
-(make-variable-buffer-local 'flymake-fringe-overlays)
-
-(defadvice flymake-make-overlay (after add-to-fringe first
-                                       (beg end tooltip-text face mouse-face)
-                                       activate compile)
-  (push (fringe-helper-insert-region
-         beg end
-         (fringe-lib-load (if (eq face 'flymake-errline)
-                              fringe-lib-exclamation-mark
-                            fringe-lib-question-mark))
-         'left-fringe 'font-lock-warning-face)
-        flymake-fringqe-overlays))
-
-(defadvice flymake-delete-own-overlays (after remove-from-fringe
-                                              activate compile)
-  (mapc 'fringe-helper-remove flymake-fringe-overlays)
-  (setq flymake-fringe-overlays nil))
-
 (defun hideshowvis-settings ()
   "settings for hideshowvis"
+  ;; required features
+  (require 'hideshowvis)
+  ;; settings
   (set-fringe-mode '(5 . 0))
   (setq hideshowvis-ignore-same-line nil)
-  (hideshowvis-symbols)
-  )
+  (hideshowvis-symbols))
 
-(dolist (hook (list 'c-mode-common-hook
-                    'lisp-mode-hook
-                    'emacs-lisp-mode-hook
-                    'lisp-interaction-mode-hook
-                    ))
+(dolist (hook '(c-mode-common-hook
+                lisp-mode-hook
+                emacs-lisp-mode-hook
+                lisp-interaction-mode-hook))
   (add-hook hook 'hideshowvis-settings))
+
+;;; provide features
+(provide 'init-fringe-related)
 
 ;;; init-fringe-related.el ends here

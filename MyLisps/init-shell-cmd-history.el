@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-shell-cmd-history.el ---
-;; Time-stamp: <2013-03-15 17:10:45 Friday by lzy>
+;; Time-stamp: <2013-03-17 18:46:09 Sunday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -31,16 +31,10 @@
 
 ;;; Code:
 
-(defun shell-command-and-history-settings ()
-  "settings for shell command and history"
-  ;; required features
-  (require 'shell-history)
-  (require 'shell-command-extension)
-  ;; settings
-  (shell-command-completion-mode))
+(require 'shell-command-extension)
+(require 'shell-history)
 
-(add-hook 'term-mode-hook
-          'shell-command-and-history-settings)
+(setq shell-history-file "~/.bash_history")
 
 ;;; provide features
 (provide 'init-shell-cmd-history)

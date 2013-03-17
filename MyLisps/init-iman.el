@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-iman.el ---
-;; Time-stamp: <2013-03-15 17:27:42 Friday by lzy>
+;; Time-stamp: <2013-03-16 22:24:35 Saturday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -32,8 +32,7 @@
 ;;; Code:
 
 (autoload 'iman "iman"
-  "Call the viewers of man pages and GNU Info with completion."
-  t)
+  "Call the viewers of man pages and GNU Info with completion." t)
 
 (lazy-set-key
  '(("C-c m" . iman)))

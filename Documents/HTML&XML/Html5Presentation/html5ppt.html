@@ -23,10 +23,10 @@
 <html>
 <head>
 <title>HTML Threat, Defense &amp; Strategic Plan</title>
-<meta http-equiv="Content-Type" content="text/html;charset=utf8"/>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta http-equiv="X-UA-Compatible" content="chrome=1">
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2013-01-05"/>
+<meta name="generated" content="2013-03-17"/>
 <meta name="author" content="zhengyu li"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -550,7 +550,7 @@
       HTML Threat, Defense &amp; Strategic Plan
     </h2>
     <p style="margin-top:100px">
-      zhengyu li <span style="font-size:20px">2013-01-05</span>
+      zhengyu li <span style="font-size:20px">2013-03-17</span>
     </p>
   </section>
 </div>
@@ -587,7 +587,9 @@
 <header><h1><span class="section-number-2">2</span> Video/Audio play </h1></header>
 
 <section>
-<p><audio id="audio-column" src="2.mp3" controls>2.mp3</audio>
+
+<p>
+<audio id="audio-column" src="file:///home/lzy/Music/琵琶相/琵琶语.mp3" controls>~/Music/琵琶相/琵琶语.mp3</audio>
 <video id="video-column" src="http://slides.html5rocks.com/src/chrome_japan.webm" controls>http://slides.html5rocks.com/src/chrome_japan.webm</video>
 </p>
 </section>
@@ -601,24 +603,24 @@
 
 
 
-<pre class="src src-C"><span style="color: #ffff00; font-size: 104%;">#include</span> <span style="color: #ee0000;">&lt;stdio.h&gt;</span>
+<pre class="src src-C"><span style="color: #ffff00; font-size: 104%;">#include</span> <span style="color: #ff0000;">&lt;stdio.h&gt;</span>
 
-<span style="color: #00ffff;">struct</span> <span style="color: #00ee00;">data</span>
+<span style="color: #00ff00;">struct</span> <span style="color: #00ee00;">data</span>
 <span style="color: #33ffcc;">{</span>
-    <span style="color: #00ee00;">int</span> <span style="color: #ff1493;">a</span><span style="color: #00ffff;">;</span>
-    <span style="color: #00ee00;">int</span> <span style="color: #ff1493;">b</span><span style="color: #00ffff;">;</span>
-    <span style="color: #00ee00;">double</span> <span style="color: #ff1493;">c</span><span style="color: #00ffff;">;</span>
+    <span style="color: #00ee00;">int</span> <span style="color: #00ffff;">a</span><span style="color: #00ffff;">;</span>
+    <span style="color: #00ee00;">int</span> <span style="color: #00ffff;">b</span><span style="color: #00ffff;">;</span>
+    <span style="color: #00ee00;">double</span> <span style="color: #00ffff;">c</span><span style="color: #00ffff;">;</span>
 <span style="color: #33ffcc;">}</span>
 
-<span style="color: #00ee00;">int</span> <span style="color: #ee0000; font-size: 120%; font-weight: bold;">main</span> <span style="color: #1e90ff; font-size: 114%;">(</span><span style="color: #00ee00;">int</span> <span style="color: #ff1493;">argc</span><span style="color: #00ffff;">,</span> <span style="color: #00ee00;">char</span> <span style="color: #00ff7f;">*</span><span style="color: #ff1493;">argv</span><span style="color: #ee0000; font-size: 114%;">[]</span><span style="color: #1e90ff; font-size: 114%;">)</span>
+<span style="color: #00ee00;">int</span> <span style="color: #ff0000; font-size: 120%; font-weight: bold;">main</span> <span style="color: #00aaff; font-size: 114%;">(</span><span style="color: #00ee00;">int</span> <span style="color: #00ffff;">argc</span><span style="color: #00ffff;">,</span> <span style="color: #00ee00;">char</span> <span style="color: #00ff7f;">*</span><span style="color: #00ffff;">argv</span><span style="color: #ee0000; font-size: 114%;">[]</span><span style="color: #00aaff; font-size: 114%;">)</span>
 <span style="color: #33ffcc;">{</span>
-    <span style="color: #00ee00;">int</span> <span style="color: #ff1493;">ret</span><span style="color: #00ffff;">;</span>
-    ret<span style="color: #ffff00;"> = </span><span style="color: #ffffff;">0</span><span style="color: #00ffff;">;</span>
-    <span style="color: #00ffff;">struct</span> <span style="color: #00ee00;">data</span> <span style="color: #ff1493;">dd</span><span style="color: #00ffff;">;</span>
-    dd<span style="color: #ee0000;">.</span><span style="color: #ffff00;">a</span><span style="color: #ffff00;"> = </span><span style="color: #ffffff;">1</span><span style="color: #00ffff;">;</span>
-    dd<span style="color: #ee0000;">.</span><span style="color: #ffff00;">b</span><span style="color: #ffff00;"> = </span><span style="color: #ffffff;">2</span><span style="color: #00ffff;">;</span>
-    dd<span style="color: #ee0000;">.</span><span style="color: #ffff00;">c</span><span style="color: #ffff00;"> = </span><span style="color: #ffffff;">1</span><span style="color: #ee0000;">.</span><span style="color: #ffff00;">00f</span><span style="color: #00ffff;">;</span>
-    <span style="color: #00ffff;">return</span> <span style="color: #ffffff;">0</span><span style="color: #00ffff;">;</span>
+    <span style="color: #00ee00;">int</span> <span style="color: #00ffff;">ret</span><span style="color: #00ffff;">;</span>
+    ret<span style="color: #ffff00;"> = </span><span style="color: #00ff00;">0</span><span style="color: #00ffff;">;</span>
+    <span style="color: #00ff00;">struct</span> <span style="color: #00ee00;">data</span> <span style="color: #00ffff;">dd</span><span style="color: #00ffff;">;</span>
+    dd<span style="color: #ee0000;">.</span><span style="color: #ffff00;">a</span><span style="color: #ffff00;"> = </span><span style="color: #00ff00;">1</span><span style="color: #00ffff;">;</span>
+    dd<span style="color: #ee0000;">.</span><span style="color: #ffff00;">b</span><span style="color: #ffff00;"> = </span><span style="color: #00ff00;">2</span><span style="color: #00ffff;">;</span>
+    dd<span style="color: #ee0000;">.</span><span style="color: #ffff00;">c</span><span style="color: #ffff00;"> = </span><span style="color: #00ff00;">1</span><span style="color: #ee0000;">.</span><span style="color: #ffff00;">00f</span><span style="color: #00ffff;">;</span>
+    <span style="color: #00ff00;">return</span> <span style="color: #00ff00;">0</span><span style="color: #00ffff;">;</span>
 <span style="color: #33ffcc;">}</span>
 
 </pre>

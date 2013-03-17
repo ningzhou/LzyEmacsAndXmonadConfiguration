@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-undo-tree.el ---
-;; Time-stamp: <2012-12-06 18:09:26 Thursday by lzy>
+;; Time-stamp: <2013-03-17 03:15:42 Sunday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,25 +24,26 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-undo-tree)
 
 ;;; Code:
 
-
-(provide 'init-undo-tree)
-
-
-;; required features
 (require 'undo-tree)
+
+(lazy-unset-key
+ '("C-x u")
+ undo-tree-map)
+
+(lazy-set-key
+ '(("<f2>"  . undo-tree-visualize))
+ undo-tree-map)
 
 (global-undo-tree-mode)
 
-(lazy-set-key
- '(("<f2>"  . undo-tree-visualize)
-   ("C-/"   . undo-tree-undo)
-   ("M-?"   . undo-tree-redo)))
+;;; provide features
+(provide 'init-undo-tree)
 
 ;;; init-undo-tree.el ends here

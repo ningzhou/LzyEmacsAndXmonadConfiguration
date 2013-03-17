@@ -1,5 +1,5 @@
 ;;; init-multis.el --- 
-;; Time-stamp: <2013-03-12 11:27:27 Tuesday by lzy>
+;; Time-stamp: <2013-03-17 18:51:57 Sunday by lzy>
 
 ;; Copyright (C) 2012  zhengyu li
 

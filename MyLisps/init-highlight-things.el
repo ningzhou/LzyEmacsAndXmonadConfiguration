@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-highlight-things.el ---
-;; Time-stamp: <2012-12-07 06:55:22 Friday by lzy>
+;; Time-stamp: <2013-03-17 22:28:16 Sunday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,31 +24,41 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-highlight-things)
 
 ;;; Code:
 
-
-(provide 'init-highlight-things)
-
-
-;; required features
-(require 'highlight-sexp)
 (require 'highlight-tail)
 
-(defun highlight-tail-setting ()
-  "setting for highlight tail"
-  (setq highlight-tail-colors
-          '(("black" . 0)
-            ("red3" . 25)
-            ("black" . 66)))
-  (highlight-tail-mode t))
+(setq highlight-tail-colors
+      '(("black" . 0)
+        ("red3" . 25)
+        ("black" . 66)))
 
-(eval-after-load "init-highlight-things"
-  '(highlight-tail-setting))
+(highlight-tail-mode 1)
+
+(add-hook 'find-file-hook
+          '(lambda ()
+             (highlight-tail-reload)))
+
+(defun highlight-sexp-setting ()
+  "settings for highlight sexp"
+  ;; required features
+  (require 'highlight-sexp)
+  ;; settings
+  (custom-set-variables
+   '(hl-sexp-background-color "#002011"))
+  (hl-line-mode -1)
+  (highlight-sexp-mode t))
+
+(add-hook 'lisp-mode-hook 'highlight-sexp-setting)
+(add-hook 'emacs-lisp-mode-hook 'highlight-sexp-setting)
+(add-hook 'lisp-interaction-mode-hook 'highlight-sexp-setting)
+
+;;; provide features
+(provide 'init-highlight-things)
 
 ;;; init-highlight-things.el ends here
-

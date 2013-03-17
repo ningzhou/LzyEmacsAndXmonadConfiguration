@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-autocomplete.el ---
-;; Time-stamp: <2013-03-02 19:59:03 Saturday by lzy>
+;; Time-stamp: <2013-03-17 22:41:53 Sunday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,250 +24,179 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-autocomplete)
 
 ;;; Code:
 
-
-(provide 'init-autocomplete)
-
-
-;; required features
-(require 'auto-complete-clang)
 (require 'auto-complete-config)
+(require 'auto-complete-clang)
 
-(defvar auto-complete-dict-dir
-  (concat my-emacs-site-lisps-path "AutoComplete/auto-complete-1.4-base/dict"))
+(defun set-ac-clang-flags ()
+  "-I flags for auto-complete clang source"
+  (interactive)
+  (let (begin end result)
+    (with-temp-buffer
+      (shell-command-surpress-popup-window "echo''|g++ -v -x c++ -E -"
+                                           (buffer-name (current-buffer)))
+      (goto-char (point-min))
+      (setq begin (progn
+                    (search-forward "#include <...>")
+                    (next-line)
+                    (line-beginning-position)))
+      (setq end (progn
+                  (search-forward "End of search list")
+                  (previous-line)
+                  (line-end-position)))
+      (setq result (buffer-substring begin end)))
+    (setq ac-clang-flags
+          (mapcar (lambda (item)
+                    (concat "-I" item))
+                  (split-string
+                   (concat "./\n./include\n../include\n../../include\n../../../include\n"
+                           result))))))
 
 (defadvice ac-error
   (after reopen-ac-mode activate)
   "reopen auto-complete-mode after ac-error"
   (auto-complete-mode 1))
 
-(defun ac-start-use-sources (sources)
-  (interactive)
-  (let ((ac-sources sources))
-    (call-interactively 'ac-start)))
-
-(defun ac-settings-4-autopair ()
-  "`auto-complete' settings for `autopair'."
-  (defun ac-trigger-command-p (command)
-    "Return non-nil if `this-command' is a trigger command."
-    (or (and (symbolp command)
-             (or (memq command ac-trigger-commands)
-                 (string-match "self-insert-command" (symbol-name command))
-                 (string-match "electric" (symbol-name command))
-                 (let* ((autopair-emulation-alist nil)
-                        (key (this-single-command-keys))
-                        (beyond-autopair (or (key-binding key)
-                                             (key-binding (lookup-key local-function-key-map key)))))
-                   (or
-                    (memq beyond-autopair ac-trigger-commands)
-                    (and ac-completing
-                         (memq beyond-autopair ac-trigger-commands-on-completing)))))))))
-
 (defun ac-settings-4-lisp ()
-  "Auto complete settings for lisp mode."
+  "auto-complete settings for lisp mode"
   (setq ac-sources
-        '(ac-source-features
-          ac-source-functions
-          ac-source-yasnippet
-          ac-source-variables
-          ac-source-symbols
-          ac-source-dictionary
-          ac-source-abbrev
-          ac-source-words-in-buffer
-          ac-source-files-in-current-dir
-          ac-source-filename
-          ac-source-words-in-same-mode-buffers)))
+        (append
+         '(ac-source-features
+           ac-source-functions
+           ac-source-yasnippet
+           ac-source-variables
+           ac-source-symbols)
+         ac-sources)))
 
 (defun ac-settings-4-cc ()
-  "`auto-complete' settings for `cc-mode'."
-  (dolist (command `(c-electric-backspace
-                     c-electric-backspace-kill))
-    (add-to-list 'ac-trigger-commands-on-completing command)))
+  "auto-complete settings for cc mode"
+  (setq ac-sources
+        (append
+         '(ac-source-gtags)
+         ac-sources)))
+
+(defun ac-settings-4-c/c++ ()
+  "auto-complete settings for c/c++ mode"
+  (setq ac-sources
+        (append
+         '(ac-source-yasnippet
+           ac-source-clang)
+         ac-sources)))
 
 (defun ac-settings-4-java ()
+  "auto-complete settings for java mode"
   (setq ac-sources
-        '(ac-source-clang
-          ac-source-yasnippet
-          ac-source-abbrev
-          ac-source-words-in-buffer
-          ac-source-words-in-same-mode-buffers
-          ac-source-dictionary
-          ac-source-files-in-current-dir
-          ac-source-filename)))
-
-(defun ac-settings-4-c ()
-  (setq ac-sources
-        '(ac-source-clang
-          ac-source-yasnippet
-          ac-source-dictionary
-          ac-source-abbrev
-          ac-source-words-in-buffer
-          ac-source-words-in-same-mode-buffers
-          ac-source-files-in-current-dir
-          ac-source-filename)))
-
-(defun ac-settings-4-cpp ()
-  (setq ac-sources
-        '(ac-source-clang
-          ac-source-yasnippet
-          ac-source-dictionary
-          ac-source-abbrev
-          ac-source-words-in-buffer
-          ac-source-words-in-same-mode-buffers
-          ac-source-files-in-current-dir
-          ac-source-filename)))
-
-(defun ac-settings-4-text ()
-  (setq ac-sources
-        '(ac-source-yasnippet
-          ac-source-abbrev
-          ac-source-words-in-buffer
-          ac-source-words-in-same-mode-buffers
-          ac-source-imenu)))
-
-(defun ac-settings-4-eshell ()
-  (setq ac-sources
-        '(ac-source-yasnippet
-          ac-source-abbrev
-          ac-source-words-in-buffer
-          ac-source-words-in-same-mode-buffers
-          ac-source-files-in-current-dir
-          ac-source-filename
-          ac-source-symbols
-          ac-source-imenu)))
+        (append
+         '(ac-source-yasnippet
+           ac-source-eclim)
+         ac-sources)))
 
 (defun ac-settings-4-ruby ()
-  (require 'rcodetools-settings)
+  "auto-complete settings for ruby mode"
   (setq ac-omni-completion-sources
-        (list (cons "\\." '(ac-source-rcodetools))
-              (cons "::" '(ac-source-rcodetools)))))
-
-(defun ac-settings-4-tcl ()
+        '(("\\." . ac-source-rcodetools)
+          ("::" . ac-source-rcodetools)))
   (setq ac-sources
-        '(ac-source-yasnippet
-          ac-source-abbrev
-          ac-source-words-in-buffer
-          ac-source-words-in-same-mode-buffers
-          ac-source-files-in-current-dir
-          ac-source-filename)))
+        (append
+         '(ac-source-yasnippet
+           ac-omni-completion-sources
+           ac-source-imenu)
+         ac-sources)))
 
-(defun ac-settings-4-awk ()
+(defun ac-settings-4-text ()
+  "auto-complete settings for text mode"
   (setq ac-sources
-        '(ac-source-yasnippet
-          ac-source-abbrev
-          ac-source-words-in-buffer
-          ac-source-words-in-same-mode-buffers
-          ac-source-files-in-current-dir
-          ac-source-filename)))
+        (append
+         '(ac-source-yasnippet
+           ac-source-imenu)
+         ac-sources)))
 
 (defun ac-settings-4-org ()
+  "auto-complete settings for org mode"
   (setq ac-sources
-        '(ac-source-abbrev
-          ac-source-words-in-buffer
-          ac-source-yasnippet
-          ac-source-words-in-same-mode-buffers
-          ac-source-files-in-current-dir
-          ac-source-filename
-          ac-source-imenu)))
+        (append
+         '(ac-source-yasnippet
+           ac-source-imenu)
+         ac-sources)))
 
-(defun ac-settings-4-html ()
+(defun ac-settings-4-nxml ()
+  "auto-complete settings for html/xml etc. mode"
   (setq ac-sources
-        '(ac-source-yasnippet
-          ac-source-abbrev
-          ac-source-words-in-buffer
-          ac-source-words-in-all-buffer
-          ac-source-files-in-current-dir
-          ac-source-filename)))
+        (append
+         '(ac-source-yasnippet
+           ac-source-css-property
+           ac-source-imenu)
+         ac-sources)))
 
-(defun ac-settings-4-xml ()
+(defun ac-settings-4-eshell ()
+  "auto-complete settings for eshell mode"
   (setq ac-sources
-        '(ac-source-yasnippet
-          ac-source-abbrev
-          ac-source-words-in-buffer
-          ac-source-words-in-all-buffer
-          ac-source-files-in-current-dir
-          ac-source-filename)))
+        (append
+         '(ac-source-imenu)
+         ac-sources)))
 
-(defun auto-complete-settings ()
+(defun auto-complete-setting ()
   "Settings for `auto-complete'."
   (setq ac-dwim t)
   (setq ac-auto-start 2)
-  (setq ac-auto-show-menu t)
+  (setq ac-auto-show-menu 0.8)
   (setq ac-disable-faces nil)
-  (setq ac-quick-help-delay .5)
+  (setq ac-quick-help-delay 0.5)
   (setq help-xref-following nil)
-  (setq ac-candidate-limit ac-menu-height)
-  (setq ac-clang-flags
-        (mapcar (lambda (item)(concat "-I" item))
-                (split-string
-                 "./
-                  ./include
-                  ../include
-                  ../../include
-                  ../../../include
-                  /usr/lib/gcc/i686-pc-linux-gnu/4.7.1/../../../../include/c++/4.7.1
-                  /usr/lib/gcc/i686-pc-linux-gnu/4.7.1/../../../../include/c++/4.7.1/i686-pc-linux-gnu
-                  /usr/lib/gcc/i686-pc-linux-gnu/4.7.1/../../../../include/c++/4.7.1/backward
-                  /usr/lib/gcc/i686-pc-linux-gnu/4.7.1/include
-                  /usr/local/include
-                  /usr/lib/gcc/i686-pc-linux-gnu/4.7.1/include-fixed
-                  /usr/include")))
-
+  (setq ac-candidate-limit 15)
+  ;; set clang flags
+  (set-ac-clang-flags)
   ;; auto-complete auto start modes
   (add-to-list 'ac-modes 'org-mode)
   (add-to-list 'ac-modes 'text-mode)
   (add-to-list 'ac-modes 'html-mode)
   (add-to-list 'ac-modes 'nxml-mode)
-  
+  (add-to-list 'ac-modes 'awk-mode)
   (add-to-list 'ac-dictionary-directories
-               auto-complete-dict-dir)
-  (set-default 'ac-sources
-               '(ac-source-semantic-raw
-                 ac-source-yasnippet
-                 ac-source-dictionary
-                 ac-source-abbrev
-                 ac-source-words-in-buffer
-                 ac-source-words-in-same-mode-buffers
-                 ac-source-imenu
-                 ac-source-files-in-current-dir
-                 ac-source-filename))
+               (concat my-emacs-site-lisps-path "AutoComplete/auto-complete-1.4-base/dict"))
+
+  (custom-set-variables
+   '(ac-trigger-commands-on-completing
+     (append '(c-electric-backspace
+               c-electric-backspace-kill)
+             ac-trigger-commands-on-completing)))
+
+  (setq-default ac-sources
+                '(ac-source-abbrev
+                  ac-source-dictionary
+                  ac-source-words-in-same-mode-buffers
+                  ac-source-files-in-current-dir
+                  ac-source-filename))
   (global-auto-complete-mode 1)
 
   ;; add to hook
-  (dolist (hook '(lisp-mode-hook
-                  emacs-lisp-mode-hook
-                  lisp-interaction-mode-hook
-                  change-log-mode-hook))
-    (add-hook hook 'ac-settings-4-lisp))
-  
+  (add-hook 'lisp-mode-hook 'ac-settings-4-lisp)
+  (add-hook 'emacs-lisp-mode-hook 'ac-settings-4-lisp)
+  (add-hook 'lisp-interaction-mode-hook 'ac-settings-4-lisp)
   (add-hook 'c-mode-common-hook 'ac-settings-4-cc)
-  (add-hook 'c-mode-hook        'ac-settings-4-c)
-  (add-hook 'c++-mode-hook      'ac-settings-4-cpp)
-  (add-hook 'java-mode-hook     'ac-settings-4-java)
-  (add-hook 'text-mode-hook     'ac-settings-4-text)
-  (add-hook 'eshell-mode-hook   'ac-settings-4-eshell)
-  (add-hook 'ruby-mode-hook     'ac-settings-4-ruby)
-  (add-hook 'awk-mode-hook      'ac-settings-4-awk)
-  (add-hook 'tcl-mode-hook      'ac-settings-4-tcl)
-  (add-hook 'org-mode-hook      'ac-settings-4-org)
-  (add-hook 'html-mode-hook     'ac-settings-4-html)
-  (add-hook 'xml-mode-hook      'ac-settings-4-xml)
-
-  (eval-after-load "autopair"
-    '(ac-settings-4-autopair))
+  (add-hook 'c-mode-hook 'ac-settings-4-c/c++)
+  (add-hook 'c++-mode-hook 'ac-settings-4-c/c++)
+  (add-hook 'java-mode-hook 'ac-settings-4-java)
+  (add-hook 'ruby-mode-hook 'ac-settings-4-ruby)
+  (add-hook 'text-mode-hook 'ac-settings-4-text)
+  (add-hook 'org-mode-hook 'ac-settings-4-org)
+  (add-hook 'html-mode-hook 'ac-settings-4-nxml)
+  (add-hook 'xml-mode-hook 'ac-settings-4-nxml)
+  (add-hook 'eshell-mode-hook 'ac-settings-4-eshell)
 
   (lazy-set-key
    '(("M-j" . ac-complete))
-   ac-complete-mode-map)
-  )
+   ac-complete-mode-map))
 
-(eval-after-load "init-autocomplete"
-  '(auto-complete-settings))
+(auto-complete-setting)
+
+;;; provide features
+(provide 'init-autocomplete)
 
 ;;; init-autocomplete.el ends here

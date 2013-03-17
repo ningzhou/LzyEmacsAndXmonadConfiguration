@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
-;;; init-chm-view.el ---
-;; Time-stamp: <2012-12-06 17:12:24 Thursday by lzy>
+;;; init-view-mode.el ---
+;; Time-stamp: <2013-03-16 18:16:42 Saturday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,18 +24,23 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'init-chm-view)
+;;   (require 'init-view-mode)
 
 ;;; Code:
 
+(defun view-mode-setting ()
+  "settings for view mode"
+  (lazy-set-key
+   '(("n" . next-line)
+     ("p" . previous-line))
+   view-mode-map))
 
-(provide 'init-chm-view)
+(add-hook 'view-mode-hook 'view-mode-setting)
 
+;;; provide features
+(provide 'init-view-mode)
 
-;; required features
-(require 'chm-view)
-
-;;; init-chm-view.el ends here
+;;; init-view-mode.el ends here

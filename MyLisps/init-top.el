@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-top.el ---
-;; Time-stamp: <2013-03-15 13:29:16 Friday by lzy>
+;; Time-stamp: <2013-03-16 22:20:42 Saturday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -31,7 +31,8 @@
 
 ;;; Code:
 
-(autoload 'top "top-mode" "Runs 'top' in an emacs buffer." t)
+(autoload 'top "top-mode"
+  "Runs 'top' in an emacs buffer." t)
 
 ;;; provide features
 (provide 'init-top)

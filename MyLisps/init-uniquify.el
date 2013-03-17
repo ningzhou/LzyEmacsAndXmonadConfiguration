@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-uniquify.el ---
-;; Time-stamp: <2012-12-06 18:09:51 Thursday by lzy>
+;; Time-stamp: <2013-03-16 07:44:33 Saturday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,22 +24,23 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-uniquify)
 
 ;;; Code:
 
+(defun uniquify-settings ()
+  "settings for uniquify"
+  (setq uniquify-buffer-name-style
+        'post-forward-angle-brackets)
+  (setq uniquify-separator "/"))
 
+(eval-after-load "uniquify"
+  '(uniquify-settings))
+
+;;; provide features
 (provide 'init-uniquify)
-
-
-;; required features
-(require 'uniquify)
-
-(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
-(setq uniquify-separator "/")
-(setq uniquify-after-kill-buffer-p t)
 
 ;;; init-uniquify.el ends here
