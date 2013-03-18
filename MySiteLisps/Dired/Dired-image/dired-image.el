@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; dired-image.el ---
-;; Time-stamp: <Tue Oct  9 10:44:30 2012 (cst)>
+;; Time-stamp: <2013-03-18 07:38:21 Monday by lzy>
 
 ;; Copyright (C) 2012 zhengyu li
 ;;
@@ -114,15 +114,14 @@
                   (format "feh -r -g 1024x768 -B black -Y \"%s\" --start-at \"%s\"" dir file))))
 
 (add-hook 'dired-mode-hook
-          (function
-           (lambda ()
-             (setq image-dired-show-all-from-dir-max-files 500)
-             (define-key image-dired-thumbnail-mode-map "n" 'image-dired-forward-image)
-             (define-key image-dired-thumbnail-mode-map "f" 'image-dired-forward-image)
-             (define-key image-dired-thumbnail-mode-map "p" 'image-dired-backward-image)
-             (define-key image-dired-thumbnail-mode-map "b" 'image-dired-backward-image)
-             (define-key image-dired-thumbnail-mode-map "N" 'image-dired-next-line)
-             (define-key image-dired-thumbnail-mode-map "P" 'image-dired-previous-line)
-             (define-key image-dired-thumbnail-mode-map [return] 'image-dired-thumbnail-display))))
+          (lambda ()
+            (setq image-dired-show-all-from-dir-max-files 500)
+            (define-key image-dired-thumbnail-mode-map "n" 'image-dired-forward-image)
+            (define-key image-dired-thumbnail-mode-map "f" 'image-dired-forward-image)
+            (define-key image-dired-thumbnail-mode-map "p" 'image-dired-backward-image)
+            (define-key image-dired-thumbnail-mode-map "b" 'image-dired-backward-image)
+            (define-key image-dired-thumbnail-mode-map "N" 'image-dired-next-line)
+            (define-key image-dired-thumbnail-mode-map "P" 'image-dired-previous-line)
+            (define-key image-dired-thumbnail-mode-map [return] 'image-dired-thumbnail-display)))
 
 ;;; dired-image.el ends here

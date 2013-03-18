@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-cua.el ---
-;; Time-stamp: <2013-03-02 04:28:01 Saturday by lzy>
+;; Time-stamp: <2013-03-18 03:37:18 Monday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,35 +24,32 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-cua)
 
 ;;; Code:
 
-
-(provide 'init-cua)
-
-
-;; required features
-(require 'cua-base)
-
 (defun cua-settings ()
-  "settings for `cua'."
-  (setq cua-auto-tabify-retangles nil)  ;Don't tabify after rectangle commands
-
-  (setq cua-remap-control-z nil)        ;set C-z to nil
-  (setq cua-remap-control-v nil)        ;set C-z to nil
-
+  "settings for cua mode"
+  ;; required features
+  (require 'cua-rect)
+  ;; settings
+  (setq cua-remap-control-z nil)
+  (setq cua-remap-control-v nil)
   (define-key cua--cua-keys-keymap [(control z)] nil)
   (define-key cua--cua-keys-keymap [(control v)] nil)
   (define-key cua--cua-keys-keymap [(meta v)] nil)
-
-  (autoload 'cua--init-rectangles "cua-rect")
   (cua--init-rectangles))
 
 (eval-after-load "cua-base"
   '(cua-settings))
+
+(autoload 'cua-mode "cua-base"
+  "Toggle Common User Access style editing (CUA mode)" t)
+
+;;; provide features
+(provide 'init-cua)
 
 ;;; init-cua.el ends here

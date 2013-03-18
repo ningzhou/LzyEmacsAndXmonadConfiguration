@@ -1,10 +1,13 @@
-;;; init-dired.el --- 
-;; Time-stamp: <2013-03-02 04:10:52 Saturday by lzy>
+;; -*- Emacs-Lisp -*-
+;;; init-dired.el ---
+;; Time-stamp: <2013-03-18 07:55:37 Monday by lzy>
 
-;; Copyright (C) 2012  zhengyu li
+;; Copyright (C) 2013 chieftain
+;;
+;; Author: chieftain <lizhengyu419@gmail.com>
+;; Keywords: none
 
-;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,42 +24,51 @@
 
 ;;; Commentary:
 
-;; 
+;;
+
+;; Put this file into your load-path and the following into your ~/.emacs:
+;;   (require 'init-dired)
 
 ;;; Code:
 
-(provide 'init-dired)
+(defun dired-settings ()
+  "Settings for dired"
+  ;; required features
+  (require 'dired-aux)
+  (require 'dired-tar)
+  (require 'dired-view)
+  (require 'dired-image)
+  (require 'color-moccur)
+  (require 'smart-compile)
+  (require 'dired-extension)
+  (require 'wuxch-dired-extension)
+  ;; settings
+  (setq dired-dwim-target t)
+  (setq ls-lisp-dirs-first t)
+  (setq dired-recursive-copies 'always)
+  (setq dired-recursive-deletes 'always)
+  (setq dired-details-initially-hide nil)
+  (setq dired-omit-files
+        (concat dired-omit-files "\\|^\\.\\|^semantic.cache$\\|^CVS$"))
+  (setq dired-guess-shell-alist-user
+        (list
+         '("\\.\\(mp3\|mkv\|rmvb\|avi\|mp4\|vob\\)$" "mplayer")
+         '("\\.\\(doc\|xls\|ppt\|pptx\\)$" "libreoffice")
+         '("\\.pdf$" "acroread")
+         '("\\.\\(jpg\|JPG\|jpeg\|JPEG\|tiff\|tiff\|xbm\|gif\|pgm\|ppm\|bmp\\)$" "feh -r -g 1024x768 -B black -Y")))
+  
+  (diredp-toggle-find-file-reuse-dir 1)
+  (dired-omit-mode t)
 
-;; required features
-(require 'dired-x)
-(require 'dired-aux)
-(require 'dired-tar)
-(require 'dired-view)
-(require 'dired-image)
-(require 'color-moccur)
-(require 'smart-compile)
-(require 'dired-extension)
-(require 'wuxch-dired-extension)
-(require 'wuxch-dired-copy-paste)
-
-(defun dired-key-setting ()
-  "key settings for dired mode"
-  ;;this key will conflict with one-key library
+  ;; key bindings
   (lazy-unset-key 
    '("C-o")
    dired-mode-map)
 
   (lazy-set-key
-   `(("C-x d" . dired-jump)
-     ("C-x C-d" . ido-dired))
-   global-map)
-
-  (define-prefix-command 'dired-slash-map)
-  (lazy-set-key
    `(("h"           . dired-up-directory-same-buffer)
      ("<backspace>" . dired-up-directory-same-buffer)
      ("e"           . emms-play-dired)
-     ("/"           . dired-slash-map)
      ("/m"          . dired-filter-regexp)
      ("/."          . dired-filter-extension)
      ("r"           . wdired-change-to-wdired-mode)
@@ -104,55 +116,27 @@
      ("C-x d"       . ido-dired)
      (";"           . dired-view-minor-mode-toggle)
      (":"           . dired-view-minor-mode-dired-toggle))
-   dired-mode-map))
+   dired-mode-map)
 
-(defun dired-buffer-face-mode ()
-  "Sets a fixed width (monospace) font in current buffer"
-  (interactive)
-  (setq buffer-face-mode-face '(:family "Monospace" :height 1.05 :foreground "grey90" :weight normal))
+  ;; face mode setting
+  (setq buffer-face-mode-face
+        '(:family "Monospace" :height 1.05 :foreground "grey90" :weight normal))
   (buffer-face-mode))
 
-(defun dired-settings ()
-  "Settings for `dired'."
-  (setq truncate-lines t)
-  (setq dired-dwim-target t)
-  (setq ls-lisp-dirs-first t)
-  (setq dired-omit-size-limit 1000000)
-  (setq dired-recursive-copies 'always)
-  (setq dired-recursive-deletes 'always)
-  (setq dired-details-initially-hide nil)
-  (setq mode-line-buffer-identification
-        (propertized-buffer-identification "%b"))
-  (setq dired-omit-files
-        (concat dired-omit-files "\\|^\\.\\|^semantic.cache$\\|^CVS$"))
-  (setq dired-guess-shell-alist-user
-        (list
-         '("\\.mp3$" "mplayer")
-         '("\\.mkv$" "mplayer")
-         '("\\.rmvb$" "mplayer")
-         '("\\.avi$" "mplayer")
-         '("\\.mp4$" "mplayer")
-         '("\\.vob$" "mplayer")
-         '("\\.doc$" "libreoffice")
-         '("\\.xls$" "libreoffice")
-         '("\\.ppt$" "libreoffice")
-         '("\\.pptx$" "libreoffice")
-         '("\\.pdf$" "acroread")
-         '("\\.jpg$" "feh -r -g 1024x768 -B black -Y")
-         '("\\.JPG$" "feh -r -g 1024x768 -B black -Y")
-         '("\\.jpeg$" "feh -r -g 1024x768 -B black -Y")
-         '("\\.JPEG$" "feh -r -g 1024x768 -B black -Y")
-         '("\\.p[bgpn]m$" "feh -r -g 1024x768 -B black -Y")
-         '("\\.gif$" "feh -r -g 1024x768 -B black -Y")
-         '("\\.tif$" "feh -r -g 1024x768 -B black -Y")))
-  (diredp-toggle-find-file-reuse-dir 1)
-  (dired-omit-mode t)
-  (dired-key-setting)
-  (dired-buffer-face-mode))
+(autoload 'wuxch-dired-load-hook "wuxch-dired-extension" nil nil)
+(autoload 'his-dired-sort "wuxch-dired-extension" nil nil)
+(autoload 'wuxch-dired-mode-hook-fun "wuxch-dired-extension" nil nil)
 
 (add-hook 'dired-load-hook 'wuxch-dired-load-hook)
 (add-hook 'dired-after-readin-hook 'his-dired-sort)
 (add-hook 'dired-mode-hook 'wuxch-dired-mode-hook-fun)
 (add-hook 'dired-mode-hook 'dired-settings)
+
+(lazy-set-key
+ '(("C-x d" . dired-jump)
+   ("C-x C-d" . ido-dired)))
+
+;;; provide features
+(provide 'init-dired)
 
 ;;; init-dired.el ends here

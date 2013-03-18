@@ -1,10 +1,13 @@
+;; -*- Emacs-Lisp -*-
 ;;; LzyStartup.el ---
-;; Time-stamp: <2013-03-17 22:49:38 Sunday by lzy>
+;; Time-stamp: <2013-03-18 05:08:21 Monday by lzy>
 
-;; Copyright (C) 2012 zhengyu li
+;; Copyright (C) 2013 chieftain
 ;;
-;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Author: chieftain <lizhengyu419@gmail.com>
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,21 +24,25 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'LzyStartup)
 
 ;;; Code:
 
+(server-force-delete)
+(server-start)
+(if (get-buffer "*scratch*")
+    (kill-buffer "*scratch*"))
+(if (get-buffer "*Compile-Log*")
+    (kill-buffer "*Compile-Log*"))
+(if (get-buffer "*Messages*")
+    (kill-buffer "*Messages*"))
+(if (get-buffer ".bash_history")
+    (kill-buffer ".bash_history"))
 
+;;; provide features
 (provide 'LzyStartup)
-
-(server-force-delete)                 ;; close emacs server
-(kill-buffer "*scratch*")             ;; kill init scratch buffer
-(kill-buffer "*Compile-Log*")         ;; kill init compile log buffer
-(kill-buffer "*Messages*")            ;; kill init Message buffer
-(kill-buffer ".bash_history")         ;; kill init .bash_history buffer
-(server-start)                        ;; start emacs server
 
 ;;; LzyStartup.el ends here

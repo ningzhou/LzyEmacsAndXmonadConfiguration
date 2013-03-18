@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-tramp.el ---
-;; Time-stamp: <2012-12-06 18:08:04 Thursday by lzy>
+;; Time-stamp: <2013-03-18 04:53:06 Monday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,24 +24,21 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-tramp)
 
 ;;; Code:
 
-
-(provide 'init-tramp)
-
-;; required features
-(require 'ange-ftp)
-(require 'tramp)
-
-(setq password-cache-expiry 3600)
-(setq tramp-default-method "scp")
-;; Auto save tramp file in local directory
-(setq tramp-auto-save-directory "~/.emacs.d/tramp-autosave")
+(defun tramp-settings ()
+  "settings for tramp mode"
+  ;; required features
+  (require 'ange-ftp)
+  ;; settings
+  (setq password-cache-expiry 3600)
+  (setq tramp-default-method "scp")
+  (setq tramp-auto-save-directory "~/.emacs.d/tramp-autosave"))
 
 (defun find-alternative-file-with-sudo ()
   (interactive)
@@ -48,12 +47,17 @@
     (when fname
       (if (string-match "^/sudo:root@localhost:" fname)
           (setq fname (replace-regexp-in-string
-                       "^/sudo:root@localhost:" ""
-                       fname))
+                       "^/sudo:root@localhost:" "" fname))
         (setq fname (concat "/sudo:root@localhost:" fname)))
       (find-alternate-file fname))))
 
+(eval-after-load "tramp"
+  '(tramp-settings))
+
 (lazy-set-key
  '(("C-x C-r" . find-alternative-file-with-sudo)))
+
+;;; provide features
+(provide 'init-tramp)
 
 ;;; init-tramp.el ends here

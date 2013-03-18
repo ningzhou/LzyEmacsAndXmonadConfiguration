@@ -11,4 +11,4 @@
                        ("var" "var ${1:ok} ${2:bool}\n$0" "var" nil nil nil nil nil nil)))
 
 
-;;; Do not edit! File generated at Tue Mar 12 08:32:10 2013
+;;; Do not edit! File generated at Mon Mar 18 03:11:46 2013

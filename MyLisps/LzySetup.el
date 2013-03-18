@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-03-17 19:05:45 Sunday by lzy>
+;; Time-stamp: <2013-03-18 09:05:51 Monday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -56,7 +56,6 @@
 (require 'init-sdcv)                         ;; stardict console client
 (require 'init-youdao)                       ;; youdao tanslation
 (require 'init-babel)                        ;; a web translations interface
-(require 'init-weibo)                        ;; sina weibo
 (require 'init-abbrev)                       ;; save abbreviation
 (require 'init-go2chg)                       ;; go to last change place
 (require 'init-wget)                         ;; wget setting
@@ -66,6 +65,7 @@
 (require 'init-less)                         ;; extend less information
 (require 'init-undo-tree)                    ;; extended undo system setting
 (require 'init-find)                         ;; finding related setting
+(require 'init-moccur)                       ;; setting for multi occurence
 (require 'init-template)                     ;; automatically insert templates
 (require 'init-shell-cmd-history)            ;; shell command and history
 (require 'init-multis)                       ;; multi shell and term
@@ -74,12 +74,13 @@
 (require 'init-yasnippet)                    ;; yasnippet setting
 (require 'init-autocomplete)                 ;; autocomplete mode setting
 (require 'init-anything)                     ;; anyting mode
-
+(require 'init-cua)                          ;; setting for cua mode
+(require 'init-weibo)                        ;; sina weibo
 (require 'init-tramp)                        ;; transparent remote access
-(require 'init-xray)                         ;; show inner structure of emacs object
-(require 'init-mode-line)                    ;; mode-line setting
 (require 'init-dired)                        ;; dired setting
 (require 'init-ediff)                        ;; ediff and ediff tree
+
+(require 'init-mode-line)                    ;; mode-line setting
 (require 'init-emms)                         ;; emacs multi-media setting
 (require 'init-w3m)                          ;; emacs browser setting
 (require 'init-etags-extension)              ;; etags extension
@@ -88,12 +89,9 @@
 (require 'init-edit-setting)                 ;; edit setting for all buffer
 (require 'init-one-key)                      ;; key binding setting for one key menu
 (require 'init-misc)                         ;; other setting
-(require 'init-git)                          ;; git-emacs
-(require 'init-moccur)                       ;; setting for multi occurence
 (require 'init-gnus)                         ;; setting for gnus
 (require 'init-erc)                          ;; erc setting
 (require 'init-newsticker)                   ;; setting for newsticker
-(require 'init-cua)                          ;; setting for cua mode
 (require 'init-doubanfm)                     ;; douban fm setting
 (require 'init-google-maps)                  ;; google maps setting
 (require 'init-weather)                      ;; show weather in mode line

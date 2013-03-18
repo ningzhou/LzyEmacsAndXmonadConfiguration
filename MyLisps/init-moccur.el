@@ -1,10 +1,13 @@
-;;; init-moccur.el --- 
-;; Time-stamp: <2013-03-02 04:16:06 Saturday by lzy>
+;; -*- Emacs-Lisp -*-
+;;; init-moccur.el ---
+;; Time-stamp: <2013-03-18 08:15:40 Monday by lzy>
 
-;; Copyright (C) 2012  zhengyu li
+;; Copyright (C) 2013 chieftain
+;;
+;; Author: chieftain <lizhengyu419@gmail.com>
+;; Keywords: none
 
-;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,51 +24,40 @@
 
 ;;; Commentary:
 
-;; 
+;;
+
+;; Put this file into your load-path and the following into your ~/.emacs:
+;;   (require 'init-moccur)
 
 ;;; Code:
 
-
-(provide 'init-moccur)
-
-
-;; required features
-(require 'dired)
-(require 'moccur-edit)
-(require 'color-moccur)
-
-;; save buffer after modification
-(defadvice moccur-edit-change-file         
-  (after save-after-moccur-edit-buffer activate)
-  "Automatically save buffer when edit in moccur."
-  (save-buffer))
-
 (defun moccur-setting ()
   "setting for moccur and moccur-edit"
+  ;; required features
+  (require 'moccur-edit)
+  ;; advice define
+  (defadvice moccur-edit-change-file
+    (after save-after-moccur-edit-buffer activate)
+    "Automatically save buffer when edit in moccur."
+    (save-buffer))
+  ;; settings
+  (setq moccur-kill-moccur-buffer t)
+  (setq moccur-edit-highlight-edited-text t)
+  (setq moccur-grep-default-word-near-point t))
 
-  (setq moccur-kill-moccur-buffer t) ; kill buffer when exit
-  (setq moccur-edit-highlight-edited-text t) ; highlight text regions been changed
-  (setq moccur-grep-default-word-near-point t) ; get a word near the point as default regexp string
-
-  (lazy-set-key
-   '(("C-x C-u"  . occur-by-moccur)
-     ("C-x g"    . moccur-grep-find) ;recursively with current directory
-     ("C-x G"    . moccur-grep))) ;non-recursively
-  )
-
-(eval-after-load "init-moccur"
+(eval-after-load "color-moccur"
   '(moccur-setting))
 
+(autoload 'occur-by-moccur "color-moccur" nil t)
+(autoload 'moccur-grep-find "color-moccur" nil t)
+(autoload 'moccur-grep "color-moccur" nil t)
+
+(lazy-set-key
+ '(("C-x C-u"  . occur-by-moccur)
+   ("C-x g"    . moccur-grep-find)
+   ("C-x G"    . moccur-grep)))
+
+;;; provide features
+(provide 'init-moccur)
+
 ;;; init-moccur.el ends here
-
-
-
-
-
-
-
-
-
-
-
-

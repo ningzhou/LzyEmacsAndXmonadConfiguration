@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; wuxch-dired-extension.el ---
-;; Time-stamp: <Mon Oct  8 10:50:18 2012 (cst)>
+;; Time-stamp: <2013-03-18 05:37:57 Monday by lzy>
 
-;; Copyright (C) 2012 zhengyu li
+;; Copyright (C) 2013 chieftain
 ;;
-;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Author: chieftain <lizhengyu419@gmail.com>
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,21 +24,12 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'wuxch-dired-modified)
-
-;; ChangeLog Sat Sep 29 2012
-;; Based on wuxch-dired.el and add some other features
+;;   (require 'wuxch-dired-extension)
 
 ;;; Code:
-
-
-(provide 'wuxch-dired-extension)
-
-
-;;; require features:
 
 (require 'cl)
 (require 'dired+)
@@ -60,6 +53,9 @@
 (defvar static-wuxch-first-line-of-buffer)
 (defvar static-wuxch-max-line-of-buffer)
 (defconst wuxch-dired-add-addtional-line 1)
+(defvar dired-copied-cutted-files-pool nil
+  "global variable to store copied or cutted files")
+(defvar dired-is-copied nil "t:copy  nil:cut")
 
 (defun wuxch-dired-move-beginning-of-line (arg)
   ""
@@ -93,8 +89,7 @@
           (".+"
            (dired-move-to-filename)
            nil
-           (0 'wuxch-dired-doc-face)))))
-  )
+           (0 'wuxch-dired-doc-face))))))
 
 (defun wuxch-dired-set-elisp-face ()
   "wuxch-dired-set-elisp-face:"
@@ -103,8 +98,7 @@
           (".+"
            (dired-move-to-filename)
            nil
-           (0 'wuxch-dired-elisp-face)))))
-  )
+           (0 'wuxch-dired-elisp-face))))))
 
 (defun wuxch-dired-set-exe-face ()
   "wuxch-dired-set-exe-face:"
@@ -113,8 +107,7 @@
           (".+"
            (dired-move-to-filename)
            nil
-           (0 'wuxch-dired-exe-face)))))
-  )
+           (0 'wuxch-dired-exe-face))))))
 
 (defun wuxch-dired-set-media-face ()
   "wuxch-dired-set-media-face:"
@@ -123,8 +116,7 @@
           (".+"
            (dired-move-to-filename)
            nil
-           (0 'wuxch-dired-media-face)))))
-  )
+           (0 'wuxch-dired-media-face))))))
 
 (defun do-wuxch-get-file-name (with-full-path only-path)
   ""
@@ -151,20 +143,17 @@
 (defun wuxch-get-file-name-with-path ()
   ""
   (interactive)
-  (do-wuxch-get-file-name t nil)
-  )
+  (do-wuxch-get-file-name t nil))
 
 (defun wuxch-get-file-name-without-path ()
   ""
   (interactive)
-  (do-wuxch-get-file-name nil nil)
-  )
+  (do-wuxch-get-file-name nil nil))
 
 (defun wuxch-get-file-name-only-path ()
   ""
   (interactive)
-  (do-wuxch-get-file-name t t)
-  )
+  (do-wuxch-get-file-name t t))
 
 (defun wuxch-dired-tab-process ()
   "open a new dired window same as the current one"
@@ -213,7 +202,8 @@
   (if (local-variable-p 'static-wuxch-max-line-of-buffer)
       (progn)
     (progn
-      (setq-default static-wuxch-max-line-of-buffer (wuxch-dired-max-line-by-count))
+      (setq-default static-wuxch-max-line-of-buffer
+                    (wuxch-dired-max-line-by-count))
       (make-local-variable 'static-wuxch-max-line-of-buffer)))
   (+ static-wuxch-max-line-of-buffer 0))
 
@@ -263,9 +253,7 @@
     (if (eq temp-current-line temp-max-line)
         (progn
           (goto-line (wuxch-get-first-line-of-dired))
-          (dired-move-to-filename)))
-    )
-  )
+          (dired-move-to-filename)))))
 
 (defun wuxch-dired-create-directory (directory)
   "Create a directory called DIRECTORY, with current date as suffix"
@@ -373,5 +361,78 @@ See also `dired-scroll-down'."
     (unless (string= dir dir-file-name)
       (find-alternate-file "..")
       (dired-goto-file dir-file-name))))
+
+(defun wuxch-dired-copy()
+  ""
+  (interactive)
+  (wuxch-dired-do-copy-cut t))
+
+(defun wuxch-dired-cut()
+  ""
+  (interactive)
+  (wuxch-dired-do-copy-cut nil))
+
+(defun wuxch-dired-do-copy-cut(is-copy)
+  "wuxch-dired-do-copy-cut:"
+  (wuxch-clear-copied-cutted-files-pool)
+  (wuxch-put-marked-files-name-to-pool)
+  (let ((copy-cut-string)(num (safe-length dired-copied-cutted-files-pool)))
+    (setq dired-is-copied is-copy)
+    (if is-copy
+        (setq copy-cut-string "copied")
+      (setq copy-cut-string "cut"))
+    (if (eq num 1)
+        (progn
+          (message "%s is %s" (car dired-copied-cutted-files-pool) copy-cut-string))
+      (progn
+        (message "%d file/dir(s) %s" num copy-cut-string)))))
+
+(defun wuxch-dired-paste()
+  "wuxch-dired-paste:"
+  (interactive)
+  (if (not (eq dired-copied-cutted-files-pool nil))
+      (let ((copy-cut-string)
+            (current-file-number 0)
+            (file-number (safe-length dired-copied-cutted-files-pool)))
+        (if dired-is-copied
+            (setq copy-cut-string "copied")
+          (setq copy-cut-string "moved"))
+        (dolist (src-file dired-copied-cutted-files-pool)
+          (let ((dst-file))
+            (setq dst-file (concat (dired-current-directory)
+                                   (file-name-nondirectory src-file)))
+            (if dired-is-copied
+                (dired-copy-file src-file dst-file t)
+              (dired-rename-file src-file dst-file t))
+            ;; revert buffer
+            (wuxch-dired-revert)
+            (dired-goto-file dst-file)
+            ;; 不mark
+            ;; (dired-mark-files-regexp (file-name-nondirectory src-file))
+            ;; show some information
+            (setq current-file-number (+ current-file-number 1))
+            (message "%d of %d file/dir(s) %s"
+                     current-file-number file-number copy-cut-string)))
+        (if (not dired-is-copied)
+            (wuxch-clear-copied-cutted-files-pool)))))
+
+(defun wuxch-clear-copied-cutted-files-pool()
+  "wuxch-clear-copied-cutted-files-pool: clear the pool if it's not nil"
+  (if (not (eq dired-copied-cutted-files-pool nil))
+      (progn
+        (setq dired-copied-cutted-files-pool nil))))
+
+(defun wuxch-put-marked-files-name-to-pool()
+  "wuxch-put-marked-files-name-to-pool:"
+  (let ((files))
+    (setq files (dired-get-marked-files t))
+    (if (listp files)
+        (dolist (element files)
+          (setq dired-copied-cutted-files-pool
+                (append dired-copied-cutted-files-pool
+                        (list (concat (dired-current-directory) element))))))))
+
+;;; provide features
+(provide 'wuxch-dired-extension)
 
 ;;; wuxch-dired-extension.el ends here

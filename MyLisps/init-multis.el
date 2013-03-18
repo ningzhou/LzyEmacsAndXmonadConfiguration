@@ -1,10 +1,13 @@
-;;; init-multis.el --- 
-;; Time-stamp: <2013-03-17 18:51:57 Sunday by lzy>
+;; -*- Emacs-Lisp -*-
+;;; init-multis.el ---
+;; Time-stamp: <2013-03-18 03:09:34 Monday by lzy>
 
-;; Copyright (C) 2012  zhengyu li
+;; Copyright (C) 2013 chieftain
+;;
+;; Author: chieftain <lizhengyu419@gmail.com>
+;; Keywords: none
 
-;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,13 +24,12 @@
 
 ;;; Commentary:
 
-;; 
+;;
+
+;; Put this file into your load-path and the following into your ~/.emacs:
+;;   (require 'init-multis)
 
 ;;; Code:
-
-
-(provide 'init-multis)
-
 
 ;; required features
 (require 'multi-term)
@@ -75,31 +77,37 @@
                term-color-cyan
                term-color-white]))
     (progn
-        (setq term-default-fg-color "black")
-        (setq term-default-bg-color "green")
-        (setq ansi-term-color-vector
-        [unspecified "black" "red3" "green" "yellow" "DeepSkyBlue"
-                     "magenta3" "cyan3" "white"]))
-    ))
+      (setq term-default-fg-color "black")
+      (setq term-default-bg-color "green")
+      (setq ansi-term-color-vector [unspecified "black" "red3" "green" "yellow" "DeepSkyBlue"
+                                                "magenta3" "cyan3" "white"]))))
 
 (defun term-send-esc ()
   "Send ESC in term mode"
   (interactive)
   (term-send-raw-string "\e"))
 
-(defun multis-setting ()
-  "setting for multi-shell, multi-terminal and multi-scratch"
+(defun multi-term-setting ()
+  "settings for multi-term"
   (setq multi-term-program "/bin/bash")
+  (add-to-list 'term-bind-key-alist '("C-c C-e" . term-send-esc)))
 
-  (add-to-list 'term-bind-key-alist '("C-c C-e" . term-send-esc))
-  (lazy-set-key
-   '(("<f9>" . multi-scratch-new)
-     ("C-<f9>" . multi-term)))
+(add-hook 'term-mode-hook 'set-ansi-term-font)
+(add-hook 'term-mode-hook 'set-ansi-term-color)
 
-  (add-hook 'term-mode-hook 'set-ansi-term-font)
-  (add-hook 'term-mode-hook 'set-ansi-term-color))
+(eval-after-load "multi-term"
+  '(multi-term-setting))
 
-(eval-after-load "init-multis"
-  '(multis-setting))
+(autoload 'multi-scratch-new "multi-scratch"
+  "Create a new multi-scratch buffer" t)
+(autoload 'multi-term "multi-term"
+  "Create new term buffer" t)
+
+(lazy-set-key
+ '(("<f9>" . multi-scratch-new)
+   ("C-<f9>" . multi-term)))
+
+;;; provide features
+(provide 'init-multis)
 
 ;;; init-multis.el ends here
