@@ -406,7 +406,12 @@ See also `dired-scroll-down'."
                         (list (concat (dired-current-directory) element))))))))
 
 (defun dired-backup-file ()
-  "backup file and dir in current directory")
+  "backup file in current directory"
+  (interactive)
+  (let* ((origin-file (dired-get-file-for-visit))
+         (backup-file (concat origin-file ".backup")))
+    (copy-file origin-file backup-file)
+    (wuxch-dired-revert)))
 
 ;;; provide features
 (provide 'wuxch-dired-extension)

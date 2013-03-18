@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-dired.el ---
-;; Time-stamp: <2013-03-18 16:11:02 Monday by lzy>
+;; Time-stamp: <2013-03-18 18:06:40 Monday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -82,6 +82,7 @@
      ("k"           . kill-this-buffer)
      ("I"           . view-image-dired)
      ("a"           . display-image-with-feh)
+     ("B"           . dired-backup-file)
      ("E"           . dired-do-touch)
      ("J"           . dired-goto-file)
      ("1"           . delete-other-windows)
