@@ -1,10 +1,13 @@
-;;; init-w3m.el --- 
-;; Time-stamp: <2013-03-15 11:41:34 Friday by lzy>
+;; -*- Emacs-Lisp -*-
+;;; init-w3m.el ---
+;; Time-stamp: <2013-03-18 12:00:32 Monday by lzy>
 
-;; Copyright (C) 2012  zhengyu li
+;; Copyright (C) 2013 chieftain
+;;
+;; Author: chieftain <lizhengyu419@gmail.com>
+;; Keywords: none
 
-;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,29 +24,27 @@
 
 ;;; Commentary:
 
-;; 
+;;
+
+;; Put this file into your load-path and the following into your ~/.emacs:
+;;   (require 'init-w3m)
 
 ;;; Code:
 
-
-(provide 'init-w3m)
-
-
 ;; required features
-(require 'w3m)                          ;W3M
-(require 'w3m-search)                   ;w3m搜索
-(require 'w3m-bookmark)                 ;w3m书签
-(require 'w3m-tabmenu)                  ;W3m标签菜单
-(require 'w3m-wget)                     ;W3m wget 集成
-(require 'w3m-lnum)                     ;W3M 数字快速导航
-(require 'w3m-form)                     ;W3m 表格
-(require 'w3m-util)                     ;w3m 工具
-(require 'w3m-symbol)                   ;w3m 符号处理
+(require 'w3m)
+(require 'w3m-search)
+(require 'w3m-bookmark)
+(require 'w3m-tabmenu)
+(require 'w3m-wget)
+(require 'w3m-lnum)
+(require 'w3m-form)
+(require 'w3m-util)
+(require 'w3m-symbol)
 (require 'w3m-extension)
 
-;; w3m proxy
-(defun w3m-toggle-proxy (&optional proxy)
-  "Toggle proxy. With prefix, set proxy on."
+(defun w3m-set-proxy (&optional proxy)
+  "set web proxy for w3m"
   (interactive "sProxy Server:")
   (if (string= proxy "")
       (progn
@@ -175,5 +176,8 @@
 
 (eval-after-load "w3m"
   '(w3m-setting))
+
+;;; provide features
+(provide 'init-w3m)
 
 ;;; init-w3m.el ends here

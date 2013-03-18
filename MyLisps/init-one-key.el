@@ -1,5 +1,5 @@
 ;;; init-one-key.el ---
-;; Time-stamp: <2012-12-06 01:18:14 Thursday by lzy>
+;; Time-stamp: <2013-03-18 11:37:43 Monday by lzy>
 
 ;; Copyright (C) 2012 zhengyu li
 ;;
@@ -30,7 +30,6 @@
 
 
 (provide 'init-one-key)
-
 
 ;; required features
 (require 'one-key-config)

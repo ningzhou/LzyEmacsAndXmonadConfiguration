@@ -177,12 +177,6 @@
     (setq-default static-wuxch-max-line-of-buffer (wuxch-dired-max-line-by-count))
     (make-local-variable 'static-wuxch-max-line-of-buffer)))
 
-(defadvice dired-omit-mode (after update-dired-static-variables activate)
-  "update dired static variables after enter omit mode"
-  (progn
-    (update-dired-static-variables)
-    (dired-move-to-filename)))
-
 (defun wuxch-dired-revert ()
   ""
   (interactive)
@@ -410,6 +404,9 @@ See also `dired-scroll-down'."
           (setq dired-copied-cutted-files-pool
                 (append dired-copied-cutted-files-pool
                         (list (concat (dired-current-directory) element))))))))
+
+(defun dired-backup-file ()
+  "backup file and dir in current directory")
 
 ;;; provide features
 (provide 'wuxch-dired-extension)
