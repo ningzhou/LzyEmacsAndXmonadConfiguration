@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-dired.el ---
-;; Time-stamp: <2013-03-18 07:55:37 Monday by lzy>
+;; Time-stamp: <2013-03-18 16:11:02 Monday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -72,7 +72,7 @@
      ("/m"          . dired-filter-regexp)
      ("/."          . dired-filter-extension)
      ("r"           . wdired-change-to-wdired-mode)
-     ("C-q"         . dired-quickview)
+     ("v"           . dired-quickview)
      ("C-s"         . dired-isearch-forward)
      ("C-r"         . dired-isearch-backward)
      ("M-s"         . dired-isearch-forward-regexp)

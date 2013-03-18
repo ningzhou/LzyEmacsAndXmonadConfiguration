@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-03-18 09:05:51 Monday by lzy>
+;; Time-stamp: <2013-03-18 16:15:22 Monday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -80,10 +80,10 @@
 (require 'init-dired)                        ;; dired setting
 (require 'init-ediff)                        ;; ediff and ediff tree
 
+(require 'init-etags-extension)              ;; etags extension
 (require 'init-mode-line)                    ;; mode-line setting
 (require 'init-emms)                         ;; emacs multi-media setting
 (require 'init-w3m)                          ;; emacs browser setting
-(require 'init-etags-extension)              ;; etags extension
 (require 'init-org)                          ;; setting for org mode
 (require 'init-dev-setting)                  ;; setting for programming environment
 (require 'init-edit-setting)                 ;; edit setting for all buffer

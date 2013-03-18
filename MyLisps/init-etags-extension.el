@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-etags-extension.el ---
-;; Time-stamp: <2012-12-06 17:26:45 Thursday by lzy>
+;; Time-stamp: <2013-03-18 16:13:40 Monday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,21 +24,19 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-etags-extension)
 
 ;;; Code:
 
-
-(provide 'init-etags-extension)
-
-
-;; required features
 (require 'etags-extension)
 
 (setq tags-default-target-directory "~/.emacs.d/Etags")
 (setq tags-default-storage-directory "~/.emacs.d/Etags")
+
+;;; provide features
+(provide 'init-etags-extension)
 
 ;;; init-etags-extension.el ends here

@@ -1,10 +1,8 @@
 ;; -*- Emacs-Lisp -*-
 ;;; wuxch-dired-extension.el ---
-;; Time-stamp: <2013-03-18 05:37:57 Monday by lzy>
 
-;; Copyright (C) 2013 chieftain
+;; Copyright (C) 2013 wuxch
 ;;
-;; Author: chieftain <lizhengyu419@gmail.com>
 ;; Keywords: none
 
 ;; This file is not part of GNU Emacs.
@@ -40,22 +38,18 @@
 (require 'dired-isearch)
 (require 'dired-details+)
 
-(defface wuxch-dired-doc-face
-  '((t (:foreground "red2"))) "doc files")
-(defface wuxch-dired-elisp-face
-  '((t (:foreground "DeepPink1"))) "elisp files")
 (defface wuxch-dired-exe-face
-  '((t (:foreground "Orange1"))) "exe files")
+  '((t (:foreground "Orange"))) "exe files")
 (defface wuxch-dired-media-face
-  '((t (:foreground "cyan1"))) "avi files")
+  '((t (:foreground "RoyalBlue"))) "media files")
 
 (defvar dired-quickview-buffer nil)
 (defvar static-wuxch-first-line-of-buffer)
 (defvar static-wuxch-max-line-of-buffer)
-(defconst wuxch-dired-add-addtional-line 1)
 (defvar dired-copied-cutted-files-pool nil
   "global variable to store copied or cutted files")
 (defvar dired-is-copied nil "t:copy  nil:cut")
+(defconst wuxch-dired-add-addtional-line 1)
 
 (defun wuxch-dired-move-beginning-of-line (arg)
   ""
@@ -75,31 +69,6 @@
   (setq hl-line-sticky-flag nil)
   (hl-line-mode))
 
-(defun wuxch-dired-mode-hook-fun ()
-  ""
-  (wuxch-dired-set-doc-face)
-  (wuxch-dired-set-elisp-face)
-  (wuxch-dired-set-exe-face)
-  (wuxch-dired-set-media-face))
-
-(defun wuxch-dired-set-doc-face ()
-  "wuxch-dired-set-doc-face:"
-  (font-lock-add-keywords
-   nil '(("^  .*\\.\\(tex\\|doc\\|xls\\|txt\\|org\\|ppt\\|html\\)$"
-          (".+"
-           (dired-move-to-filename)
-           nil
-           (0 'wuxch-dired-doc-face))))))
-
-(defun wuxch-dired-set-elisp-face ()
-  "wuxch-dired-set-elisp-face:"
-  (font-lock-add-keywords
-   nil '(("^  .*\\.\\(el\\)$"
-          (".+"
-           (dired-move-to-filename)
-           nil
-           (0 'wuxch-dired-elisp-face))))))
-
 (defun wuxch-dired-set-exe-face ()
   "wuxch-dired-set-exe-face:"
   (font-lock-add-keywords
@@ -112,11 +81,16 @@
 (defun wuxch-dired-set-media-face ()
   "wuxch-dired-set-media-face:"
   (font-lock-add-keywords
-   nil '(("^  .*\\.\\(pdf\\|avi\\|mkv\\|rmvb\\|rm\\|mp4\\|mp3\\|MP3\\|wmv\\|wma\\|m4v\\|mov\\)$"
+   nil '(("^  .*\\.\\(avi\\|AVI\\|mkv\\|MKV\\|rmvb\\|RMVB\\|rm\\|RM\\|mp4\\|MP4\\|mp3\\|MP3\\|wmv\\|WMV\\|wma\\|WMA\\|m4v\\|M4V\\|mov\\|MOV\\)$"
           (".+"
            (dired-move-to-filename)
            nil
            (0 'wuxch-dired-media-face))))))
+
+(defun wuxch-dired-mode-hook-fun ()
+  "settingsfor dired file face"
+  (wuxch-dired-set-exe-face)
+  (wuxch-dired-set-media-face))
 
 (defun do-wuxch-get-file-name (with-full-path only-path)
   ""
@@ -176,6 +150,20 @@
       (make-local-variable 'static-wuxch-first-line-of-buffer)))
   static-wuxch-first-line-of-buffer)
 
+(defun wuxch-dired-max-line-by-count ()
+  ""
+  (+ (count-lines (point-min) (point-max)) wuxch-dired-add-addtional-line))
+
+(defun wuxch-dired-max-line ()
+  ""
+  (if (local-variable-p 'static-wuxch-max-line-of-buffer)
+      (progn)
+    (progn
+      (setq-default static-wuxch-max-line-of-buffer
+                    (wuxch-dired-max-line-by-count))
+      (make-local-variable 'static-wuxch-max-line-of-buffer)))
+  (+ static-wuxch-max-line-of-buffer 0))
+
 (defun update-dired-static-variables ()
   ""
   (save-excursion
@@ -189,27 +177,18 @@
     (setq-default static-wuxch-max-line-of-buffer (wuxch-dired-max-line-by-count))
     (make-local-variable 'static-wuxch-max-line-of-buffer)))
 
+(defadvice dired-omit-mode (after update-dired-static-variables activate)
+  "update dired static variables after enter omit mode"
+  (progn
+    (update-dired-static-variables)
+    (dired-move-to-filename)))
+
 (defun wuxch-dired-revert ()
   ""
   (interactive)
   (revert-buffer)
   (update-dired-static-variables)
-  ;;  (goto-line (wuxch-get-first-line-of-dired))
   (dired-move-to-filename))
-
-(defun wuxch-dired-max-line ()
-  ""
-  (if (local-variable-p 'static-wuxch-max-line-of-buffer)
-      (progn)
-    (progn
-      (setq-default static-wuxch-max-line-of-buffer
-                    (wuxch-dired-max-line-by-count))
-      (make-local-variable 'static-wuxch-max-line-of-buffer)))
-  (+ static-wuxch-max-line-of-buffer 0))
-
-(defun wuxch-dired-max-line-by-count ()
-  ""
-  (+ (count-lines (point-min) (point-max)) wuxch-dired-add-addtional-line))
 
 (defun wuxch-get-first-line-of-dired-by-search-double-dot ()
   ""

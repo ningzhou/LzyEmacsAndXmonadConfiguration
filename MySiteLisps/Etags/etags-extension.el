@@ -61,9 +61,9 @@
 
 ;;; Code:
 
-(defvar tags-default-target-directory "~/.emacs.d/")  ;default index directory.
-(defvar tags-default-storage-directory "~/.emacs.d/") ;default storage directory.
-(defvar tags-default-suffix "*.el")                  ;default suffix
+(defvar tags-default-target-directory "./")  ;default index directory.
+(defvar tags-default-storage-directory "~/.emacs.d/etags") ;default storage directory.
+(defvar tags-default-suffix "*.el") ;default suffix
 
 (defun generate-tag-table-of-emacs ()
   "Generate tag tables of emacs"

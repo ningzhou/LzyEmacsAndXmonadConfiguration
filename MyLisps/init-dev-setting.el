@@ -29,7 +29,7 @@
 
 
 ;; required features
-(require 'dev-misc)                     ;; misc setting for dev
+;;(require 'dev-misc)                     ;; misc setting for dev
 (require 'cc-mode-common-setting)      ;; CC mode setting
 (require 'c&c++-mode-common-setting)   ;; common setting for c&c++ mode
 (require 'autoconf-mode-setting)       ;; autoconf setting
