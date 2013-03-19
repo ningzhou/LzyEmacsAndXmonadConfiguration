@@ -1,10 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-w3m.el ---
-<<<<<<< HEAD
-;; Time-stamp: <2013-03-19 15:07:49 Tuesday by lzy>
-=======
-;; Time-stamp: <2013-03-19 13:19:51 Tuesday by lzy>
->>>>>>> test
+;; Time-stamp: <2013-03-19 15:12:19 Tuesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
