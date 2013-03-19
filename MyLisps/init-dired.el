@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-dired.el ---
-;; Time-stamp: <2013-03-18 18:06:40 Monday by lzy>
+;; Time-stamp: <2013-03-19 09:30:50 Tuesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -132,6 +132,11 @@
 (add-hook 'dired-after-readin-hook 'his-dired-sort)
 (add-hook 'dired-mode-hook 'wuxch-dired-mode-hook-fun)
 (add-hook 'dired-mode-hook 'dired-settings)
+
+(autoload 'dired-jump "dired-x"
+  "Jump to dired buffer corresponding to current buffer" t)
+(autoload 'ido-dired "ido"
+  "Call `dired' the ido way" t)
 
 (lazy-set-key
  '(("C-x d" . dired-jump)

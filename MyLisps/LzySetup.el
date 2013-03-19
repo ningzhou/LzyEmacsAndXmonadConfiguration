@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-03-18 12:14:29 Monday by lzy>
+;; Time-stamp: <2013-03-19 09:27:57 Tuesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -84,7 +84,6 @@
 
 (require 'init-etags-extension)              ;; etags extension
 (require 'init-mode-line)                    ;; mode-line setting
-
 (require 'init-org)                          ;; setting for org mode
 (require 'init-dev-setting)                  ;; setting for programming environment
 (require 'init-edit-setting)                 ;; edit setting for all buffer

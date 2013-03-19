@@ -70,12 +70,12 @@
 ;;; Code:
 
 ;;; Require
+(require 'emms)
 (require 'emms-mark)
 (require 'emms-last-played)
 (require 'emms-playlist-mode)
 (require 'emms-source-file)
 (require 'emms-playlist-sort)
-(require 'emms)
 (require 'basic-edit-toolkit)
 
 (defadvice emms-play-directory-tree (after emms-random-play-1 activate)
