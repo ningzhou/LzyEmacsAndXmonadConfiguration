@@ -28,7 +28,6 @@
 ;; Features that might be required by this library:
 ;;
 ;; `w3m-util' `w3m-proc' `w3m-form' `w3m-lnum' `w3m'
-;; `basic-edit-toolkit'
 ;;
 
 ;;; Installation:
@@ -46,41 +45,9 @@
 
 ;;; Change log:
 ;;
-;;      2008/09/24
-;;              Remove function `w3m-search+' and replace with `w3m-search-advance'
+;;      2013/03/18 last changed by lzy <lizhengyu419@gmail.com>
+;;              refactor the code and remove unused functions
 ;;
-;;      2008/09/22
-;;              Add functions: `w3m-goto-linknum' `w3m-gmail-toggle-mark'
-;;              `w3m-gmail-mark-all' `w3m-gmail-unmark-all'.
-;;
-;;      2008/08/30
-;;              Add function `w3m-search+', and modified some old search function
-;;              to make these base on `w3m-search+'.
-;;
-;;      2008/08/28
-;;              Add two function `w3m-search-slang' and `w3m-search-slang+'.
-;;
-;;      2008/07/20
-;;              Modified some function about Google search.
-;;
-;;              Make all search function open new search result page in background session.
-;;
-;;              Extension function `w3m-search-dict-cn+' and `w3m-search-google-web+' to make
-;;              them can search current mark sentence.
-;;
-;;      2008/06/18
-;;              Replace some `w3m-goto-url-new-session' with `w3m-view-this-url-1'
-;;              to make pages is open background and don't wink screen case by 'w3m-goto-url-new-session.
-;;
-;;              Add some function that make can jump between Google search titles.
-;;
-;;      2008/06/17
-;;              Add function that return the random pages from EmacsWiki.
-;;
-;;      2008/06/07
-;;              Create this collect of search function. ^_^
-;;
-
 ;;; Acknowledgments:
 ;;
 ;; Emacs guys.
@@ -91,18 +58,14 @@
 ;; None
 ;;
 
-;;; Require
+;;; required features
+(require 'w3m)
 (require 'w3m-util)
 (require 'w3m-proc)
 (require 'w3m-form)
 (require 'w3m-lnum)
-(require 'w3m)
-(require 'basic-edit-toolkit)
 
 ;;; Code:
-
-(defvar google-desktop-search-url nil
-  "The uniqure string per computer that Google Desktop Search need, can copy from address bar of web browser.")
 
 (defvar w3m-search-advance-prettyfy-string-length 25
   "The length of `SEARCH-OBJECT' show in function `w3m-search-advance'.")
@@ -110,30 +73,25 @@
 (defvar w3m-search-advance-search-object nil
   "The search object cache that `w3m-search-advance' use.")
 
-(defvar w3m-gmail-login-string ""
-  "The string for gmail login.")
-
-(defun w3m-search-advance (search-url prompt-string
-                                      &optional coding
+(defun w3m-search-advance (search-url prompt-string &optional coding
                                       prefix-input-string postfix-input-string
                                       search-url-follow search-url-last
-                                      foreground
-                                      upcase-p downcase-p capitalize-p)
+                                      foreground upcase-p downcase-p capitalize-p)
   "Advance w3m search function.
-Default, if mark active, will set `SEARCH-OBJECT' with current mark region,
-otherwise, set current word to `SEARCH-OBJECT'.
+   Default, if mark active, will set `SEARCH-OBJECT' with current mark region,
+   otherwise, set current word to `SEARCH-OBJECT'.
 
-Set `SEARCH-URL' for special search.
-Set `PROMPT-STRING' to prompt to user.
-If `CODING' is set, encode `SEARCH-OBJECT' with this coding, default is nil.
-`PREFIX-INPUT-STRING' is for add before `SEARCH-OBJECT'
-`POSTFIX-INPUT-STRING' is for append after `SEARCH-OBJECT'
-`SEARCH-URL-FOLLOW' is a url that follow `SEARCH-URL' for decorate
-`SEARCH-URL-LAST' is a url that at last for decorate `SEARCH-URL'.
-If `FOREGROUND' is non-nil, make search page open foreground, otherwise search in background.
-If `UPCASE-P' is non-nil, upcase `SEARCH-OBJECT'.
-If `downcase-p' is non-nil, downcase `SEARCH-OBJECT'.
-If `capitalize-p' is non-nil, capitalize `SEARCH-OBJECT'."
+   Set `SEARCH-URL' for special search.
+   Set `PROMPT-STRING' to prompt to user.
+   If `CODING' is set, encode `SEARCH-OBJECT' with this coding, default is nil.
+   `PREFIX-INPUT-STRING' is for add before `SEARCH-OBJECT'
+   `POSTFIX-INPUT-STRING' is for append after `SEARCH-OBJECT'
+   `SEARCH-URL-FOLLOW' is a url that follow `SEARCH-URL' for decorate
+   `SEARCH-URL-LAST' is a url that at last for decorate `SEARCH-URL'.
+   If `FOREGROUND' is non-nil, make search page open foreground, otherwise search in background.
+   If `UPCASE-P' is non-nil, upcase `SEARCH-OBJECT'.
+   If `downcase-p' is non-nil, downcase `SEARCH-OBJECT'.
+   If `capitalize-p' is non-nil, capitalize `SEARCH-OBJECT'."
   (let (search-string
         input-string)
     (setq search-string
@@ -150,9 +108,10 @@ If `capitalize-p' is non-nil, capitalize `SEARCH-OBJECT'."
     (if search-string
         (setq w3m-search-advance-search-object search-string)
       (setq search-string ""))
-    (setq input-string (read-string (concat prompt-string
-                                            (format " (%-s): " (prettyfy-string
-                                                                search-string w3m-search-advance-prettyfy-string-length)))))
+    (setq input-string
+          (read-string
+           (concat prompt-string
+                   (format " (%-s): " (prettyfy-string search-string w3m-search-advance-prettyfy-string-length)))))
     ;; set `input-string' with `search-string' if user input nothing
     (if (equal input-string "")
         (setq input-string search-string))
@@ -192,11 +151,6 @@ If `capitalize-p' is non-nil, capitalize `SEARCH-OBJECT'."
   "Translate input word and search from dict.cn."
   (interactive)
   (w3m-search-advance "http://dict.cn/search/?q=" "English Dict.cn" 'gbk))
-
-(defun w3m-search-google-code ()
-  "Use Google Code search for WHAT."
-  (interactive)
-  (w3m-search-advance "http://www.google.com/codesearch?hl=zh-CN&lr=&q=" "Google Code" 'utf-8))
 
 (defun w3m-search-google-lucky ()
   "Use Google Lucky search for WHAT."
@@ -306,46 +260,6 @@ Example, your want search pdf of chm about Emacs, you just type emacs pdf|chm."
   (interactive)
   (w3m-view-this-url-1 "http://news.google.com/news?ned=tus&topic=t" nil t))
 
-(defun w3m-download-with-wget-current-position()
-  "Download current linked of W3m use Wget."
-  (interactive)
-  (if (and (require 'wget nil t)
-           (require 'lazycat-toolkit nil t)
-           (or (w3m-anchor)
-               (w3m-image)))
-      (progn
-        (wget (or (w3m-anchor) (w3m-image)))
-        (if wget-hide-status
-            (wget-hide)))
-    (message "Nothing at current point.")))
-
-(defun w3m-search-google-desktop ()
-  "Use Google Desktop search for WHAT.
-The search url of Google Desktop Search is random create when first run.
-So if you want to make this function works, you need replace the search url in yours browser address bar"
-  (interactive)
-  (w3m-view-this-url-1 google-desktop-search-url nil t))
-
-(defun w3m-auto-logon-gmail ()
-  "Auto logon gmail.
-This url is bind with personal account, you just replace it with url that you have login in Gmail."
-  (interactive)
-  (w3m-view-this-url-1 w3m-gmail-login-string nil t))
-
-(defun w3m-auto-install-elisp ()
-  "Automatic download and install elisp."
-  (interactive)
-  (if (require 'auto-install nil t)
-      (if (eq major-mode 'w3m-mode)
-          (save-excursion
-            (goto-char (point-min))
-            (if (search-forward-regexp "^Download")
-                (progn
-                  (deactivate-mark)
-                  (auto-install-download (w3m-anchor)))
-              (message "Haven't found download anchor")))
-        (message "Current mode is not `w3m-mode'."))))
-
 (defun toggle-w3m-with-other-buffer ()
   "Switch to a w3m buffer or return to the previous buffer."
   (interactive)
@@ -367,36 +281,11 @@ This url is bind with personal account, you just replace it with url that you ha
       (unless (derived-mode-p 'w3m-mode)
         (call-interactively 'w3m)))))
 
-(defun w3m-open-rcirc-window ()
-  "Open rcirc window in w3m."
-  (interactive)
-  (when (require 'rcirc-notify+ nil t)
-    (split-window-vertically 10)
-    (rcirc-notify+-jump-last-message-channel)
-    (windmove-down)))
-
 (defun w3m-startup-background ()
   "Startup w3m background."
   (interactive)
   (w3m-view-this-url-1 (w3m-input-url nil nil nil w3m-quick-start
                                       'feeling-lucky) nil t))
-
-(defun w3m-google-desktop-url-open ()
-  "Open file link that Google Desktop Search show."
-  (interactive)
-  (let ((file (w3m-print-this-url))
-        (url (w3m-print-current-url))
-        (google-search-url google-desktop-search-url)) ;google-search-url is unique string that generate by Google Desktop Search
-    (string-match "/\\?.*" google-search-url)
-    (setq google-search-url (replace-match "" nil nil google-search-url 0))
-    (if (string-match google-search-url url) ;if is the result of Google Desktop Search
-        (progn
-          (string-match ".*&url=file://" file) ;cut front of file
-          (setq file (replace-match "" nil nil file 0))
-          (string-match "&s.*" file)                    ;cut behind of file
-          (setq file (replace-match "" nil nil file 0)) ;get local file path
-          (find-file file))             ;open file is my function for open diversified files
-      (message "This not a valid Google Desktop Search result."))))
 
 (defun w3m-delete-buffer-and-select-right ()
   "Delete current w3m buffer.
@@ -465,86 +354,12 @@ If current tab is at right side of tabs, select left tab, otherwise, select righ
         (scroll-down arg))
       (set-window-vscroll nil (- (window-vscroll) arg)))))
 
-(defun w3m-goto-linknum ()
-  "Turn on link numbers and ask for one to go to."
-  (interactive)
-  (let ((active w3m-link-numbering-mode)
-        action
-        number)
-    (when (not active) (w3m-link-numbering-mode))
-    (unwind-protect
-        (w3m-move-numbered-anchor (read-number "Anchor number: "))
-      (when (not active) (w3m-link-numbering-mode)))))
-
-(defun w3m-gmail-toggle-mark ()
-  "Toggle form mark in Gmail web page."
-  (interactive)
-  (goto-char (point-min))
-  (when (search-forward-regexp "\\[\\(\\*\\| \\)\\]" nil t)
-    (backward-char 4)
-    (w3m-form-goto-next-field)
-    (while (or
-            (looking-at "[*]")
-            (looking-at "[ ]"))
-      (w3m-view-this-url)
-      (w3m-form-goto-next-field))))
-
-(defun w3m-gmail-unmark-all ()
-  "Unmark all form in Gmail web page."
-  (interactive)
-  (w3m-gmail-mark-all t))
-
-(defun w3m-gmail-mark-all (unmark)
-  "Mark all form in Gmail web page."
-  (interactive "P")
-  (goto-char (point-min))
-  (when (search-forward (if unmark "[*]" "[ ]") nil t)
-    (backward-char 4)
-    (w3m-form-goto-next-field)
-    (while (looking-at (if unmark "[*]" "[ ]"))
-      (w3m-view-this-url)
-      (w3m-form-goto-next-field))))
-
 (defun w3m-open-dead-link-with-external-browser ()
   "Automatic open dead link."
   (interactive)
   (call-interactively 'w3m-process-stop)
   (if (search-forward-regexp "Reading " nil t)
       (browse-url-firefox (thing-at-point 'url))))
-
-(defun w3m-emacswiki-view-diff ()
-  "View different of current emacswiki page."
-  (interactive)
-  (w3m-emacswiki-view-regexp
-   "^\\(Last edited\\|Edited\\) [0-9]\\{4\\}\\(-[0-9]\\{2\\}\\)\\{2\\} [0-9]\\{2\\}:[0-9]\\{2\\} UTC by .*(diff)$"
-   "different"))
-
-(defun w3m-emacswiki-view-other-version ()
-  "View other version of current emacswiki page."
-  (interactive)
-  (w3m-emacswiki-view-regexp
-   "^Edit this page View other revisions"
-   "other version"))
-
-(defun w3m-emacswiki-view-regexp (regexp echo-string)
-  "View regexp link in emacswiki.org"
-  (let ((remember-pos (point)))
-    (w3m-redisplay-this-page)
-    (goto-char (point-min))
-    (if (search-forward-regexp
-         regexp
-         nil t)
-        (progn
-          (backward-char)
-          (w3m-view-this-url t)         ;forces reload
-          (message (format "Read %s with current wiki page." echo-string)))
-      (goto-char remember-pos)
-      (message (format "Don't %s in current wiki page." echo-string)))))
-
-(defun w3m-emacswiki-recent-changes ()
-  "View recent changes of EmacsWiki.org."
-  (interactive)
-  (w3m-goto-url-new-session "http://www.emacswiki.org/cgi-bin/wiki/RecentChanges" t))
 
 (defun w3m-copy-link-in-region ()
   "Copy all link in yank at region with buffer."

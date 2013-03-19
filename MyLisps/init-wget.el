@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-wget.el ---
-;; Time-stamp: <2013-03-15 17:04:29 Friday by lzy>
+;; Time-stamp: <2013-03-19 13:30:19 Tuesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -33,7 +33,15 @@
 
 (eval-after-load "wget"
   '(progn
-     (setq wget-download-directory "./")))
+     (setq wget-download-directory '(("\\.\\(jpe?g\\|png\\|gif\\|bmp\\)$" . "~/Pictures")
+                                     ("\\.\\([mM][pP]3\\|[fF][lL][aA][cC]\\|[aA][pP][eE]\\|[wW][mM][aA]\\|[mM][pP]4\\)$" . "~/Music/Downloads/")
+                                     ("\\.\\([rR][mM]?[vV][bB]\\|[v][V][oO][bB]\\|[aA][vV][iI]\\|[dD][vV][dD]\\)$" . "~/Videos/")
+                                     ("\\.\\(el\\|sh\\|perl\\|py\\|[cC]\\|[cC][pP][pP]\\|java\\|hs\\|[tT][xX][tT]\\)$" . "~/Downloads/Source/")
+                                     ("\\.\\([dD][oO][cC]\\|[pP][dD][fF]\\|[xX][mM][lL]\\|[xX][lL][sS]\\)$" . "~/Documents/")
+                                     ("\\.\\(tar\\|gz\\|zip\\|rar\\|msi\\|exe\\|iso\\|torrent\\)$" . "~/Downloads/")
+                                     ("." . "~/.emacs.d/W3M/DownloadPages/")))
+     (setq wget-download-directory-filter
+           'wget-download-dir-filter-regexp)))
 
 (autoload 'wget "wget"
   "Wget interface to download URI asynchronously" t)
@@ -44,4 +52,3 @@
 (provide 'init-wget)
 
 ;;; init-wget.el ends here
-
