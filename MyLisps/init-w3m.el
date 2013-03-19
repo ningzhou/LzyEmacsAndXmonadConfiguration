@@ -1,6 +1,10 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-w3m.el ---
-;; Time-stamp: <2013-03-19 09:25:19 Tuesday by lzy>
+<<<<<<< HEAD
+;; Time-stamp: <2013-03-19 15:07:49 Tuesday by lzy>
+=======
+;; Time-stamp: <2013-03-19 13:19:51 Tuesday by lzy>
+>>>>>>> test
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -53,13 +57,15 @@
 (defun w3m-setting ()
   "settings for w3m"
   ;; required features
+  (require 'wget)
   (require 'w3m-fb)
   (require 'w3m-ems)
   (require 'w3m-form)
   (require 'w3m-lnum)
   (require 'w3m-util)
-  (require 'w3m-image)
+  (require 'w3m-wget)
   (require 'w3m-hist)
+  (require 'w3m-image)
   (require 'w3m-cookie)
   (require 'w3m-symbol)
   (require 'w3m-search)
@@ -70,13 +76,12 @@
   (require 'w3m-extension)
   (require 'emms-extension)
   ;; settings
-  (unless (file-exists-p "~/.emacs.d/W3M")
-    (make-directory "~/.emacs.d/W3M" t))
+  (unless (file-exists-p "~/.emacs.d/W3M/DownloadPages/")
+    (make-directory "~/.emacs.d/W3M/DownloadPages/" t))
   (setq w3m-cookie-file "~/.emacs.d/W3M/W3m-cookie")
   (setq w3m-session-file "~/.emacs.d/W3M/W3m-session")
   (setq w3m-bookmark-file "~/.emacs.d/W3M/bookmark.html")
-  (setq w3m-default-save-directory "~/Downloads/")
-  (setq w3m-home-page "http://google.com")
+  (setq w3m-home-page "")
   (setq w3m-use-cookies t)
   (setq w3m-make-new-session t)
   (setq w3m-use-header-line-title t)
@@ -111,7 +116,6 @@
      ("e" . w3m-edit-current-url)
      ("+" . w3m-zoom-in-image)
      ("-" . w3m-zoom-out-image)
-     ("O" . w3m-lnum-goto)
      ("n" . w3m-visual-scroll-up)
      ("p" . w3m-visual-scroll-down)
      ("H" . w3m-history)
@@ -120,19 +124,20 @@
      ("P" . w3m-view-previous-page)
      ("<backspace>" . w3m-view-previous-page)
      ("F" . w3m-view-next-page)
-     ("L" . w3m-submit-form)
      ("c" . w3m-delete-buffer-and-select-right)
      ("C" . w3m-delete-other-buffers)
-     ("d" . w3m-download-with-wget-current-position)
-     ("Y" . wget-web-page)
-     ("o" . org-w3m-copy-for-org-mode)
-     ("_" . w3m-copy-link-in-region)
-     ("<up>" . w3m-visual-scroll-down)                    
-     ("<down>" . w3m-scroll-up-1)                         
+     ("d" . w3m-wget)
+     ("o" . w3m-lnum-goto)
+     ("O" . org-w3m-copy-for-org-mode)
+     ("l" . w3m-copy-link-in-region)
      ("<" . w3m-shift-left)
      (">" . w3m-shift-right)
+     ("<down>" . w3m-visual-scroll-up)
+     ("<up>" . w3m-visual-scroll-down)
      ("M-n" . w3m-next-buffer)
-     ("M-p" . w3m-previous-buffer))
+     ("M-p" . w3m-previous-buffer)
+     ("<f5>" . w3m-reload-this-page)
+     ("M-<f5>" . w3m-reload-all-pages))
    w3m-mode-map)
   (add-hook 'w3m-display-hook
             (lambda (url)
