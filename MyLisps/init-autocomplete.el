@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-autocomplete.el ---
-;; Time-stamp: <2013-03-17 22:41:53 Sunday by lzy>
+;; Time-stamp: <2013-03-19 15:31:06 Tuesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -36,21 +36,25 @@
 
 (defun set-ac-clang-flags ()
   "-I flags for auto-complete clang source"
-  (interactive)
-  (let (begin end result)
-    (with-temp-buffer
-      (shell-command-surpress-popup-window "echo''|g++ -v -x c++ -E -"
-                                           (buffer-name (current-buffer)))
-      (goto-char (point-min))
-      (setq begin (progn
-                    (search-forward "#include <...>")
-                    (next-line)
-                    (line-beginning-position)))
-      (setq end (progn
-                  (search-forward "End of search list")
-                  (previous-line)
-                  (line-end-position)))
-      (setq result (buffer-substring begin end)))
+  (let (begin
+        end
+        (result nil))
+    (if (or
+         (file-exists-p "/usr/bin/g++")
+         (file-exists-p "/usr/local/bin/g++"))
+        (with-temp-buffer
+          (shell-command-surpress-popup-window "echo''|g++ -v -x c++ -E -"
+                                               (buffer-name (current-buffer)))
+          (goto-char (point-min))
+          (setq begin (progn
+                        (search-forward "#include <...>")
+                        (next-line)
+                        (line-beginning-position)))
+          (setq end (progn
+                      (search-forward "End of search list")
+                      (previous-line)
+                      (line-end-position)))
+          (setq result (buffer-substring begin end))))
     (setq ac-clang-flags
           (mapcar (lambda (item)
                     (concat "-I" item))

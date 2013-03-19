@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-03-19 09:27:57 Tuesday by lzy>
+;; Time-stamp: <2013-03-19 15:23:00 Tuesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -81,6 +81,7 @@
 (require 'init-dired)                        ;; dired setting
 (require 'init-emms)                         ;; emms setting
 (require 'init-w3m)                          ;; w3m setting
+(require 'init-erc)                          ;; erc setting
 
 (require 'init-etags-extension)              ;; etags extension
 (require 'init-mode-line)                    ;; mode-line setting
@@ -90,7 +91,7 @@
 (require 'init-one-key)                      ;; key binding setting for one key menu
 (require 'init-misc)                         ;; other setting
 (require 'init-gnus)                         ;; setting for gnus
-(require 'init-erc)                          ;; erc setting
+
 (require 'init-newsticker)                   ;; setting for newsticker
 (require 'init-doubanfm)                     ;; douban fm setting
 (require 'init-google-maps)                  ;; google maps setting

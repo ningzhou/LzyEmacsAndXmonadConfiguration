@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-w3m.el ---
-;; Time-stamp: <2013-03-19 15:12:19 Tuesday by lzy>
+;; Time-stamp: <2013-03-19 15:18:21 Tuesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -74,8 +74,8 @@
   ;; settings
   (unless (file-exists-p "~/.emacs.d/W3M/DownloadPages/")
     (make-directory "~/.emacs.d/W3M/DownloadPages/" t))
-  (setq w3m-cookie-file "~/.emacs.d/W3M/W3m-cookie")
-  (setq w3m-session-file "~/.emacs.d/W3M/W3m-session")
+  (setq w3m-cookie-file "~/.emacs.d/W3M/cookie")
+  (setq w3m-session-file "~/.emacs.d/W3M/session")
   (setq w3m-bookmark-file "~/.emacs.d/W3M/bookmark.html")
   (setq w3m-home-page "")
   (setq w3m-use-cookies t)

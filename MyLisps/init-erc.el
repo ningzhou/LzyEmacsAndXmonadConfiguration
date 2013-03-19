@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-erc.el ---
-;; Time-stamp: <2013-03-02 04:24:30 Saturday by lzy>
+;; Time-stamp: <2013-03-19 15:23:45 Tuesday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,16 +24,12 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-erc)
 
 ;;; Code:
-
-
-(provide 'init-erc)
-
 
 (defun irc-login ()
   "erc selection for lzy"
@@ -166,5 +164,8 @@
 
 (eval-after-load "erc"
   '(erc-setting))
+
+;;; provide features
+(provide 'init-erc)
 
 ;;; init-erc.el ends here
