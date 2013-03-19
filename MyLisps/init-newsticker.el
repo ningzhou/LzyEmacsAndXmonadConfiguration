@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-newsticker.el ---
-;; Time-stamp: <2013-03-02 04:23:41 Saturday by lzy>
+;; Time-stamp: <2013-03-19 18:10:35 Tuesday by lzy>
 
-;; Copyright (C) 2012 zhengyu li
+;; Copyright (C) 2013 chieftain
 ;;
-;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Author: chieftain <lizhengyu419@gmail.com>
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,7 +24,7 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-newsticker)
@@ -30,26 +32,22 @@
 ;;; Code:
 
 
-(provide 'init-newsticker)
-
-
 (defun newsticker-setting ()
-  "setting for newsticker"
+  "settings for newsticker"
   ;; required features
   (require 'newsticker)
-
-  ;; setting
-  (setq newsticker-dir "~/.emacs.d/Newsticker")                ;种子目录
-  (setq newsticker-url-list-defaults nil)                      ;设置默认的列表为空
-  (setq newsticker-automatically-mark-items-as-old t)          ;自动标记项目为已经检索的项目
-  (setq newsticker-automatically-mark-visited-items-as-old t)  ;自动标记已经访问过的项目
-  (setq newsticker-retrieval-interval 600)                     ;newsticker更新的时间周期(second)
-  (setq newsticker-html-renderer 'w3m-region)                  ;用w3m处理HTML格式的信息
-  (setq newsticker-retrieval-method 'extern)                   ;用wget抓取
-  (setq newsticker-treeview-treewindow-width 35)               ;树列表宽度
-  (setq newsticker-treeview-listwindow-height 10)              ;消息窗口高度
-  (setq newsticker-wget-arguments '("-q" "-O" "-"              ;wget抓取参数
-                                    "--user-agent" "testing")) ;--user-agent参数是为了从google上抓取
+  ;; settings
+  (setq newsticker-dir "~/.emacs.d/Newsticker")
+  (setq newsticker-url-list-defaults nil)
+  (setq newsticker-automatically-mark-items-as-old t)
+  (setq newsticker-automatically-mark-visited-items-as-old t)
+  (setq newsticker-retrieval-interval 600)
+  (setq newsticker-html-renderer 'w3m-region)
+  (setq newsticker-retrieval-method 'extern)
+  (setq newsticker-treeview-treewindow-width 35)
+  (setq newsticker-treeview-listwindow-height 10)
+  (setq newsticker-wget-arguments
+        '("-q" "-O" "-" "--user-agent" "testing"))
   (setq newsticker-url-list
         '(("EmacsWiki Recently Change"
            "http://www.emacswiki.org/emacs/index.rss"
@@ -62,19 +60,26 @@
            nil nil nil)
           ("Google Blog Search -- Emacs"
            "http://blogsearch.google.com/blogsearch_feeds?hl=en&oe=UTF-8&q=emacs&ie=utf-8&num=50&output=atom"
-           nil 86400 nil)                 ;一天更新一次
+           nil 86400 nil)
           ("Google Blog Search -- linux kernel"
            "http://blogsearch.google.com/blogsearch_feeds?hl=en&oe=UTF-8&q=linux%20kernel&ie=utf-8&num=50&output=atom"
-           nil 86400 nil)                 ;一天更新一次
+           nil 86400 nil)
           ("Google Blog Search -- linuxtoy"
            "http://blogsearch.google.com/blogsearch_feeds?hl=en&oe=UTF-8&q=linuxtoy&ie=utf-8&num=50&output=atom"
-           nil 86400 nil)                 ;一天更新一次
+           nil 86400 nil)
           ("Google Blog Search -- Haskell"
            "http://blogsearch.google.com/blogsearch_feeds?hl=en&oe=UTF-8&q=haskell&ie=utf-8&num=50&output=atom"
-           nil 86400 nil)                 ;一天更新一次
-          )))
+           nil 86400 nil))))
 
-(eval-after-load "newst-reader"
+(eval-after-load "newst-treeview"
   '(newsticker-setting))
+
+(autoload 'newsticker-treeview "newst-treeview"
+  "Start newsticker treeview" t)
+
+(defalias 'newsticker 'newsticker-treeview)
+
+;;; provide features
+(provide 'init-newsticker)
 
 ;;; init-newsticker.el ends here

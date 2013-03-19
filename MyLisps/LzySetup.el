@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-03-19 15:23:00 Tuesday by lzy>
+;; Time-stamp: <2013-03-19 17:59:21 Tuesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -82,6 +82,7 @@
 (require 'init-emms)                         ;; emms setting
 (require 'init-w3m)                          ;; w3m setting
 (require 'init-erc)                          ;; erc setting
+(require 'init-newsticker)                   ;; setting for newsticker
 
 (require 'init-etags-extension)              ;; etags extension
 (require 'init-mode-line)                    ;; mode-line setting
@@ -92,7 +93,6 @@
 (require 'init-misc)                         ;; other setting
 (require 'init-gnus)                         ;; setting for gnus
 
-(require 'init-newsticker)                   ;; setting for newsticker
 (require 'init-doubanfm)                     ;; douban fm setting
 (require 'init-google-maps)                  ;; google maps setting
 (require 'init-weather)                      ;; show weather in mode line

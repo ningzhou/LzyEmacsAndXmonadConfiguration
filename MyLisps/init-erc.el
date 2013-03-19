@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-erc.el ---
-;; Time-stamp: <2013-03-19 15:23:45 Tuesday by lzy>
+;; Time-stamp: <2013-03-19 17:44:27 Tuesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -31,20 +31,8 @@
 
 ;;; Code:
 
-(defun irc-login ()
-  "erc selection for lzy"
-  (interactive)
-  (erc-select :server "irc.freenode.net"
-              :port 6667
-              :nick "lzy001"
-              :password "myerc")
-  (erc-select :server "irc.oftc.net"
-              :port 6667
-              :nick "lzy001"
-              :password "myerc"))
-
 (defun erc-setting ()
-  "Setting of `erc'."
+  "settings of erc"
   ;; required features
   (require 'erc-log)
   (require 'erc-fill)
@@ -55,13 +43,8 @@
   (require 'erc-goodies)
   (require 'erc-nicklist)
   (require 'erc-highlight-nicknames)
-
-  ;; func definitions
-  (defface erc-query-buffer-face '((t (:bold t :foreground "magenta")))
-    "ERC face for your query buffers."
-    :group 'erc-faces)
-
-  (defun lzy-erc-cmd-WHOIS (nick)
+  ;; functions definition
+  (defun my-erc-cmd-whois (nick)
     "Run /whois easily by key sequence"
     (interactive
      (list
@@ -73,97 +56,77 @@
       (insert (concat "/whois " nick))
       (erc-send-current-line)
       (goto-char (point-max))))
-
-
-  (defun lzy-erc-mode-hook ()
-    "erc mode hook"
-    (auto-fill-mode 1)
-    (abbrev-mode 1)
-    (define-key erc-mode-map (kbd "C-c C-w") 'lzy-erc-cmd-WHOIS))
-
-  (defun lzy-erc-join-hook ()
-    "erc join hook"
-    (less-minor-mode-on))
-
   ;; setting
-  (setq erc-nick "lzy"
-        erc-user-full-name "Zhengyu Li")
   (setq erc-auto-query t)
-  (setq erc-nick-uniquifier "#")
-  (setq erc-kill-buffer-on-part t)
-  (setq erc-track-enable-keybindings t)
-  (setq erc-echo-notices-in-minibuffer-flag t)
-  (setq erc-default-coding-system '(utf-8 . utf-8))
-  (setq erc-common-server-suffixes nil)
-  (setq erc-mode-line-format "%t %a")
-
-  ;; auto join
-  (erc-autojoin-mode 1)
-  (setq erc-autojoin-channels-alist
-        '(("freenode.net"
-           "#emacs"
-           "#haskell")
-          ("oftc.net"
-           "#emacs-cn")))
-  (setq erc-join-buffer 'bury
-        erc-auto-query 'bury)
-
-  ;; match & track
-  (erc-match-mode 1)
-  (setq erc-current-nick-highlight-type 'nick-or-keyword)
-  (setq erc-keywords '("lzy"))
-  (setq erc-pals nil)
-
-  (setq erc-track-faces-priority-list
-        '(erc-query-buffer-face
-          erc-current-nick-face
-          erc-keyword-face
-          erc-pal-face
-          erc-default-face))
-  (setq erc-track-priority-faces-only 'all)
-  (setq erc-track-switch-direction 'importance)
-  
-  ;; erc fill
-  (erc-fill-mode 1)
-  (setq erc-fill-function 'erc-fill-static
-        erc-fill-static-center 10
-        erc-fill-prefix "    ")
-
-  ;; timestamp
-  (erc-timestamp-mode 1)
-  (setq erc-timestamp-only-if-changed-flag nil
-        erc-timestamp-format "%H:%M "
-        erc-insert-timestamp-function 'erc-insert-timestamp-left)
-
-  ;; erc ignore
+  (setq erc-nick "lzy001")
+  (setq erc-keywords '("lzy001"))
+  (setq erc-user-full-name "chieftain")
   (setq erc-ignore-list nil)
-  (setq erc-hide-list
-        '("JOIN" "PART" "QUIT" "MODE"))
-
-  ;; erc log
+  (setq erc-auto-query 'bury)
+  (setq erc-join-buffer 'bury)
+  (setq erc-nick-uniquifier "#")
+  (setq erc-fill-static-center 10)
+  (setq erc-kill-buffer-on-part t)
+  (setq erc-save-buffer-on-part t)
+  (setq erc-log-write-after-send t)
+  (setq erc-log-write-after-insert t)
+  (setq erc-mode-line-format "%t %a")
+  (setq erc-timestamp-format "%H:%M ")
+  (setq erc-track-enable-keybindings t)
+  (setq erc-log-file-coding-system 'utf-8)
+  (setq erc-default-coding-system '(utf-8 . utf-8))
+  (setq erc-track-priority-faces-only 'all)
+  (setq erc-fill-function 'erc-fill-static)
+  (setq erc-track-switch-direction 'importance)
+  (setq erc-timestamp-only-if-changed-flag nil)
+  (setq erc-hide-list '("JOIN" "PART" "QUIT" "MODE"))
+  (setq erc-log-channels-directory "~/.emacs.d/ERC/")
+  (setq erc-current-nick-highlight-type 'nick-or-keyword)
+  (setq erc-autojoin-channels-alist '(("freenode.net" "#emacs" "#haskell")
+                                      ("oftc.net" "#emacs-cn")))
   (erc-log-mode 1)
-  (setq erc-log-channels-directory "~/.emacs.d/erc/"
-        erc-save-buffer-on-part t
-        erc-log-file-coding-system 'utf-8
-        erc-log-write-after-send t
-        erc-log-write-after-insert t)
-  (unless (file-exists-p erc-log-channels-directory)
-    (mkdir erc-log-channels-directory))
-
-  ;; erc goodies
-  (erc-readonly-mode 1)
+  (erc-fill-mode 1)
+  (erc-match-mode 1)
   (erc-smiley-mode 1)
-
+  (erc-autojoin-mode 1)
+  (erc-readonly-mode 1)
   (erc-truncate-mode 1)
-  (add-hook 'erc-mode-hook 'lzy-erc-mode-hook)
-  (add-hook 'erc-join-hook 'lzy-erc-join-hook)
-  
-  (add-to-list 'erc-modules 'highlight-nicknames)
-  (erc-update-modules)
-  )
+  (erc-timestamp-mode 1)
+  (add-to-list 'erc-modules
+               'highlight-nicknames)
+  (erc-update-modules))
 
 (eval-after-load "erc"
   '(erc-setting))
+
+(defun my-erc-mode-hook ()
+  "erc mode hook"
+  (auto-fill-mode 1)
+  (abbrev-mode 1)
+  (lazy-set-key
+   '(("C-c C-w" . my-erc-cmd-whois))
+   erc-mode-map))
+
+(defun my-erc-join-hook ()
+  "erc join hook"
+  (less-minor-mode-on))
+
+(add-hook 'erc-mode-hook 'my-erc-mode-hook)
+(add-hook 'erc-join-hook 'my-erc-join-hook)
+
+(autoload 'erc-select "erc" "emacs irc client" t)
+
+(defun my-irc-login ()
+  "irc selection for me"
+  (interactive)
+  (erc-select :server "irc.freenode.net"
+              :port 6667
+              :nick "lzy001"
+              :password "myerc")
+  (erc-select :server "irc.oftc.net"
+              :port 6667
+              :nick "lzy001"
+              :password "myerc"))
 
 ;;; provide features
 (provide 'init-erc)

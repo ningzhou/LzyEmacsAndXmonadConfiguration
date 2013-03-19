@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-emms.el ---
-;; Time-stamp: <2013-03-18 12:32:45 Monday by lzy>
+;; Time-stamp: <2013-03-19 16:20:34 Tuesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -57,7 +57,7 @@
   (defvar emms-en-font "Monospace:pixelsize=14" "default english font for emms mode")
   (defvar emms-playlist-last-track nil)
   (defvar emms-playlist-last-indent "\\")
-  ;; funcs definition
+  ;; functions definition
   (defun set-emms-playlist-font ()
     "font setting for emms playlist"
     (set-face-attribute 'emms-playlist-mark-face nil :font emms-en-font)
