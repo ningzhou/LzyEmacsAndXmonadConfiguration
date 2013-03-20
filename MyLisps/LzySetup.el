@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-03-20 10:46:37 Wednesday by lzy>
+;; Time-stamp: <2013-03-20 17:04:48 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -40,6 +40,7 @@
 (require 'init-tabbar)                       ;; tabbar for multi-tab
 (require 'init-smooth-scrolling)             ;; provide smooth scroll features
 (require 'init-linum)                        ;; linum extension setting
+(require 'init-mode-line)                    ;; mode-line setting
 (require 'init-tempbuf)                      ;; temporary buffer setting
 (require 'init-view-mode)                    ;; settings for view mode
 (require 'init-highlight-things)             ;; highlight something, like symbol etc.
@@ -81,21 +82,19 @@
 (require 'init-dired)                        ;; dired setting
 (require 'init-emms)                         ;; emms setting
 (require 'init-w3m)                          ;; w3m setting
+(require 'init-org)                          ;; setting for org mode
 (require 'init-erc)                          ;; erc setting
 (require 'init-gnus)                         ;; setting for gnus
 (require 'init-newsticker)                   ;; setting for newsticker
 (require 'init-google-maps)                  ;; google maps setting
 (require 'init-doubanfm)                     ;; douban fm setting
 (require 'init-weather)                      ;; show weather in mode line
-(require 'init-mode-line)                    ;; mode-line setting
-(require 'init-org)                          ;; setting for org mode
 (require 'init-one-key)                      ;; key binding setting for one key menu
 
 
 (require 'init-dev-setting)                  ;; setting for programming environment
 (require 'init-etags-extension)              ;; etags extension
 (require 'init-edit-setting)                 ;; edit setting for all buffer
-
 (require 'init-misc)                         ;; other setting
 (require 'init-hack)                         ;; in-built functions hack
 

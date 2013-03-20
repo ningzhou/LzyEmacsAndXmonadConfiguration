@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-w3m.el ---
-;; Time-stamp: <2013-03-19 15:18:21 Tuesday by lzy>
+;; Time-stamp: <2013-03-20 15:55:39 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -70,7 +70,6 @@
   (require 'w3m-session)
   (require 'w3m-bookmark)
   (require 'w3m-extension)
-  (require 'emms-extension)
   ;; settings
   (unless (file-exists-p "~/.emacs.d/W3M/DownloadPages/")
     (make-directory "~/.emacs.d/W3M/DownloadPages/" t))
@@ -139,7 +138,7 @@
             (lambda (url)
               (rename-buffer
                (format "*w3m: %s*"
-                       (prettyfy-string (or w3m-current-title
+                       (beautify-string (or w3m-current-title
                                             w3m-current-url) 50)) t)))
   (add-to-list 'w3m-filter-rules
                '("\\`http://www\\.google\\.\\(cn\\|com\\)/"
@@ -153,6 +152,8 @@
   "Visit World Wide Web pages using the external w3m command" t)
 (autoload 'toggle-w3m-with-other-buffer "w3m-extension"
   "switch w3m and current buffer smoothly" t)
+(autoload 'emms-play-online "emms-extension"
+  "play music online in w3m mode" t)
 
 (lazy-set-key
  '(("C-<f8>" . w3m)

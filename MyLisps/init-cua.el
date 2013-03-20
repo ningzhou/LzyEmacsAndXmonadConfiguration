@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-cua.el ---
-;; Time-stamp: <2013-03-18 03:37:18 Monday by lzy>
+;; Time-stamp: <2013-03-20 17:19:42 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -48,6 +48,8 @@
 
 (autoload 'cua-mode "cua-base"
   "Toggle Common User Access style editing (CUA mode)" t)
+
+(defalias 'cua 'cua-mode)
 
 ;;; provide features
 (provide 'init-cua)

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-misc.el ---
-;; Time-stamp: <2013-03-16 19:23:47 Saturday by lzy>
+;; Time-stamp: <2013-03-20 17:38:57 Wednesday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -90,7 +90,7 @@
 ;; backup setting
 ;; save backup files to ~/.emacs.backups instead of current directory
 (setq backup-by-copying t)
-(setq backup-directory-alist (quote (("." . "~/.emacs.d/emacs.backups"))))
+(setq backup-directory-alist (quote (("." . "~/.emacs.d/EmacsBackup"))))
 (setq delete-old-versions t)
 (setq kept-new-versions 6)
 (setq kept-old-versions 2)
@@ -112,7 +112,7 @@
 (recentf-mode 1)
 (setq recentf-max-saved-items 100)
 (setq recentf-auto-cleanup 300) 
-(setq recentf-save-file "~/.emacs.d/Recentfiles") ;list of files opened recently
+(setq recentf-save-file "~/.emacs.d/Recent/recent-files") ;list of files opened recently
 
 ;; autoload setting
 (setq source-directory

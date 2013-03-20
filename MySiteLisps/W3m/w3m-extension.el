@@ -67,11 +67,27 @@
 
 ;;; Code:
 
-(defvar w3m-search-advance-prettyfy-string-length 25
+(defvar w3m-search-advance-beautify-string-length 25
   "The length of `SEARCH-OBJECT' show in function `w3m-search-advance'.")
 
 (defvar w3m-search-advance-search-object nil
   "The search object cache that `w3m-search-advance' use.")
+
+(defun beautify-string (string &optional after)
+  "Strip starting and ending whitespace and beautify `STRING'.
+Replace any chars after AFTER with '...'.
+Argument STRING the string that need beauty."
+  (let ((replace-map (list
+                      (cons "^[ \t]*" "")
+                      (cons "[ \t]*$" "")
+                      (cons (concat "^\\(.\\{"
+                                    (or (number-to-string after) "10")
+                                    "\\}\\).*")
+                            "\\1..."))))
+    (dolist (replace replace-map)
+      (when (string-match (car replace) string)
+        (setq string (replace-match (cdr replace) nil nil string))))
+    string))
 
 (defun w3m-search-advance (search-url prompt-string &optional coding
                                       prefix-input-string postfix-input-string
@@ -111,7 +127,7 @@
     (setq input-string
           (read-string
            (concat prompt-string
-                   (format " (%-s): " (prettyfy-string search-string w3m-search-advance-prettyfy-string-length)))))
+                   (format " (%-s): " (beautify-string search-string w3m-search-advance-beautify-string-length)))))
     ;; set `input-string' with `search-string' if user input nothing
     (if (equal input-string "")
         (setq input-string search-string))
@@ -434,6 +450,6 @@ Return t if there is no previous link; otherwise, return nil."
 
 (provide 'w3m-extension)
 
-;;; LocalWords:  lnum utilties linknum unmark uniqure prettyfy logon login bw
+;;; LocalWords:  lnum utilties linknum unmark uniqure beautify logon login bw
 ;;; LocalWords:  postfix urbandictionary intitle inurl HaskellWiki's Anhonl txt
 ;;; LocalWords:  zh TW inlang tabset pos vscroll zerop UTC

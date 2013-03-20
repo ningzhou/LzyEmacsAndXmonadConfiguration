@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-tramp.el ---
-;; Time-stamp: <2013-03-18 04:53:06 Monday by lzy>
+;; Time-stamp: <2013-03-20 17:35:45 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -38,7 +38,7 @@
   ;; settings
   (setq password-cache-expiry 3600)
   (setq tramp-default-method "scp")
-  (setq tramp-auto-save-directory "~/.emacs.d/tramp-autosave"))
+  (setq tramp-auto-save-directory "~/.emacs.d/TrampAutoSave"))
 
 (defun find-alternative-file-with-sudo ()
   (interactive)

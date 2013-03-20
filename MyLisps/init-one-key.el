@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-one-key.el ---
-;; Time-stamp: <2013-03-20 13:17:01 Wednesday by lzy>
+;; Time-stamp: <2013-03-20 16:25:13 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -51,7 +51,7 @@
       '((("d" . "Directory") . one-key-menu-directory)
         (("e" . "Emms") . one-key-menu-emms)
         (("h" . "Help Info") . one-key-menu-help)
-        (("t" . "Tools") . one-key-menu-tools)
+        ;; (("t" . "Tools") . one-key-menu-tools)
         (("w" . "W3m search") . one-key-menu-w3m-search)
         (("u" . "UI") . one-key-menu-ui)))
 
@@ -133,6 +133,109 @@
   "The `one-key' menu for help."
   (interactive)
   (one-key-menu "help" one-key-menu-help-alist t))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Tools ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defvar one-key-menu-tools-alist nil
+  "The `one-key' menu alist for tools.")
+
+(defun one-key-menu-tools ()
+  "The `one-key' menu for tools."
+  (interactive)
+  (one-key-menu "Tools" one-key-menu-tools-alist))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Etags ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defvar one-key-menu-etags-alist nil
+  "The `one-key' menu alist for ETAGS.")
+
+(setq one-key-menu-etags-alist
+      '(
+        (("G" . "Generate Tag Table") . generate-tag-table-of-emacs)
+        (("w" . "Find Tag Window") . find-tag-window)
+        (("W" . "Find Tag Window Small") . release-small-tag-window)
+        (("," . "Find Tag+") . find-tag+)
+        (("." . "Find Tag") . find-tag)
+        (("p" . "Pop Tag Mark") . pop-tag-mark)
+        (("r" . "Find Tag Regexp") . find-tag-regexp)
+        (("s" . "Tags Search") . tags-search)
+        (("Q" . "Tags Query Replace") . tags-query-replace)
+        ))
+
+(defun one-key-menu-etags ()
+  "The `one-key' menu for ETAGS."
+  (interactive)
+  (one-key-menu "Etags" one-key-menu-etags-alist t t))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; W3m Search ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defvar one-key-menu-w3m-search-alist nil
+  "The `one-key' menu alist for W3M-SEARCH.")
+
+(autoload 'w3m-search-google-web-cn "w3m-extension" nil t)
+(autoload 'w3m-search-google-web-en "w3m-extension" nil t)
+(autoload 'w3m-search-google-news-cn-Sci/Tech "w3m-extension" nil t)
+(autoload 'w3m-search-google-news-en-Sci/Tech "w3m-extension" nil t)
+(autoload 'w3m-search-google-blog-cn "w3m-extension" nil t)
+(autoload 'w3m-search-google-blog-en "w3m-extension" nil t)
+(autoload 'w3m-search-google-file "w3m-extension" nil t)
+(autoload 'w3m-search-google-image "w3m-extension" nil t)
+(autoload 'w3m-search-google-group "w3m-extension" nil t)
+(autoload 'w3m-search-emacswiki "w3m-extension" nil t)
+(autoload 'w3m-search-emacswiki-random "w3m-extension" nil t) 
+(autoload 'w3m-search-haskell-wiki "w3m-extension" nil t)
+(autoload 'w3m-search-haskell-hoogle "w3m-extension" nil t)
+(autoload 'w3m-search-baidu-mp3 "w3m-extension" nil t)
+(autoload 'w3m-search-dict-cn "w3m-extension" nil t)
+(autoload 'w3m-search-lispdoc-basic "w3m-extension" nil t)
+(autoload 'w3m-search-lispdoc-full "w3m-extension" nil t)
+(autoload 'w3m-search-slang "w3m-extension" nil t)
+(autoload 'w3m-search-answers "w3m-extension" nil t)
+(autoload 'w3m-search-wikipedia-cn "w3m-extension" nil t)
+(autoload 'w3m-search-wikipedia-en "w3m-extension" nil t)
+(autoload 'w3m-search-rfc-number "w3m-extension" nil t)
+
+(setq one-key-menu-w3m-search-alist
+      '((("a" . "Answer") . w3m-search-answers)
+        (("b" . "Google Blog CN") . w3m-search-google-blog-cn)
+        (("B" . "Google Blog EN") . w3m-search-google-blog-en)
+        (("d" . "Dict CN") . w3m-search-dict-cn)
+        (("D" . "Slang") . w3m-search-slang)
+        (("e" . "Emacs Wiki") . w3m-search-emacswiki)
+        (("f" . "Google File") . w3m-search-google-file)
+        (("g" . "Google Group") . w3m-search-google-group)
+        (("h" . "Haskell Wiki") . w3m-search-haskell-wiki)
+        (("H" . "Haskell Hoogle") . w3m-search-haskell-hoogle)
+        (("i" . "Google Image") . w3m-search-google-image)
+        (("m" . "BaiDu MP3") . w3m-search-baidu-mp3)
+        (("n" . "RFC Number") . w3m-search-rfc-number)
+        (("l" . "Lispdoc Basic") . w3m-search-lispdoc-basic)
+        (("L" . "Lispdoc Full") . w3m-search-lispdoc-full)
+        (("r" . "Emacs Wiki Random") . w3m-search-emacswiki-random)
+        (("s" . "Google Web CN") . w3m-search-google-web-en)
+        (("S" . "Google Web CN") . w3m-search-google-web-cn)
+        (("t" . "Google News Sci/Tech CN") . w3m-search-google-news-cn-Sci/Tech)
+        (("T" . "Google News Sci/Tech EN") . w3m-search-google-news-en-Sci/Tech)
+        (("w" . "Wikipedia EN") . w3m-search-wikipedia-en)
+        (("W" . "Wikipedia CN") . w3m-search-wikipedia-cn)
+        ))
+
+(defun one-key-menu-w3m-search ()
+  "The `one-key' menu for W3M-SEARCH."
+  (interactive)
+  (one-key-menu "W3m search" one-key-menu-w3m-search-alist t))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; UI ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defvar one-key-menu-ui-alist nil
+  "The `one-key' menu alist for UI.")
+
+(setq one-key-menu-ui-alist
+      '((("m" . "Menu-Bar") . menu-bar-mode)
+        (("t" . "Tool-Bar") . tool-bar-mode)))
+
+(defun one-key-menu-ui ()
+  "The `one-key' menu for UI."
+  (interactive)
+  (one-key-menu "UI" one-key-menu-ui-alist t))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (lazy-set-key
  '(("C-c O"  .  one-key-menu-root)))

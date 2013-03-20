@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-ido.el ---
-;; Time-stamp: <2013-03-17 19:01:45 Sunday by lzy>
+;; Time-stamp: <2013-03-20 17:38:15 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -58,7 +58,7 @@
   (set (make-local-variable 'truncate-lines) nil))
 
 (defun ido-setting ()
-  (setq ido-save-directory-list-file "~/.emacs.d/ido.last")
+  (setq ido-save-directory-list-file "~/.emacs.d/Ido/ido.last")
   (setq ido-enable-flex-matching t)
   (setq ido-max-directory-size 1000000)
   ;; Display ido results vertically, rather than horizontally
