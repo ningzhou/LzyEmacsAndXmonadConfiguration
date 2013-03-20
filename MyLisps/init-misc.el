@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-misc.el ---
-;; Time-stamp: <2013-03-20 17:38:57 Wednesday by lzy>
+;; Time-stamp: <2013-03-20 17:52:48 Wednesday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -112,7 +112,7 @@
 (recentf-mode 1)
 (setq recentf-max-saved-items 100)
 (setq recentf-auto-cleanup 300) 
-(setq recentf-save-file "~/.emacs.d/Recent/recent-files") ;list of files opened recently
+(setq recentf-save-file "~/.emacs.d/recentfiles") ;list of files opened recently
 
 ;; autoload setting
 (setq source-directory

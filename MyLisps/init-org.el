@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-org.el ---
-;; Time-stamp: <2013-03-20 16:27:51 Wednesday by lzy>
+;; Time-stamp: <2013-03-20 17:49:13 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -56,9 +56,9 @@
   (setq org-src-tab-acts-natively t)
   (setq org-confirm-babel-evaluate nil)
   (setq org-agenda-files
-        '(org-routines-file
-          org-tasks-file
-          diary-file))
+        (list org-routines-file
+              org-tasks-file
+              diary-file))
   (setq org-agenda-exporter-settings
         '((ps-bumber-of-columns 2)
           (ps-landscape-mode t)
