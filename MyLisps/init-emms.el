@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-emms.el ---
-;; Time-stamp: <2013-03-19 16:20:34 Tuesday by lzy>
+;; Time-stamp: <2013-03-20 18:28:57 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -176,7 +176,16 @@
                             (lambda (track)
                               (not (funcall (emms-browser-filter-only-recent 30) track))))
   (put 'emms-browser-delete-files 'disabled nil)
+  ;; emms playlist font setting
+  (add-hook 'emms-playlist-mode-hook 'set-emms-playlist-font)
   (add-hook 'emms-browser-delete-files-hook 'de-kill-covers-and-parents)
+  ;; init emms with devel mode
+  (emms-devel)
+  (emms-cache 1)
+  (emms-lyrics-disable)
+  (emms-mode-line-disable)
+  ;; playlist description setting, should be set after emms-devel
+  (setq emms-track-description-function 'my-emms-track-description-function)
   ;; basic key bindings
   (lazy-set-key
    '(("C-x C-s" . emms-playlist-save)             ;save current playlist
@@ -256,16 +265,7 @@
    '(("C-c o n" . emms-next)
      ("C-c o p" . emms-previous)
      ("C-c o r" . emms-random)
-     ("C-c o s" . emms-stop)))
-  ;; init emms with devel mode
-  (emms-devel)
-  (emms-cache 1)
-  (emms-lyrics-disable)
-  (emms-mode-line-disable)
-  ;; emms playlist font setting
-  (add-hook 'emms-playlist-mode-hook 'set-emms-playlist-font)
-  ;; playlist description setting, should be set after emms-devel
-  (setq emms-track-description-function 'my-emms-track-description-function))
+     ("C-c o s" . emms-stop))))
 
 (eval-after-load "emms" '(emms-setting))
 

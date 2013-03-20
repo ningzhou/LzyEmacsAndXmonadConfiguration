@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-org.el ---
-;; Time-stamp: <2013-03-20 17:49:13 Wednesday by lzy>
+;; Time-stamp: <2013-03-20 18:31:48 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -100,6 +100,15 @@
   (add-to-list 'iimage-mode-image-regex-alist
                (cons (concat "\\[\\[file:\\(~?" iimage-mode-image-filename-regex
                              "\\)\\]")  1))
+  ;; hook setting
+  (add-hook 'message-mode-hook 'turn-on-orgtbl)
+  (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
+  (add-hook 'org-agenda-mode-hook
+            '(lambda ()
+               (lazy-set-key
+                '(("m" . org-agenda-month-view)
+                  ("q" . org-agenda-exit))
+                org-agenda-mode-map)))
   ;; key bindings
   (lazy-set-key
    '(("M-n" . outline-next-visible-heading)
@@ -109,20 +118,10 @@
      ("C-M-g" . org-plot/gnuplot)
      ("RET" . newline-and-indent)
      ("C-j" . newline-and-indent))
-   org-mode-map)
-  ;; hook setting
-  (add-hook 'message-mode-hook 'turn-on-orgtbl)
-  (add-hook 'org-after-todo-statistics-hook 'org-summary-todo))
+   org-mode-map))
 
 (eval-after-load "org"
   '(org-setting))
-
-(add-hook 'org-agenda-mode-hook
-          '(lambda ()
-             (lazy-set-key
-              '(("m" . org-agenda-month-view)
-                ("q" . org-agenda-exit))
-              org-agenda-mode-map)))
 
 (autoload 'org-store-link "org" nil t)
 (autoload 'org-capture "org-capture" nil t)

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-w3m.el ---
-;; Time-stamp: <2013-03-20 15:55:39 Wednesday by lzy>
+;; Time-stamp: <2013-03-20 18:29:38 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -94,6 +94,16 @@
   (setq w3m-use-filter t)
   (setq w3m-fb-mode t)
   (setq w3m-session-load-crashed-sessions t)
+  (add-hook 'w3m-display-hook
+            (lambda (url)
+              (rename-buffer
+               (format "*w3m: %s*"
+                       (beautify-string (or w3m-current-title
+                                            w3m-current-url) 50)) t)))
+  (add-to-list 'w3m-filter-rules
+               '("\\`http://www\\.google\\.\\(cn\\|com\\)/"
+                 w3m-filter-rules-for-google))
+  (w3m-fb-mode 1)
   ;; key bindings
   (lazy-set-key
    '(("1" . w3m-session-save)
@@ -133,17 +143,7 @@
      ("M-p" . w3m-previous-buffer)
      ("<f5>" . w3m-reload-this-page)
      ("M-<f5>" . w3m-reload-all-pages))
-   w3m-mode-map)
-  (add-hook 'w3m-display-hook
-            (lambda (url)
-              (rename-buffer
-               (format "*w3m: %s*"
-                       (beautify-string (or w3m-current-title
-                                            w3m-current-url) 50)) t)))
-  (add-to-list 'w3m-filter-rules
-               '("\\`http://www\\.google\\.\\(cn\\|com\\)/"
-                 w3m-filter-rules-for-google))
-  (w3m-fb-mode 1))
+   w3m-mode-map))
 
 (eval-after-load "w3m"
   '(w3m-setting))

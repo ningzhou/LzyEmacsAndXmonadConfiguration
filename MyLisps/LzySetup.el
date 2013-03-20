@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-03-20 17:04:48 Wednesday by lzy>
+;; Time-stamp: <2013-03-20 18:35:21 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -96,7 +96,6 @@
 (require 'init-etags-extension)              ;; etags extension
 (require 'init-edit-setting)                 ;; edit setting for all buffer
 (require 'init-misc)                         ;; other setting
-(require 'init-hack)                         ;; in-built functions hack
 
 ;;; provide features
 (provide 'LzySetup)
