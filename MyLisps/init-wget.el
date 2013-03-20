@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-wget.el ---
-;; Time-stamp: <2013-03-19 13:30:19 Tuesday by lzy>
+;; Time-stamp: <2013-03-20 06:34:39 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -33,10 +33,10 @@
 
 (eval-after-load "wget"
   '(progn
-     (setq wget-download-directory '(("\\.\\(jpe?g\\|png\\|gif\\|bmp\\)$" . "~/Pictures")
+     (setq wget-download-directory '(("\\.\\([jP][pP][eE]?[gG]\\|[pP][nN][gG]\\|[gG][iI][fF]\\|[bB][mM][pP]\\)$" . "~/Pictures")
                                      ("\\.\\([mM][pP]3\\|[fF][lL][aA][cC]\\|[aA][pP][eE]\\|[wW][mM][aA]\\|[mM][pP]4\\)$" . "~/Music/Downloads/")
                                      ("\\.\\([rR][mM]?[vV][bB]\\|[v][V][oO][bB]\\|[aA][vV][iI]\\|[dD][vV][dD]\\)$" . "~/Videos/")
-                                     ("\\.\\(el\\|sh\\|perl\\|py\\|[cC]\\|[cC][pP][pP]\\|java\\|hs\\|[tT][xX][tT]\\)$" . "~/Downloads/Source/")
+                                     ("\\.\\(el\\|sh\\|perl\\|py\\|[cC]\\|[cC][pP][pP]\\|[jJ][aA][vV][aA]\\|[hH][sS]\\|[tT][xX][tT]\\)$" . "~/Downloads/Source/")
                                      ("\\.\\([dD][oO][cC]\\|[pP][dD][fF]\\|[xX][mM][lL]\\|[xX][lL][sS]\\)$" . "~/Documents/")
                                      ("\\.\\(tar\\|gz\\|zip\\|rar\\|msi\\|exe\\|iso\\|torrent\\)$" . "~/Downloads/")
                                      ("." . "~/.emacs.d/W3M/DownloadPages/")))

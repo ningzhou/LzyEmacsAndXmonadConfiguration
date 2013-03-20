@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-google-maps.el ---
-;; Time-stamp: <2013-03-04 12:11:04 Monday by lzy>
+;; Time-stamp: <2013-03-20 07:35:41 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,18 +24,17 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-google-maps)
 
 ;;; Code:
 
+(autoload 'google-maps "google-maps"
+  "Run Google Maps on LOCATION" t)
 
+;;; provide features
 (provide 'init-google-maps)
-
-
-;; required features
-(require 'google-maps)
 
 ;;; init-google-maps.el ends here

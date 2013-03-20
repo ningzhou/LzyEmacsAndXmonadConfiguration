@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-autocomplete.el ---
-;; Time-stamp: <2013-03-19 15:31:06 Tuesday by lzy>
+;; Time-stamp: <2013-03-20 07:15:13 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -39,9 +39,7 @@
   (let (begin
         end
         (result nil))
-    (if (or
-         (file-exists-p "/usr/bin/g++")
-         (file-exists-p "/usr/local/bin/g++"))
+    (if (executable-find "g++")
         (with-temp-buffer
           (shell-command-surpress-popup-window "echo''|g++ -v -x c++ -E -"
                                                (buffer-name (current-buffer)))

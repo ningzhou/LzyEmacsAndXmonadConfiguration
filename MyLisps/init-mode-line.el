@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-mode-line.el ---
-;; Time-stamp: <2013-03-01 16:11:28 Friday by lzy>
+;; Time-stamp: <2013-03-20 08:18:15 Wednesday by lzy>
 
-;; Copyright (C) 2013 chieftain
+;; Copyright (C) 2013 zhengyu li
 ;;
-;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Author: zhengyu li <lizhengyu419@gmail.com>
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,15 +24,13 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-mode-line)
 
 ;;; Code:
 
-
-(provide 'init-mode-line)
 
 
 ;; required features
@@ -49,23 +49,20 @@
       (propertize (format "(%dLs,%dCs)" (count-lines (region-beginning) (region-end)) (abs (- (mark t) (point))))
                   'face '(:foreground "white"))
     (propertize "@%I]"
-                'face '(:foreground "black"))
-    ))
+                'face '(:foreground "black"))))
 
 (defun set-mode-line-format ()
   ;;  "set mode-line-format"
   (setq-default mode-line-position
-                `(
-                  (:eval (get-lines-4-mode-line))
+                `((:eval
+                   (get-lines-4-mode-line))
                   (:eval
-                   (propertize
-                    "[%p"
-                    'face '(:foreground "white")
-                    'local-map mode-line-column-line-number-mode-map
-                    'mouse-face 'mode-line-highlight
-                    'help-echo "Size indication mode\n\
+                   (propertize "[%p"
+                               'face '(:foreground "white")
+                               'local-map mode-line-column-line-number-mode-map
+                               'mouse-face 'mode-line-highlight
+                               'help-echo "Size indication mode\n\
                                mouse-1: Display Line and Column Mode Menu"))
-                  ;; when region is active, then show the number of characters, else show buffer size
                   (:eval
                    (and transient-mark-mode mark-active
                         (propertize "]"
@@ -77,67 +74,62 @@
                                'mouse-face 'mode-line-highlight
                                'help-echo "Buffer position, mouse-1: Line/col menu"))
                   (:eval
-                   ;; if line number mode is active, disable line-number-mode
                    (if (not linum-mode)
                        (if column-number-mode
-                           (propertize
-                            " (%l,%c) "
-                            'face '(:foreground "white")
-                            'local-map mode-line-column-line-number-mode-map
-                            'mouse-face 'mode-line-highlight
-                            'help-echo "Line number and Column number\n\
+                           (propertize " (%l,%c) "
+                                       'face '(:foreground "white")
+                                       'local-map mode-line-column-line-number-mode-map
+                                       'mouse-face 'mode-line-highlight
+                                       'help-echo "Line number and Column number\n\
                                         mouse-1: Display Line and Column Mode Menu")
-                         (propertize
-                          " L%l "
-                          'face '(:foreground "white")
-                          'local-map mode-line-column-line-number-mode-map
-                          'mouse-face 'mode-line-highlight
-                          'help-echo "Line Number\n\
+                         (propertize " L%l "
+                                     'face '(:foreground "white")
+                                     'local-map mode-line-column-line-number-mode-map
+                                     'mouse-face 'mode-line-highlight
+                                     'help-echo "Line Number\n\
                                       mouse-1: Display Line and Column Mode Menu"))
                      (if column-number-mode
-                         (propertize
-                          " C%c "
-                          'face '(:foreground "white")
-                          'local-map mode-line-column-line-number-mode-map
-                          'mouse-face 'mode-line-highlight
-                          'help-echo "Column number\n\
-                                      mouse-1: Display Line and Column Mode Menu")))
-                   )
-                  )
-                )
+                         (propertize " C%c "
+                                     'face '(:foreground "white")
+                                     'local-map mode-line-column-line-number-mode-map
+                                     'mouse-face 'mode-line-highlight
+                                     'help-echo "Column number\n\
+                                      mouse-1: Display Line and Column Mode Menu"))))))
 
   (setq-default mode-line-format
-                '(
-                  (:eval
+                '((:eval
                    (if (eql buffer-read-only t)
                        (propertize " ⚡RO⚡" 'face
                                    '(:foreground "Deepskyblue" :weight normal))
                      (propertize " ⚡W/R⚡" 'face
                                  '(:foreground "Deepskyblue" :weight normal))))
                   (:eval
-                   (propertize " $%b$" 'face
-                               (if (buffer-modified-p)
-                                   '(:foreground "white" :slant italic)
-                                 '(:foreground "white"))))
+                   (propertize " $%b$"
+                               'face (if (buffer-modified-p)
+                                         '(:foreground "white" :slant italic)
+                                       '(:foreground "white"))))
                   (:eval
                    (propertize (if overwrite-mode " Ovr" " Ins")
                                'face '(:foreground "SpringGreen" :weight normal)
                                'help-echo (concat "Buffer is in "
                                                   (if overwrite-mode "overwrite" "insert") " mode")))
                   mode-line-position
-                  (:eval (propertize "(" 'face '(:foreground "yellow" :weight normal)))
-                  (:eval (propertize "%m" 'face '(:foreground "yellow" :weight normal)))
+                  (:eval
+                   (propertize "("
+                               'face '(:foreground "yellow" :weight normal)))
+                  (:eval
+                   (propertize "%m"
+                               'face '(:foreground "yellow" :weight normal)))
                   minor-mode-alist
-                  (:eval (propertize ") " 'face '(:foreground "yellow" :weight normal)))
-                  ;; which-func-format
-                  " "
+                  (:eval
+                   (propertize ") "
+                               'face '(:foreground "yellow" :weight normal)))
                   (:eval
                    (propertize (format-time-string " %H:%M ")
                                'face '(:foreground "white" :weight normal)
                                'help-echo
                                (concat (format-time-string "%c; ")
-                                       (emacs-uptime "Uptime:%hh"))))
-                  )))
+                                       (emacs-uptime "Uptime:%hh")))))))
 
 (defun mode-line-setting ()
   "setings for modeline"
@@ -150,10 +142,11 @@
              (if login-name (concat login-name "@") "")))
           (:eval (system-name))
           ":"
-          (:eval (or (buffer-file-name) (buffer-name)))))
-  )
+          (:eval (or (buffer-file-name) (buffer-name))))))
 
-(eval-after-load "init-mode-line"
-  '(mode-line-setting))
+(mode-line-setting)
+
+;;; provide features
+(provide 'init-mode-line)
 
 ;;; init-mode-line.el ends here

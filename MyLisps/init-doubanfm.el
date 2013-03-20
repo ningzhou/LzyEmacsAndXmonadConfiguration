@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-doubanfm.el ---
-;; Time-stamp: <2012-12-24 15:28:09 Monday by lzy>
+;; Time-stamp: <2013-03-20 08:09:21 Wednesday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 chieftain
 ;;
 ;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,18 +24,21 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-doubanfm)
 
 ;;; Code:
 
+(autoload 'douban-music-play-next-song "douban-music" nil t)
+(autoload 'douban-music-stop-play "douban-music" nil t)
 
+(lazy-set-key
+ '(("C-c p" . douban-music-play-next-song)
+   ("C-c P" . douban-music-stop-play)))
+
+;;; provide features
 (provide 'init-doubanfm)
-
-
-;; required features
-(require 'douban-music)
 
 ;;; init-doubanfm.el ends here

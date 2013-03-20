@@ -1,10 +1,13 @@
-;;; init-org.el --- 
-;; Time-stamp: <2013-03-13 17:10:11 Wednesday by lzy>
+;; -*- Emacs-Lisp -*-
+;;; init-org.el ---
+;; Time-stamp: <2013-03-20 16:27:51 Wednesday by lzy>
 
-;; Copyright (C) 2012  zhengyu li
-
+;; Copyright (C) 2013 zhengyu li
+;;
 ;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,44 +24,41 @@
 
 ;;; Commentary:
 
-;; 
+;;
+
+;; Put this file into your load-path and the following into your ~/.emacs:
+;;   (require 'init-org)
 
 ;;; Code:
 
-
-(provide 'init-org)
-
-
-;; required features
-(require 'org)
-
 (defun org-setting ()
-  "setting for org mode"
+  "settings for org mode"
   ;; required features
   (require 'iimage)
   (require 'org-w3m)
   (require 'org-install)
   (require 'org-extension)
-  (require 'auto-complete)
   (require 'org-html5presentation-modified-by-lzy)
-
-  ;; setting
+  ;; settings
   (setq org-directory "~/OrgDir")
   (setq org-tasks-file (concat org-directory "/Agenda.org"))
   (setq org-routines-file (concat org-directory "/Routines.org"))
   (setq org-notes-file (concat org-directory "/Notes.org"))
   (setq org-tricks-file (concat my-emacs-path "/OrgDir/TrickNotes.org"))
   (setq diary-file (concat org-directory "/Diary.org"))
-  (setq org-startup-indented t)
-  (setq org-log-done 'note)                  ;log type
-  (setq diary-file diary-file)               ;diary file
-  (setq org-clock-idle-time 10)              ;ilde time to resolve
-  (setq org-enable-table-editor 1)           ;use built-in table editor
-  (setq org-agenda-include-diary t)          ;integrate diary
+  (setq org-startup-indented nil)
+  (setq org-log-done 'note)
+  (setq diary-file diary-file)
+  (setq org-clock-idle-time 10)
+  (setq org-agenda-include-diary t)
   (setq org-clock-persist 'history)
   (setq org-src-fontify-natively t)
   (setq org-src-tab-acts-natively t)
   (setq org-confirm-babel-evaluate nil)
+  (setq org-agenda-files
+        '(org-routines-file
+          org-tasks-file
+          diary-file))
   (setq org-agenda-exporter-settings
         '((ps-bumber-of-columns 2)
           (ps-landscape-mode t)
@@ -73,31 +73,34 @@
            "* %^{Title}\n %i\n %a")
           ("T" "TrickNotes" entry (file+headline ,org-tricks-file "Tricks")
            "* %^{Title}\n %i\n %a")))
-  (setq org-agenda-files
-        (list org-routines-file
-              org-tasks-file
-              diary-file))
-
   (setq org-todo-keywords
         '((sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
-          (sequence "TODO(t!)" "|" "DONE(d@)" "CANCELED(c@/!)")
-          ))
-
+          (sequence "TODO(t!)" "|" "DONE(d@)" "CANCELED(c@/!)")))
   (org-clock-persistence-insinuate)
-  (org-remember-insinuate)                   ;Org-remeber initialization
-  (org-babel-do-load-languages 'org-babel-load-languages '((C . t)
-                                                           (sh . t)
-                                                           (ditaa . t)
-                                                           (python . t)
-                                                           (emacs-lisp . t)))
+  (org-remember-insinuate)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((C . t)
+     (sh . t)
+     (ditaa . t)
+     (python . t)
+     (emacs-lisp . t)
+     (clojure . t)
+     (css . t)
+     (dot . t)
+     (gnuplot . t)
+     (java . t)
+     (js . t)
+     (org . t)
+     (perl . t)
+     (ruby . t)
+     (scheme . t)
+     (sql . t)))
   (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
   (add-to-list 'iimage-mode-image-regex-alist
                (cons (concat "\\[\\[file:\\(~?" iimage-mode-image-filename-regex
                              "\\)\\]")  1))
-  (add-hook 'message-mode-hook 'turn-on-orgtbl) ;enable orgtbl in Text and Mail mode
-  (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
-
-  ;; local key bindings
+  ;; key bindings
   (lazy-set-key
    '(("M-n" . outline-next-visible-heading)
      ("M-p" . outline-previous-visible-heading)
@@ -107,19 +110,30 @@
      ("RET" . newline-and-indent)
      ("C-j" . newline-and-indent))
    org-mode-map)
+  ;; hook setting
+  (add-hook 'message-mode-hook 'turn-on-orgtbl)
+  (add-hook 'org-after-todo-statistics-hook 'org-summary-todo))
 
-  (lazy-set-key
-   '(("m" . org-agenda-month-view))
-   org-agenda-mode-map)
-  )
-
-(eval-after-load "init-org"
+(eval-after-load "org"
   '(org-setting))
 
-;; global key bindings
+(add-hook 'org-agenda-mode-hook
+          '(lambda ()
+             (lazy-set-key
+              '(("m" . org-agenda-month-view)
+                ("q" . org-agenda-exit))
+              org-agenda-mode-map)))
+
+(autoload 'org-store-link "org" nil t)
+(autoload 'org-capture "org-capture" nil t)
+(autoload 'org-agenda "org-agenda" nil t)
+
 (lazy-set-key
  '(("C-c o l" . org-store-link)
    ("C-c o c" . org-capture)
    ("C-c o a" . org-agenda)))
+
+;;; provide features
+(provide 'init-org)
 
 ;;; init-org.el ends here

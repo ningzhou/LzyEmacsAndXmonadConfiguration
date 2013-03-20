@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-03-19 17:59:21 Tuesday by lzy>
+;; Time-stamp: <2013-03-20 16:30:57 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -58,7 +58,6 @@
 (require 'init-babel)                        ;; a web translations interface
 (require 'init-abbrev)                       ;; save abbreviation
 (require 'init-go2chg)                       ;; go to last change place
-(require 'init-wget)                         ;; wget setting
 (require 'init-apropos)                      ;; all apropos related setting
 (require 'init-iman)                         ;; extend man information
 (require 'init-info+)                        ;; emacs less mode
@@ -78,24 +77,24 @@
 (require 'init-weibo)                        ;; sina weibo
 (require 'init-tramp)                        ;; transparent remote access
 (require 'init-ediff)                        ;; ediff and ediff tree
+(require 'init-wget)                         ;; wget setting
 (require 'init-dired)                        ;; dired setting
 (require 'init-emms)                         ;; emms setting
 (require 'init-w3m)                          ;; w3m setting
 (require 'init-erc)                          ;; erc setting
 (require 'init-newsticker)                   ;; setting for newsticker
-
-(require 'init-etags-extension)              ;; etags extension
+(require 'init-gnus)                         ;; setting for gnus
+(require 'init-google-maps)                  ;; google maps setting
+(require 'init-doubanfm)                     ;; douban fm setting
+(require 'init-weather)                      ;; show weather in mode line
 (require 'init-mode-line)                    ;; mode-line setting
 (require 'init-org)                          ;; setting for org mode
+
 (require 'init-dev-setting)                  ;; setting for programming environment
+(require 'init-etags-extension)              ;; etags extension
 (require 'init-edit-setting)                 ;; edit setting for all buffer
 (require 'init-one-key)                      ;; key binding setting for one key menu
 (require 'init-misc)                         ;; other setting
-(require 'init-gnus)                         ;; setting for gnus
-
-(require 'init-doubanfm)                     ;; douban fm setting
-(require 'init-google-maps)                  ;; google maps setting
-(require 'init-weather)                      ;; show weather in mode line
 (require 'init-hack)                         ;; in-built functions hack
 
 ;;; provide features

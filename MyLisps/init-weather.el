@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-weather.el ---
-;; Time-stamp: <2012-12-06 18:10:46 Thursday by lzy>
+;; Time-stamp: <2013-03-20 07:50:07 Wednesday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 zhengyu li
 ;;
-;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Author: zhengyu li <lizhengyu419@gmail.com>
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,24 +24,23 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-weather)
 
 ;;; Code:
 
+(eval-after-load "cn-weather"
+  '(setq cn-weather-city "南京"))
 
-(provide 'init-weather)
-
-
-;; required features
-(require 'cn-weather)
-
-(setq cn-weather-city "南京")
+(autoload 'cn-weather-today "cn-weather" nil t)
+(autoload 'cn-weather-forecast "cn-weather" nil t)
 
 (defalias 'weather 'cn-weather-today)
 (defalias 'weather-tomorrow 'cn-weather-forecast)
 
-;;; init-weather.el ends here
+;;; provide features
+(provide 'init-weather)
 
+;;; init-weather.el ends here

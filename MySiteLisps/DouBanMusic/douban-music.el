@@ -6,8 +6,8 @@
 
 (eval-when-compile
   (require 'cl))
-(require 'url-http)
 (require 'json)
+(require 'url-http)
 
 (defgroup douban-music nil
   "douban music interface"
@@ -22,13 +22,12 @@ feed data to music player")
 (defvar channel-number (random 20))
 
 (defcustom douban-music-server (concat "http://douban.fm/j/mine/playlist?type=n&channel="  
-				      (number-to-string channel-number))
+                                       (number-to-string channel-number))
   "douban server url address"
   :group 'douban-music)
 
 (defvar current-song '()
-  "The current Song that music player is opened"
-)
+  "The current Song that music player is opened")
 
 (defun douban-music-fetch-songs-from-server ()
   (interactive)
@@ -53,13 +52,8 @@ feed data to music player")
       ( if (vectorp json)
           (copy-to-local-store json)
         (progn
-	  (error "Invalid data format")
-	  )
-        )
-      )
-    (kill-buffer buffer)
-    )
-  )
+          (error "Invalid data format"))))
+    (kill-buffer buffer)))
 
 (defun copy-to-local-store (data)
   ( if (vectorp data)
@@ -69,38 +63,27 @@ feed data to music player")
         (dotimes (i (length data))
           ( let ((var (aref data i)))
             (setq local-music-store
-                  (cons var local-music-store))
-            )
-          ))
-    (error "Invalid data format")
-    )
-  )
+                  (cons var local-music-store)))))
+    (error "Invalid data format")))
 
 (defun douban-music-pop-song-from-store ()
   "Pop up a muisc from local music store"
   (let ((song))
     ( if (eq nil local-music-store )
-	(progn 
-	  (douban-music-fetch-songs-from-server)
-	  (setq channel-number (random 20))
-	  )
-      )
+        (progn 
+          (douban-music-fetch-songs-from-server)
+          (setq channel-number (random 20))))
     (if (eq nil local-music-store)
         (error "Fail to fetch muiscs from douban music server"))
     (setq song (elt local-music-store 0))
     (setq local-music-store (cdr local-music-store))
-    song
-    )
-  )
+    song))
 
 (defun play-music-filter ( proc string)
   (if (string-match "finished" string)
       (progn
-         (kill-douban-music-process)
-         (douban-music-play-song)
-         )
-   )
-  )
+        (kill-douban-music-process)
+        (douban-music-play-song))))
 
 (defun douban-music-play-song ()
   (interactive)
@@ -108,39 +91,28 @@ feed data to music player")
         (is-play nil))
     (dolist (elt (process-list))
       (if (string-match "douban-music-proc<?[0-9]*>?" (process-name elt))
-          (setq is-play t)
-          )
-      )
+          (setq is-play t)))
     (if ( eq is-play nil)
         (progn
           (setq current-song (douban-music-pop-song-from-store))
           (setq song current-song)
           (set-process-filter
            (start-process "douban-music-proc" nil "mpg123" (aget song 'url))
-           'play-music-filter
-           )
-          
-          )
-      (message "Current Music is playing.")
-      )
-    )
-  )
+           'play-music-filter))
+      (message "Current Music is playing."))))
 
 (defun douban-music-stop-play ()
   (interactive)
-  (kill-douban-music-process)
-  )
+  (kill-douban-music-process))
 
 (defun douban-music-play-next-song ()
   (interactive)
   (kill-douban-music-process)
-  (douban-music-play-song)
-  )
+  (douban-music-play-song))
 
 (defun kill-douban-music-process ()
   " kill all sydio process, ie. process name matchs
-  \"sydio-proc<?[0-9]*>?\"
-"
+  \"sydio-proc<?[0-9]*>?\""
   (dolist (elt (process-list))
     (if (string-match "douban-music-proc<?[0-9]*>?" (process-name elt))
         (delete-process elt))))
@@ -148,10 +120,7 @@ feed data to music player")
 
 (defun douban-music-current-song-info ()
   (interactive)
-  (
-   princ current-song   
-   )
-  )
+  (princ current-song))
 
 (global-set-key (kbd "C-c p")     'douban-music-play-next-song)
 (global-set-key (kbd "C-c P")     'douban-music-stop-play)
