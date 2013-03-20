@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-highlight-things.el ---
-;; Time-stamp: <2013-03-17 22:28:16 Sunday by lzy>
+;; Time-stamp: <2013-03-20 13:28:00 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -39,10 +39,6 @@
         ("black" . 66)))
 
 (highlight-tail-mode 1)
-
-(add-hook 'find-file-hook
-          '(lambda ()
-             (highlight-tail-reload)))
 
 (defun highlight-sexp-setting ()
   "settings for highlight sexp"

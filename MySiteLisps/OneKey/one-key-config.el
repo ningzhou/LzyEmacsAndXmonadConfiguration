@@ -328,9 +328,10 @@
 (defvar one-key-menu-directory-alist nil
   "The `one-key' menu alist for DIRECTORY.")
 
+(autoload 'dired-x-find-file "dired-x" nil t)
+
 (setq one-key-menu-directory-alist
-      '(
-        (("h" . "Home") . (lambda () (interactive) (dired-x-find-file my-home-directory)))
+      '((("h" . "Home") . (lambda () (interactive) (dired-x-find-file my-home-directory)))
         (("e" . "Emacs Backup") . (lambda () (interactive) (dired-x-find-file my-emacs-backup-directory)))
         (("d" . "Download") . (lambda () (interactive) (dired-x-find-file my-default-download-directory)))
         (("b" . "Book") . (lambda () (interactive) (dired-x-find-file my-book-directory)))

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyStartup.el ---
-;; Time-stamp: <2013-03-18 05:08:21 Monday by lzy>
+;; Time-stamp: <2013-03-20 13:25:29 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -33,14 +33,14 @@
 
 (server-force-delete)
 (server-start)
-(if (get-buffer "*scratch*")
-    (kill-buffer "*scratch*"))
-(if (get-buffer "*Compile-Log*")
-    (kill-buffer "*Compile-Log*"))
-(if (get-buffer "*Messages*")
-    (kill-buffer "*Messages*"))
 (if (get-buffer ".bash_history")
     (kill-buffer ".bash_history"))
+(if (get-buffer "*Compile-Log*")
+    (kill-buffer "*Compile-Log*"))
+(if (get-buffer "*scratch*")
+    (kill-buffer "*scratch*"))
+(if (get-buffer "*Messages*")
+    (kill-buffer "*Messages*"))
 
 ;;; provide features
 (provide 'LzyStartup)

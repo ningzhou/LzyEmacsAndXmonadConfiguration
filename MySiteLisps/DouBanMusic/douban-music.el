@@ -1,18 +1,44 @@
-;;;douban-music.el
-;;;Author: Xiang Wang (wxjeacen@gmail.com)
-;;
-;;
-;;code:
+;; -*- Emacs-Lisp -*-
+;;; douban-music.el ---
+;; Time-stamp: <2013-03-20 10:40:55 Wednesday by lzy>
 
-(eval-when-compile
-  (require 'cl))
+;; Copyright (C) 2012 Xiang Wang
+;;
+;; Author: Author: Xiang Wang <wxjeacen@gmail.com>
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+;;
+
+;; Put this file into your load-path and the following into your ~/.emacs:
+;;   (require 'douban-music)
+
+;;; Code:
+
 (require 'json)
+(require 'assoc)
 (require 'url-http)
 
 (defgroup douban-music nil
   "douban music interface"
   :group 'entertainment
-  :prefix "douban-music-" )
+  :prefix "douban-music-")
 
 (defvar local-music-store '()
   "Song information in local store.
@@ -117,12 +143,11 @@ feed data to music player")
     (if (string-match "douban-music-proc<?[0-9]*>?" (process-name elt))
         (delete-process elt))))
 
-
 (defun douban-music-current-song-info ()
   (interactive)
   (princ current-song))
 
-(global-set-key (kbd "C-c p")     'douban-music-play-next-song)
-(global-set-key (kbd "C-c P")     'douban-music-stop-play)
-
+;;; provide features
 (provide 'douban-music)
+
+;;; douban-music.el ends here

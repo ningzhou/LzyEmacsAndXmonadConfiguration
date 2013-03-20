@@ -9,7 +9,7 @@
                        ("aref" "(aref ARRAY$0 INDEX)" "aref" nil nil nil nil nil nil)
                        ("aset" "(aset ARRAY$0 IDX NEWELT)" "aset" nil nil nil nil nil nil)
                        ("assq" "(assq KEY$0 LIST)" "assq" nil nil nil nil nil nil)
-                       ("autoload" "(autoload 'FUNCNAME$0 \"FILENAME\" &optional \"DOCSTRING\" INTERACTIVE TYPE)" "autoload" nil nil nil nil nil nil)
+                       ("autoload" "(autoload ${1:feature} ${2:file} ${3:nil} ${4:t})$0" "autoload" nil nil nil nil nil nil)
                        ("bc" "(backward-char $0)" "backward-char" nil nil nil nil nil nil)
                        ("bol" "(beginning-of-line)" "beginning-of-line" nil nil nil nil nil nil)
                        ("botap" "(bounds-of-thing-at-point '$0) ; symbol, list, sexp, defun, filename, url, email, word, sentence, whitespace, line, page ..." "bounds-of-thing-at-point" nil nil nil nil nil nil)
@@ -145,4 +145,4 @@
                        ("yes-or-no-p" "(yes-or-no-p \"PROMPT$0 \")" "yes-or-no-p" nil nil nil nil nil nil)))
 
 
-;;; Do not edit! File generated at Mon Mar 18 03:11:46 2013
+;;; Do not edit! File generated at Wed Mar 20 13:12:44 2013
