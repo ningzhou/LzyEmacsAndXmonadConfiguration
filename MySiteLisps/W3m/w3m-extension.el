@@ -313,7 +313,7 @@ If current tab is at right side of tabs, select left tab, otherwise, select righ
         (when tabset
           (setq selected (tabbar-selected-tab tabset))
           (setq tab (tabbar-tab-next tabset selected))
-          (w3m-delete-buffer)
+          (w3m-delete-buffer 1)
           (if tab                       ;if tab is not right side of tabs
               (tabbar-forward-tab))))))
 
