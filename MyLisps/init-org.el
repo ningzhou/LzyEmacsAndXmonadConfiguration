@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-org.el ---
-;; Time-stamp: <2013-03-20 18:31:48 Wednesday by lzy>
+;; Time-stamp: <2013-03-21 18:15:40 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -116,7 +116,7 @@
      ("C-M-p" . org-backward-same-level)
      ("C-M-n" . org-forward-same-level)
      ("C-M-g" . org-plot/gnuplot)
-     ("RET" . newline-and-indent)
+     ("<return>" . newline-and-indent)
      ("C-j" . newline-and-indent))
    org-mode-map))
 

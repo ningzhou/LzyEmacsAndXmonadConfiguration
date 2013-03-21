@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; lisp-mode-setting.el ---
-;; Time-stamp: <2013-03-21 15:44:24 Thursday by lzy>
+;; Time-stamp: <2013-03-21 18:15:40 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -47,6 +47,7 @@
               '(("C-c M-a" . beginning-of-defun)
                 ("C-c M-e" . end-of-defun)
                 ("M-j" . eval-last-sexp)
+                ("<return>" . newline-and-indent)
                 ("C-j" . newline-and-indent)
                 ("C-c C-c" . comment)
                 ("C-c k" . uncomment))
@@ -59,6 +60,7 @@
               '(("C-c M-a" . beginning-of-defun)
                 ("C-c M-e" . end-of-defun)
                 ("M-j" . eval-last-sexp)
+                ("<return>" . newline-and-indent)
                 ("C-j" . newline-and-indent)
                 ("C-c C-c" . comment)
                 ("C-c k" . uncomment))
@@ -71,6 +73,7 @@
               '(("C-c M-a" . beginning-of-defun)
                 ("C-c M-e" . end-of-defun)
                 ("M-j" . eval-last-sexp)
+                ("<return>" . newline-and-indent)
                 ("C-j" . newline-and-indent)
                 ("C-c C-c" . comment)
                 ("C-c k" . uncomment))

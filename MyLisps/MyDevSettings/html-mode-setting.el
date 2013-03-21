@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; html-mode-setting.el ---
-;; Time-stamp: <2013-03-21 14:36:44 Thursday by lzy>
+;; Time-stamp: <2013-03-21 18:15:40 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -51,7 +51,8 @@
     (query-replace-regexp "<a\\s-+href=\\(\"[^\"#][^\"]*?\"\\)>\\(.*?\\)</a>" "<a href=\\1 target=\"_blank\">\\2</a>"))
 
   (lazy-set-key
-   '(("C-j" . newline-and-indent)
+   '(("<return>" . newline-and-indent)
+     ("C-j" . newline-and-indent)
      ("C-c k" . uncomment)
      ("C-c C-c" . comment)
      ("C-c C-w" . w3m-browse-current-buffer))

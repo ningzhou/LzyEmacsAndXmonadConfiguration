@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-misc.el ---
-;; Time-stamp: <2013-03-21 15:57:34 Thursday by lzy>
+;; Time-stamp: <2013-03-21 18:19:03 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;

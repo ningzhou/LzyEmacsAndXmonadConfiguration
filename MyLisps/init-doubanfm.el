@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-doubanfm.el ---
-;; Time-stamp: <2013-03-20 08:09:21 Wednesday by lzy>
+;; Time-stamp: <2013-03-21 17:27:16 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -35,8 +35,8 @@
 (autoload 'douban-music-stop-play "douban-music" nil t)
 
 (lazy-set-key
- '(("C-c p" . douban-music-play-next-song)
-   ("C-c P" . douban-music-stop-play)))
+ '(("<f4>" . douban-music-play-next-song)
+   ("C-<f4>" . douban-music-stop-play)))
 
 ;;; provide features
 (provide 'init-doubanfm)

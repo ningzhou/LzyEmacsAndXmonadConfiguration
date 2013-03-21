@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-multis.el ---
-;; Time-stamp: <2013-03-18 03:09:34 Monday by lzy>
+;; Time-stamp: <2013-03-21 18:28:44 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;

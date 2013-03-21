@@ -5,8 +5,8 @@
 ;; Copyright (C) 2008, 2009, Andy Stewart, all rights reserved.
 ;; Copyright (C) 2010, ahei, all rights reserved.
 ;; Created: <2008-09-19 23:02:42>
-;; Version: 0.8.8
-;; Last-Updated: <2012-05-21 19:13:10 星期一 by lzy>
+;; Version: 0.8.9
+;; Last-Updated: <2013-03-21 18:25:52 Thursday by lzy>
 ;; URL: http://www.emacswiki.org/emacs/download/multi-term.el
 ;; Keywords: term, terminal, multiple buffer
 ;; Compatibility: GNU Emacs 23.2.1
@@ -126,6 +126,10 @@
 ;;
 
 ;;; Change log:
+;; 2013/01/08
+;;      * Fix customize group of `multi-term-try-create'.
+;;      * Add autoloads.
+;;      * Add new commands `term-send-quote' and `term-send-M-x'.
 ;;
 ;; 2009/07/04
 ;;      * Add new option `multi-term-dedicated-select-after-open-p'.
@@ -255,7 +259,7 @@ If this is nil, setup to environment variable of `SHELL'."
 When use `multi-term-next' or `multi-term-prev', switch term buffer,
 and try to create a new term buffer if no term buffers exist."
   :type 'boolean
-  :group 'multi-shell)
+  :group 'multi-term)
 
 (defcustom multi-term-default-dir "~/"
   "The default directory for terms if current directory doesn't exist."
@@ -301,49 +305,28 @@ If this option is nil, don't switch other `multi-term' buffer."
   :type 'list
   :group 'multi-term)
 
-;; after modified
 (defcustom term-bind-key-alist
   '(
     ("C-c C-c" . term-interrupt-subjob)
+    ("C-p" . previous-line)
+    ("C-n" . next-line)
     ("C-s" . isearch-forward)
+    ("C-r" . isearch-backward)
     ("C-m" . term-send-raw)
     ("M-f" . term-send-forward-word)
     ("M-b" . term-send-backward-word)
     ("M-o" . term-send-backspace)
-    ("C-p" . term-send-up)
-    ("C-n" . term-send-down)
+    ("M-p" . term-send-up)
+    ("M-n" . term-send-down)
     ("M-M" . term-send-forward-kill-word)
     ("M-N" . term-send-backward-kill-word)
-    ("C-r" . term-send-reverse-search-history)
+    ("M-r" . term-send-reverse-search-history)
     ("M-," . term-send-input)
     ("M-." . comint-dynamic-complete))
   "The key alist that will need to be bind.
 If you do not like default setup, modify it, with (KEY . COMMAND) format."
   :type 'alist
   :group 'multi-term)
-
-;; (defcustom term-bind-key-alist
-;;   '(
-;;     ("C-c C-c" . term-interrupt-subjob)
-;;     ("C-p" . previous-line)
-;;     ("C-n" . next-line)
-;;     ("C-s" . isearch-forward)
-;;     ("C-r" . isearch-backward)
-;;     ("C-m" . term-send-raw)
-;;     ("M-f" . term-send-forward-word)
-;;     ("M-b" . term-send-backward-word)
-;;     ("M-o" . term-send-backspace)
-;;     ("M-p" . term-send-up)
-;;     ("M-n" . term-send-down)
-;;     ("M-M" . term-send-forward-kill-word)
-;;     ("M-N" . term-send-backward-kill-word)
-;;     ("M-r" . term-send-reverse-search-history)
-;;     ("M-," . term-send-input)
-;;     ("M-." . comint-dynamic-complete))
-;;   "The key alist that will need to be bind.
-;; If you do not like default setup, modify it, with (KEY . COMMAND) format."
-;;   :type 'alist
-;;   :group 'multi-term)
 
 (defcustom multi-term-dedicated-window-height 14
   "The height of `multi-term' dedicated window."
@@ -406,18 +389,21 @@ Will prompt you shell name when you type `C-u' before this command."
     ;; Switch buffer
     (switch-to-buffer term-buffer)))
 
+;;;###autoload
 (defun multi-term-next (&optional offset)
   "Go to the next term buffer.
 If OFFSET is `non-nil', will goto next term buffer with OFFSET."
   (interactive "P")
   (multi-term-switch 'NEXT (or offset 1)))
 
+;;;###autoload
 (defun multi-term-prev (&optional offset)
   "Go to the previous term buffer.
 If OFFSET is `non-nil', will goto previous term buffer with OFFSET."
   (interactive "P")
   (multi-term-switch 'PREVIOUS (or offset 1)))
 
+;;;###autoload
 (defun multi-term-dedicated-open ()
   "Open dedicated `multi-term' window.
 Will prompt you shell name when you type `C-u' before this command."
@@ -476,6 +462,7 @@ Will prompt you shell name when you type `C-u' before this command."
              (<= win-height multi-term-dedicated-max-window-height))
         (setq multi-term-dedicated-window-height win-height))))
 
+;;;###autoload
 (defun multi-term-dedicated-toggle ()
   "Toggle dedicated `multi-term' window."
   (interactive)
@@ -483,6 +470,7 @@ Will prompt you shell name when you type `C-u' before this command."
       (multi-term-dedicated-close)
     (multi-term-dedicated-open)))
 
+;;;###autoload
 (defun multi-term-dedicated-select ()
   "Select the `multi-term' dedicated window."
   (interactive)
@@ -514,6 +502,17 @@ Will prompt you shell name when you type `C-u' before this command."
   "Search history reverse."
   (interactive)
   (term-send-raw-string "\C-r"))
+
+(defun term-send-quote ()
+  "Quote the next character in term-mode.
+Similar to how `quoted-insert' works in a regular buffer."
+  (interactive)
+  (term-send-raw-string "\C-v"))
+
+(defun term-send-M-x ()
+  "Type M-x in term-mode."
+  (interactive)
+  (term-send-raw-string "\ex"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Utilise Functions ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun multi-term-internal ()

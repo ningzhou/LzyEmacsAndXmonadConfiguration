@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; python-mode-setting.el ---
-;; Time-stamp: <2013-03-21 14:37:38 Thursday by lzy>
+;; Time-stamp: <2013-03-21 18:15:40 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -36,7 +36,8 @@
   ;; setting
   ;; key bindings
   (lazy-set-key
-   '(("C-j" . newline-and-indent)
+   '(("<return>" . newline-and-indent)
+     ("C-j" . newline-and-indent)
      ("C-c C-c" . comment)
      ("C-c k" . uncomment))
    python-mode-map))
