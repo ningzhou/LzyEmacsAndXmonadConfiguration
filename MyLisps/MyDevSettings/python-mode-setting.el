@@ -1,10 +1,13 @@
+;; -*- Emacs-Lisp -*-
 ;;; python-mode-setting.el ---
-;; Time-stamp: <2012-12-07 06:36:13 Friday by lzy>
+;; Time-stamp: <2013-03-21 14:37:38 Thursday by lzy>
 
-;; Copyright (C) 2012 zhengyu li
+;; Copyright (C) 2013 zhengyu li
 ;;
 ;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,29 +24,27 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'python-mode-setting)
 
 ;;; Code:
 
-
-(provide 'python-mode-setting)
-
 (defun python-mode-setting ()
   "setting for python mode"
   ;; setting
+  ;; key bindings
   (lazy-set-key
-   '(("RET" . newline-and-indent)
-     ("C-j" . newline-and-indent)
+   '(("C-j" . newline-and-indent)
      ("C-c C-c" . comment)
      ("C-c k" . uncomment))
-   python-mode-map)
-  )
+   python-mode-map))
 
 (eval-after-load "python"
   '(python-mode-setting))
 
-;;; python-mode-setting.el ends here
+;;; provide features
+(provide 'python-mode-setting)
 
+;;; python-mode-setting.el ends here

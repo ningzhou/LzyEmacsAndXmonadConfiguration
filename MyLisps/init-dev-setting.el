@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-dev-setting.el ---
-;; Time-stamp: <2013-03-21 16:00:28 Thursday by lzy>
+;; Time-stamp: <2013-03-21 16:21:32 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -32,26 +32,29 @@
 ;;; Code:
 
 ;; required features
+(require 'autopair-setting)            ;; autopair setting
+(require 'parenthese-setting)          ;; parenthese setting
+(require 'which-func-setting)          ;; which func setting
+(require 'font-lock-setting)           ;; font lock setting
+(require 'etags-setting)               ;; etags setting
+(require 'hex-color-setting)           ;; hex color display setting
+(require 'hideshow-setting)            ;; hide/show setting
+(require 'ifdef-setting)               ;; ifdef setting
+(require 'ctypes-setting)              ;; ctypes setting
+(require 'doxymacs-setting)            ;; setting for doxymacs
+(require 'xcscope-setting)             ;; c code navigation setting
+(require 'compile-setting)             ;; setting for smart compile
+(require 'gud-setting)                 ;; gdb setting
 (require 'cc-mode-setting)             ;; CC mode setting
-(require 'c&c++-mode-setting)          ;; common setting for c&c++ mode
+(require 'c-c++-mode-setting)          ;; common setting for c&c++ mode
+(require 'lisp-mode-setting)           ;; lisp realted setting
 (require 'autoconf-mode-setting)       ;; autoconf setting
 (require 'sql-mode-setting)            ;; sql mode setting
 (require 'nxml-mode-setting)           ;; xml mode setting
 (require 'html-mode-setting)           ;; html mode setting
 (require 'python-mode-setting)         ;; python mode
 (require 'sh-mode-setting)             ;; shell mode setting
-(require 'emacs-lisp-mode-setting)     ;; all lisp realted setting
 (require 'haskell-mode-setting)        ;; haskell mode setting
-(require 'hideshow-setting)            ;; hide/show setting
-(require 'xcscope-setting)             ;; c code navigation setting
-(require 'doxymacs-setting)            ;; setting for doxymacs
-(require 'flymake-setting)             ;; flymake setting
-(require 'gud-setting)                 ;; gdb setting
-(require 'eclim-setting)               ;; eclispse mode for emacs
-(require 'compile-setting)             ;; setting for smart compile
-(require 'font-lock-setting)           ;; highlight symbol and function
-(require 'ctypes-setting)              ;; ctypes setting
-(require 'hex-colour-setting)          ;; hex color display setting
 
 ;;; provide features
 (provide 'init-dev-setting)

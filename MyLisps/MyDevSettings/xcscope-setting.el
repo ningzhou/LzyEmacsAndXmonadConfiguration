@@ -1,10 +1,13 @@
-;;; eclim-setting.el --- 
-;; Time-stamp: <2012-12-07 06:33:32 Friday by lzy>
+;; -*- Emacs-Lisp -*-
+;;; xcscope-setting.el ---
+;; Time-stamp: <2013-03-21 12:47:09 Thursday by lzy>
 
-;; Copyright (C) 2012  zhengyu li
-
+;; Copyright (C) 2013 zhengyu li
+;;
 ;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,27 +24,22 @@
 
 ;;; Commentary:
 
-;; 
+;;
+
+;; Put this file into your load-path and the following into your ~/.emacs:
+;;   (require 'xcscope-setting)
 
 ;;; Code:
 
-
-(provide 'eclim-setting)
-
-
-(defun eclim-mode-setting ()
-  "setting for eclim mode"
+(defun xcscope-setting ()
+  "setting for cscope"
   ;; required features
-  (require 'eclim)
+  (require 'xcscope))
 
-  ;; setting
-  (eclim-mode t)
-  (setq eclim-auto-save t)
-  )
+(add-hook 'c-mode-hook 'xcscope-setting)
+(add-hook 'c++-mode-hook 'xcscope-setting)
 
-(add-hook 'lisp-mode-hook 'eclim-mode-setting)
-(add-hook 'emacs-lisp-mode-hook 'eclim-mode-setting)
-(add-hook 'lisp-interaction-mode-hook 'eclim-mode-setting)
-(add-hook 'c-mode-common-hook 'eclim-mode-setting)
+;;; provide features
+(provide 'xcscope-setting)
 
-;;; eclim-setting.el ends here
+;;; xcscope-setting.el ends here

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
-;;; sh-mode-setting.el ---
-;; Time-stamp: <2013-03-21 14:39:56 Thursday by lzy>
+;;; font-lock-setting.el ---
+;; Time-stamp: <2013-03-21 11:33:50 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -27,28 +27,21 @@
 ;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'sh-mode-setting)
+;;   (require 'font-lock-setting)
 
 ;;; Code:
 
-(defun sh-mode-setting ()
-  "settings for `sh-mode'."
-  ;; settings
-  (font-lock-add-keywords 'sh-mode
-                          '(("\\<\\(local\\|let\\)\\>" . font-lock-keyword-face)))
+(require 'zjl-hl)
 
-  ;; key bindings
-  (lazy-set-key
-   '(("C-c M-c" . sh-case)
-     ("C-c C-c" . comment)
-     ("C-c k"   . uncomment)
-     ("C-j" . newline-and-indent))
-   sh-mode-map))
+(setq zjl-hl-c++-mode-keywords zjl-hl-c-mode-keywords)
 
-(eval-after-load "sh-script"
-  '(sh-mode-setting))
+(global-font-lock-mode t)
+;; zjl highlight setting
+(zjl-hl-enable-global 'c-mode)
+(zjl-hl-enable-global 'c++-mode)
+(zjl-hl-enable-global 'emacs-lisp-mode)
 
 ;;; provide features
-(provide 'sh-mode-setting)
+(provide 'font-lock-setting)
 
-;;; sh-mode-setting.el ends here
+;;; font-lock-setting.el ends here

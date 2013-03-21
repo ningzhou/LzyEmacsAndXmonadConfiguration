@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyBasic.el ---
-;; Time-stamp: <2013-03-15 11:23:01 Friday by lzy>
+;; Time-stamp: <2013-03-21 15:40:53 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -38,11 +38,29 @@
 (require 'uniquify)
 (require 'saveplace)
 (require 'ansi-color)
+(require 'edit-misc)
+(require 'thing-edit-extension)
 
 (defun get-mode-name ()
   "display `major-mode' and `mode-name'"
   (interactive)
   (message "major-mode: %s, mode-name: %s" major-mode mode-name))
+
+(defun indent-whole-buffer ()
+  "indent whole buffer"
+  (interactive)
+  (save-excursion
+    (indent-region (point-min) (point-max))))
+
+(defun kill-buffer-when-shell-command-exit ()
+  "Close current buffer when `shell-command' exit."
+  (let ((process (ignore-errors (get-buffer-process (current-buffer)))))
+    (when process
+      (set-process-sentinel
+       process
+       (lambda (proc change)
+         (when (string-match "\\(finished\\|exited\\)" change)
+           (kill-buffer (process-buffer proc))))))))
 
 (defun get-current-word ()
   (interactive)

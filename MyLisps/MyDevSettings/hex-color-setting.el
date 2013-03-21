@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
-;;; hex-colour-setting.el ---
-;; Time-stamp: <2012-12-07 06:34:21 Friday by lzy>
+;;; hex-color-setting.el ---
+;; Time-stamp: <2013-03-21 12:04:51 Thursday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 zhengyu li
 ;;
-;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Author: zhengyu li <lizhengyu419@gmail.com>
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,32 +24,32 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'hex-colour-setting)
 
 ;;; Code:
 
-
-(provide 'hex-colour-setting)
-
-
 (defvar hexcolor-keywords
   '(("#[[:xdigit:]]\\{6\\}"
-     (0 (put-text-property (match-beginning 0)
-                           (match-end 0)
-                           'face (list :background 
-                                       (match-string-no-properties 0)))))))
+     (0 (put-text-property
+         (match-beginning 0)
+         (match-end 0)
+         'face (list :background 
+                     (match-string-no-properties 0))))))
+  "keywords for hexcolor")
 
-(defun hexcolor-add-to-font-lock ()
+(defun hexcolor-init ()
   (font-lock-add-keywords nil hexcolor-keywords))
 
-(dolist (hook '(html-mode-hook
-                nxml-mode-hook
-                lisp-mode-hook
-                emacs-lisp-mode-hook
-                lisp-interaction-mode-hook))
-  (add-hook hook 'hexcolor-add-to-font-lock))
+(add-hook 'html-mode-hook 'hexcolor-init)
+(add-hook 'nxml-mode-hook 'hexcolor-init)
+(add-hook 'lisp-mode-hook 'hexcolor-init)
+(add-hook 'emacs-lisp-mode-hook 'hexcolor-init)
+(add-hook 'lisp-interaction-mode-hook 'hexcolor-init)
 
-;;; hex-colour-setting.el ends here
+;;; provide features
+(provide 'hex-color-setting)
+
+;;; hex-color-setting.el ends here

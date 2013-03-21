@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
-;;; font-lock-setting.el ---
-;; Time-stamp: <2013-03-21 15:58:38 Thursday by lzy>
+;;; ifdef-setting.el ---
+;; Time-stamp: <2013-03-21 13:50:49 Thursday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 zhengyu li
 ;;
-;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Author: zhengyu li <lizhengyu419@gmail.com>
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,29 +24,31 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'font-lock-setting)
+;;   (require 'ifdef-setting)
 
 ;;; Code:
 
+(defun ifdef-setting ()
+  "settings for ifdef"
+  ;; required features
+  (require 'ifdef)
+  (require 'hide-ifdef)
+  ;; settings
+  ;; key bindings
+  (lazy-set-key
+   '(("C-c i h" . hide-ifdef-block)
+     ("C-c i H" . hide-ifdefs)
+     ("C-c i e" . show-ifdef-block)
+     ("C-c i E" . show-ifdefs)
+     ("C-c i m" . mark-ifdef))
+   c-mode-base-map))
 
-(provide 'font-lock-setting)
+(add-hook 'c-mode-common-hook 'ifdef-setting)
 
+;;; provide features
+(provide 'ifdef-setting)
 
-;; required features
-(require 'zjl-hl-extended-by-lzy)
-
-(defun c/c++-font-lock-setting ()
-  "setting for font lock"
-  (setq zjl-hl-c-mode-enable-flag t)
-  (setq zjl-hl-c++-mode-enable-flag t)
-  (setq zjl-hl-c++-mode-keywords zjl-hl-c-mode-keywords)
-  (zjl-hl-enable-global-all-modes)
-  )
-
-(eval-after-load "font-lock-setting"
-  '(c/c++-font-lock-setting))
-
-;;; font-lock-setting.el ends here
+;;; ifdef-setting.el ends here

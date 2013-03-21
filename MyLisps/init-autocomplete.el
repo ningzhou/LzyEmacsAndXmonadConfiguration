@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-autocomplete.el ---
-;; Time-stamp: <2013-03-20 07:15:13 Wednesday by lzy>
+;; Time-stamp: <2013-03-21 16:34:24 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -58,7 +58,11 @@
                     (concat "-I" item))
                   (split-string
                    (concat "./\n./include\n../include\n../../include\n../../../include\n"
-                           result))))))
+                           result))))
+    ;; kill command history buffer
+    (if (get-buffer ".bash_history")
+        (kill-buffer ".bash_history"))
+    ))
 
 (defadvice ac-error
   (after reopen-ac-mode activate)
@@ -80,7 +84,7 @@
   "auto-complete settings for cc mode"
   (setq ac-sources
         (append
-         '(ac-source-gtags)
+         '(ac-source-features)
          ac-sources)))
 
 (defun ac-settings-4-c/c++ ()
@@ -147,7 +151,7 @@
   "Settings for `auto-complete'."
   (setq ac-dwim t)
   (setq ac-auto-start 2)
-  (setq ac-auto-show-menu 0.8)
+  (setq ac-auto-show-menu 0.4)
   (setq ac-disable-faces nil)
   (setq ac-quick-help-delay 0.5)
   (setq help-xref-following nil)

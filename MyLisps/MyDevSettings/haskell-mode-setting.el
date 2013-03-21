@@ -1,10 +1,13 @@
+;; -*- Emacs-Lisp -*-
 ;;; haskell-mode-setting.el ---
-;; Time-stamp: <2012-12-07 06:34:13 Friday by lzy>
+;; Time-stamp: <2013-03-21 15:43:20 Thursday by lzy>
 
-;; Copyright (C) 2012 zhengyu li
+;; Copyright (C) 2013 zhengyu li
 ;;
 ;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,22 +24,23 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'haskell-mode-setting)
 
 ;;; Code:
 
+;;; required features:
+(load "/home/lzy/My_Software_Dir/LzyEmacsAndXmonadConfiguration/MySiteLisps/HaskellMode/haskell-mode-2.8.0/haskell-site-file.el")
 
+(add-hook 'haskell-mode-hook 'turn-on-font-lock)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-ghci)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-hugs)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+
+;;; provide features
 (provide 'haskell-mode-setting)
 
-
-;;; required features:
-(load (concat my-emacs-site-lisps-path "HaskellMode/haskell-mode-2.8.0/haskell-site-file"))
-
-(add-hook 'haskell-mode-hook 'turn-on-font-lock)             ;高亮模式
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)        ;智能缩进模式
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)      ;文档模式
-
-;;; init-haskell.el ends here
+;;; haskell-mode-setting.el ends here

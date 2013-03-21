@@ -1,10 +1,13 @@
-;;; gud-setting.el --- 
-;; Time-stamp: <2012-12-07 06:34:05 Friday by lzy>
+;; -*- Emacs-Lisp -*-
+;;; gud-setting.el ---
+;; Time-stamp: <2013-03-21 12:51:35 Thursday by lzy>
 
-;; Copyright (C) 2012  zhengyu li
-
+;; Copyright (C) 2013 zhengyu li
+;;
 ;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,34 +24,23 @@
 
 ;;; Commentary:
 
-;; 
+;;
+
+;; Put this file into your load-path and the following into your ~/.emacs:
+;;   (require 'gud-setting)
 
 ;;; Code:
 
-
-(provide 'gud-setting)
-
-
 (defun gud-setting ()
   "setting for gud"
-  ;; func definitions
-  (defun kill-buffer-when-shell-command-exit ()
-    "Close current buffer when `shell-command' exit."
-    (let ((process (ignore-errors (get-buffer-process (current-buffer)))))
-      (when process
-        (set-process-sentinel process
-                              (lambda (proc change)
-                                (when (string-match "\\(finished\\|exited\\)" change)
-                                  (kill-buffer (process-buffer proc))))))))
-
   ;; setting
-  ;; 退出gdb的时候关闭gdb对应的buffer
   (add-hook 'gud-gdb-mode-hook 'kill-buffer-when-shell-command-exit)
-  ;; 显示gdb的鼠标提示
-  (gud-tooltip-mode 1)
-  )
+  (gud-tooltip-mode 1))
 
 (eval-after-load "gud"
   '(gud-setting))
+
+;;; provide features
+(provide 'gud-setting)
 
 ;;; gud-setting.el ends here

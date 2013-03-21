@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
-;;; flymake-setting.el ---
-;; Time-stamp: <2013-03-16 22:04:10 Saturday by lzy>
+;;; doxymacs-setting.el ---
+;; Time-stamp: <2013-03-21 12:45:21 Thursday by lzy>
 
-;; Copyright (C) 2012 zhengyu li
+;; Copyright (C) 2013 zhengyu li
 ;;
 ;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,19 +24,38 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'flymake-setting)
+;;   (require 'doxymacs-setting)
 
 ;;; Code:
 
-
-(provide 'flymake-setting)
-
-
 ;; required features
-(require 'flymake-shell)
-;;(require 'flymake-extension)
 
-;;; flymake-setting.el ends here
+(defun doxymacs-java-style ()
+  "doxygen style for c"
+  ;; required features
+  (require 'doxymacs)
+  ;; settings
+  (doxymacs-mode 1)
+  (doxymacs-font-lock)
+  (setq doxymacs-doxygen-style "JavaDoc"))
+
+(defun doxymacs-C++-style ()
+  "doxygen style for c"
+  ;; required features
+  (require 'doxymacs)
+  ;; settings
+  (doxymacs-mode 1)
+  (doxymacs-font-lock)
+  (setq doxymacs-doxygen-style "C++"))
+
+(add-hook 'c-mode-hook 'doxymacs-java-style)
+(add-hook 'c++-mode-hook 'doxymacs-C++-style)
+(add-hook 'java-mode-hook 'doxymacs-java-style)
+
+;;; provide features
+(provide 'doxymacs-setting)
+
+;;; doxymacs-setting.el ends here

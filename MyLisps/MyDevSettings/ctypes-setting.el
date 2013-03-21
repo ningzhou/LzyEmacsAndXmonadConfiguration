@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
-;;; xcscope-setting.el ---
-;; Time-stamp: <2013-03-02 06:44:14 Saturday by lzy>
+;;; ctypes-setting.el ---
+;; Time-stamp: <2013-03-21 12:33:59 Thursday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 zhengyu li
 ;;
-;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Author: zhengyu li <lizhengyu419@gmail.com>
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,22 +24,27 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'xcscope-setting)
+;;   (require 'ctypes-setting)
 
 ;;; Code:
 
+(defun ctypes-setting ()
+  "settings for ctypes"
+  ;;; required features:
+  (require 'ctypes)
+  ;; setting
+  (setq ctypes-write-types-at-exit t)
+  (setq ctypes-file-name "~/.emacs.d/ctypes")
+  (ctypes-auto-parse-mode 1)
+  (ctypes-read-file nil nil t t))
 
-(provide 'xcscope-setting)
+(add-hook 'c-mode-hook 'ctypes-setting)
+(add-hook 'c++-mode-hook 'ctypes-setting)
 
+;;; provide features
+(provide 'ctypes-setting)
 
-(defun xcscope-setting ()
-  "setting for cscope"
-  ;; required features
-  (require 'xcscope))
-
-(add-hook 'c-mode-common-hook 'xcscope-setting)
-
-;;; xcscope-setting.el ends here
+;;; ctypes-setting.el ends here

@@ -1,10 +1,13 @@
-;;; compile-setting.el --- 
-;; Time-stamp: <2012-12-07 06:33:02 Friday by lzy>
+;; -*- Emacs-Lisp -*-
+;;; compile-setting.el ---
+;; Time-stamp: <2013-03-21 13:07:14 Thursday by lzy>
 
-;; Copyright (C) 2012  zhengyu li
-
+;; Copyright (C) 2013 zhengyu li
+;;
 ;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,80 +24,39 @@
 
 ;;; Commentary:
 
-;; 
+;;
+
+;; Put this file into your load-path and the following into your ~/.emacs:
+;;   (require 'compile-setting)
 
 ;;; Code:
 
+(defun compile-setting ()
+  "compile setting for c/c++ mode"
+  ;; required features
+  (require 'smart-compile)
 
+  ;; settings
+  (setq compilation-scroll-output t)
+
+  ;; key bindings
+  (lazy-set-key
+   '(("M-p"     . previous-error)
+     ("M-n"     . next-error))
+   compilation-mode-map)
+
+  (lazy-set-key
+   '(("C-c C-m" . smart-compile)
+     ("C-c C-b" . compile-buffer)
+     ("M-p"     . previous-error)
+     ("M-n"     . next-error))
+   c-mode-base-map))
+
+(add-hook 'c-mode-hook 'compile-setting)
+(add-hook 'c++-mode-hook 'compile-setting)
+(add-hook 'java-mode-hook 'compile-setting)
+
+;;; provide features
 (provide 'compile-setting)
 
-
-;; required features
-(require 'compile-misc)
-(require 'smart-compile)
-
-(setq compile-command "make -k")
-(setq compilation-scroll-output t)
-
-(lazy-set-key
- '(("M-p"     . previous-error)
-   ("M-n"     . next-error))
- compilation-mode-map)
-
-(defun c-mode-compile-setting ()
-  "compile setting for c/c++ mode"
-  (lazy-set-key
-   '(("C-c C-m" . make)
-     ("C-c C-b" . compile-buffer)
-     ("C-c C-r" . run-program)
-     ("M-p"     . previous-error)
-     ("M-n"     . next-error)
-     ("<f5>"    . smart-compile)
-     ("<f7>"    . gdb))
-   c-mode-map)
-  )
-
-(defun c++-mode-compile-setting ()
-  "compile setting for c/c++ mode"
-  (lazy-set-key
-   '(("C-c C-m" . make)
-     ("C-c C-b" . compile-buffer)
-     ("C-c C-r" . run-program)
-     ("M-p"     . previous-error)
-     ("M-n"     . next-error)
-     ("<f5>"    . smart-compile)
-     ("<f7>"    . gdb))
-   c++-mode-map)
-  )
-
-(defun java-mode-compile-setting ()
-  "compile setting for java mode"
-  (lazy-set-key
-   '(("C-c C-m" . ant)
-     ("C-c C-b" . compile-buffer)
-     ("C-c C-t" . ant-test)
-     ("C-c C-r" . run-program)
-     ("M-p"     . previous-error)
-     ("M-n"     . next-error)
-     ("<f5>"    . smart-compile))
-   java-mode-map)
-  )
-
-(defun ruby-mode-compile-setting ()
-  "compile setting for ruby mode"
-  (lazy-set-key
-   '(("C-c C-m" . make)
-     ("C-c C-b" . compile-buffer)
-     ("C-c C-r" . run-program)
-     ("M-p"     . previous-error)
-     ("M-n"     . next-error)
-     ("<f5>"    . smart-compile)
-     ("<f7>"    . gdb))
-   ruby-mode-map)
-  )
-
-(add-hook 'c-mode-hook 'c-mode-compile-setting)
-(add-hook 'c++-mode-hook 'c++-mode-compile-setting)
-(add-hook 'java-mode-hook 'java-mode-compile-setting)
-(add-hook 'ruby-mode-hook 'ruby-mode-compile-setting)
 ;;; compile-setting.el ends here

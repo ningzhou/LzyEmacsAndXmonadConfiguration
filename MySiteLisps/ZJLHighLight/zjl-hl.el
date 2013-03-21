@@ -1,7 +1,45 @@
-;;;  This package can highlight variable and function call and others in c/emacs, make life easy
-;; to enable this package, add this two lines into your .emacs:
-;; (require 'zjl-hl)
-;; (zjl-hl-enable-global-all-modes);(zjl-hl-disable-global-all-modes)
+;; -*- Emacs-Lisp -*-
+;;; zjl-hl.el ---
+;; Time-stamp: <2013-03-21 11:26:56 Thursday by lzy>
+
+;; Copyright (C) 2013 zjl
+;;
+;; Author: zjl
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+;; Modified by chieftain <lizhengyu419@gmail.com>
+;; add additional c/c++ keywords
+
+;; Put this file into your load-path and the following into your ~/.emacs:
+;;   (require 'zjl-hl)
+
+;;; Code:
+
+
+
+;;; provide features
+(provide 'zjl-hl)
+
+;;; zjl-hl.el ends here
+
+
 
 ;;;###autoload
 ;;; begin lisp code
@@ -355,9 +393,6 @@ enough performance."
   "*Face used for link privilege indicator (l) in dired buffers."
   :group 'zjl-hl-faces)
 (defvar zjl-hl-elisp-function-call-face 'zjl-hl-elisp-function-call-face)
-;; (defvar zjl-hl-elisp-function-call-face 'font-lock-function-name-face)
-;;(setq zjl-hl-elisp-function-call-face 'zjl-hl-elisp-function-call-face9)
-
 
 (defface zjl-hl-elisp-setq-face
   '((((class color)
@@ -371,7 +406,6 @@ enough performance."
   "*Face used for link privilege indicator (l) in dired buffers."
   :group 'zjl-hl-faces)
 (defvar zjl-hl-elisp-setq-face 'zjl-hl-elisp-setq-face)
-                                        ;(setq zjl-hl-elisp-setq-face 'zjl-hl-elisp-setq-face6)
 
 (defface zjl-hl-elisp-number-face
   '((((class color)
@@ -873,5 +907,5 @@ enough performance."
         )
       pos-pair)))
 
-(provide 'zjl-hl-extended-by-lzy)
+(provide 'zjl-hl)
 ;;; end lisp code 

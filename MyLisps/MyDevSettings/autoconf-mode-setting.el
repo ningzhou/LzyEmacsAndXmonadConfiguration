@@ -1,10 +1,13 @@
-;;; autoconf-mode-setting.el --- 
-;; Time-stamp: <2012-12-07 06:32:26 Friday by lzy>
+;; -*- Emacs-Lisp -*-
+;;; autoconf-mode-setting.el ---
+;; Time-stamp: <2013-03-21 14:31:50 Thursday by lzy>
 
-;; Copyright (C) 2012  zhengyu li
-
+;; Copyright (C) 2013 zhengyu li
+;;
 ;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,23 +24,24 @@
 
 ;;; Commentary:
 
-;; 
+;;
+
+;; Put this file into your load-path and the following into your ~/.emacs:
+;;   (require 'autoconf-mode-setting)
 
 ;;; Code:
-
-
-(provide 'autoconf-mode-setting)
-
 
 (defun autoconf-mode-setting ()
   "setting for autoconf"
   (lazy-set-key
    '(("C-c C-c" . comment)
      ("C-c k" . uncomment))
-   autoconf-mode-map)
-  )
+   autoconf-mode-map))
 
 (eval-after-load "autoconf"
   '(autoconf-mode-setting))
 
-;;; autoconf-mode-setting ends here
+;;; provide features
+(provide 'autoconf-mode-setting)
+
+;;; autoconf-mode-setting.el ends here

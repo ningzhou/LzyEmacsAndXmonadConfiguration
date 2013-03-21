@@ -1,10 +1,13 @@
-;;; sql-mode-setting.el --- 
-;; Time-stamp: <2012-12-07 06:36:41 Friday by lzy>
+;; -*- Emacs-Lisp -*-
+;;; sql-mode-setting.el ---
+;; Time-stamp: <2013-03-21 14:34:00 Thursday by lzy>
 
-;; Copyright (C) 2012  zhengyu li
-
+;; Copyright (C) 2013 zhengyu li
+;;
 ;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,23 +24,26 @@
 
 ;;; Commentary:
 
-;; 
+;;
+
+;; Put this file into your load-path and the following into your ~/.emacs:
+;;   (require 'sql-mode-setting)
 
 ;;; Code:
 
-
-(provide 'sql-mode-setting)
-
-
-(defun sql-setting ()
-  "Setting for `sql'."
-  ;; setting
+(defun sql-mode-setting ()
+  "settings for `sql'."
+  ;; settings
+  ;; key bindings
   (lazy-set-key
    '(("M-m" . comint-previous-matching-input)
      ("M-M" . comint-next-matching-input))
    sql-interactive-mode-map))
 
 (eval-after-load "sql"
-  '(sql-setting))
+  '(sql-mode-setting))
+
+;;; provide features
+(provide 'sql-mode-setting)
 
 ;;; sql-mode-setting.el ends here

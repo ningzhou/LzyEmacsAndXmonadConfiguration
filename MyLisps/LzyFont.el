@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyFont.el ---
-;; Time-stamp: <2013-03-15 10:47:49 Friday by lzy>
+;; Time-stamp: <2013-03-21 16:00:56 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -58,9 +58,7 @@
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font)
                       charset
-                      default-zh-font))
-
-  )
+                      default-zh-font)))
 
 ;; gloal font setting
 (if window-system

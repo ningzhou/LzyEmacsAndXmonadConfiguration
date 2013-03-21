@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-dired.el ---
-;; Time-stamp: <2013-03-19 09:30:50 Tuesday by lzy>
+;; Time-stamp: <2013-03-21 10:13:28 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -48,6 +48,8 @@
   (setq dired-recursive-copies 'always)
   (setq dired-recursive-deletes 'always)
   (setq dired-details-initially-hide nil)
+  (setq buffer-face-mode-face
+        '(:family "Monospace" :height 1.05 :foreground "grey90" :weight normal))
   (setq dired-omit-files
         (concat dired-omit-files "\\|^\\.\\|^semantic.cache$\\|^CVS$"))
   (setq dired-guess-shell-alist-user
@@ -59,6 +61,7 @@
   
   (diredp-toggle-find-file-reuse-dir 1)
   (dired-omit-mode t)
+  (buffer-face-mode)
 
   ;; key bindings
   (lazy-unset-key 
@@ -117,12 +120,7 @@
      ("C-x d"       . ido-dired)
      (";"           . dired-view-minor-mode-toggle)
      (":"           . dired-view-minor-mode-dired-toggle))
-   dired-mode-map)
-
-  ;; face mode setting
-  (setq buffer-face-mode-face
-        '(:family "Monospace" :height 1.05 :foreground "grey90" :weight normal))
-  (buffer-face-mode))
+   dired-mode-map))
 
 (autoload 'wuxch-dired-load-hook "wuxch-dired-extension" nil nil)
 (autoload 'his-dired-sort "wuxch-dired-extension" nil nil)

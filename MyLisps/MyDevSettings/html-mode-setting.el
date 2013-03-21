@@ -1,10 +1,13 @@
-;;; html-mode-setting.el --- 
-;; Time-stamp: <2012-12-07 06:34:37 Friday by lzy>
+;; -*- Emacs-Lisp -*-
+;;; html-mode-setting.el ---
+;; Time-stamp: <2013-03-21 14:36:44 Thursday by lzy>
 
-;; Copyright (C) 2012  zhengyu li
-
+;; Copyright (C) 2013 zhengyu li
+;;
 ;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,19 +24,17 @@
 
 ;;; Commentary:
 
-;; 
+;;
+
+;; Put this file into your load-path and the following into your ~/.emacs:
+;;   (require 'html-mode-setting)
 
 ;;; Code:
 
-
-(provide 'html-mode-setting)
-
-
-(defun html-setting ()
-  "setting for html"
+(defun html-mode-setting ()
+  "settings for html mode"
   (add-to-list 'auto-mode-alist '("\\.jsp$" . html-mode))
   (add-to-list 'auto-mode-alist '("\\.css$" . html-mode))
-  (add-to-list 'auto-mode-alist '("\\.cfm$" . html-mode))
 
   (defun w3m-browse-current-buffer ()
     (interactive)
@@ -52,11 +53,14 @@
   (lazy-set-key
    '(("C-j" . newline-and-indent)
      ("C-c k" . uncomment)
+     ("C-c C-c" . comment)
      ("C-c C-w" . w3m-browse-current-buffer))
-   sgml-mode-map)
-  )
+   sgml-mode-map))
 
 (eval-after-load "sgml-mode"
-  '(html-setting))
+  '(html-mode-setting))
+
+;;; provide features
+(provide 'html-mode-setting)
 
 ;;; html-mode-setting.el ends here

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
-;;; sh-mode-setting.el ---
-;; Time-stamp: <2013-03-21 14:39:56 Thursday by lzy>
+;;; etags-setting.el ---
+;; Time-stamp: <2013-03-21 11:55:23 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -27,28 +27,30 @@
 ;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'sh-mode-setting)
+;;   (require 'etag-setting)
 
 ;;; Code:
 
-(defun sh-mode-setting ()
-  "settings for `sh-mode'."
-  ;; settings
-  (font-lock-add-keywords 'sh-mode
-                          '(("\\<\\(local\\|let\\)\\>" . font-lock-keyword-face)))
+(require 'etags-extension)
 
-  ;; key bindings
-  (lazy-set-key
-   '(("C-c M-c" . sh-case)
-     ("C-c C-c" . comment)
-     ("C-c k"   . uncomment)
-     ("C-j" . newline-and-indent))
-   sh-mode-map))
+(setq tags-default-target-directory "~/My_Software_Dir/LzyEmacsAndXmonadConfiguration/")
+(setq tags-default-storage-directory "~/.emacs.d/Etags")
+(setq tags-default-suffix "*.el")
 
-(eval-after-load "sh-script"
-  '(sh-mode-setting))
+(unless (file-exists-p tags-default-storage-directory)
+  (make-directory tags-default-storage-directory t))
+
+(lazy-set-key
+ '(("M-," . nil))
+ esc-map)
+
+(lazy-set-key
+ '(("<f7>" . generate-tag-table)
+   ("C-<f7>" . generate-tag-table-of-emacs)
+   ("M-." . find-tag)
+   ("M-," . pop-tag-mark)))
 
 ;;; provide features
-(provide 'sh-mode-setting)
+(provide 'etags-setting)
 
-;;; sh-mode-setting.el ends here
+;;; etags-setting.el ends here

@@ -1,10 +1,13 @@
-;;; nxml-mode-setting.el --- 
-;; Time-stamp: <2012-12-07 06:34:44 Friday by lzy>
+;; -*- Emacs-Lisp -*-
+;;; nxml-mode-setting.el ---
+;; Time-stamp: <2013-03-21 14:35:07 Thursday by lzy>
 
-;; Copyright (C) 2012  zhengyu li
-
+;; Copyright (C) 2013 zhengyu li
+;;
 ;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,17 +24,16 @@
 
 ;;; Commentary:
 
-;; 
+;;
+
+;; Put this file into your load-path and the following into your ~/.emacs:
+;;   (require 'nxml-mode-setting)
 
 ;;; Code:
 
-
-(provide 'nxml-mode-setting)
-
-
-(defun nxml-setting ()
-  "setting for nxml"
-  ;; setting
+(defun nxml-mode-setting ()
+  "settings for nxml mode"
+  ;; settings
   (setq nxml-child-indent 4)
   (setq nxml-attribute-indent 8)
   (setq nxml-sexp-element-flag t)
@@ -40,16 +42,17 @@
   (setq nxml-prefer-utf-16-to-utf-8-flag nil)
   (setq nxml-auto-insert-xml-declaration-flag t)
 
+  ;; key bindings
   (lazy-set-key
    '(("C-j" . newline-and-indent)
-     ("RET" . newline-and-indent)
      ("C-c C-c" . comment)
      ("C-c k" . uncomment))
-   nxml-mode-map)
-  )
+   nxml-mode-map))
 
 (eval-after-load "nxml-mode"
   '(nxml-setting))
 
-;;; nxml-mode-setting.el ends here
+;;; provide features
+(provide 'nxml-mode-setting)
 
+;;; nxml-mode-setting.el ends here

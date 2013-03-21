@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-03-21 16:00:47 Thursday by lzy>
+;; Time-stamp: <2013-03-21 16:18:47 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -91,11 +91,8 @@
 (require 'init-doubanfm)                     ;; douban fm setting
 (require 'init-weather)                      ;; show weather in mode line
 (require 'init-one-key)                      ;; key binding setting for one key menu
-
 (require 'init-dev-setting)                  ;; setting for programming environment
-(require 'init-etags-extension)              ;; etags extension
-(require 'init-edit-setting)                 ;; edit setting for all buffer
-(require 'init-misc)                         ;; other setting
+(require 'init-misc)                         ;; misc setting
 
 ;;; provide features
 (provide 'LzySetup)

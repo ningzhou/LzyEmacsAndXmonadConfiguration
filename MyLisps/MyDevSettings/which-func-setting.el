@@ -1,10 +1,13 @@
-;;; ctypes-setting.el ---
-;; Time-stamp: <2012-12-07 06:29:02 Friday by lzy>
+;; -*- Emacs-Lisp -*-
+;;; which-func-setting.el ---
+;; Time-stamp: <2013-03-21 10:59:08 Thursday by lzy>
 
-;; Copyright (C) 2012 zhengyu li
+;; Copyright (C) 2013 zhengyu li
 ;;
 ;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,29 +24,28 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'ctypes-setting)
+;;   (require 'which-func-setting)
 
 ;;; Code:
 
+(require 'which-func)
 
-(provide 'ctypes-setting)
+(defun copy-current-fun-name ()
+  "Copy current function name."
+  (interactive)
+  (kill-new (which-function)))
 
-(defun ctypes-setting ()
-  "setting for ctypes"
-  ;;; required features:
-  (require 'ctypes)
+(setq which-func-unknown "*")
 
-  ;; setting
-  (ctypes-auto-parse-mode 1)
-  (ctypes-read-file nil nil t t)
-  (setq ctypes-write-types-at-exit t)
-  (setq ctypes-file-name "~/.emacs.d/Ctypes")
-  )
+(which-func-mode 1)
 
-(add-hook 'c-mode-hook 'ctypes-setting)
-(add-hook 'c++-mode-hook 'ctypes-setting)
+(lazy-set-key
+   '(("C-c M-f" . copy-current-fun-name)))
 
-;;; ctypes-setting.el ends here
+;;; provide features
+(provide 'which-func-setting)
+
+;;; which-func-setting.el ends here

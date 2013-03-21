@@ -1,10 +1,13 @@
-;;; hideshow-setting.el --- 
-;; Time-stamp: <2012-12-07 06:34:29 Friday by lzy>
+;; -*- Emacs-Lisp -*-
+;;; hideshow-setting.el ---
+;; Time-stamp: <2013-03-21 12:28:01 Thursday by lzy>
 
-;; Copyright (C) 2012  zhengyu li
-
+;; Copyright (C) 2013 zhengyu li
+;;
 ;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,61 +24,51 @@
 
 ;;; Commentary:
 
-;; 
+;;
+
+;; Put this file into your load-path and the following into your ~/.emacs:
+;;   (require 'hideshow-setting)
 
 ;;; Code:
 
-
-(provide 'hideshow-setting)
-
-
 ;; required features
-(require 'hideshow)
 
-(defvar fold-fun nil
-  "Function to fold.")
-(defvar fold-all-fun nil
-  "Function to fold all.")
-(defvar hs-hide-all nil
-  "Current state of hideshow for toggling all.")
-(defvar hs-headline-max-len 30
-  "*Maximum length of `hs-headline' to display.")
-(defvar hs-overlay-map (make-sparse-keymap)
-  "Keymap for hs minor mode overlay.")
+(defun hideshow-setting ()
+  "settings for hideshow block"
+  ;; required features
+  (require 'hideshow)
 
-(defun hs-display-headline ()
-  (let* ((len (length hs-headline))
-         (headline hs-headline)
-         (postfix ""))
-    (when (>= len hs-headline-max-len)
-      (setq postfix "....")
-      (setq headline (substring hs-headline 0 hs-headline-max-len)))
-    (if hs-headline (concat headline postfix " ") "")))
+  ;; variables definition
+  (defvar hs-headline-max-len 30
+    "*Maximum length of `hs-headline' to display.")
+  (defvar hs-overlay-map (make-sparse-keymap)
+    "Keymap for hs minor mode overlay.")
 
-(defun hs-abstract-overlay (ov)
-  (let* ((start (overlay-start ov))
-         (end (overlay-end ov))
-         (str (format "<%d lines>" (count-lines start end))) text)
-    (setq text (propertize str 'face 'hs-block-flag-face 'help-echo (buffer-substring (1+ start) end)))
-    (overlay-put ov 'display text)
-    (overlay-put ov 'pointer 'hand)
-    (overlay-put ov 'keymap hs-overlay-map)))
+  ;; functions definition
+  (defun hs-display-headline ()
+    (let* ((len (length hs-headline))
+           (headline hs-headline)
+           (postfix ""))
+      (when (>= len hs-headline-max-len)
+        (setq postfix "....")
+        (setq headline (substring hs-headline 0 hs-headline-max-len)))
+      (if hs-headline (concat headline postfix " ") "")))
 
-(defun hs-minor-mode-setting ()
-  "setting of `hs-minor-mode'."
+  (defun hs-abstract-overlay (ov)
+    (let* ((start (overlay-start ov))
+           (end (overlay-end ov))
+           (str (format "<%d lines>" (count-lines start end))) text)
+      (setq text (propertize str 'face 'hs-block-flag-face 'help-echo (buffer-substring (1+ start) end)))
+      (overlay-put ov 'display text)
+      (overlay-put ov 'pointer 'hand)
+      (overlay-put ov 'keymap hs-overlay-map)))
+
+  ;; settings
   (hs-minor-mode t)
   (setq hs-isearch-open t)
-  (setq hs-set-up-overlay
-        'hs-abstract-overlay)
-  (setq-default mode-line-format
-                (append
-                 '((:eval (hs-display-headline)))
-                 mode-line-format))
+  (setq hs-set-up-overlay 'hs-abstract-overlay)
 
-  (make-local-variable 'hs-hide-all)
-  (make-variable-buffer-local 'fold-fun)
-  (make-variable-buffer-local 'fold-all-fun)
-  
+  ;; key bindings
   (lazy-set-key
    '(("C-c h" . hs-hide-block)
      ("C-c H" . hs-hide-all)
@@ -85,13 +78,14 @@
 
   (lazy-set-key
    '(("<mouse-1>" . hs-show-block))
-   hs-overlay-map)
-  )
+   hs-overlay-map))
 
-(dolist (hook '(c-mode-common-hook
-                lisp-mode-hook
-                emacs-lisp-mode-hook
-                lisp-interaction-mode-hook))
-  (add-hook hook 'hs-minor-mode-setting))
+(add-hook 'c-mode-common-hook 'hideshow-setting)
+(add-hook 'lisp-mode-hook 'hideshow-setting)
+(add-hook 'emacs-lisp-mode-hook 'hideshow-setting)
+(add-hook 'lisp-interaction-mode-hook 'hideshow-setting)
+
+;;; provide features
+(provide 'hideshow-setting)
 
 ;;; hideshow-setting.el ends here
