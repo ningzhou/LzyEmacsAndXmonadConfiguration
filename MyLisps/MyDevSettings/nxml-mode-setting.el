@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; nxml-mode-setting.el ---
-;; Time-stamp: <2013-03-21 18:15:40 Thursday by lzy>
+;; Time-stamp: <2013-03-21 18:35:16 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -44,8 +44,7 @@
 
   ;; key bindings
   (lazy-set-key
-   '(("<return>" . newline-and-indent)
-     ("C-j" . newline-and-indent)
+   '(("C-j" . newline-and-indent)
      ("C-c C-c" . comment)
      ("C-c k" . uncomment))
    nxml-mode-map))

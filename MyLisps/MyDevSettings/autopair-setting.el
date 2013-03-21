@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; autopair-setting.el ---
-;; Time-stamp: <2013-03-21 10:22:44 Thursday by lzy>
+;; Time-stamp: <2013-03-21 18:33:52 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -86,6 +86,10 @@
 
 (setq autopair-extra-pairs '(:everywhere ((?` . ?'))))
 (autopair-global-mode 1)
+
+(add-hook 'term-mode-hook
+          '(lambda ()
+             (autopair-mode -1)))
 
 ;;; provide features
 (provide 'autopair-setting)
