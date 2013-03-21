@@ -1,10 +1,13 @@
-;;; sourcepair-setting.el --- 
-;; Time-stamp: <2012-12-07 06:36:34 Friday by lzy>
+;; -*- Emacs-Lisp -*-
+;;; init-ffap.el ---
+;; Time-stamp: <2013-03-21 07:36:41 Thursday by lzy>
 
-;; Copyright (C) 2012  zhengyu li
-
+;; Copyright (C) 2013 zhengyu li
+;;
 ;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,26 +24,19 @@
 
 ;;; Commentary:
 
-;; 
+;;
+
+;; Put this file into your load-path and the following into your ~/.emacs:
+;;   (require 'init-ffap)
 
 ;;; Code:
 
+(autoload 'find-file-at-point "ffap" nil t)
 
-(provide 'sourcepair-setting)
+(lazy-set-key
+ '(("C-x M-f" . find-file-at-point)))
 
+;;; provide features
+(provide 'init-ffap)
 
-(defun sourcepair-setting ()
-  "Setting for `sourcepair'."
-  ;; required features
-  (require 'sourcepair)
-
-  ;; setting
-  (setq sourcepair-source-path '( "." "./src" "../" "../src"))
-  (setq sourcepair-header-path c/c++-user-head-file-dir)
-  (setq sourcepair-recurse-ignore '("CVS" "bin" "lib" "Obj" "Debug" "Release" ".svn"))
-  )
-
-(eval-after-load "cc-mode"
-  '(sourcepair-setting))
-
-(provide 'sourcepair-setting)
+;;; init-ffap.el ends here

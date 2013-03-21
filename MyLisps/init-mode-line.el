@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-mode-line.el ---
-;; Time-stamp: <2013-03-20 08:18:15 Wednesday by lzy>
+;; Time-stamp: <2013-03-21 15:23:34 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -124,12 +124,14 @@
                   (:eval
                    (propertize ") "
                                'face '(:foreground "yellow" :weight normal)))
+                  which-func-format
                   (:eval
                    (propertize (format-time-string " %H:%M ")
                                'face '(:foreground "white" :weight normal)
                                'help-echo
                                (concat (format-time-string "%c; ")
-                                       (emacs-uptime "Uptime:%hh")))))))
+                                       (emacs-uptime "Uptime:%hh"))))
+)))
 
 (defun mode-line-setting ()
   "setings for modeline"

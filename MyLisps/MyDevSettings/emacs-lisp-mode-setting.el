@@ -1,5 +1,5 @@
 ;;; emacs-lisp-mode-setting.el --- 
-;; Time-stamp: <2013-03-12 07:37:07 Tuesday by lzy>
+;; Time-stamp: <2013-03-21 16:03:31 Thursday by lzy>
 
 ;; Copyright (C) 2012  zhengyu li
 
@@ -40,7 +40,6 @@
   "setting for `eldoc'."
   ;; required features
   (require 'eldoc)
-  (require 'parenthese-setting)
 
   ;; func definition
   (defun eldoc-print-current-symbol-info-anyway ()

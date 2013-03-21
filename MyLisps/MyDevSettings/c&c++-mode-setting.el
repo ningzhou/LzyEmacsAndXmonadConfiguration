@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
-;;; c&c++-mode-common-setting.el ---
-;; Time-stamp: <2013-03-02 06:46:12 Saturday by lzy>
+;;; c&c++-mode-setting.el ---
+;; Time-stamp: <2013-03-21 16:02:36 Thursday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 zhengyu li
 ;;
-;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Author: zhengyu li <lizhengyu419@gmail.com>
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,15 +24,29 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'c&c++-mode-common-setting)
+;;   (require 'c&c++-mode-setting)
 
 ;;; Code:
 
-
-(provide 'c&c++-mode-common-setting)
+;; required features
+(require 'ifdef)
+(require 'hide-ifdef)
+;; (lazy-set-key
+;;  '(("C-c i h" . hide-ifdef-block)
+;;    ("C-c i H" . hide-ifdefs)
+;;    ("C-c i e" . show-ifdef-block)
+;;    ("C-c i E" . show-ifdefs)
+;;    ("C-c i m" . mark-ifdef)
+;;    ("C-c M-a" . beginning-of-defun)
+;;    ("C-c M-e" . end-of-defun)
+;;    ("RET" . newline-and-indent)
+;;    ("C-j" . newline-and-indent)
+;;    ("C-c C-c" . comment)
+;;    ("C-c k" . uncomment))
+;;  c-mode-base-map)
 
 
 (defvar c/c++-hightligh-included-files-key-map nil)
@@ -109,4 +125,7 @@
 (add-hook 'c-mode-hook 'c&c++-mode-common-setting)
 (add-hook 'c++-mode-hook 'c&c++-mode-common-setting)
 
-;;; c&c++-mode-common-setting.el ends here
+;;; provide features
+(provide 'c&c++-mode-setting)
+
+;;; c&c++-mode-setting.el ends here

@@ -1,5 +1,5 @@
 ;;; ffap-setting.el --- 
-;; Time-stamp: <2012-12-07 06:33:51 Friday by lzy>
+;; Time-stamp: <2013-03-21 07:39:06 Thursday by lzy>
 
 ;; Copyright (C) 2012  zhengyu li
 
@@ -32,13 +32,11 @@
 ;; required features
 (require 'ffap)
 
-
 (setq ffap-c-path
       (append ffap-c-path
               c/c++-system-head-file-dir
               c/c++-user-head-file-dir))
 
-(lazy-set-key
- '(("C-x M-f" . find-file-at-point)))
+
 
 ;;; ffap-setting.el ends here

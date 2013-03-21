@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-03-20 18:35:21 Wednesday by lzy>
+;; Time-stamp: <2013-03-21 16:00:47 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -64,6 +64,7 @@
 (require 'init-info+)                        ;; emacs less mode
 (require 'init-less)                         ;; extend less information
 (require 'init-undo-tree)                    ;; extended undo system setting
+(require 'init-ffap)                         ;; ffap setting
 (require 'init-find)                         ;; finding related setting
 (require 'init-moccur)                       ;; setting for multi occurence
 (require 'init-template)                     ;; automatically insert templates
@@ -90,7 +91,6 @@
 (require 'init-doubanfm)                     ;; douban fm setting
 (require 'init-weather)                      ;; show weather in mode line
 (require 'init-one-key)                      ;; key binding setting for one key menu
-
 
 (require 'init-dev-setting)                  ;; setting for programming environment
 (require 'init-etags-extension)              ;; etags extension

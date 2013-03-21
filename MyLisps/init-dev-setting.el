@@ -1,9 +1,13 @@
-;;; init-dev-setting.el --- 
+;; -*- Emacs-Lisp -*-
+;;; init-dev-setting.el ---
+;; Time-stamp: <2013-03-21 16:00:28 Thursday by lzy>
 
-;; Copyright (C) 2012  zhengyu li
-
+;; Copyright (C) 2013 zhengyu li
+;;
 ;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -20,18 +24,16 @@
 
 ;;; Commentary:
 
-;; 
+;;
+
+;; Put this file into your load-path and the following into your ~/.emacs:
+;;   (require 'init-dev-setting)
 
 ;;; Code:
 
-
-(provide 'init-dev-setting)
-
-
 ;; required features
-;;(require 'dev-misc)                     ;; misc setting for dev
-(require 'cc-mode-common-setting)      ;; CC mode setting
-(require 'c&c++-mode-common-setting)   ;; common setting for c&c++ mode
+(require 'cc-mode-setting)             ;; CC mode setting
+(require 'c&c++-mode-setting)          ;; common setting for c&c++ mode
 (require 'autoconf-mode-setting)       ;; autoconf setting
 (require 'sql-mode-setting)            ;; sql mode setting
 (require 'nxml-mode-setting)           ;; xml mode setting
@@ -44,15 +46,14 @@
 (require 'xcscope-setting)             ;; c code navigation setting
 (require 'doxymacs-setting)            ;; setting for doxymacs
 (require 'flymake-setting)             ;; flymake setting
-(require 'which-func-setting)          ;; show which function
 (require 'gud-setting)                 ;; gdb setting
 (require 'eclim-setting)               ;; eclispse mode for emacs
 (require 'compile-setting)             ;; setting for smart compile
 (require 'font-lock-setting)           ;; highlight symbol and function
 (require 'ctypes-setting)              ;; ctypes setting
-(require 'ffap-setting)                ;; ffap setting
-(require 'autopair-setting)            ;; auto pair mode
 (require 'hex-colour-setting)          ;; hex color display setting
-(require 'parenthese-setting)          ;; all parents realted setting
+
+;;; provide features
+(provide 'init-dev-setting)
 
 ;;; init-dev-setting.el ends here

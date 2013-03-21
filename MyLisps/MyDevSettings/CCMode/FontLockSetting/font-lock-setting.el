@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; font-lock-setting.el ---
-;; Time-stamp: <2013-03-06 12:15:10 Wednesday by lzy>
+;; Time-stamp: <2013-03-21 15:58:38 Thursday by lzy>
 
 ;; Copyright (C) 2012 chieftain
 ;;
@@ -38,7 +38,6 @@
 
 (defun c/c++-font-lock-setting ()
   "setting for font lock"
-  (global-font-lock-mode t)
   (setq zjl-hl-c-mode-enable-flag t)
   (setq zjl-hl-c++-mode-enable-flag t)
   (setq zjl-hl-c++-mode-keywords zjl-hl-c-mode-keywords)
