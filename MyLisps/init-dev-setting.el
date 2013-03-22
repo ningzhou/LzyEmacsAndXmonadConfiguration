@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-dev-setting.el ---
-;; Time-stamp: <2013-03-22 08:55:52 Friday by lzy>
+;; Time-stamp: <2013-03-22 09:32:08 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -39,7 +39,6 @@
 (require 'etags-setting)               ;; etags setting
 (require 'hex-color-setting)           ;; hex color display setting
 (require 'hideshow-setting)            ;; hide/show setting
-(require 'show-wspace)                 ;; show ws setting
 (require 'ifdef-setting)               ;; ifdef setting
 (require 'ctypes-setting)              ;; ctypes setting
 (require 'doxymacs-setting)            ;; setting for doxymacs

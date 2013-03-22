@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyBasic.el ---
-;; Time-stamp: <2013-03-21 15:40:53 Thursday by lzy>
+;; Time-stamp: <2013-03-22 10:48:18 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -39,7 +39,6 @@
 (require 'saveplace)
 (require 'ansi-color)
 (require 'edit-misc)
-(require 'thing-edit-extension)
 
 (defun get-mode-name ()
   "display `major-mode' and `mode-name'"

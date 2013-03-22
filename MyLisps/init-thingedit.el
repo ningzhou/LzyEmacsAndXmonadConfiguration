@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
-;;; show-wspace.el ---
-;; Time-stamp: <2013-03-22 08:55:24 Friday by lzy>
+;;; init-thingedit.el ---
+;; Time-stamp: <2013-03-22 10:48:38 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -27,14 +27,13 @@
 ;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'init-show-wspace)
+;;   (require 'init-thingedit)
 
 ;;; Code:
 
-(require 'show-wspace)
+(require 'thing-edit-extension)
 
 ;;; provide features
-(provide 'show-wspace)
+(provide 'init-thingedit)
 
-;;; show-wspace.el ends here
-
+;;; init-thingedit.el ends here

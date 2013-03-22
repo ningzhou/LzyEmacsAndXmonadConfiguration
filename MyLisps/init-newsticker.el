@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-newsticker.el ---
-;; Time-stamp: <2013-03-22 08:48:07 Friday by lzy>
+;; Time-stamp: <2013-03-22 09:24:37 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -35,6 +35,7 @@
 (defun newsticker-setting ()
   "settings for newsticker"
   ;; required features
+  (require 'w3m)
   (require 'newsticker)
 
   ;; settings
