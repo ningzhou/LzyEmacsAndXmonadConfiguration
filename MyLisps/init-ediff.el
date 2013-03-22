@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-ediff.el ---
-;; Time-stamp: <2013-03-18 08:58:46 Monday by lzy>
+;; Time-stamp: <2013-03-22 08:20:36 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -38,31 +38,38 @@
   ;; required features
   (require 'ediff-trees)
   (require 'revive)
-  ;; advice define
+
+  ;; advice definition
   (defadvice ediff-files (before ediff-files-windows-save activate)
     "save windows layout"
     (if (not ediff-window-config-already-save)
         (progn
           (save-current-configuration)
           (setq ediff-window-config-already-save t))))
+
   (defadvice ediff-trees (before ediff-trees-windows-save activate)
     "save windows layout"
     (if (not ediff-window-config-already-save)
         (progn
           (save-current-configuration)
           (setq ediff-window-config-already-save t))))
+
   (defadvice ediff-quit (after ediff-quit-windows-restore activate)
     "save windows layout"
     (if ediff-window-config-already-save
         (progn
           (resume)
           (setq ediff-window-config-already-save nil))))
+
   ;; settings
   (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+  ;; key bindings
   (lazy-set-key
    '(("M-n"  . ediff-trees-examine-next)
      ("M-p"  . ediff-trees-examine-previous))
    ediff-mode-map)
+
   (lazy-set-key
    '(("=" . ediff-files)
      ("M-="  . ediff-trees))

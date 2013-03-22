@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-linum.el ---
-;; Time-stamp: <2013-03-16 17:15:33 Saturday by lzy>
+;; Time-stamp: <2013-03-22 08:45:12 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -53,11 +53,10 @@ in `linum-disabled-modes-list', also turns off numbering in starred modes
 like *scratch*"
   (unless (or (minibufferp)
               (member major-mode linum-disabled-modes-list)
-              (and linum-disable-starred-buffers (string-match "*" (buffer-name)))
-              )
+              (and linum-disable-starred-buffers (string-match "*" (buffer-name))))
     (linum-mode 1)))
 
-(global-linum-mode t)
+(global-linum-mode 1)
 
 ;;; provide features
 (provide 'init-linum)

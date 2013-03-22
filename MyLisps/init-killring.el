@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-killring.el ---
-;; Time-stamp: <2013-03-16 23:08:43 Saturday by lzy>
+;; Time-stamp: <2013-03-22 08:44:15 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -33,10 +33,11 @@
 
 (require 'browse-kill-ring)
 
+(browse-kill-ring-default-keybindings)
+
 (lazy-set-key
  '(("k" . browse-kill-ring-delete))
  browse-kill-ring-mode-map)
-(browse-kill-ring-default-keybindings)
 
 ;;; provide features
 (provide 'init-killring)

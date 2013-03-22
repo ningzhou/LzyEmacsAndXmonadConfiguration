@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; c-c++-mode-setting.el ---
-;; Time-stamp: <2013-03-21 16:24:24 Thursday by lzy>
+;; Time-stamp: <2013-03-22 09:08:23 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -33,6 +33,8 @@
 
 (defun c-c++-mode-setting ()
   "settings for c/c++ mode"
+  (require 'ffap)
+  
   ;; variables definition
   (defvar c-c++-hightligh-included-files-key-map nil
     "keymap for highlight include overlay")
@@ -102,7 +104,10 @@
   (c-c++-include-file-setup)
   (c-c++-hightligh-included-files-setup)
   (add-to-list 'auto-mode-alist '("\\.h$" . c-mode))
-  (add-to-list 'auto-mode-alist '("\\.hpp$" . c++-mode)))
+  (add-to-list 'auto-mode-alist '("\\.hpp$" . c++-mode))
+  (setq ffap-c-path (append ffap-c-path
+                            c-c++-system-head-file-dir
+                            c-c++-user-head-file-dir)))
 
 (add-hook 'c-mode-hook 'c-c++-mode-setting)
 (add-hook 'c++-mode-hook 'c-c++-mode-setting)

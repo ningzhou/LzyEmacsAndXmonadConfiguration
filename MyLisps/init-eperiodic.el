@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-eperiodic.el ---
-;; Time-stamp: <2013-03-16 22:22:08 Saturday by lzy>
+;; Time-stamp: <2013-03-22 08:31:39 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -37,11 +37,10 @@
   (require 'eperiodic)
   ;; settings
   (custom-set-variables
-   '(eperiodic-web-lookup-location "http://www.webelements.com/webelements/elements/text/%s/key.html"))
-  )
+   '(eperiodic-web-lookup-location "http://www.webelements.com/webelements/elements/text/%s/key.html")))
 
-(eval-after-load "init-eperiodic"
-  '(eperiodic-setting))
+;; eperiodic init
+(eperiodic-setting)
 
 ;;; provide features
 (provide 'init-eperiodic)

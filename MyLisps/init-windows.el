@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-windows.el ---
-;; Time-stamp: <2013-03-15 16:13:56 Friday by lzy>
+;; Time-stamp: <2013-03-22 09:14:23 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -53,8 +53,8 @@
 ;; required features
 (require 'window-number)
 ;; settings
-(window-number-mode t)
-(window-number-meta-mode t)
+(window-number-mode 1)
+(window-number-meta-mode 1)
 
 ;;; window resize settings
 (lazy-set-key

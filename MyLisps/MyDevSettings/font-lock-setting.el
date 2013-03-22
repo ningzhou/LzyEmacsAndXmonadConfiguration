@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; font-lock-setting.el ---
-;; Time-stamp: <2013-03-21 11:33:50 Thursday by lzy>
+;; Time-stamp: <2013-03-22 09:13:31 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -35,7 +35,7 @@
 
 (setq zjl-hl-c++-mode-keywords zjl-hl-c-mode-keywords)
 
-(global-font-lock-mode t)
+(global-font-lock-mode 1)
 ;; zjl highlight setting
 (zjl-hl-enable-global 'c-mode)
 (zjl-hl-enable-global 'c++-mode)

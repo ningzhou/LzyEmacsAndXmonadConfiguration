@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-hexview.el ---
-;; Time-stamp: <2012-11-08 13:51:46 Thursday by lzy>
+;; Time-stamp: <2013-03-22 08:41:41 Friday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 zhengyu li
 ;;
-;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Author: zhengyu li <lizhengyu419@gmail.com>
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,18 +24,16 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-hexview)
 
 ;;; Code:
 
-
-(provide 'init-hexview)
-
-
-;; required features
 (require 'hexview-mode)
+
+;;; provide features
+(provide 'init-hexview)
 
 ;;; init-hexview.el ends here

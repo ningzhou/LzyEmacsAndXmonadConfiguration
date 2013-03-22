@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-dired.el ---
-;; Time-stamp: <2013-03-21 10:13:28 Thursday by lzy>
+;; Time-stamp: <2013-03-22 08:17:17 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -53,14 +53,13 @@
   (setq dired-omit-files
         (concat dired-omit-files "\\|^\\.\\|^semantic.cache$\\|^CVS$"))
   (setq dired-guess-shell-alist-user
-        (list
-         '("\\.\\(mp3\|mkv\|rmvb\|avi\|mp4\|vob\\)$" "mplayer")
-         '("\\.\\(doc\|xls\|ppt\|pptx\\)$" "libreoffice")
-         '("\\.pdf$" "acroread")
-         '("\\.\\(jpg\|JPG\|jpeg\|JPEG\|tiff\|tiff\|xbm\|gif\|pgm\|ppm\|bmp\\)$" "feh -r -g 1024x768 -B black -Y")))
+        '(("\\.\\(mp3\|mkv\|rmvb\|avi\|mp4\|vob\\)$" "mplayer")
+          ("\\.\\(doc\|xls\|ppt\|pptx\\)$" "libreoffice")
+          ("\\.pdf$" "acroread")
+          ("\\.\\(jpg\|JPG\|jpeg\|JPEG\|tiff\|tiff\|xbm\|gif\|pgm\|ppm\|bmp\\)$" "feh -r -g 1024x768 -B black -Y")))
   
   (diredp-toggle-find-file-reuse-dir 1)
-  (dired-omit-mode t)
+  (dired-omit-mode 1)
   (buffer-face-mode)
 
   ;; key bindings

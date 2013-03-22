@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-ascii.el ---
-;; Time-stamp: <2013-03-15 14:57:45 Friday by lzy>
+;; Time-stamp: <2013-03-22 07:47:38 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -31,9 +31,9 @@
 
 ;;; Code:
 
-(autoload 'ascii-on        "ascii" "Turn on ASCII code display."   t)
-(autoload 'ascii-off       "ascii" "Turn off ASCII code display."  t)
-(autoload 'ascii-display   "ascii" "Toggle ASCII code display."    t)
+(autoload 'ascii-on "ascii" "Turn on ASCII code display." t)
+(autoload 'ascii-off "ascii" "Turn off ASCII code display." t)
+(autoload 'ascii-display "ascii" "Toggle ASCII code display." t)
 (autoload 'ascii-customize "ascii" "Customize ASCII code display." t)
 
 ;;; provide features

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-autocomplete.el ---
-;; Time-stamp: <2013-03-21 16:34:24 Thursday by lzy>
+;; Time-stamp: <2013-03-22 08:11:27 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -36,9 +36,7 @@
 
 (defun set-ac-clang-flags ()
   "-I flags for auto-complete clang source"
-  (let (begin
-        end
-        (result nil))
+  (let (begin end result)
     (if (executable-find "g++")
         (with-temp-buffer
           (shell-command-surpress-popup-window "echo''|g++ -v -x c++ -E -"
@@ -54,18 +52,14 @@
                       (line-end-position)))
           (setq result (buffer-substring begin end))))
     (setq ac-clang-flags
-          (mapcar (lambda (item)
-                    (concat "-I" item))
-                  (split-string
-                   (concat "./\n./include\n../include\n../../include\n../../../include\n"
-                           result))))
+          (mapcar #'(lambda (item)
+                      (concat "-I" item))
+                  (split-string (concat "./\n./include\n../include\n../../include\n../../../include\n" result))))
     ;; kill command history buffer
     (if (get-buffer ".bash_history")
-        (kill-buffer ".bash_history"))
-    ))
+        (kill-buffer ".bash_history"))))
 
-(defadvice ac-error
-  (after reopen-ac-mode activate)
+(defadvice ac-error (after reopen-ac-mode activate)
   "reopen auto-complete-mode after ac-error"
   (auto-complete-mode 1))
 
@@ -84,35 +78,21 @@
   "auto-complete settings for cc mode"
   (setq ac-sources
         (append
-         '(ac-source-features)
+         '(ac-source-yasnippet)
          ac-sources)))
 
 (defun ac-settings-4-c/c++ ()
   "auto-complete settings for c/c++ mode"
   (setq ac-sources
         (append
-         '(ac-source-yasnippet
-           ac-source-clang)
+         '(ac-source-clang)
          ac-sources)))
 
 (defun ac-settings-4-java ()
   "auto-complete settings for java mode"
   (setq ac-sources
         (append
-         '(ac-source-yasnippet
-           ac-source-eclim)
-         ac-sources)))
-
-(defun ac-settings-4-ruby ()
-  "auto-complete settings for ruby mode"
-  (setq ac-omni-completion-sources
-        '(("\\." . ac-source-rcodetools)
-          ("::" . ac-source-rcodetools)))
-  (setq ac-sources
-        (append
-         '(ac-source-yasnippet
-           ac-omni-completion-sources
-           ac-source-imenu)
+         '(ac-source-eclim)
          ac-sources)))
 
 (defun ac-settings-4-text ()
@@ -144,18 +124,20 @@
   "auto-complete settings for eshell mode"
   (setq ac-sources
         (append
-         '(ac-source-imenu)
+         '(ac-source-yasnippet
+           ac-source-imenu)
          ac-sources)))
 
 (defun auto-complete-setting ()
-  "Settings for `auto-complete'."
+  "settings for `auto-complete'."
+  ;; settings
   (setq ac-dwim t)
   (setq ac-auto-start 2)
-  (setq ac-auto-show-menu 0.4)
   (setq ac-disable-faces nil)
+  (setq ac-candidate-limit 15)
+  (setq ac-auto-show-menu 0.4)
   (setq ac-quick-help-delay 0.5)
   (setq help-xref-following nil)
-  (setq ac-candidate-limit 15)
   ;; set clang flags
   (set-ac-clang-flags)
   ;; auto-complete auto start modes
@@ -179,27 +161,28 @@
                   ac-source-words-in-same-mode-buffers
                   ac-source-files-in-current-dir
                   ac-source-filename))
+  ;; enable global auto-complete mode
   (global-auto-complete-mode 1)
 
-  ;; add to hook
-  (add-hook 'lisp-mode-hook 'ac-settings-4-lisp)
-  (add-hook 'emacs-lisp-mode-hook 'ac-settings-4-lisp)
-  (add-hook 'lisp-interaction-mode-hook 'ac-settings-4-lisp)
-  (add-hook 'c-mode-common-hook 'ac-settings-4-cc)
-  (add-hook 'c-mode-hook 'ac-settings-4-c/c++)
-  (add-hook 'c++-mode-hook 'ac-settings-4-c/c++)
-  (add-hook 'java-mode-hook 'ac-settings-4-java)
-  (add-hook 'ruby-mode-hook 'ac-settings-4-ruby)
-  (add-hook 'text-mode-hook 'ac-settings-4-text)
-  (add-hook 'org-mode-hook 'ac-settings-4-org)
-  (add-hook 'html-mode-hook 'ac-settings-4-nxml)
-  (add-hook 'xml-mode-hook 'ac-settings-4-nxml)
-  (add-hook 'eshell-mode-hook 'ac-settings-4-eshell)
-
+  ;; key bindings
   (lazy-set-key
    '(("M-j" . ac-complete))
    ac-complete-mode-map))
 
+(add-hook 'lisp-mode-hook 'ac-settings-4-lisp)
+(add-hook 'emacs-lisp-mode-hook 'ac-settings-4-lisp)
+(add-hook 'lisp-interaction-mode-hook 'ac-settings-4-lisp)
+(add-hook 'c-mode-common-hook 'ac-settings-4-cc)
+(add-hook 'c-mode-hook 'ac-settings-4-c/c++)
+(add-hook 'c++-mode-hook 'ac-settings-4-c/c++)
+(add-hook 'java-mode-hook 'ac-settings-4-java)
+(add-hook 'text-mode-hook 'ac-settings-4-text)
+(add-hook 'org-mode-hook 'ac-settings-4-org)
+(add-hook 'html-mode-hook 'ac-settings-4-nxml)
+(add-hook 'xml-mode-hook 'ac-settings-4-nxml)
+(add-hook 'eshell-mode-hook 'ac-settings-4-eshell)
+
+;; enable auto-complete setting
 (auto-complete-setting)
 
 ;;; provide features

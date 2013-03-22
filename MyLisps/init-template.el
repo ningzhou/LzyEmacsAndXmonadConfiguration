@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-template.el ---
-;; Time-stamp: <2013-03-17 00:27:35 Sunday by lzy>
+;; Time-stamp: <2013-03-22 08:56:48 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -33,7 +33,7 @@
 
 (defun template-setting ()
   "settings for tempalte"
-  (template-initialize)       ;;; initialize template package
+  (template-initialize)
   (setq template-auto-insert 'query)
   (setq template-default-directories
         (cons my-emacs-templates-path template-default-directories)))

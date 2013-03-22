@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-03-21 16:18:47 Thursday by lzy>
+;; Time-stamp: <2013-03-22 09:02:01 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -49,6 +49,7 @@
 (require 'init-killring)                     ;; kill ring browse and search
 (require 'init-alarm)                        ;; alarm based on notify-send
 (require 'init-ascii)                        ;; show ascii table
+(require 'init-hexview)                      ;; hexview setting
 (require 'init-calendar)                     ;; calendar setting
 (require 'init-what-domain)                  ;; search country code
 (require 'init-top)                          ;; top mode for emacs
@@ -92,6 +93,7 @@
 (require 'init-weather)                      ;; show weather in mode line
 (require 'init-one-key)                      ;; key binding setting for one key menu
 (require 'init-dev-setting)                  ;; setting for programming environment
+(require 'init-zone)                         ;; lock screen setting
 (require 'init-misc)                         ;; misc setting
 
 ;;; provide features

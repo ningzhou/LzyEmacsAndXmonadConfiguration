@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-gnus.el ---
-;; Time-stamp: <2013-03-20 07:30:57 Wednesday by lzy>
+;; Time-stamp: <2013-03-22 08:35:57 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -45,6 +45,7 @@
   (require 'gnus-group)
   (require 'gnus-notify)
   (require 'mail-source)
+
   ;; functions definition
   (defun gnus-user-format-function-a (header)
     (let ((myself (concat "< lizhengyu419@gmail.com >"))
@@ -56,6 +57,7 @@
                    (string-match myself message-id)))
           "X"
         "│")))
+
   ;; settings
   (setq gnus-home-directory "~/.emacs.d/Gnus/")
   (setq gnus-directory "~/.emacs.d/Gnus/News/")

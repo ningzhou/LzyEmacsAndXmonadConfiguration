@@ -1,10 +1,10 @@
 ;; -*- Emacs-Lisp -*-
-;;; init-etags-extension.el ---
-;; Time-stamp: <2013-03-18 16:13:40 Monday by lzy>
+;;; show-wspace.el ---
+;; Time-stamp: <2013-03-22 08:55:24 Friday by lzy>
 
-;; Copyright (C) 2013 chieftain
+;; Copyright (C) 2013 zhengyu li
 ;;
-;; Author: chieftain <lizhengyu419@gmail.com>
+;; Author: zhengyu li <lizhengyu419@gmail.com>
 ;; Keywords: none
 
 ;; This file is not part of GNU Emacs.
@@ -27,16 +27,14 @@
 ;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'init-etags-extension)
+;;   (require 'init-show-wspace)
 
 ;;; Code:
 
-(require 'etags-extension)
-
-(setq tags-default-target-directory "~/.emacs.d/Etags")
-(setq tags-default-storage-directory "~/.emacs.d/Etags")
+(require 'show-wspace)
 
 ;;; provide features
-(provide 'init-etags-extension)
+(provide 'show-wspace)
 
-;;; init-etags-extension.el ends here
+;;; show-wspace.el ends here
+

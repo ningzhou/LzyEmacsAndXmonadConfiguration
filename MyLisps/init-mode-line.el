@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-mode-line.el ---
-;; Time-stamp: <2013-03-21 15:23:34 Thursday by lzy>
+;; Time-stamp: <2013-03-22 08:47:02 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -30,10 +30,6 @@
 ;;   (require 'init-mode-line)
 
 ;;; Code:
-
-
-
-;; required features
 
 (defun get-lines-4-mode-line ()
   "get line numbers of current buffer"
@@ -130,8 +126,7 @@
                                'face '(:foreground "white" :weight normal)
                                'help-echo
                                (concat (format-time-string "%c; ")
-                                       (emacs-uptime "Uptime:%hh"))))
-)))
+                                       (emacs-uptime "Uptime:%hh")))))))
 
 (defun mode-line-setting ()
   "setings for modeline"

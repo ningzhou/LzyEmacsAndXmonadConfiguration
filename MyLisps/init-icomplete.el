@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-icomplete.el ---
-;; Time-stamp: <2013-03-17 00:32:49 Sunday by lzy>
+;; Time-stamp: <2013-03-22 09:14:23 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -33,7 +33,7 @@
 
 (require 'icomplete+)
 
-(icomplete-mode t)
+(icomplete-mode 1)
 
 ;;; provide features
 (provide 'init-icomplete)

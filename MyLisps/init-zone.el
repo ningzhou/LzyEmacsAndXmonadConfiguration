@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-zone.el ---
-;; Time-stamp: <2012-12-07 07:23:21 Friday by lzy>
+;; Time-stamp: <2013-03-22 09:01:18 Friday by lzy>
 
-;; Copyright (C) 2012 chieftain
+;; Copyright (C) 2013 zhengyu li
 ;;
-;; Author: chieftain <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Author: zhengyu li <lizhengyu419@gmail.com>
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,20 +24,16 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'init-zone)
 
 ;;; Code:
 
-
-(provide 'init-zone)
-
-
 (defun lock-screen ()
-  "Lock screen usng (zone) and strlock calls M-x zone on all frames and
-runs xtrlock"
+  "Lock screen usng (zone) and strlock
+calls M-x zone on all frames and runs xtrlock"
   (interactive)
   (save-excursion
     (set-process-sentinel
@@ -45,5 +43,8 @@ runs xtrlock"
 
 (lazy-set-key
  '(("C-M-L" . lock-screen)))
+
+;;; provide features
+(provide 'init-zone)
 
 ;;; init-zone.el ends here

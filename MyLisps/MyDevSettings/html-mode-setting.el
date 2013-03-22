@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; html-mode-setting.el ---
-;; Time-stamp: <2013-03-21 18:34:51 Thursday by lzy>
+;; Time-stamp: <2013-03-22 09:10:11 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -33,9 +33,7 @@
 
 (defun html-mode-setting ()
   "settings for html mode"
-  (add-to-list 'auto-mode-alist '("\\.jsp$" . html-mode))
-  (add-to-list 'auto-mode-alist '("\\.css$" . html-mode))
-
+  ;; functions definition
   (defun w3m-browse-current-buffer ()
     (interactive)
     (let ((filename (concat (make-temp-file "w3m-") ".html")))
@@ -50,6 +48,11 @@
     (interactive)
     (query-replace-regexp "<a\\s-+href=\\(\"[^\"#][^\"]*?\"\\)>\\(.*?\\)</a>" "<a href=\\1 target=\"_blank\">\\2</a>"))
 
+  ;; settings
+  (add-to-list 'auto-mode-alist '("\\.jsp$" . html-mode))
+  (add-to-list 'auto-mode-alist '("\\.css$" . html-mode))
+
+  ;; key bindings
   (lazy-set-key
    '(("C-j" . newline-and-indent)
      ("C-c k" . uncomment)

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-moccur.el ---
-;; Time-stamp: <2013-03-18 08:15:40 Monday by lzy>
+;; Time-stamp: <2013-03-22 08:46:30 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -35,11 +35,13 @@
   "setting for moccur and moccur-edit"
   ;; required features
   (require 'moccur-edit)
+
   ;; advice define
   (defadvice moccur-edit-change-file
     (after save-after-moccur-edit-buffer activate)
     "Automatically save buffer when edit in moccur."
     (save-buffer))
+
   ;; settings
   (setq moccur-kill-moccur-buffer t)
   (setq moccur-edit-highlight-edited-text t)

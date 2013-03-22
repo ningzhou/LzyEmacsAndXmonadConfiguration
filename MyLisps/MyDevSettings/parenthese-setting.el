@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; parenthese-setting.el ---
-;; Time-stamp: <2013-03-21 12:31:45 Thursday by lzy>
+;; Time-stamp: <2013-03-22 09:21:19 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -31,9 +31,11 @@
 
 ;;; Code:
 
+;; required features
 (require 'mic-paren)
 (require 'highlight-parentheses)
 
+;; functions definition
 (defun goto-paren ()
   "jump to the matched parenthese"
   (interactive)
@@ -69,13 +71,21 @@
             (function (lambda ()
                         (paren-toggle-open-paren-context 1)))))
 
+(defun enable-highlight-paren ()
+  "enable highlight parenthese"
+  (highlight-parentheses-mode 1))
+
 ;; settings
 (setq blink-matching-paren nil)
 (setq hl-paren-colors
       '("red" "yellow" "cyan" "magenta" "green" "red"))
-(show-paren-mode t)
+(show-paren-mode 1)
 (mic-paren-setting)
-(highlight-parentheses-mode t)
+
+(add-hook 'lisp-mode-hook 'enable-highlight-paren)
+(add-hook 'emacs-lisp-mode-hook 'enable-highlight-paren)
+(add-hook 'lisp-interaction-mode-hook 'enable-highlight-paren)
+(add-hook 'c-mode-common-hook 'enable-highlight-paren)
 
 ;; key binding
 (lazy-set-key

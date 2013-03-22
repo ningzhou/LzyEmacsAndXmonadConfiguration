@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-newsticker.el ---
-;; Time-stamp: <2013-03-19 18:10:35 Tuesday by lzy>
+;; Time-stamp: <2013-03-22 08:48:07 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -36,6 +36,7 @@
   "settings for newsticker"
   ;; required features
   (require 'newsticker)
+
   ;; settings
   (setq newsticker-dir "~/.emacs.d/Newsticker")
   (setq newsticker-url-list-defaults nil)
@@ -46,6 +47,7 @@
   (setq newsticker-retrieval-method 'extern)
   (setq newsticker-treeview-treewindow-width 35)
   (setq newsticker-treeview-listwindow-height 10)
+  (setq browse-url-browser-function 'w3m-browse-url)
   (setq newsticker-wget-arguments
         '("-q" "-O" "-" "--user-agent" "testing"))
   (setq newsticker-url-list

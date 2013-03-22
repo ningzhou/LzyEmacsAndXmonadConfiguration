@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyStartup.el ---
-;; Time-stamp: <2013-03-20 13:25:29 Wednesday by lzy>
+;; Time-stamp: <2013-03-22 09:16:02 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -31,8 +31,6 @@
 
 ;;; Code:
 
-(server-force-delete)
-(server-start)
 (if (get-buffer ".bash_history")
     (kill-buffer ".bash_history"))
 (if (get-buffer "*Compile-Log*")

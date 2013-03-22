@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-org.el ---
-;; Time-stamp: <2013-03-21 18:35:33 Thursday by lzy>
+;; Time-stamp: <2013-03-22 09:14:23 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -39,6 +39,7 @@
   (require 'org-install)
   (require 'org-extension)
   (require 'org-html5presentation-modified-by-lzy)
+
   ;; settings
   (setq org-directory "~/OrgDir")
   (setq org-tasks-file (concat org-directory "/Agenda.org"))
@@ -61,7 +62,7 @@
               diary-file))
   (setq org-agenda-exporter-settings
         '((ps-bumber-of-columns 2)
-          (ps-landscape-mode t)
+          (ps-landscape-mode 1)
           (org-agenda-add-entry-text-maxlines 5)
           (htmlize-output-type 'css)))
   (setq org-capture-templates
@@ -100,15 +101,17 @@
   (add-to-list 'iimage-mode-image-regex-alist
                (cons (concat "\\[\\[file:\\(~?" iimage-mode-image-filename-regex
                              "\\)\\]")  1))
+
   ;; hook setting
   (add-hook 'message-mode-hook 'turn-on-orgtbl)
   (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
   (add-hook 'org-agenda-mode-hook
-            '(lambda ()
-               (lazy-set-key
-                '(("m" . org-agenda-month-view)
-                  ("q" . org-agenda-exit))
-                org-agenda-mode-map)))
+            #'(lambda ()
+                (lazy-set-key
+                 '(("m" . org-agenda-month-view)
+                   ("q" . org-agenda-exit))
+                 org-agenda-mode-map)))
+
   ;; key bindings
   (lazy-set-key
    '(("M-n" . outline-next-visible-heading)

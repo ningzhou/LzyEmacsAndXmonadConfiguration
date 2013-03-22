@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-erc.el ---
-;; Time-stamp: <2013-03-19 17:44:27 Tuesday by lzy>
+;; Time-stamp: <2013-03-22 08:31:59 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -43,6 +43,7 @@
   (require 'erc-goodies)
   (require 'erc-nicklist)
   (require 'erc-highlight-nicknames)
+
   ;; functions definition
   (defun my-erc-cmd-whois (nick)
     "Run /whois easily by key sequence"
@@ -56,7 +57,8 @@
       (insert (concat "/whois " nick))
       (erc-send-current-line)
       (goto-char (point-max))))
-  ;; setting
+
+  ;; settings
   (setq erc-auto-query t)
   (setq erc-nick "lzy001")
   (setq erc-keywords '("lzy001"))

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-w3m.el ---
-;; Time-stamp: <2013-03-20 18:29:38 Wednesday by lzy>
+;; Time-stamp: <2013-03-22 08:39:17 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -70,6 +70,7 @@
   (require 'w3m-session)
   (require 'w3m-bookmark)
   (require 'w3m-extension)
+
   ;; settings
   (unless (file-exists-p "~/.emacs.d/W3M/DownloadPages/")
     (make-directory "~/.emacs.d/W3M/DownloadPages/" t))
@@ -104,6 +105,7 @@
                '("\\`http://www\\.google\\.\\(cn\\|com\\)/"
                  w3m-filter-rules-for-google))
   (w3m-fb-mode 1)
+
   ;; key bindings
   (lazy-set-key
    '(("1" . w3m-session-save)

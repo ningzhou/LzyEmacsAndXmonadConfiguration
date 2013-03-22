@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-emms.el ---
-;; Time-stamp: <2013-03-20 18:28:57 Wednesday by lzy>
+;; Time-stamp: <2013-03-22 08:30:20 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -52,11 +52,17 @@
   (require 'emms-player-mplayer)
   (require 'emms-lyrics-download)
   (require 'emms-player-mpg321-remote)
+
   ;; variables definition
-  (defface emms-playlist-mark-face '((t :foreground "red2")) "face for playlist marked")
-  (defvar emms-en-font "Monospace:pixelsize=14" "default english font for emms mode")
+  (defface emms-playlist-mark-face
+    '((t :foreground "red2"))
+    "face for playlist marked")
+  (defvar emms-en-font
+    "Monospace:pixelsize=14"
+    "default english font for emms mode")
   (defvar emms-playlist-last-track nil)
   (defvar emms-playlist-last-indent "\\")
+
   ;; functions definition
   (defun set-emms-playlist-font ()
     "font setting for emms playlist"
@@ -96,13 +102,12 @@
                        (emms-last-played-format-date last-played)
                        play-count
                        artist
-                       (concat (if same-album-p ; indention by album
+                       (concat (if same-album-p
                                    (setq emms-playlist-last-indent
                                          (concat " " emms-playlist-last-indent))
                                  (setq emms-playlist-last-indent "\\")
                                  "")
-                               (if (and tracknumber ; tracknumber
-                                        (not (zerop (string-to-number tracknumber))))
+                               (if (and tracknumber (not (zerop (string-to-number tracknumber))))
                                    (format "%02d." (string-to-number tracknumber))
                                  "")
                                title)
@@ -124,6 +129,7 @@
     (progn
       (emms-lyrics-enable)
       (emms-lyrics-toggle-display-on-minibuffer)))
+  
   ;; settings
   ;; basic settings
   (setq emms-directory "~/.emacs.d/Emms/")
@@ -186,7 +192,8 @@
   (emms-mode-line-disable)
   ;; playlist description setting, should be set after emms-devel
   (setq emms-track-description-function 'my-emms-track-description-function)
-  ;; basic key bindings
+
+  ;; key bindings
   (lazy-set-key
    '(("C-x C-s" . emms-playlist-save)             ;save current playlist
      ("C-k" . emms-playlist-mode-kill-track)      ;delete current track
@@ -232,6 +239,7 @@
      ("L" . emms-lyrics-disable)                  ;disable lyrics show in minibuffer
      )
    emms-playlist-mode-map)
+
   ;; emms tag editor key bindings
   (lazy-set-key
    '(("M-p" . emms-tag-editor-prev-same-field)  
@@ -240,6 +248,7 @@
      ("C-c n" . emms-tag-editor-set-tracknumber)
      ("C-c i" . emms-tag-editor-set-tracknumber+))
    emms-tag-editor-mode-map)
+
   ;; emms browser key bindings
   (lazy-set-key
    '(("J" . emms-browser-next-non-track)      
@@ -248,6 +257,7 @@
      ("s" . one-key-menu-emms-browser-search) 
      ("L" . one-key-menu-emms-browser-lookup))
    emms-browser-mode-map)
+
   ;; emss stream key bindings
   (lazy-set-key
    '(("a" . emms-stream-add-bookmark)

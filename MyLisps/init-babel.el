@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-babel.el ---
-;; Time-stamp: <2013-03-15 13:49:13 Friday by lzy>
+;; Time-stamp: <2013-03-22 08:12:03 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -40,8 +40,7 @@
   (setq babel-backends
         '(("FreeTranslation" . free)
           ("Google" . google)
-          ("Babelfish at Yahoo" . fish)))
-  )
+          ("Babelfish at Yahoo" . fish))))
 
 (eval-after-load "babel"
   '(babel-settings))

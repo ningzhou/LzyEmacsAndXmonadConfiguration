@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-ido.el ---
-;; Time-stamp: <2013-03-20 17:52:29 Wednesday by lzy>
+;; Time-stamp: <2013-03-22 09:14:23 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -69,11 +69,11 @@
   (add-hook 'ido-make-dir-list-hook 'ido-sort-mtime)
   (add-hook 'ido-make-file-list-hook 'ido-sort-mtime)
   (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-truncation)
-  (ido-mode t)
-  (ido-hacks-mode t))
+  (ido-mode 1)
+  (ido-hacks-mode 1))
 
-(eval-after-load "ido"
-  '(ido-setting))
+;; init ido setting
+(ido-setting)
 
 ;;; provide features
 (provide 'init-ido)
