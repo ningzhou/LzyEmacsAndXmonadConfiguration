@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-misc.el ---
-;; Time-stamp: <2013-03-22 09:14:23 Friday by lzy>
+;; Time-stamp: <2013-03-27 18:44:05 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -31,9 +31,6 @@
 
 ;;; Code:
 
-;; required features
-(require 'generic-x)
-
 (menu-bar-mode -1)                      ;;disable menu bar
 (tool-bar-mode -1)                      ;;disable tool bar
 (scroll-bar-mode -1)                    ;;disable scroll bar
@@ -42,7 +39,6 @@
 (transient-mark-mode 1)                 ;;highlight transient mark region
 (auto-compression-mode 1)               ;;turn on compression mode before openning compressed file
 
-(setq require-final-newline t)
 (setq echo-keystrokes 0.1)              ;;show key sequence quickly
 (setq ring-bell-function 'ignore)       ;;ignore ring bell
 (setq inhibit-startup-message t)        ;;inhibit startup message
@@ -54,55 +50,40 @@
 (setq auto-revert-mode 1)               ;;auto revert buffer
 (setq max-lisp-eval-depth 40000)        ;;the most eval depth of lisp
 (setq max-specpdl-size 10000)           ;;max capabilities
-(setq kill-ring-max 1024)               ;;the max size of kill ring
+(setq kill-ring-max 10000)              ;;the max size of kill ring
 (setq kill-do-not-save-duplicates t)    ;;don't save the duplicates
 (setq undo-outer-limit 5000000)         ;;the limits of undo
 (setq mark-ring-max 1024)               ;;max size of mark ring
+(setq global-mark-ring-max 1024)        ;;set the max size of global mark ring
 (setq message-log-max t)                ;;log message without truncating
 (setq read-quoted-char-radix 16)        ;;set the radix of quoted char
 (setq void-text-area-pointer nil)       ;;don't show the mouse
 (setq enable-recursive-minibuffers t)   ;;enable recursive minibuffer
 (setq eval-expression-print-length nil) ;;set eval expression print length with no limit
 (setq eval-expression-print-level nil)  ;;set eval expression print level with no limit
-(setq global-mark-ring-max 1024)        ;;set the max size of global mark ring
 (setq history-delete-duplicates t)      ;;remove duplicate history
 (setq print-escape-newlines t)          ;;display escape newline
 (setq tab-always-indent 'complete)      ;;indent before tab
 (setq isearch-allow-scroll t)           ;;allow scroll during isearch
 (setq minibuffer-message-timeout 1)     ;;show the timeout of minibuffer message
-(setq require-final-newline nil)        ;;don't add new line at the end of file
+(setq require-final-newline t)          ;;add new line at the end of file
 (setq modelinepos-column-limit 80)      ;;set the limit of column with 80 and show it at the mode line
 (setq speedbar-show-unknown-files t)    ;;show unknown files at speedbar
-(setq whitespace-global-mode t)         ;;with gloal white space mode
-(setq sr-speedbar-skip-other-window-p t)
-(setq user-mail-address "lizhengyu419@gmail.com")
-(setq user-full-name    "zhengyu li")
-
-;; indent settings
+;; indent tabs settings
 (setq-default indent-tabs-mode nil)
 (setq default-tab-width 4)
 (setq tab-stop-list nil)
 (loop for x downfrom 40 to 1 do
       (setq tab-stop-list
             (cons (* x tab-width) tab-stop-list)))
-
-(put 'narrow-to-region 'disabled nil)
-(put 'downcase-region 'disabled nil)
-(put 'dired-find-alternate-file 'disabled nil)
 (fset 'yes-or-no-p 'y-or-n-p)           
 (setq-default comment-style 'indent)    
 (mouse-avoidance-mode "banish")
 (add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
-
 ;; backup setting
-;; save backup files to ~/.emacs.backups instead of current directory
 (setq backup-by-copying t)
 (setq backup-directory-alist '(("." . "~/.emacs.d/EmacsBackup")))
 (setq delete-old-versions t)
-(setq kept-new-versions 6)
-(setq kept-old-versions 2)
-(setq version-control t)
-
 ;; coding system setting
 (setq default-buffer-file-coding-system 'utf-8-unix)            ;;coding system for buffer file
 (setq default-file-name-coding-system 'utf-8-unix)              ;;coding system for file name
@@ -110,17 +91,13 @@
 (setq default-process-coding-system '(utf-8-unix . utf-8-unix)) ;;coding system for process
 (setq default-sendmail-coding-system 'utf-8-unix)               ;;coding system for sending mail
 (setq default-terminal-coding-system 'utf-8-unix)               ;;coding system for terminal
-
 ;; save the last place
-(require 'saveplace)
 (setq-default save-place t)
-
 ;; recent file setting
 (recentf-mode 1)
 (setq recentf-max-saved-items 100)
 (setq recentf-auto-cleanup 300) 
 (setq recentf-save-file "~/.emacs.d/recentfiles") ;;list of files opened recently
-
 ;; auto fill setting
 (setq default-fill-column 80)
 (dolist (hook '(after-text-mode-hook

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
-;;; init-smooth-scrolling.el ---
-;; Time-stamp: <2013-03-16 08:04:31 Saturday by lzy>
+;;; init-smooth-scroll.el ---
+;; Time-stamp: <2013-03-27 15:02:19 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -27,13 +27,14 @@
 ;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'init-smooth-scrolling)
+;;   (require 'init-smooth-scroll)
 
 ;;; Code:
 
-(require 'smooth-scrolling)
+(require 'smooth-scroll)
+(smooth-scroll-mode 1)
 
 ;;; provide features
-(provide 'init-smooth-scrolling)
+(provide 'init-smooth-scroll)
 
-;;; init-smooth-scrolling.el ends here
+;;; init-smooth-scroll.el ends here

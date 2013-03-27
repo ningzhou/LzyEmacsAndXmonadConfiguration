@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; hideshow-setting.el ---
-;; Time-stamp: <2013-03-22 09:14:23 Friday by lzy>
+;; Time-stamp: <2013-03-27 17:40:53 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -64,9 +64,9 @@
       (overlay-put ov 'keymap hs-overlay-map)))
 
   ;; settings
-  (hs-minor-mode 1)
   (setq hs-isearch-open t)
   (setq hs-set-up-overlay 'hs-abstract-overlay)
+  (hs-minor-mode 1)
 
   ;; key bindings
   (lazy-set-key

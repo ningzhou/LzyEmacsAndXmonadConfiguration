@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-w3m.el ---
-;; Time-stamp: <2013-03-22 08:39:17 Friday by lzy>
+;; Time-stamp: <2013-03-27 17:23:43 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -31,25 +31,6 @@
 
 ;;; Code:
 
-(defun w3m-set-proxy (&optional proxy)
-  "set proxy for w3m"
-  (interactive "sProxy Server:")
-  (if (string= proxy "")
-      (setenv "http_proxy" nil)
-    (if (string-match "^http://" proxy)
-        (setenv "http_proxy" proxy)
-      (setenv "http_proxy" (concat "http://" proxy)))
-    (message "set w3m proxy to %s" (getenv "http_proxy"))))
-
-(defun w3m-filter-rules-for-google (&rest args)
-  "Filter rules for Google in w3m.
-   remove publicize from google.cn or google.com."
-  (goto-char (point-min))
-  (while (re-search-forward "\\(赞助商链接\\|<h2>Sponsored Links</h2>\\).*aclk.*\\(</cite></ol><p>\\|在此展示您的广告\\)" nil t)
-    (replace-match ""))
-  (while (re-search-forward "<h2>Sponsored Links</h2>.*aclk.*<h2>Search Results</h2>" nil t)
-    (replace-match "")))
-
 (defun w3m-setting ()
   "settings for w3m"
   ;; required features
@@ -70,6 +51,26 @@
   (require 'w3m-session)
   (require 'w3m-bookmark)
   (require 'w3m-extension)
+
+  ;; functions definition
+  (defun w3m-set-proxy (&optional proxy)
+    "set proxy for w3m"
+    (interactive "sProxy Server:")
+    (if (string= proxy "")
+        (setenv "http_proxy" nil)
+      (if (string-match "^http://" proxy)
+          (setenv "http_proxy" proxy)
+        (setenv "http_proxy" (concat "http://" proxy)))
+      (message "set w3m proxy to %s" (getenv "http_proxy"))))
+
+  (defun w3m-filter-rules-for-google (&rest args)
+    "Filter rules for Google in w3m.
+   remove publicize from google.cn or google.com."
+    (goto-char (point-min))
+    (while (re-search-forward "\\(赞助商链接\\|<h2>Sponsored Links</h2>\\).*aclk.*\\(</cite></ol><p>\\|在此展示您的广告\\)" nil t)
+      (replace-match ""))
+    (while (re-search-forward "<h2>Sponsored Links</h2>.*aclk.*<h2>Search Results</h2>" nil t)
+      (replace-match "")))
 
   ;; settings
   (unless (file-exists-p "~/.emacs.d/W3M/DownloadPages/")

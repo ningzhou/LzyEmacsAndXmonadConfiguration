@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-tabbar.el ---
-;; Time-stamp: <2013-03-22 08:56:26 Friday by lzy>
+;; Time-stamp: <2013-03-27 13:54:04 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -39,6 +39,8 @@
   ;; settings
   (setq tabbar-separator '(0.3))
   (tabbar-mode 1)
+
+  ;; key bindings
   (lazy-set-key
    '(("C-<f11>"  . tabbar-backward)
      ("<f11>"    . tabbar-forward)
@@ -46,8 +48,7 @@
      ("<f12>"    . tabbar-forward-group))
    tabbar-mode-map))
 
-(eval-after-load "init-tabbar"
-  '(tarbar-setting))
+(tarbar-setting)
 
 ;;; provide features
 (provide 'init-tabbar)

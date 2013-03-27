@@ -405,6 +405,7 @@ See also `dired-scroll-down'."
                 (append dired-copied-cutted-files-pool
                         (list (concat (dired-current-directory) element))))))))
 
+;; added by zhengyu li
 (defun dired-backup-file ()
   "backup file in current directory"
   (interactive)

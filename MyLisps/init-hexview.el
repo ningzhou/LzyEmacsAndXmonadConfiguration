@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-hexview.el ---
-;; Time-stamp: <2013-03-22 08:41:41 Friday by lzy>
+;; Time-stamp: <2013-03-27 16:41:26 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -31,7 +31,8 @@
 
 ;;; Code:
 
-(require 'hexview-mode)
+(autoload 'hexview-mode "hexview-mode"
+  "Major mode for viewing file in hexical mode" t)
 
 ;;; provide features
 (provide 'init-hexview)

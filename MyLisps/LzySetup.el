@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-03-22 09:02:01 Friday by lzy>
+;; Time-stamp: <2013-03-27 18:48:51 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -38,7 +38,7 @@
 (require 'init-windows)                      ;; resize windows/save windows configuraion
 (require 'init-uniquify)                     ;; uniquify file name
 (require 'init-tabbar)                       ;; tabbar for multi-tab
-(require 'init-smooth-scrolling)             ;; provide smooth scroll features
+(require 'init-smooth-scroll)                ;; provide smooth scroll features
 (require 'init-linum)                        ;; linum extension setting
 (require 'init-mode-line)                    ;; mode-line setting
 (require 'init-tempbuf)                      ;; temporary buffer setting
@@ -91,9 +91,9 @@
 (require 'init-google-maps)                  ;; google maps setting
 (require 'init-doubanfm)                     ;; douban fm setting
 (require 'init-weather)                      ;; show weather in mode line
-(require 'init-one-key)                      ;; key binding setting for one key menu
-(require 'init-dev-setting)                  ;; setting for programming environment
 (require 'init-zone)                         ;; lock screen setting
+(require 'init-dev-setting)                  ;; setting for programming environment
+(require 'init-one-key)                      ;; key binding setting for one key menu
 (require 'init-misc)                         ;; misc setting
 
 ;;; provide features

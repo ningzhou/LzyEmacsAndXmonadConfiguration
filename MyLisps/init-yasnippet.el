@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-yasnippet.el ---
-;; Time-stamp: <2013-03-22 09:00:23 Friday by lzy>
+;; Time-stamp: <2013-03-27 17:08:35 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -43,7 +43,7 @@
 (setq yas-snippet-dirs my-emacs-snippets-path)
 (yas-global-mode 1)
 
-(add-hook 'term-mode-hook '(lambda ()
+(add-hook 'term-mode-hook #'(lambda ()
                              (yas-minor-mode -1)))
 
 ;;; provide features

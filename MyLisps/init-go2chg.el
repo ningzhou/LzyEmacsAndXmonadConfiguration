@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-go2chg.el ---
-;; Time-stamp: <2013-03-15 16:55:07 Friday by lzy>
+;; Time-stamp: <2013-03-27 16:57:36 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -31,10 +31,7 @@
 
 ;;; Code:
 
-(autoload 'goto-last-change "goto-chg"
-  "Go to the point where the last edit was made in the current buffer" t)
-(autoload 'goto-last-change-reverse "goto-chg"
-  "Go to the point reverse" t)
+(require 'goto-chg)
 
 (lazy-set-key
  '(("C-M-\/" . goto-last-change)))

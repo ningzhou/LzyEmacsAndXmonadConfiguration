@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; autopair-setting.el ---
-;; Time-stamp: <2013-03-21 18:33:52 Thursday by lzy>
+;; Time-stamp: <2013-03-27 17:32:54 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -34,7 +34,7 @@
 (require 'autopair)
 
 (defvar modes-use-self-opening
-  '(c-mode c++-mode java-mode awk-mode)
+  '(c-mode c++-mode java-mode)
   "mode use themselves insert opening function.")
 
 (defun skeleton-c-mode-left-brace (arg)
@@ -88,8 +88,8 @@
 (autopair-global-mode 1)
 
 (add-hook 'term-mode-hook
-          '(lambda ()
-             (autopair-mode -1)))
+          #'(lambda ()
+              (autopair-mode -1)))
 
 ;;; provide features
 (provide 'autopair-setting)

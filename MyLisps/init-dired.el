@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-dired.el ---
-;; Time-stamp: <2013-03-22 08:17:17 Friday by lzy>
+;; Time-stamp: <2013-03-27 17:18:01 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -52,12 +52,6 @@
         '(:family "Monospace" :height 1.05 :foreground "grey90" :weight normal))
   (setq dired-omit-files
         (concat dired-omit-files "\\|^\\.\\|^semantic.cache$\\|^CVS$"))
-  (setq dired-guess-shell-alist-user
-        '(("\\.\\(mp3\|mkv\|rmvb\|avi\|mp4\|vob\\)$" "mplayer")
-          ("\\.\\(doc\|xls\|ppt\|pptx\\)$" "libreoffice")
-          ("\\.pdf$" "acroread")
-          ("\\.\\(jpg\|JPG\|jpeg\|JPEG\|tiff\|tiff\|xbm\|gif\|pgm\|ppm\|bmp\\)$" "feh -r -g 1024x768 -B black -Y")))
-  
   (diredp-toggle-find-file-reuse-dir 1)
   (dired-omit-mode 1)
   (buffer-face-mode)
@@ -74,7 +68,7 @@
      ("/m"          . dired-filter-regexp)
      ("/."          . dired-filter-extension)
      ("r"           . wdired-change-to-wdired-mode)
-     ("v"           . dired-quickview)
+     ("v"           . dired-view-file)
      ("C-s"         . dired-isearch-forward)
      ("C-r"         . dired-isearch-backward)
      ("M-s"         . dired-isearch-forward-regexp)
@@ -98,7 +92,6 @@
      ("?"           . dired-get-size)
      ("0"           . dired-smart-shell-command)
      ("*m"          . dired-mark-files-regexp)
-     ("SPC"         . dired-scroll-half-page-forward)
      ("g"           . wuxch-dired-revert)
      ("M-,"         . wuxch-dired-goto-first-line)
      ("M-."         . wuxch-dired-goto-last-line)

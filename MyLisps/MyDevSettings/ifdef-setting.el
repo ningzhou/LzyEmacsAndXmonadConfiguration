@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; ifdef-setting.el ---
-;; Time-stamp: <2013-03-21 13:50:49 Thursday by lzy>
+;; Time-stamp: <2013-03-27 17:41:50 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -36,7 +36,7 @@
   ;; required features
   (require 'ifdef)
   (require 'hide-ifdef)
-  ;; settings
+
   ;; key bindings
   (lazy-set-key
    '(("C-c i h" . hide-ifdef-block)

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; youdao-translation.el ---
-;; Time-stamp: <2013-03-15 16:38:18 Friday by lzy>
+;; Time-stamp: <2013-03-27 16:55:30 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -31,12 +31,16 @@
 
 ;;; Code:
 
-(defun get-translate-result (word)
-  (shell-command-to-string
-   (concat (format "curl --max-time 2 'http://fanyi.youdao.com/openapi.do?keyfrom=hellochieftain&key=979553915&type=data&doctype=xml&version=1.1&q=%s' 2>/dev/null" word))))
+(require 'xml)
+(require 'xml-parse)
+(require 'pos-tip)
 
-;; analysis translation result
+(defun get-translate-result (word)
+  (shell-command-to-string (concat (format "curl --max-time 2 'http://fanyi.youdao.com/openapi.do\
+?keyfrom=hellochieftain&key=979553915&type=data&doctype=xml&version=1.1&q=%s' 2>/dev/null" word))))
+
 (defun analytic-translate-result (translateresult)
+  "analysis translation result"
   (let* ((root (with-temp-buffer (insert translateresult)
                                  (xml-parse-region (point-min) (point-max))))
          (youdao-fanyi (car root))
@@ -74,19 +78,16 @@
 (defun youdao-translate ()
   "translate world from youdao fanyi or sdcv"
   (interactive)
-  ;;; require features:
-  (require 'xml)
-  (require 'xml-parse)
-  (require 'pos-tip)
   (let* ((word (get-current-word))
-         (sdcv-command (format "sdcv -n %s" word))
-         (print sdcv-command)
+         (sdcv-command (if (executable-find "sdcv")
+                           (format "sdcv -n %s" word)
+                         nil))
          (translate-result (get-translate-result word))
          (explains-texts (if (string= translate-result "")
-                             (shell-command-to-string sdcv-command)
+                             (if sdcv-command
+                                 (shell-command-to-string sdcv-command))
                            (analytic-translate-result translate-result))))
-    (pos-tip-show explains-texts '("blue3" . "light yellow") nil nil -1))
-  )
+    (pos-tip-show explains-texts '("blue3" . "light yellow") nil nil -1)))
 
 ;;; provide features
 (provide 'youdao-translation)

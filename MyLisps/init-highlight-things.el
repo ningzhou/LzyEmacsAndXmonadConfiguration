@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-highlight-things.el ---
-;; Time-stamp: <2013-03-22 09:14:23 Friday by lzy>
+;; Time-stamp: <2013-03-27 16:35:12 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -31,6 +31,8 @@
 
 ;;; Code:
 
+;;============================================================
+;;; highlight tail settings
 (require 'highlight-tail)
 
 (setq highlight-tail-colors
@@ -40,6 +42,8 @@
 
 (highlight-tail-mode 1)
 
+;;============================================================
+;;; highlight sexp settings
 (defun highlight-sexp-setting ()
   "settings for highlight sexp"
   ;; required features

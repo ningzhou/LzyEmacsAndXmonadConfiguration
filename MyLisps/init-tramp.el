@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-tramp.el ---
-;; Time-stamp: <2013-03-20 17:35:45 Wednesday by lzy>
+;; Time-stamp: <2013-03-27 17:11:04 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -35,6 +35,7 @@
   "settings for tramp mode"
   ;; required features
   (require 'ange-ftp)
+
   ;; settings
   (setq password-cache-expiry 3600)
   (setq tramp-default-method "scp")

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-linum.el ---
-;; Time-stamp: <2013-03-22 08:45:12 Friday by lzy>
+;; Time-stamp: <2013-03-27 15:19:01 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;

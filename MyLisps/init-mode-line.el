@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-mode-line.el ---
-;; Time-stamp: <2013-03-22 08:47:02 Friday by lzy>
+;; Time-stamp: <2013-03-27 16:10:49 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -33,65 +33,19 @@
 
 (defun get-lines-4-mode-line ()
   "get line numbers of current buffer"
-  (let ((lines (count-lines (point-min) (point-max))))
-    (propertize
-     (format " %dL " lines)
-     'face '(:foreground "white")
-     'mouse-face 'mode-line-highlight
-     'help-echo (format "%d lines" lines))))
+  (let ((lines (count-lines
+                (point-min) (point-max))))
+    (format " %dL " lines)))
 
 (defun get-size-indication-format ()
   (if (and transient-mark-mode mark-active)
-      (propertize (format "(%dLs,%dCs)" (count-lines (region-beginning) (region-end)) (abs (- (mark t) (point))))
-                  'face '(:foreground "white"))
-    (propertize "@%I]"
-                'face '(:foreground "black"))))
+      (format "[%%p](%dLs,%dCs)"
+              (count-lines (region-beginning) (region-end))
+              (abs (- (mark t) (point))))
+    "[%p@%I]"))
 
 (defun set-mode-line-format ()
-  ;;  "set mode-line-format"
-  (setq-default mode-line-position
-                `((:eval
-                   (get-lines-4-mode-line))
-                  (:eval
-                   (propertize "[%p"
-                               'face '(:foreground "white")
-                               'local-map mode-line-column-line-number-mode-map
-                               'mouse-face 'mode-line-highlight
-                               'help-echo "Size indication mode\n\
-                               mouse-1: Display Line and Column Mode Menu"))
-                  (:eval
-                   (and transient-mark-mode mark-active
-                        (propertize "]"
-                                    'face '(:foreground "white"))))
-                  (:eval
-                   (propertize (get-size-indication-format)
-                               'face '(:foreground "white")
-                               'local-map mode-line-column-line-number-mode-map
-                               'mouse-face 'mode-line-highlight
-                               'help-echo "Buffer position, mouse-1: Line/col menu"))
-                  (:eval
-                   (if (not linum-mode)
-                       (if column-number-mode
-                           (propertize " (%l,%c) "
-                                       'face '(:foreground "white")
-                                       'local-map mode-line-column-line-number-mode-map
-                                       'mouse-face 'mode-line-highlight
-                                       'help-echo "Line number and Column number\n\
-                                        mouse-1: Display Line and Column Mode Menu")
-                         (propertize " L%l "
-                                     'face '(:foreground "white")
-                                     'local-map mode-line-column-line-number-mode-map
-                                     'mouse-face 'mode-line-highlight
-                                     'help-echo "Line Number\n\
-                                      mouse-1: Display Line and Column Mode Menu"))
-                     (if column-number-mode
-                         (propertize " C%c "
-                                     'face '(:foreground "white")
-                                     'local-map mode-line-column-line-number-mode-map
-                                     'mouse-face 'mode-line-highlight
-                                     'help-echo "Column number\n\
-                                      mouse-1: Display Line and Column Mode Menu"))))))
-
+  "set mode-line-format"
   (setq-default mode-line-format
                 '((:eval
                    (if (eql buffer-read-only t)
@@ -100,30 +54,45 @@
                      (propertize " ⚡W/R⚡" 'face
                                  '(:foreground "Deepskyblue" :weight normal))))
                   (:eval
-                   (propertize " $%b$"
+                   (propertize " (%b)"
                                'face (if (buffer-modified-p)
-                                         '(:foreground "white" :slant italic)
-                                       '(:foreground "white"))))
+                                         '(:foreground "White" :slant italic)
+                                       '(:foreground "White"))))
                   (:eval
                    (propertize (if overwrite-mode " Ovr" " Ins")
                                'face '(:foreground "SpringGreen" :weight normal)
                                'help-echo (concat "Buffer is in "
                                                   (if overwrite-mode "overwrite" "insert") " mode")))
-                  mode-line-position
+                  (:eval
+                   (propertize (get-lines-4-mode-line)
+                               'face '(:foreground "Deepskyblue")))
+                  (:eval
+                   (propertize (get-size-indication-format)
+                               'face '(:foreground "White")))
+                  (:eval
+                   (if (not linum-mode)
+                       (if column-number-mode
+                           (propertize " (%l,%c) "
+                                       'face '(:foreground "White"))
+                         (propertize " L%l "
+                                     'face '(:foreground "White")))
+                     (if column-number-mode
+                         (propertize " C%c "
+                                     'face '(:foreground "White")))))
                   (:eval
                    (propertize "("
-                               'face '(:foreground "yellow" :weight normal)))
+                               'face '(:foreground "Yellow" :weight normal)))
                   (:eval
                    (propertize "%m"
-                               'face '(:foreground "yellow" :weight normal)))
+                               'face '(:foreground "Yellow" :weight normal)))
                   minor-mode-alist
                   (:eval
                    (propertize ") "
-                               'face '(:foreground "yellow" :weight normal)))
+                               'face '(:foreground "Yellow" :weight normal)))
                   which-func-format
                   (:eval
                    (propertize (format-time-string " %H:%M ")
-                               'face '(:foreground "white" :weight normal)
+                               'face '(:foreground "White" :weight normal)
                                'help-echo
                                (concat (format-time-string "%c; ")
                                        (emacs-uptime "Uptime:%hh")))))))

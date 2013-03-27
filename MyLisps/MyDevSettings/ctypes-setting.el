@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; ctypes-setting.el ---
-;; Time-stamp: <2013-03-21 12:33:59 Thursday by lzy>
+;; Time-stamp: <2013-03-27 17:42:00 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -35,7 +35,8 @@
   "settings for ctypes"
   ;;; required features:
   (require 'ctypes)
-  ;; setting
+
+  ;; settings
   (setq ctypes-write-types-at-exit t)
   (setq ctypes-file-name "~/.emacs.d/ctypes")
   (ctypes-auto-parse-mode 1)

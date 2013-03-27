@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-emms.el ---
-;; Time-stamp: <2013-03-22 08:30:20 Friday by lzy>
+;; Time-stamp: <2013-03-27 17:22:43 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -103,8 +103,7 @@
                        play-count
                        artist
                        (concat (if same-album-p
-                                   (setq emms-playlist-last-indent
-                                         (concat " " emms-playlist-last-indent))
+                                   (setq emms-playlist-last-indent (concat " " emms-playlist-last-indent))
                                  (setq emms-playlist-last-indent "\\")
                                  "")
                                (if (and tracknumber (not (zerop (string-to-number tracknumber))))
@@ -130,7 +129,6 @@
       (emms-lyrics-enable)
       (emms-lyrics-toggle-display-on-minibuffer)))
   
-  ;; settings
   ;; basic settings
   (setq emms-directory "~/.emacs.d/Emms/")
   (setq emms-cache-file "~/.emacs.d/Emms/cache")
@@ -190,7 +188,7 @@
   (emms-cache 1)
   (emms-lyrics-disable)
   (emms-mode-line-disable)
-  ;; playlist description setting, should be set after emms-devel
+  ;; playlist description setting, should be set after `emms-devel' mode
   (setq emms-track-description-function 'my-emms-track-description-function)
 
   ;; key bindings
@@ -269,7 +267,8 @@
      ("i" . emms-stream-info-bookmark) 
      ("f" . emms-stream-play))         
    emms-stream-mode-map)
-  ;; global emms key bindings, these key bindings must be
+
+  ;; global emms key bindings, these key bindings should be
   ;; set after emms mode be loaded
   (lazy-set-key
    '(("C-c o n" . emms-next)

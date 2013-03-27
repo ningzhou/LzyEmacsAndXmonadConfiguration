@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; which-func-setting.el ---
-;; Time-stamp: <2013-03-21 10:59:08 Thursday by lzy>
+;; Time-stamp: <2013-03-27 17:38:30 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -39,7 +39,6 @@
   (kill-new (which-function)))
 
 (setq which-func-unknown "*")
-
 (which-func-mode 1)
 
 (lazy-set-key

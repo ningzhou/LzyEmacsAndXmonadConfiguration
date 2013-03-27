@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; parenthese-setting.el ---
-;; Time-stamp: <2013-03-22 09:21:19 Friday by lzy>
+;; Time-stamp: <2013-03-27 17:37:26 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -73,12 +73,12 @@
 
 (defun enable-highlight-paren ()
   "enable highlight parenthese"
+  (setq hl-paren-colors
+        '("red" "yellow" "cyan" "magenta" "green" "red"))
   (highlight-parentheses-mode 1))
 
-;; settings
+;; global parenthese settings
 (setq blink-matching-paren nil)
-(setq hl-paren-colors
-      '("red" "yellow" "cyan" "magenta" "green" "red"))
 (show-paren-mode 1)
 (mic-paren-setting)
 

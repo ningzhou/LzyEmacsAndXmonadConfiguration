@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-multis.el ---
-;; Time-stamp: <2013-03-21 18:28:44 Thursday by lzy>
+;; Time-stamp: <2013-03-27 17:06:40 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -90,7 +90,9 @@
 (defun multi-term-setting ()
   "settings for multi-term"
   (setq multi-term-program "/bin/bash")
-  (add-to-list 'term-bind-key-alist '("C-c C-e" . term-send-esc)))
+  (add-to-list 'term-bind-key-alist '("C-c C-e" . term-send-esc) t)
+  (add-to-list 'term-bind-key-alist '("C-p" . term-send-up) t)
+  (add-to-list 'term-bind-key-alist '("C-n" . term-send-down) t))
 
 (add-hook 'term-mode-hook 'set-ansi-term-font)
 (add-hook 'term-mode-hook 'set-ansi-term-color)

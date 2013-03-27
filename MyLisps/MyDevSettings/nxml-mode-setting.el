@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; nxml-mode-setting.el ---
-;; Time-stamp: <2013-03-21 18:35:16 Thursday by lzy>
+;; Time-stamp: <2013-03-27 17:54:19 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -34,10 +34,10 @@
 (defun nxml-mode-setting ()
   "settings for nxml mode"
   ;; settings
-  (setq nxml-child-indent 4)
-  (setq nxml-attribute-indent 8)
+  (setq nxml-child-indent 2)
+  (setq nxml-attribute-indent 4)
   (setq nxml-sexp-element-flag t)
-  (setq nxml-outline-child-indent 4)
+  (setq nxml-outline-child-indent 2)
   (setq nxml-slash-auto-complete-flag t)
   (setq nxml-prefer-utf-16-to-utf-8-flag nil)
   (setq nxml-auto-insert-xml-declaration-flag t)

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-windows.el ---
-;; Time-stamp: <2013-03-22 09:14:23 Friday by lzy>
+;; Time-stamp: <2013-03-27 16:26:02 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -33,10 +33,14 @@
 
 ;;; revive settings
 
-;; settings
+;;==============================================================
+;;; revive settings
+(defun revive-setting ()
+  "settings for revive"
+  (setq revive:configuration-file "~/.emacs.d/ReviveConfigure"))
+
 (eval-after-load "revive"
-  '(progn
-     (setq revive:configuration-file "~/.emacs.d/ReviveConfigure")))
+  '(revive-setting))
 
 (autoload 'save-current-configuration "revive" "Save status" t)
 (autoload 'resume "revive" "Resume Emacs" t)
@@ -49,13 +53,13 @@
    ("C-c w k" . wipe)
    ("C-c w 0" . toggle-one-window)))
 
+;;==============================================================
 ;;; windows settings
-;; required features
 (require 'window-number)
-;; settings
 (window-number-mode 1)
 (window-number-meta-mode 1)
 
+;;==============================================================
 ;;; window resize settings
 (lazy-set-key
  '(("C-<left>"  . shrink-window-horizontally)

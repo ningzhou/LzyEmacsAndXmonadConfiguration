@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-weibo.el ---
-;; Time-stamp: <2013-03-15 15:21:04 Friday by lzy>
+;; Time-stamp: <2013-03-27 17:10:54 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -38,9 +38,9 @@
 (eval-after-load "weibo"
   '(weibo-setting))
 
-(defalias 'weibo 'weibo-timeline)
-
 (autoload 'weibo-timeline "weibo" nil t)
+
+(defalias 'weibo 'weibo-timeline)
 
 ;;; provide features
 (provide 'init-weibo)

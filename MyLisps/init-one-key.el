@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-one-key.el ---
-;; Time-stamp: <2013-03-20 16:25:13 Wednesday by lzy>
+;; Time-stamp: <2013-03-27 18:53:54 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -138,32 +138,12 @@
 (defvar one-key-menu-tools-alist nil
   "The `one-key' menu alist for tools.")
 
+;; add menu list here
+
 (defun one-key-menu-tools ()
   "The `one-key' menu for tools."
   (interactive)
   (one-key-menu "Tools" one-key-menu-tools-alist))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Etags ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defvar one-key-menu-etags-alist nil
-  "The `one-key' menu alist for ETAGS.")
-
-(setq one-key-menu-etags-alist
-      '(
-        (("G" . "Generate Tag Table") . generate-tag-table-of-emacs)
-        (("w" . "Find Tag Window") . find-tag-window)
-        (("W" . "Find Tag Window Small") . release-small-tag-window)
-        (("," . "Find Tag+") . find-tag+)
-        (("." . "Find Tag") . find-tag)
-        (("p" . "Pop Tag Mark") . pop-tag-mark)
-        (("r" . "Find Tag Regexp") . find-tag-regexp)
-        (("s" . "Tags Search") . tags-search)
-        (("Q" . "Tags Query Replace") . tags-query-replace)
-        ))
-
-(defun one-key-menu-etags ()
-  "The `one-key' menu for ETAGS."
-  (interactive)
-  (one-key-menu "Etags" one-key-menu-etags-alist t t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; W3m Search ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defvar one-key-menu-w3m-search-alist nil
@@ -214,8 +194,7 @@
         (("t" . "Google News Sci/Tech CN") . w3m-search-google-news-cn-Sci/Tech)
         (("T" . "Google News Sci/Tech EN") . w3m-search-google-news-en-Sci/Tech)
         (("w" . "Wikipedia EN") . w3m-search-wikipedia-en)
-        (("W" . "Wikipedia CN") . w3m-search-wikipedia-cn)
-        ))
+        (("W" . "Wikipedia CN") . w3m-search-wikipedia-cn)))
 
 (defun one-key-menu-w3m-search ()
   "The `one-key' menu for W3M-SEARCH."
