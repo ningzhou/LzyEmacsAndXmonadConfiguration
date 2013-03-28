@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-misc.el ---
-;; Time-stamp: <2013-03-28 09:26:39 Thursday by lzy>
+;; Time-stamp: <2013-03-28 16:43:27 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -95,7 +95,8 @@
                 message-mode-hook
                 org-mode-hook))
   (add-hook hook
-            #'(lambda () (auto-fill-mode 1))))
+            #'(lambda ()
+                (auto-fill-mode 1))))
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)

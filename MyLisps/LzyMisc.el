@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
-;;; LzyStartup.el ---
-;; Time-stamp: <2013-03-28 09:53:43 Thursday by lzy>
+;;; LzyMisc.el ---
+;; Time-stamp: <2013-03-28 16:46:56 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -27,7 +27,7 @@
 ;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'LzyStartup)
+;;   (require 'LzyMisc)
 
 ;;; Code:
 
@@ -39,9 +39,10 @@
     (kill-buffer "*scratch*"))
 (if (get-buffer "*Messages*")
     (kill-buffer "*Messages*"))
+
 (toggle-debug-on-error)
 
 ;;; provide features
-(provide 'LzyStartup)
+(provide 'LzyMisc)
 
-;;; LzyStartup.el ends here
+;;; LzyMisc.el ends here
