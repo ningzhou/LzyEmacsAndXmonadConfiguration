@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; html-mode-setting.el ---
-;; Time-stamp: <2013-03-22 09:10:11 Friday by lzy>
+;; Time-stamp: <2013-03-28 11:11:17 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -54,10 +54,7 @@
 
   ;; key bindings
   (lazy-set-key
-   '(("C-j" . newline-and-indent)
-     ("C-c k" . uncomment)
-     ("C-c C-c" . comment)
-     ("C-c C-w" . w3m-browse-current-buffer))
+   '(("C-c C-w" . w3m-browse-current-buffer))
    sgml-mode-map))
 
 (eval-after-load "sgml-mode"

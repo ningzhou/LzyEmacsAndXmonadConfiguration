@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; autoconf-mode-setting.el ---
-;; Time-stamp: <2013-03-21 14:31:50 Thursday by lzy>
+;; Time-stamp: <2013-03-28 11:09:18 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -33,10 +33,7 @@
 
 (defun autoconf-mode-setting ()
   "setting for autoconf"
-  (lazy-set-key
-   '(("C-c C-c" . comment)
-     ("C-c k" . uncomment))
-   autoconf-mode-map))
+  (message "autoconf mode"))
 
 (eval-after-load "autoconf"
   '(autoconf-mode-setting))

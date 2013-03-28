@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; sh-mode-setting.el ---
-;; Time-stamp: <2013-03-27 17:55:37 Wednesday by lzy>
+;; Time-stamp: <2013-03-28 11:16:00 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -33,13 +33,9 @@
 
 (defun sh-mode-setting ()
   "settings for `sh-mode'."
-
   ;; key bindings
   (lazy-set-key
-   '(("C-j" . newline-and-indent)
-     ("C-c M-c" . sh-case)
-     ("C-c C-c" . comment)
-     ("C-c k"   . uncomment))
+   '(("C-c M-c" . sh-case))
    sh-mode-map))
 
 (eval-after-load "sh-script"

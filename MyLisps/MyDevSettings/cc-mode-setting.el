@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; cc-mode-setting.el ---
-;; Time-stamp: <2013-03-21 18:34:36 Thursday by lzy>
+;; Time-stamp: <2013-03-28 11:10:00 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -52,10 +52,7 @@
   ;; key bindings
   (lazy-set-key
    '(("C-c M-a" . beginning-of-defun)
-     ("C-c M-e" . end-of-defun)
-     ("C-j" . newline-and-indent)
-     ("C-c C-c" . comment)
-     ("C-c k" . uncomment))
+     ("C-c M-e" . end-of-defun))
    c-mode-base-map))
 
 (add-hook 'c-mode-common-hook 'cc-mode-setting)

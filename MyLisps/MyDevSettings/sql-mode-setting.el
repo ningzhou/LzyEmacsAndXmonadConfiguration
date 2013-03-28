@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; sql-mode-setting.el ---
-;; Time-stamp: <2013-03-22 09:12:22 Friday by lzy>
+;; Time-stamp: <2013-03-28 11:16:46 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -34,10 +34,7 @@
 (defun sql-mode-setting ()
   "settings for `sql'."
   ;; key bindings
-  (lazy-set-key
-   '(("M-m" . comint-previous-matching-input)
-     ("M-M" . comint-next-matching-input))
-   sql-interactive-mode-map))
+  (message "sql mode"))
 
 (eval-after-load "sql"
   '(sql-mode-setting))

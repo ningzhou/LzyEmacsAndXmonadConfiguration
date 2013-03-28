@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyBasic.el ---
-;; Time-stamp: <2013-03-28 08:42:45 Thursday by lzy>
+;; Time-stamp: <2013-03-28 11:00:54 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -43,7 +43,8 @@
 (defun get-mode-name ()
   "display `major-mode' and `mode-name'"
   (interactive)
-  (message "major-mode: %s, mode-name: %s" major-mode mode-name))
+  (message "major-mode: %s, mode-name: %s"
+           major-mode mode-name))
 
 (defun kill-buffer-when-shell-command-exit ()
   "Close current buffer when `shell-command' exit."
@@ -56,7 +57,7 @@
            (kill-buffer (process-buffer proc))))))))
 
 (defun get-current-word ()
-  (interactive)
+  "Get word under curosr."
   (let ((begin (point-min))
         (end (point-max)))
     (save-excursion
@@ -69,8 +70,7 @@
     (buffer-substring-no-properties begin end)))
 
 (defun mark-whole-sexp ()
-  "Mark whole sexp.
-If NOT-WHOLE is non-nil, do not mark whole sexp."
+  "Mark whole sexp."
   (interactive)
   (let ((region (bounds-of-thing-at-point 'sexp)))
     (if (not region)
@@ -79,10 +79,10 @@ If NOT-WHOLE is non-nil, do not mark whole sexp."
       (call-interactively 'set-mark-command)
       (forward-sexp))))
 
-(defun lisp-mark-function (&optional allow-extend)
+(defun lisp-mark-function ()
   "Lisp mark function"
-  (interactive "p")
-  (mark-defun allow-extend)
+  (interactive)
+  (mark-defun)
   (let (next-is-fun)
     (save-excursion
       (forward-line)
@@ -133,7 +133,7 @@ current line"
 (defun copy-cur-line ()
   "Copy current line"
   (interactive)
-  (let ((end (min (point-max) (1+ (line-end-position)))))
+  (let ((end (min (point-max) (line-end-position))))
     (copy-region-as-kill (line-beginning-position) end)))
 
 (defun copy-region ()

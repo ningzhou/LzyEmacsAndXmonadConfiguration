@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; lisp-mode-setting.el ---
-;; Time-stamp: <2013-03-21 18:35:08 Thursday by lzy>
+;; Time-stamp: <2013-03-28 11:14:26 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -41,40 +41,25 @@
   (turn-on-cldoc-mode))
 
 (add-hook 'lisp-mode-hook
-          '(lambda ()
-             (lisp-common-setting)
-             (lazy-set-key
-              '(("C-c M-a" . beginning-of-defun)
-                ("C-c M-e" . end-of-defun)
-                ("M-j" . eval-last-sexp)
-                ("C-j" . newline-and-indent)
-                ("C-c C-c" . comment)
-                ("C-c k" . uncomment))
-              lisp-mode-map)))
+          #'(lambda ()
+              (lisp-common-setting)
+              (lazy-set-key
+               '(("M-j" . eval-last-sexp))
+               lisp-mode-map)))
 
 (add-hook 'emacs-lisp-mode-hook
-          '(lambda ()
-             (lisp-common-setting)
-             (lazy-set-key
-              '(("C-c M-a" . beginning-of-defun)
-                ("C-c M-e" . end-of-defun)
-                ("M-j" . eval-last-sexp)
-                ("C-j" . newline-and-indent)
-                ("C-c C-c" . comment)
-                ("C-c k" . uncomment))
-              emacs-lisp-mode-map)))
+          #'(lambda ()
+              (lisp-common-setting)
+              (lazy-set-key
+               '(("M-j" . eval-last-sexp))
+               emacs-lisp-mode-map)))
 
 (add-hook 'lisp-interaction-mode-hook
-          '(lambda ()
-             (lisp-common-setting)
-             (lazy-set-key
-              '(("C-c M-a" . beginning-of-defun)
-                ("C-c M-e" . end-of-defun)
-                ("M-j" . eval-last-sexp)
-                ("C-j" . newline-and-indent)
-                ("C-c C-c" . comment)
-                ("C-c k" . uncomment))
-              lisp-interaction-mode-map)))
+          #'(lambda ()
+              (lisp-common-setting)
+              (lazy-set-key
+               '(("M-j" . eval-last-sexp))
+               lisp-interaction-mode-map)))
 
 (lazy-set-key
  '(("C-x M-E" . toggle-debug-on-error)

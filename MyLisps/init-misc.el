@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-misc.el ---
-;; Time-stamp: <2013-03-28 09:26:39 Thursday by lzy>
+;; Time-stamp: <2013-03-28 11:56:27 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -31,10 +31,10 @@
 
 ;;; Code:
 
-(setq echo-keystrokes 0.1)
 (setq ring-bell-function 'ignore)
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
+(setq message-log-max t)
 (setq default-major-mode 'text-mode)
 (setq mouse-yank-at-point t)
 (setq x-stretch-cursor t)
@@ -44,28 +44,45 @@
 (setq max-specpdl-size 10000)
 (setq mark-ring-max 1024)
 (setq global-mark-ring-max 1024)
-(setq message-log-max t)
 (setq read-quoted-char-radix 16)
-(setq void-text-area-pointer nil)
 (setq enable-recursive-minibuffers t)
 (setq eval-expression-print-length nil)
 (setq eval-expression-print-level nil)
 (setq history-delete-duplicates t)
-(setq print-escape-newlines t)
 (setq isearch-allow-scroll t)
 (setq minibuffer-message-timeout 1)
 (setq require-final-newline t)
-(setq speedbar-show-unknown-files t)
-(fset 'yes-or-no-p 'y-or-n-p)
-(setq-default comment-style 'indent)
-(setq-default save-place t)
-(mouse-avoidance-mode "banish")
-(add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
 
-;; indent tabs settings
+;; disable scroll bar
+(scroll-bar-mode -1)
+;; disable menu bar
+(menu-bar-mode -1)
+;; disable cursor blink
+(blink-cursor-mode -1)
+;; disable tool bar
+(tool-bar-mode -1)
+;; enable auto compression mode
+(auto-compression-mode 1)
+;; show column number
+(column-number-mode 1)
+;; enable transient mark mode
+(transient-mark-mode 1)
+;; ask user a "y or n" question
+(fset 'yes-or-no-p 'y-or-n-p)
+;; style to be used for comment-region
+(setq-default comment-style 'indent)
+;; automatically save place in each file
+(setq-default save-place t)
+;; mouse avoidance mode style
+(mouse-avoidance-mode "banish")
+;; Prompt in the minibuffer for password
+(add-hook 'comint-output-filter-functions
+          'comint-watch-for-password-prompt)
+
+;; indent settings
+(setq-default indent-tabs-mode nil)
 (setq tab-always-indent 'complete)
 (setq default-tab-width 4)
-(setq-default indent-tabs-mode nil)
 (setq tab-stop-list nil)
 (loop for x downfrom 40 to 1 do
       (setq tab-stop-list
@@ -75,45 +92,52 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
-;; coding system setting
-(setq default-buffer-file-coding-system 'utf-8-unix)
-(setq default-file-name-coding-system 'utf-8-unix)
-(setq default-keyboard-coding-system 'utf-8-unix)
-(setq default-process-coding-system '(utf-8-unix . utf-8-unix))
-(setq default-sendmail-coding-system 'utf-8-unix)
-(setq default-terminal-coding-system 'utf-8-unix)
-
 ;; recent file setting
 (setq recentf-max-saved-items 100)
-(setq recentf-auto-cleanup 300)
 (setq recentf-save-file "~/.emacs.d/recentfiles")
+(custom-set-variables '(recentf-auto-cleanup never))
 (recentf-mode 1)
 
-;; auto fill setting
-(setq default-fill-column 80)
-(dolist (hook '(text-mode-hook
-                message-mode-hook
-                org-mode-hook))
-  (add-hook hook
-            #'(lambda () (auto-fill-mode 1))))
+;; auto fill mode setting
+(dolist (hook '(text-mode-hook org-mode-hook))
+  (add-hook hook #'(lambda () (auto-fill-mode 1))))
 
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(blink-cursor-mode -1)
-(column-number-mode 1)
-(transient-mark-mode 1)
-(auto-compression-mode 1)
+;; coding system setting
+(setq default-buffer-file-coding-system 'utf-8)
+(setq default-file-name-coding-system 'utf-8)
+(setq default-keyboard-coding-system 'utf-8)
+(setq default-process-coding-system '(utf-8 . utf-8))
+(setq default-sendmail-coding-system 'utf-8)
+(setq default-terminal-coding-system 'utf-8)
 
-;; global key binding for all buffer
+;; global key binding
 (lazy-set-key
  '(("M-m" . set-mark-command)
+   ("M-w" . smart-copy)
    ("M-M" . mark-whole-sexp)
    ("M-k" . smart-kill)
-   ("C-x <tab>" . smart-indent)
    ("C-x m" . get-mode-name)
    ("C-x k" . kill-this-buffer)
-   ("C-x C-b" . ibuffer)))
+   ("C-x C-b" . ibuffer)
+   ("C-j" . newline-and-indent)
+   ("C-x <tab>" . smart-indent)
+   ("C-c C-c" . comment)
+   ("C-c k" . uncomment)
+   ("C-c M-a" . beginning-of-defun)
+   ("C-c M-e" . end-of-defun)))
+
+;; cleanup tmp buffer
+(if (get-buffer ".bash_history")
+    (kill-buffer ".bash_history"))
+(if (get-buffer "*Compile-Log*")
+    (kill-buffer "*Compile-Log*"))
+(if (get-buffer "*scratch*")
+    (kill-buffer "*scratch*"))
+(if (get-buffer "*Messages*")
+    (kill-buffer "*Messages*"))
+
+;; debug
+(toggle-debug-on-error)
 
 ;;; provide features
 (provide 'init-misc)
