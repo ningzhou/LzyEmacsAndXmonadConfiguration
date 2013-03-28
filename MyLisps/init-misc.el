@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-misc.el ---
-;; Time-stamp: <2013-03-28 11:56:27 Thursday by lzy>
+;; Time-stamp: <2013-03-28 14:01:35 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -131,13 +131,10 @@
     (kill-buffer ".bash_history"))
 (if (get-buffer "*Compile-Log*")
     (kill-buffer "*Compile-Log*"))
-(if (get-buffer "*scratch*")
-    (kill-buffer "*scratch*"))
 (if (get-buffer "*Messages*")
     (kill-buffer "*Messages*"))
-
-;; debug
-(toggle-debug-on-error)
+(if (get-buffer "*scratch*")
+    (kill-buffer "*scratch*"))
 
 ;;; provide features
 (provide 'init-misc)

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-org.el ---
-;; Time-stamp: <2013-03-22 09:14:23 Friday by lzy>
+;; Time-stamp: <2013-03-28 14:31:25 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -38,7 +38,7 @@
   (require 'org-w3m)
   (require 'org-install)
   (require 'org-extension)
-  (require 'org-html5presentation-modified-by-lzy)
+  (require 'org-html5presentation)
 
   ;; settings
   (setq org-directory "~/OrgDir")

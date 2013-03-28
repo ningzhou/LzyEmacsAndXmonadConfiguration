@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-03-27 18:48:51 Wednesday by lzy>
+;; Time-stamp: <2013-03-28 14:02:47 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -62,7 +62,7 @@
 (require 'init-go2chg)                       ;; go to last change place
 (require 'init-apropos)                      ;; all apropos related setting
 (require 'init-iman)                         ;; extend man information
-(require 'init-info+)                        ;; emacs less mode
+(require 'init-info)                         ;; info mode setting
 (require 'init-less)                         ;; extend less information
 (require 'init-undo-tree)                    ;; extended undo system setting
 (require 'init-ffap)                         ;; ffap setting

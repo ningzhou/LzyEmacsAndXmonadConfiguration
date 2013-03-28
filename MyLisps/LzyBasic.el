@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyBasic.el ---
-;; Time-stamp: <2013-03-28 11:00:54 Thursday by lzy>
+;; Time-stamp: <2013-03-28 12:51:41 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -118,7 +118,7 @@ current line"
 current line"
   (interactive)
   (if mark-active
-      (uncomment-region (region-beginning) (region-end) arg)
+      (uncomment-region (region-beginning) (region-end))
     (let (fun)
       (setq fun 'uncomment-region)
       (funcall fun (line-beginning-position) (line-end-position)))))
