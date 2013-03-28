@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-yasnippet.el ---
-;; Time-stamp: <2013-03-27 17:08:35 Wednesday by lzy>
+;; Time-stamp: <2013-03-28 09:49:45 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -44,7 +44,7 @@
 (yas-global-mode 1)
 
 (add-hook 'term-mode-hook #'(lambda ()
-                             (yas-minor-mode -1)))
+                              (yas-minor-mode -1)))
 
 ;;; provide features
 (provide 'init-yasnippet)

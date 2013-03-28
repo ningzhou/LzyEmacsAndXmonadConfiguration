@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyStartup.el ---
-;; Time-stamp: <2013-03-22 09:16:02 Friday by lzy>
+;; Time-stamp: <2013-03-28 09:53:43 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -39,6 +39,7 @@
     (kill-buffer "*scratch*"))
 (if (get-buffer "*Messages*")
     (kill-buffer "*Messages*"))
+(toggle-debug-on-error)
 
 ;;; provide features
 (provide 'LzyStartup)

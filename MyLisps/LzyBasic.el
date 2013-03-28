@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyBasic.el ---
-;; Time-stamp: <2013-03-22 10:48:18 Friday by lzy>
+;; Time-stamp: <2013-03-28 08:42:45 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -37,19 +37,13 @@
 (require 'recentf)
 (require 'uniquify)
 (require 'saveplace)
+(require 'thingatpt)
 (require 'ansi-color)
-(require 'edit-misc)
 
 (defun get-mode-name ()
   "display `major-mode' and `mode-name'"
   (interactive)
   (message "major-mode: %s, mode-name: %s" major-mode mode-name))
-
-(defun indent-whole-buffer ()
-  "indent whole buffer"
-  (interactive)
-  (save-excursion
-    (indent-region (point-min) (point-max))))
 
 (defun kill-buffer-when-shell-command-exit ()
   "Close current buffer when `shell-command' exit."
@@ -73,6 +67,126 @@
       (setq begin (region-beginning)
             end (region-end)))
     (buffer-substring-no-properties begin end)))
+
+(defun mark-whole-sexp ()
+  "Mark whole sexp.
+If NOT-WHOLE is non-nil, do not mark whole sexp."
+  (interactive)
+  (let ((region (bounds-of-thing-at-point 'sexp)))
+    (if (not region)
+        (message "Can not found sexp.")
+      (goto-char (car region))
+      (call-interactively 'set-mark-command)
+      (forward-sexp))))
+
+(defun lisp-mark-function (&optional allow-extend)
+  "Lisp mark function"
+  (interactive "p")
+  (mark-defun allow-extend)
+  (let (next-is-fun)
+    (save-excursion
+      (forward-line)
+      (setq next-is-fun (looking-at "[ \t]*(defun")))
+    (if (or (looking-at "$")
+            (and next-is-fun (not (looking-at "[ \t]*(defun"))))
+        (forward-line))))
+
+(defun mark-function ()
+  "Mark function."
+  (interactive)
+  (cond
+   ((or (equal major-mode 'c-mode)
+        (equal major-mode 'c++-mode))
+    (c-mark-function))
+   ((or (equal major-mode 'emacs-lisp-mode)
+        (equal major-mode 'lisp-mode)
+        (equal major-mode 'lisp-interaction-mode))
+    (lisp-mark-function))))
+
+(defun comment ()
+  "If mark is active comment region, else comment
+current line"
+  (interactive)
+  (if mark-active
+      (comment-region (region-beginning) (region-end))
+    (let (fun)
+      (setq fun 'comment-region)
+      (funcall fun (line-beginning-position) (line-end-position)))))
+
+(defun uncomment ()
+  "If region is active, uncomment region else uncomment
+current line"
+  (interactive)
+  (if mark-active
+      (uncomment-region (region-beginning) (region-end) arg)
+    (let (fun)
+      (setq fun 'uncomment-region)
+      (funcall fun (line-beginning-position) (line-end-position)))))
+
+(defun comment-function ()
+  "Comment function."
+  (interactive)
+  (save-excursion
+    (mark-function)
+    (comment-region (region-beginning) (region-end))))
+
+(defun copy-cur-line ()
+  "Copy current line"
+  (interactive)
+  (let ((end (min (point-max) (1+ (line-end-position)))))
+    (copy-region-as-kill (line-beginning-position) end)))
+
+(defun copy-region ()
+  "Copy region"
+  (interactive)
+  (copy-region-as-kill (region-beginning) (region-end)))
+
+(defun smart-copy ()
+  "Smart copy, if mark is active then copy
+region else copy current line"
+  (interactive)
+  (save-excursion
+    (if mark-active
+        (call-interactively 'copy-region)
+      (call-interactively 'copy-cur-line))))
+
+(defun copy-sexp ()
+  "Copy sexp"
+  (interactive)
+  (save-excursion
+    (mark-whole-sexp)
+    (copy-region-as-kill (region-beginning) (region-end))))
+
+(defun insert-cur-line ()
+  "Copy current line and paste to buffer"
+  (interactive)
+  (copy-cur-line)
+  (forward-line)
+  (beginning-of-line)
+  (call-interactively 'yank)
+  (previous-line)
+  (end-of-line))
+
+(defun insert-cur-sexp ()
+  "Copy current sexp and paste to buffer"
+  (interactive)
+  (copy-sexp)
+  (call-interactively 'yank))
+
+(defun smart-kill ()
+  "If `mark-active', call `kill-region', otherwise call `kill-whole-line'."
+  (interactive)
+  (if mark-active
+      (call-interactively 'kill-region)
+    (call-interactively 'kill-whole-line)))
+
+(defun smart-indent ()
+  "If `mark-active', call `indent-region', otherwise indent all buffer."
+  (interactive)
+  (save-excursion
+    (unless mark-active
+      (call-interactively 'mark-whole-buffer))
+    (call-interactively 'indent-region)))
 
 (defun lazy-set-key (key-alist &optional keymap key-prefix)
   "This function is to little type when define key binding.

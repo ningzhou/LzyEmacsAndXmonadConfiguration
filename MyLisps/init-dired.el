@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-dired.el ---
-;; Time-stamp: <2013-03-27 17:18:01 Wednesday by lzy>
+;; Time-stamp: <2013-03-28 08:30:59 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -42,6 +42,16 @@
   (require 'smart-compile)
   (require 'dired-extension)
   (require 'wuxch-dired-extension)
+
+  ;; functions definition
+  (defun dired-backup-file ()
+  "backup file in current directory"
+  (interactive)
+  (let* ((origin-file (dired-get-file-for-visit))
+         (backup-file (concat origin-file ".backup")))
+    (copy-file origin-file backup-file)
+    (wuxch-dired-revert)))
+  
   ;; settings
   (setq dired-dwim-target t)
   (setq ls-lisp-dirs-first t)

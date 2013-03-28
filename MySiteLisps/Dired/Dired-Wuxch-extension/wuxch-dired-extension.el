@@ -405,15 +405,6 @@ See also `dired-scroll-down'."
                 (append dired-copied-cutted-files-pool
                         (list (concat (dired-current-directory) element))))))))
 
-;; added by zhengyu li
-(defun dired-backup-file ()
-  "backup file in current directory"
-  (interactive)
-  (let* ((origin-file (dired-get-file-for-visit))
-         (backup-file (concat origin-file ".backup")))
-    (copy-file origin-file backup-file)
-    (wuxch-dired-revert)))
-
 ;;; provide features
 (provide 'wuxch-dired-extension)
 

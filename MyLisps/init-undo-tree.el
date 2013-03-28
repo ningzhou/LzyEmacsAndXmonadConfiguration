@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-undo-tree.el ---
-;; Time-stamp: <2013-03-17 03:15:42 Sunday by lzy>
+;; Time-stamp: <2013-03-28 09:02:07 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -32,6 +32,8 @@
 ;;; Code:
 
 (require 'undo-tree)
+
+(setq undo-outer-limit 100000)
 
 (lazy-unset-key
  '("C-x u")
