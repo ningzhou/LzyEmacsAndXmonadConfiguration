@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyBasic.el ---
-;; Time-stamp: <2013-03-28 12:51:41 Thursday by lzy>
+;; Time-stamp: <2013-03-29 10:46:29 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -26,9 +26,6 @@
 ;;
 ;; This package contains basic libraries and many other useful functions
 ;; used by other packages, it should be loaded at startup.
-
-;; basic packages and functions defined by Author, these packages and
-;; basic functions will be used by other packages
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'LzyBasic)
