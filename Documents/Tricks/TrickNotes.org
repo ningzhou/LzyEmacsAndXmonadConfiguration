@@ -24,7 +24,7 @@
 ** Drawing Tools in Unix/Linux environment <2012-05-20 日>
 *** GnuPlot与MetaPost
 
-在类UNIX操作系统中，值得掌握的绘图语言有两个。一个是GnuPlot，它是基于函数的绘图语言，譬如三角函数sin(x)等，很多数学软件选用它作图形输出接口（如著名
+    在类UNIX操作系统中，值得掌握的绘图语言有两个。一个是GnuPlot，它是基于函数的绘图语言，譬如三角函数sin(x)等，很多数学软件选用它作图形输出接口（如著名
 的octave等）；另一个是MetaPost，它是基于描述的绘图语言，譬如由三个给定的点构成的三角形等。MetaPost由贝尔实验室的John Hobby设计，是功能最强大的描述绘
 图语言。FreeBSD提供的teTeX缺省地带着命令mpost，无需安装。补充一句，GnuPlot可以输出MetaPost文件，二者可以联手成为绘图工具不二之选。 
 

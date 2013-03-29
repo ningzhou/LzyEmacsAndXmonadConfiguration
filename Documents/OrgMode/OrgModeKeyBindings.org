@@ -31,23 +31,23 @@ c-c c-l . insert a link
 c-c c-o . open link at point
 
 ** built-in table editor
-m-a          . move to beginning of the current table field\\
-m-e          . move to end of current table field\\
-m-left/right . move the current column left/right\\
-m-up/down    . move the current row up/down\\
+m-a          . move to beginning of the current table field
+m-e          . move to end of current table field
+m-left/right . move the current column left/right
+m-up/down    . move the current row up/down
 c-c <ret>    . insert horizontal line below current row, and move the cursor into the row below that
-line.\\
+line.
 c-c =        . install a new formula for the current column and replace current field with the result of
-the formula.\\
-c-u c-c =    . install a new formula for the current row and column.\\
+the formula.
+c-u c-c =    . install a new formula for the current row and column.
 c-c ?        . while editing a formula in a table field, highlight the field(s) referenced by the
-reference at the cursor position in the formula.\\
-c-c }        . toggle the display of row and column numbers for a table.\\
-c-c {        . toggle the formula debugger on and off.\\
-c-c '        . edit all formulas for the current table in a special buffer.\\
-c-u c-c c-c  . recompute the entire table.\\
+reference at the cursor position in the formula.
+c-c }        . toggle the display of row and column numbers for a table.
+c-c {        . toggle the formula debugger on and off.
+c-c '        . edit all formulas for the current table in a special buffer.
+c-u c-c c-c  . recompute the entire table.
 c-c c-x c-v  . toggle the inline display of linked images. normally this will only inline images
-that have no description part in the link.\\
+that have no description part in the link.
 + example: before
   | a | b | c |
   | d | e | f |
@@ -57,12 +57,12 @@ that have no description part in the link.\\
   | d | e | f |
 
 *** spreadsheet of orgtbl
-column specification: $1 $2 $3 ... $n\\
+column specification: $1 $2 $3 ... $n
 row specification: @1 @2 @3 ... @n, while @< and @> represent the first column and the last column seperately.
 you may reference a rectangular range of fields by specifying two field references connected by two
-dots '..'. if both fields are in the current row, you may sumply use '$2..$7'.\\
+dots '..'. if both fields are in the current row, you may sumply use '$2..$7'.
 (*notes:* calc has the non-standard converntion that '/' has lower precedence than '*', so that
-'a/b*c' is interpreted as 'a/(b*c))\\
+'a/b*c' is interpreted as 'a/(b*c))
 
 *** org-plot
 org-plot can produce 2d and 3d graphs of information stored in org tables using [[http://www.gnuplot.info][gnuplot]] and
@@ -83,12 +83,12 @@ you can use 'c-c o l' to store a link to the current location.
 + for email/news/w3/w3m, it will store email addr and url etc.
 * (todo items)
 ** basics
-c-c c-t . rotate the todo state of the current item among todo->done->unmarked\\
-s-<right>/<left> . similar to 'c-c c-t'\\
-c-c / t . view todo items in a sparse tree.\\
-c-c o a t . show the global todo list.\\
-s-m-<ret> . insert a new todo entry below the current one.\\
-c-c c-x o . toggle the ordered property of the current entry.\\
+c-c c-t . rotate the todo state of the current item among todo->done->unmarked
+s-<right>/<left> . similar to 'c-c c-t'
+c-c / t . view todo items in a sparse tree.
+c-c o a t . show the global todo list.
+s-m-<ret> . insert a new todo entry below the current one.
+c-c c-x o . toggle the ordered property of the current entry.
 s-<up>/<down> . rotate among all kinds of priorities.
 ** todo keywords as workflow states
 #+begin_src emacs-lisp -n
@@ -112,7 +112,7 @@ types. so the normal work flow would be to assign a task to a person, and later 
           (sequence "report" "bug" "knowncause" "|" "fixed")
           (sequence "|" "canceled")))
 #+end_src
-c-s-<right>/<left> . jump from one todo subset to the next.\\
+c-s-<right>/<left> . jump from one todo subset to the next.
 s-<right>/<left> . walk through all keywords from all sets.
 ** checkboxes
 every item in a plain list can be made into a checkbox by starting it with the string '[]'. this
@@ -129,9 +129,9 @@ global todo list, so, the global todo lists are often split into a number of sim
 * tags and properties
 ** tags
 *** key bindings for tags
-c-c c-q . enter tags for the current headling.\\
-c-c c-c . when the cursor is in a headline, this does the same as c-c c-q.\\
-c-c / m or c-c \ . create a sparse tree with all headlines matching a tags search.\\
+c-c c-q . enter tags for the current headling.
+c-c c-c . when the cursor is in a headline, this does the same as c-c c-q.
+c-c / m or c-c \ . create a sparse tree with all headlines matching a tags search.
 c-c a m . create a global list of tag matches from all agenda files.
 c-c a m . create a global list of tag matches from all agenda files, but check only todo items and
 force checking subitems.
@@ -153,17 +153,17 @@ need to be inserted into a special drawer with the name properties.
 #+end_example
 *** key bindings for properties
 c-c c-x p . set a property. this prompts for a property name and a value. if necessary, the property
-drawer is created as well.\\
-m-x org-insert-property-drawer . insert a property drawer into the current entry.\\
-c-c c-c . with the cursor in a property drawer, this executes property commands.\\
-s-<right>/<left> . switch property at point to the next/previous allowed value.\\
-c-c c-c d . remove a property from the current entry.\\
+drawer is created as well.
+m-x org-insert-property-drawer . insert a property drawer into the current entry.
+c-c c-c . with the cursor in a property drawer, this executes property commands.
+s-<right>/<left> . switch property at point to the next/previous allowed value.
+c-c c-c d . remove a property from the current entry.
 c-c / m or c-c , . create a sparse tree with all matching entries.
-c-c o a m . create a global list of tag/property matches from all agenda files.\\
+c-c o a m . create a global list of tag/property matches from all agenda files.
 c-c o a m . create a global list of tag/property matches from all agenda files, but check only todo
-items and force checking of subitems.\\
+items and force checking of subitems.
 c-c / p . create a sparse tree based on the value of a property. this first prompts for the name of
-a property, and then for a value.\\
+a property, and then for a value.
 * timestamps, deadlines and scheduling
 ** timestamp
 a simple timestamp just assigns a date/time to an item. this just like writting down an appointment
@@ -196,17 +196,17 @@ agenda.
 ** key bindings for creating timestamp
 `c-c .' . prompt for a date and insert a corresponding timestamp, when the cursor is at an existing
 timestamp in the buffer, the command is used to modify this timestamp instead of inserting a new
-one.\\
-c-c ! . like c-c ., but insert an inactive timestamp that will not cause an agenda entry.\\
-c-u c-c . and c-u c-c ! . like above, but use the alternative format which contains date and time.\\
-c-c c-c . normalize timestamp, insert/fix day name if missing or wrong.\\
+one.
+c-c ! . like c-c ., but insert an inactive timestamp that will not cause an agenda entry.
+c-u c-c . and c-u c-c ! . like above, but use the alternative format which contains date and time.
+c-c c-c . normalize timestamp, insert/fix day name if missing or wrong.
 c-c < . insert a timestamp corresponding to the cursor date in the calendar.
 c-c > . access the emacs calendar for the current date. if there is a timestamp in the current line,
-got to the corresponding date instead.\\
-c-c c-o . access the agenda for the date given by the timestamp or -range at point.\\
-s-<left>/<right> . change date at cursor by one day.\\
+got to the corresponding date instead.
+c-c c-o . access the agenda for the date given by the timestamp or -range at point.
+s-<left>/<right> . change date at cursor by one day.
 s-<up>/<down> . change the item under the cursor in a timestamp. the cursor can be on a year, month,
-day, houror minute.\\
+day, houror minute.
 c-c c-y . evaluate a time range by computing the difference between start and end.
 ** deadline and scheduling
 a timestamp may be preceded by special keywords to facilitate planning.
@@ -229,34 +229,34 @@ a timestamp may be preceded by special keywords to facilitate planning.
        deadline: <2005-10-01 sat +1m>
   #+end_example
 + key bindings for deadline and schedules
-  c-c c-d . insert `deadline' keyword along with a timestamp.\\
-  c-c c-s . insert `scheduled' keyword along with a timestamp.\\
-  c-c c-x c-k . mark the current entry for agenda action.\\
+  c-c c-d . insert `deadline' keyword along with a timestamp.
+  c-c c-s . insert `scheduled' keyword along with a timestamp.
+  c-c c-x c-k . mark the current entry for agenda action.
   c-c / d . create a sparse tree with all deadlines that are either past-due, or which will become
-  due...\\
+  due...
   c-c / b/a . sparse tree for deadlines and scheduled items before/after a given date.
 ** clocking work time
 org mode allows you to clock the time you spend on specific tasks in a project.
 + key bindings for clocking
-  c-c c-x c-i . start the clock on the current item.\\
-  c-c c-x c-o . stop the clock, this inserts another timestamp at the same location where the clock\\
-  was last started\\
-  c-c c-c . recompute the time interval after changing one of the timestamps.\\
+  c-c c-x c-i . start the clock on the current item.
+  c-c c-x c-o . stop the clock, this inserts another timestamp at the same location where the clock
+  was last started
+  c-c c-c . recompute the time interval after changing one of the timestamps.
   c-c c-x c-x . cancel the current clock. this is useful if a clock was started by mistake, or if
-  you ended up workding on somthing item.\\
+  you ended up workding on somthing item.
   c-c c-x c-j . jump to the headline of the current clocked in task.
   c-c c-x c-d . display time summaries for each subtree in the current buffer.
   c-c c-x c-r . insert a dynamic block containning a clock report as an org mode table into the
-  current file.\\
-  c-c c-x e . set the effort estimate for the current entry.\\
+  current file.
+  c-c c-x e . set the effort estimate for the current entry.
 + taking notes with a relative timer
   `c-c c-x .' . insert a relative time into the buffer. the first time you use this, the timer will
-  be started. when called with a prefxi argument, the timer is restarted.\\
-  c-c c-x - . insert a description list item with the current relative time.\\
-  c-c c-x , . pause the timer, or continue it if it is already paused.\\
+  be started. when called with a prefxi argument, the timer is restarted.
+  c-c c-x - . insert a description list item with the current relative time.
+  c-c c-x , . pause the timer, or continue it if it is already paused.
   c-u c-c c-x , . stop the timer.
   c-c c-x 0 . reset the timer without inserting anything into the buffer. by default, the timer is
-  reset to 0.\\
+  reset to 0.
   c-c c-x ; . prompts the user for a duration and displays a countdown timer.
   
 * capture-refile-archive

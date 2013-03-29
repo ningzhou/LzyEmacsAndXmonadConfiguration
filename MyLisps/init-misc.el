@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-misc.el ---
-;; Time-stamp: <2013-03-29 10:14:19 Friday by lzy>
+;; Time-stamp: <2013-03-29 13:13:19 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -49,10 +49,17 @@
 (setq enable-recursive-minibuffers t)
 (setq eval-expression-print-length nil)
 (setq eval-expression-print-level nil)
-(setq history-delete-duplicates t)
 (setq isearch-allow-scroll t)
 (setq minibuffer-message-timeout 1)
 (setq require-final-newline t)
+
+;; enable history save
+(setq savehist-file "~/.emacs.d/minibuf-history")
+(setq savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
+(setq history-delete-duplicates t)
+(savehist-mode 1)
+;; load savehist file
+(load-file savehist-file)
 
 ;; disable scroll bar
 (scroll-bar-mode -1)
@@ -94,14 +101,16 @@
 (setq auto-save-default nil)
 
 ;; recent file setting
-(setq recentf-max-saved-items 100)
+(set-default 'recentf-max-saved-items 100)
 (setq recentf-save-file "~/.emacs.d/recentfiles")
 (custom-set-variables '(recentf-auto-cleanup 'never))
 (recentf-mode 1)
 
 ;; auto fill mode setting
-(dolist (hook '(text-mode-hook org-mode-hook))
-  (add-hook hook #'(lambda () (auto-fill-mode 1))))
+(dolist (hook '(text-mode-hook org-mode-hook change-log-mode-hook))
+  (add-hook hook #'(lambda ()
+                     (set-fill-column 100)
+                     (turn-on-auto-fill))))
 
 ;; coding system setting
 (setq default-buffer-file-coding-system 'utf-8)

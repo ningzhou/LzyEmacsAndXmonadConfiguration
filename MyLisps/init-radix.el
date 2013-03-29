@@ -1,10 +1,10 @@
 ;; -*- Emacs-Lisp -*-
-;;; init-less.el ---
-;; Time-stamp: <2013-03-15 18:05:13 Friday by lzy>
+;;; init-radix.el ---
+;; Time-stamp: <2013-03-29 11:33:10 Friday by lzy>
 
-;; Copyright (C) 2013 chieftain
+;; Copyright (C) 2013 zhengyu li
 ;;
-;; Author: chieftain <lizhengyu419@gmail.com>
+;; Author: zhengyu li <lizhengyu419@gmail.com>
 ;; Keywords: none
 
 ;; This file is not part of GNU Emacs.
@@ -27,28 +27,20 @@
 ;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'init-less)
+;;   (require 'init-radix)
 
 ;;; Code:
 
-(defun less-minor-mode-setting ()
-  "settings for less minor mode"
-  (lazy-set-key
-   '(("n" . less-scroll-up-one-line)
-     ("p" . less-scroll-down-one-line)
-     ("q" . less-quit))
-   less-minor-mode-map))
-
-(eval-after-load "less"
-  '(less-minor-mode-setting))
-
-(autoload 'less-minor-mode "less" nil t)
-(autoload 'less-minor-mode-on "less" nil t)
-(autoload 'auto-less-minor-mode "less" nil nil)
-
-(add-hook 'find-file-hook 'auto-less-minor-mode)
+(autoload 'number-to-number "radix"
+  "Convert NUMBER in radix RADIX1 to string in radix RADIX2." t)
+(autoload 'hex-to-string "radix"
+  "Convert arg HEX ascii to a one-character string." t)
+(autoload 'string-to-hex "radix"
+  "Convert arg STRING to hexadecimal ascii." t)
+(autoload 'apply-operator "radix"
+  "Apply OPERATOR, returning in radix RADIX, to NUMBERS." t)
 
 ;;; provide features
-(provide 'init-less)
+(provide 'init-radix)
 
-;;; init-less.el ends here
+;;; init-radix.el ends here
