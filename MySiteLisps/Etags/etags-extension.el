@@ -63,7 +63,7 @@
 
 (defvar tags-default-target-directory "./")  ;default index directory.
 (defvar tags-default-storage-directory "~/.emacs.d/etags") ;default storage directory.
-(defvar tags-default-suffix "*.el") ;default suffix
+(defvar tags-default-suffix "el") ;default suffix
 
 (defun generate-tag-table-of-emacs ()
   "Generate tag tables of emacs"
@@ -86,7 +86,7 @@
   (with-temp-buffer
     (cd tags-storage-directory)
     (shell-command
-     (format "find %s -name \"%s\" | xargs etags" tags-target-directory tags-suffix))
+     (format "find %s -name \"%s\" | xargs etags" tags-target-directory (concat "*." tags-suffix)))
     (message "Tags index...")))
 
 (defun find-tag-window ()

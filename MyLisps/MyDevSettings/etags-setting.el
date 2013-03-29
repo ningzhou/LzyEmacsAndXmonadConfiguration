@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; etags-setting.el ---
-;; Time-stamp: <2013-03-27 17:39:32 Wednesday by lzy>
+;; Time-stamp: <2013-03-29 17:34:48 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -35,7 +35,7 @@
 
 (setq tags-default-target-directory "~/My_Software_Dir/LzyEmacsAndXmonadConfiguration/")
 (setq tags-default-storage-directory "~/.emacs.d/Etags")
-(setq tags-default-suffix "*.el")
+
 (unless (file-exists-p tags-default-storage-directory)
   (make-directory tags-default-storage-directory t))
 
@@ -44,8 +44,8 @@
  esc-map)
 
 (lazy-set-key
- '(("<f7>" . generate-tag-table)
-   ("C-<f7>" . generate-tag-table-of-emacs)
+ '(("<f7>" . visit-tags-table)
+   ("C-<f7>" . generate-tag-table)
    ("M-." . find-tag)
    ("M-," . pop-tag-mark)))
 
