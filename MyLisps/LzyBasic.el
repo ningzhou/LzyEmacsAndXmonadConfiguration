@@ -23,6 +23,9 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+;;
+;; This package contains basic libraries and many other useful functions
+;; used by other packages, it should be loaded at startup.
 
 ;; basic packages and functions defined by Author, these packages and
 ;; basic functions will be used by other packages
@@ -109,9 +112,7 @@ current line"
   (interactive)
   (if mark-active
       (comment-region (region-beginning) (region-end))
-    (let (fun)
-      (setq fun 'comment-region)
-      (funcall fun (line-beginning-position) (line-end-position)))))
+      (comment-region (line-beginning-position) (line-end-position))))
 
 (defun uncomment ()
   "If region is active, uncomment region else uncomment
@@ -151,14 +152,14 @@ region else copy current line"
       (call-interactively 'copy-cur-line))))
 
 (defun copy-sexp ()
-  "Copy sexp"
+  "Copy symbol expression"
   (interactive)
   (save-excursion
     (mark-whole-sexp)
     (copy-region-as-kill (region-beginning) (region-end))))
 
 (defun insert-cur-line ()
-  "Copy current line and paste to buffer"
+  "Copy current line and paste it to buffer"
   (interactive)
   (copy-cur-line)
   (forward-line)
@@ -168,7 +169,7 @@ region else copy current line"
   (end-of-line))
 
 (defun insert-cur-sexp ()
-  "Copy current sexp and paste to buffer"
+  "Copy current sexp and paste it to buffer"
   (interactive)
   (copy-sexp)
   (call-interactively 'yank))
