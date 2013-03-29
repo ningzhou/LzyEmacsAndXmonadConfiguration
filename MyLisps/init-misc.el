@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-misc.el ---
-;; Time-stamp: <2013-03-28 14:01:35 Thursday by lzy>
+;; Time-stamp: <2013-03-29 10:14:19 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -31,6 +31,7 @@
 
 ;;; Code:
 
+(setq echo-keystrokes 0.1)
 (setq ring-bell-function 'ignore)
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
@@ -95,7 +96,7 @@
 ;; recent file setting
 (setq recentf-max-saved-items 100)
 (setq recentf-save-file "~/.emacs.d/recentfiles")
-(custom-set-variables '(recentf-auto-cleanup never))
+(custom-set-variables '(recentf-auto-cleanup 'never))
 (recentf-mode 1)
 
 ;; auto fill mode setting

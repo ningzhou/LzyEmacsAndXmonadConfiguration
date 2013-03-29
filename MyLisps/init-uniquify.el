@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-uniquify.el ---
-;; Time-stamp: <2013-03-16 07:44:33 Saturday by lzy>
+;; Time-stamp: <2013-03-29 05:57:39 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -31,14 +31,10 @@
 
 ;;; Code:
 
-(defun uniquify-settings ()
-  "settings for uniquify"
-  (setq uniquify-buffer-name-style
-        'post-forward-angle-brackets)
-  (setq uniquify-separator "/"))
+(require 'uniquify)
 
-(eval-after-load "uniquify"
-  '(uniquify-settings))
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+(setq uniquify-separator "/")
 
 ;;; provide features
 (provide 'init-uniquify)

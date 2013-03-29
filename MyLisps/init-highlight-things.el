@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-highlight-things.el ---
-;; Time-stamp: <2013-03-27 16:35:12 Wednesday by lzy>
+;; Time-stamp: <2013-03-29 08:22:45 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -49,8 +49,6 @@
   ;; required features
   (require 'highlight-sexp)
   ;; settings
-  (custom-set-variables
-   '(hl-sexp-background-color "#002011"))
   (hl-line-mode -1)
   (highlight-sexp-mode 1))
 

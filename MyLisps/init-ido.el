@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-ido.el ---
-;; Time-stamp: <2013-03-22 09:14:23 Friday by lzy>
+;; Time-stamp: <2013-03-29 06:26:16 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -57,23 +57,19 @@
 (defun ido-disable-line-truncation ()
   (set (make-local-variable 'truncate-lines) nil))
 
-(defun ido-setting ()
-  (setq ido-save-directory-list-file "~/.emacs.d/ido.last")
-  (setq ido-enable-flex-matching t)
-  (setq ido-max-directory-size 1000000)
-  ;; Display ido results vertically, rather than horizontally
-  (setq ido-decorations
-        '("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]"
-          " [Matched]" " [Not readable]" " [Too big]" " [Confirm]"))
-  (add-hook 'ido-setup-hook 'ido-my-keys)
-  (add-hook 'ido-make-dir-list-hook 'ido-sort-mtime)
-  (add-hook 'ido-make-file-list-hook 'ido-sort-mtime)
-  (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-truncation)
-  (ido-mode 1)
-  (ido-hacks-mode 1))
-
-;; init ido setting
-(ido-setting)
+(setq ido-save-directory-list-file "~/.emacs.d/ido.last")
+(setq ido-enable-flex-matching t)
+(setq ido-max-directory-size 1000000)
+;; Display ido results vertically, rather than horizontally
+(setq ido-decorations
+      '("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]"
+        " [Matched]" " [Not readable]" " [Too big]" " [Confirm]"))
+(add-hook 'ido-setup-hook 'ido-my-keys)
+(add-hook 'ido-make-dir-list-hook 'ido-sort-mtime)
+(add-hook 'ido-make-file-list-hook 'ido-sort-mtime)
+(add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-truncation)
+(ido-mode 1)
+(ido-hacks-mode 1)
 
 ;;; provide features
 (provide 'init-ido)

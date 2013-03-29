@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; compile-setting.el ---
-;; Time-stamp: <2013-03-21 13:07:14 Thursday by lzy>
+;; Time-stamp: <2013-03-29 07:04:03 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -47,7 +47,7 @@
 
   (lazy-set-key
    '(("C-c C-m" . smart-compile)
-     ("C-c C-b" . compile-buffer)
+     ("C-c C-b" . smart-compile)
      ("M-p"     . previous-error)
      ("M-n"     . next-error))
    c-mode-base-map))

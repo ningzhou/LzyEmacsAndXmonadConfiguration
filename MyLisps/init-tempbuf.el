@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-tempbuf.el ---
-;; Time-stamp: <2013-03-27 16:15:41 Wednesday by lzy>
+;; Time-stamp: <2013-03-29 06:11:00 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -34,6 +34,7 @@
 (autoload 'turn-on-tempbuf-mode "tempbuf"
   "Turn on tempbuf mode" nil)
 
+(add-hook 'Info-mode-hook 'turn-on-tempbuf-mode)
 (add-hook 'Man-mode-hook 'turn-on-tempbuf-mode)
 (add-hook 'view-mode-hook 'turn-on-tempbuf-mode)
 

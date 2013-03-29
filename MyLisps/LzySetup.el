@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-03-28 14:02:47 Thursday by lzy>
+;; Time-stamp: <2013-03-29 10:22:54 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -78,10 +78,10 @@
 (require 'init-anything)                     ;; anyting mode
 (require 'init-cua)                          ;; setting for cua mode
 (require 'init-weibo)                        ;; sina weibo
-(require 'init-tramp)                        ;; transparent remote access
 (require 'init-ediff)                        ;; ediff and ediff tree
 (require 'init-wget)                         ;; wget setting
 (require 'init-dired)                        ;; dired setting
+(require 'init-tramp)                        ;; transparent remote access
 (require 'init-emms)                         ;; emms setting
 (require 'init-w3m)                          ;; w3m setting
 (require 'init-org)                          ;; setting for org mode

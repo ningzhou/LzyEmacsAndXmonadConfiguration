@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-w3m.el ---
-;; Time-stamp: <2013-03-27 17:23:43 Wednesday by lzy>
+;; Time-stamp: <2013-03-29 06:43:45 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -36,6 +36,7 @@
   ;; required features
   (require 'wget)
   (require 'w3m-fb)
+  (require 'org-w3m)
   (require 'w3m-ems)
   (require 'w3m-form)
   (require 'w3m-lnum)
@@ -84,7 +85,7 @@
   (setq w3m-use-header-line-title t)
   (setq w3m-cookie-accept-bad-cookies t)
   (setq browse-url-new-window-flag t)
-  (setq browse-url-browser-function 'browse-url-w3)
+  (setq browse-url-browser-function 'w3m-browse-url)
   (setq w3m-session-time-format "%Y-%m-%d (%a) %H:%M")
   (setq w3m-favicon-use-cache-file t)
   (setq w3m-show-graphic-icons-in-mode-line t)

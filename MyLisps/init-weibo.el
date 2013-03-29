@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-weibo.el ---
-;; Time-stamp: <2013-03-27 17:10:54 Wednesday by lzy>
+;; Time-stamp: <2013-03-29 06:52:22 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;

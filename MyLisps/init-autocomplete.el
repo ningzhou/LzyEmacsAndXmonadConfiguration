@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-autocomplete.el ---
-;; Time-stamp: <2013-03-22 08:11:27 Friday by lzy>
+;; Time-stamp: <2013-03-29 06:31:06 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -128,47 +128,34 @@
            ac-source-imenu)
          ac-sources)))
 
-(defun auto-complete-setting ()
-  "settings for `auto-complete'."
-  ;; settings
-  (setq ac-dwim t)
-  (setq ac-auto-start 2)
-  (setq ac-disable-faces nil)
-  (setq ac-candidate-limit 15)
-  (setq ac-auto-show-menu 0.4)
-  (setq ac-quick-help-delay 0.5)
-  (setq help-xref-following nil)
-  ;; set clang flags
-  (set-ac-clang-flags)
-  ;; auto-complete auto start modes
-  (add-to-list 'ac-modes 'org-mode)
-  (add-to-list 'ac-modes 'text-mode)
-  (add-to-list 'ac-modes 'html-mode)
-  (add-to-list 'ac-modes 'nxml-mode)
-  (add-to-list 'ac-modes 'awk-mode)
-  (add-to-list 'ac-dictionary-directories
-               (concat my-emacs-site-lisps-path "AutoComplete/auto-complete-1.4-base/dict"))
-
-  (custom-set-variables
-   '(ac-trigger-commands-on-completing
-     (append '(c-electric-backspace
-               c-electric-backspace-kill)
-             ac-trigger-commands-on-completing)))
-
-  (setq-default ac-sources
-                '(ac-source-abbrev
-                  ac-source-dictionary
-                  ac-source-words-in-same-mode-buffers
-                  ac-source-files-in-current-dir
-                  ac-source-filename))
-  ;; enable global auto-complete mode
-  (global-auto-complete-mode 1)
-
-  ;; key bindings
-  (lazy-set-key
-   '(("M-j" . ac-complete))
-   ac-complete-mode-map))
-
+(setq ac-dwim t)
+(setq ac-auto-start 2)
+(setq ac-disable-faces nil)
+(setq ac-candidate-limit 15)
+(setq ac-auto-show-menu 0.8)
+(setq ac-quick-help-delay 0.5)
+(setq help-xref-following nil)
+;; set clang flags
+(set-ac-clang-flags)
+;; auto-complete auto start modes
+(add-to-list 'ac-modes 'org-mode)
+(add-to-list 'ac-modes 'text-mode)
+(add-to-list 'ac-modes 'html-mode)
+(add-to-list 'ac-modes 'nxml-mode)
+(add-to-list 'ac-modes 'awk-mode)
+(add-to-list 'ac-dictionary-directories
+             (concat my-emacs-site-lisps-path "AutoComplete/auto-complete-1.4-base/dict"))
+(custom-set-variables
+ '(ac-trigger-commands-on-completing
+   (append '(c-electric-backspace
+             c-electric-backspace-kill)
+           ac-trigger-commands-on-completing)))
+(setq-default ac-sources
+              '(ac-source-abbrev
+                ac-source-dictionary
+                ac-source-words-in-same-mode-buffers
+                ac-source-files-in-current-dir
+                ac-source-filename))
 (add-hook 'lisp-mode-hook 'ac-settings-4-lisp)
 (add-hook 'emacs-lisp-mode-hook 'ac-settings-4-lisp)
 (add-hook 'lisp-interaction-mode-hook 'ac-settings-4-lisp)
@@ -181,9 +168,10 @@
 (add-hook 'html-mode-hook 'ac-settings-4-nxml)
 (add-hook 'xml-mode-hook 'ac-settings-4-nxml)
 (add-hook 'eshell-mode-hook 'ac-settings-4-eshell)
-
-;; enable auto-complete setting
-(auto-complete-setting)
+;; key bindings
+(lazy-set-key '(("M-j" . ac-complete)) ac-complete-mode-map)
+;; enable global auto-complete mode
+(global-auto-complete-mode 1)
 
 ;;; provide features
 (provide 'init-autocomplete)

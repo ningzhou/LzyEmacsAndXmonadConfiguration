@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; font-lock-setting.el ---
-;; Time-stamp: <2013-03-28 13:56:39 Thursday by lzy>
+;; Time-stamp: <2013-03-29 07:19:58 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -31,32 +31,18 @@
 
 ;;; Code:
 
-;; zjl highlight settings
-(add-hook 'c-mode-hook
-          #'(lambda ()
-              (require 'zjl-hl)
-              (zjl-hl-enable-global 'c-mode)))
-(add-hook 'c++-mode-hook
-          #'(lambda ()
-              (require 'zjl-hl)
-              (setq zjl-hl-c++-mode-keywords zjl-hl-c-mode-keywords)
-              (zjl-hl-enable-global 'c++-mode)))
-(add-hook 'emacs-lisp-mode-hook
-          #'(lambda ()
-              (require 'zjl-hl)
-              (zjl-hl-enable-global 'emacs-lisp-mode)))
-(add-hook 'lisp-mode-hook
-          #'(lambda ()
-              (require 'zjl-hl)
-              (setq zjl-hl-lisp-mode-keywords zjl-hl-emacs-lisp-mode-keywords)
-              (zjl-hl-enable-global 'lisp-mode)))
-(add-hook 'lisp-interaction-mode-hook
-          #'(lambda ()
-              (require 'zjl-hl)
-              (setq zjl-hl-lisp-interaction-mode-keywords zjl-hl-emacs-lisp-mode-keywords)
-              (zjl-hl-enable-global 'lisp-interaction-mode)))
+(require 'zjl-hl)
 
-;; enable global font-lock
+(setq zjl-hl-c++-mode-keywords zjl-hl-c-mode-keywords)
+(setq zjl-hl-lisp-mode-keywords zjl-hl-emacs-lisp-mode-keywords)
+(setq zjl-hl-lisp-interaction-mode-keywords zjl-hl-emacs-lisp-mode-keywords)
+
+(zjl-hl-enable-global 'c-mode)
+(zjl-hl-enable-global 'c++-mode)
+(zjl-hl-enable-global 'emacs-lisp-mode)
+(zjl-hl-enable-global 'lisp-mode)
+(zjl-hl-enable-global 'lisp-interaction-mode)
+
 (global-font-lock-mode 1)
 
 ;;; provide features

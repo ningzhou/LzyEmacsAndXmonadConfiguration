@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; zjl-hl.el ---
-;; Time-stamp: <2013-03-28 12:59:08 Thursday by lzy>
+;; Time-stamp: <2013-03-29 07:16:46 Friday by lzy>
 
 ;; Copyright (C) 2013 zjl
 ;;
@@ -744,17 +744,17 @@ enough performance."
 ;;;###autoload
 (defun zjl-hl-enable-global (mode)
   (let ((mode-name (symbol-name mode)) hook keywords)
-    (setq keywords (intern-soft (concat "zjl-hl-" mode-name "-keywords")))
+    (setq keywords (intern (concat "zjl-hl-" mode-name "-keywords")))
     (font-lock-add-keywords mode (symbol-value keywords) 1)
-    (setq hook (intern-soft (concat mode-name "-hook")))
+    (setq hook (intern (concat mode-name "-hook")))
     (add-hook hook 'zjl-hl-init)))
 
 ;;;###autoload
 (defun zjl-hl-disable-global (mode)
   (let ((mode-name (symbol-name mode)) hook keywords)
-    (setq keywords (intern-soft (concat "zjl-hl-" mode-name "-keywords")))
+    (setq keywords (intern (concat "zjl-hl-" mode-name "-keywords")))
     (font-lock-remove-keywords mode (symbol-value keywords))
-    (setq hook (intern-soft (concat mode-name "-hook")))
+    (setq hook (intern (concat mode-name "-hook")))
     (remove-hook hook 'zjl-hl-init)))
 
 

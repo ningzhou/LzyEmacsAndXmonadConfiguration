@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; autopair-setting.el ---
-;; Time-stamp: <2013-03-27 17:32:54 Wednesday by lzy>
+;; Time-stamp: <2013-03-29 07:00:51 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -84,12 +84,23 @@
       (call-interactively 'skeleton-c-mode-left-brace)
     (call-interactively 'autopair-insert-opening-internal)))
 
-(setq autopair-extra-pairs '(:everywhere ((?` . ?'))))
-(autopair-global-mode 1)
+(add-hook 'emacs-lisp-mode-hook
+          #'(lambda ()
+              (setq autopair-extra-pairs `(:comment ((?`. ?'))))))
+
+(add-hook 'lisp-mode-hook
+          #'(lambda ()
+              (setq autopair-extra-pairs `(:comment ((?`. ?'))))))
+
+(add-hook 'lisp-interaction-mode-hook
+          #'(lambda ()
+              (setq autopair-extra-pairs `(:comment ((?`. ?'))))))
 
 (add-hook 'term-mode-hook
           #'(lambda ()
               (autopair-mode -1)))
+
+(autopair-global-mode 1)
 
 ;;; provide features
 (provide 'autopair-setting)

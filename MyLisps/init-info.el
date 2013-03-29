@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-info.el ---
-;; Time-stamp: <2013-03-28 14:02:26 Thursday by lzy>
+;; Time-stamp: <2013-03-29 06:08:43 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -32,10 +32,7 @@
 ;;; Code:
 
 (defun info-setting ()
-  "setting for info"
-  ;; required features
-  (require 'info+)
-  ;; settings
+  "settings for info"
   (custom-set-variables
    '(special-display-buffer-names
      (cons '("*info*" (background-color . "black"))
