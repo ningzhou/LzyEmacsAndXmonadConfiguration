@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; parenthese-setting.el ---
-;; Time-stamp: <2013-03-27 17:37:26 Wednesday by lzy>
+;; Time-stamp: <2013-03-30 22:05:32 Saturday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -79,7 +79,6 @@
 
 ;; global parenthese settings
 (setq blink-matching-paren nil)
-(show-paren-mode 1)
 (mic-paren-setting)
 
 (add-hook 'lisp-mode-hook 'enable-highlight-paren)

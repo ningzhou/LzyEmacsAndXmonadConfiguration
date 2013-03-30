@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; autopair-setting.el ---
-;; Time-stamp: <2013-03-29 07:00:51 Friday by lzy>
+;; Time-stamp: <2013-03-30 21:40:23 Saturday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -86,15 +86,24 @@
 
 (add-hook 'emacs-lisp-mode-hook
           #'(lambda ()
-              (setq autopair-extra-pairs `(:comment ((?`. ?'))))))
+              (push '(?` . ?')
+                    (getf autopair-extra-pairs :comment))
+              (push '(?` . ?')
+                    (getf autopair-extra-pairs :string))))
 
 (add-hook 'lisp-mode-hook
           #'(lambda ()
-              (setq autopair-extra-pairs `(:comment ((?`. ?'))))))
+              (push '(?` . ?')
+                    (getf autopair-extra-pairs :comment))
+              (push '(?` . ?')
+                    (getf autopair-extra-pairs :string))))
 
 (add-hook 'lisp-interaction-mode-hook
           #'(lambda ()
-              (setq autopair-extra-pairs `(:comment ((?`. ?'))))))
+              (push '(?` . ?')
+                    (getf autopair-extra-pairs :comment))
+              (push '(?` . ?')
+                    (getf autopair-extra-pairs :string))))
 
 (add-hook 'term-mode-hook
           #'(lambda ()

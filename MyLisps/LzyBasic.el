@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyBasic.el ---
-;; Time-stamp: <2013-03-30 07:46:59 Saturday by lzy>
+;; Time-stamp: <2013-03-31 01:42:47 Sunday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -109,7 +109,7 @@ current line"
   (interactive)
   (if mark-active
       (comment-region (region-beginning) (region-end))
-      (comment-region (line-beginning-position) (line-end-position))))
+    (comment-region (line-beginning-position) (line-end-position))))
 
 (defun uncomment ()
   "If region is active, uncomment region else uncomment
@@ -191,6 +191,29 @@ region else copy current line"
   (interactive)
   (let ((fill-column (point-max)))
     (fill-paragraph nil)))
+
+(defun dir-file-ext (file)
+  "Given a full file's path name, returns a list of directory, filename
+and extension.  The extension contains the ., and the directory
+contains the /, See also file-name-directory and file-name-nondirectory.."
+  (interactive "sString: ")
+  (with-temp-buffer
+    (insert file)
+    (goto-char (point-max))
+    (let ((aa (progn
+                (goto-char (point-max))
+                (search-backward "/" nil t)))
+          (bb (progn
+                (goto-char (point-max))
+                (search-backward "." nil t))))
+      (setq aa (if (null aa) (point-min) (+ aa 1)))
+      (if (null bb) (setq bb (point-max)))
+      (if (> aa bb) (setq bb (point-max)))
+      (let ((cc (list (buffer-substring (point-min) aa)
+                      (buffer-substring aa bb)
+                      (buffer-substring bb (point-max)))))
+        (if (interactive-p) (message "%S" cc))
+        cc))))
 
 (defun lazy-set-key (key-alist &optional keymap key-prefix)
   "This function is to little type when define key binding.

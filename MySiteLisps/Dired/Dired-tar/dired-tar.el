@@ -15,7 +15,7 @@
 ;;
 ;;; Change Log:
 ;; 2012/09/28 zhengyu li
-;; add support for bzip2 tar file
+;; add bzip2 and zip tar file support
 
 ;;; Commentary:
 
@@ -96,6 +96,9 @@ By default, this is \".tar.gz\", but some people may like to use \".tgz\".")
 
 (defvar dired-tar-unbzip2-command "bzip2 --decompress --stdout"
   "*A shell command which bunzip2 its standard input to its standard output.")
+
+(defvar dired-tar-unzip-command "unzip"
+  "*A shell command which unzipt its standard input to its standard output.")
 
 (defvar dired-tar-shell-file-name "/bin/sh"
   "The name of the shell to use to run the tar command.
@@ -238,7 +241,7 @@ The second argument PREFIX-ARG is ignored."
 (defconst dired-tar-tarfile-regexp
   (format "\\(%s\\)\\'"
           (mapconcat 'regexp-quote
-                     '(".tar" ".tar.z" ".tar.gz" ".tar.Z" ".tgz" ".tar.bz2" ".tar.bz" ".tbz2" ".tbz")
+                     '(".tar" ".tar.z" ".tar.gz" ".tar.Z" ".tgz" ".tar.bz2" ".tar.bz" ".tbz2" ".tbz" "zip")
                      "\\|"))
   "Regular expression matching plausible filenames for tar files.")
 
@@ -254,7 +257,14 @@ The second argument PREFIX-ARG is ignored."
           (mapconcat 'regexp-quote
                      '(".tar.bz2" ".tar.bz" ".tbz2" ".tbz")
                      "\\|"))
-  "Regular expression matching plausible filenames for bzip2 tar files.")
+  "Regular expression matching plausible filenames for bzip2 files.")
+
+(defconst dired-tar-ziped-tarfile-regexp
+  (format "\\(%s\\)\\'"
+          (mapconcat 'regexp-quote
+                     '("zip")
+                     "\\|"))
+  "Regular expression matching plausible filenames for zip files.")
 
 (defun dired-tar-unpack (tar-file prefix-arg)
   "Internal function for use by the dired-tar package.
@@ -287,6 +297,11 @@ unpacking it."
                tar-file
                action
                dired-tar-command-switches))
+
+      ((string-match dired-tar-ziped-tarfile-regexp tar-file)
+       (format "%s %s"
+               dired-tar-unzip-command
+               tar-file))
 
       ;; Okay, then it must look like an uncompressed tar file.
       (t

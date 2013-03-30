@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-mode-line.el ---
-;; Time-stamp: <2013-03-27 16:10:49 Wednesday by lzy>
+;; Time-stamp: <2013-03-31 02:01:02 Sunday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -35,14 +35,14 @@
   "get line numbers of current buffer"
   (let ((lines (count-lines
                 (point-min) (point-max))))
-    (format " %dL " lines)))
+    (format " %dL" lines)))
 
 (defun get-size-indication-format ()
   (if (and transient-mark-mode mark-active)
-      (format "[%%p](%dLs,%dCs)"
+      (format " (%dLs,%dCs)"
               (count-lines (region-beginning) (region-end))
               (abs (- (mark t) (point))))
-    "[%p@%I]"))
+    ""))
 
 (defun set-mode-line-format ()
   "set mode-line-format"
@@ -54,33 +54,21 @@
                      (propertize " ⚡W/R⚡" 'face
                                  '(:foreground "Deepskyblue" :weight normal))))
                   (:eval
-                   (propertize " (%b)"
+                   (propertize " %b"
                                'face (if (buffer-modified-p)
-                                         '(:foreground "White" :slant italic)
-                                       '(:foreground "White"))))
-                  (:eval
-                   (propertize (if overwrite-mode " Ovr" " Ins")
-                               'face '(:foreground "SpringGreen" :weight normal)
-                               'help-echo (concat "Buffer is in "
-                                                  (if overwrite-mode "overwrite" "insert") " mode")))
+                                         '(:foreground "SpringGreen" :slant italic)
+                                       '(:foreground "SpringGreen"))))
                   (:eval
                    (propertize (get-lines-4-mode-line)
-                               'face '(:foreground "Deepskyblue")))
+                               'face '(:foreground "grey90")))
                   (:eval
                    (propertize (get-size-indication-format)
-                               'face '(:foreground "White")))
+                               'face '(:foreground "yellow")))
                   (:eval
-                   (if (not linum-mode)
-                       (if column-number-mode
-                           (propertize " (%l,%c) "
-                                       'face '(:foreground "White"))
-                         (propertize " L%l "
-                                     'face '(:foreground "White")))
-                     (if column-number-mode
-                         (propertize " C%c "
-                                     'face '(:foreground "White")))))
+                   (propertize " (%02l,%02c)"
+                               'face '(:foreground "#00eedd")))
                   (:eval
-                   (propertize "("
+                   (propertize " ("
                                'face '(:foreground "Yellow" :weight normal)))
                   (:eval
                    (propertize "%m"

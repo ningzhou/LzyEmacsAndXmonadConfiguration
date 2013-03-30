@@ -1,11 +1,13 @@
 ;; -*- Emacs-Lisp -*-
 ;;; dired-image.el ---
-;; Time-stamp: <2013-03-29 06:57:18 Friday by lzy>
+;; Time-stamp: <2013-03-30 23:52:45 Saturday by lzy>
 
-;; Copyright (C) 2012 zhengyu li
+;; Copyright (C) 2013 zhengyu li
 ;;
 ;; Author: zhengyu li <lizhengyu419@gmail.com>
-;; Keywords: 
+;; Keywords: none
+
+;; This file is not part of GNU Emacs.
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,18 +24,13 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
 ;;   (require 'dired-image)
 
 ;;; Code:
 
-
-(provide 'dired-image)
-
-
-;;; require features:
 (require 'image-dired)
 
 (defun image-dired-display-thumbs-new (&optional arg append do-not-pop)
@@ -123,5 +120,8 @@
               (define-key image-dired-thumbnail-mode-map "N" 'image-dired-next-line)
               (define-key image-dired-thumbnail-mode-map "P" 'image-dired-previous-line)
               (define-key image-dired-thumbnail-mode-map [return] 'image-dired-thumbnail-display)))
+
+;;; provide features
+(provide 'dired-image)
 
 ;;; dired-image.el ends here
