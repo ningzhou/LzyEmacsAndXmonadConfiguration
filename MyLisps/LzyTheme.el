@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyTheme.el ---
-;; Time-stamp: <2013-03-29 16:21:12 Friday by lzy>
+;; Time-stamp: <2013-03-30 07:31:33 Saturday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -368,13 +368,13 @@
      (show-paren-mismatch ((t (:background "red2" :foreground "black" :height 1.2))))
      (success ((t (:bold t :foreground "ForestGreen" :weight bold))))
      (tabbar-default ((t (:height 0.97))))
-     (tabbar-highlight ((t (:underline t))))
+     (tabbar-highlight ((t (nil))))
      (tabbar-button ((t (:background "black" :foreground "green" :box (:line-width -1 :color "green" :style released-button)))))
-     (tabbar-button-highlight ((t (:background "black" :foreground "green" :box (:color "green")))))
+     (tabbar-button-highlight ((t (:background "black" :foreground "green" :box (:line-width -1 :color "green" :style released-button)))))
      (tabbar-selected ((t (:background "grey30" :foreground "DeepSkyBlue" :height 0.97))))
      (tabbar-separator ((t (:background "black" :height 0.97))))
-     (tabbar-unselected ((t (:background "grey21" :foreground "grey60" :height 0.97))))
-     (trailing-whitespace ((t (:background "red1"))))
+     (tabbar-unselected ((t (:background "grey20" :foreground "grey60" :height 0.97))))
+     (trailing-whitespace ((t (:background "red2"))))
      (undo-tree-visualizer-active-branch-face ((t (:foreground "white"))))
      (undo-tree-visualizer-current-face ((t (:bold t :foreground "red" :weight bold))))
      (undo-tree-visualizer-default-face ((t (:foreground "gray"))))
@@ -397,14 +397,14 @@
      (w3m-italic ((t (:italic t :slant italic))))
      (w3m-link-numbering ((t (:background "Black" :foreground "yellow"))))
      (w3m-strike-through ((t (:strike-through t))))
-     (w3m-tab-background ((t (:background "black" :foreground "black"))))
-     (w3m-tab-mouse ((t (:background "DarkRed" :foreground "white" :box (:line-width -1 :color "Red" :style released-button) :height 1.2))))
-     (w3m-tab-selected ((t (:background "black" :foreground "DeepSkyBlue" :box (:line-width 1 :color "RoyalBlue4" :style released-button)))))
-     (w3m-tab-selected-background ((t (:background "black" :foreground "black"))))
-     (w3m-tab-selected-retrieving ((t (:background "black" :foreground "DeepSkyBlue" :box (:line-width 1 :color "RoyalBlue4" :style released-button)))))
-     (w3m-tab-unselected ((t (:background "black" :foreground "RoyalBlue4" :box (:line-width 1 :color "gray2" :style pressed-button)))))
-     (w3m-tab-unselected-retrieving ((t (:background "black" :foreground "RoyalBlue4" :box (:line-width 1 :color "gray2" :style pressed-button)))))
-     (w3m-tab-unselected-unseen ((t (:background "black" :foreground "RoyalBlue4" :box (:line-width 1 :color "grey2" :style pressed-button)))))
+     (w3m-tab-background ((t (:background "black" :foreground "black" :height 0.97))))
+     (w3m-tab-mouse ((t (:background "grey30" :foreground "DeepSkyBlue" :height 0.97))))
+     (w3m-tab-selected ((t (:background "grey30" :foreground "DeepSkyBlue" :height 0.97))))
+     (w3m-tab-selected-background ((t (:background "black" :foreground "black" :height 0.97))))
+     (w3m-tab-selected-retrieving ((t (:background "grey30" :foreground "DeepSkyBlue" :height 0.97))))
+     (w3m-tab-unselected ((t (:background "grey20" :foreground "grey80" :height 0.97))))
+     (w3m-tab-unselected-retrieving ((t (:background "grey20" :foreground "grey80" :height 0.97))))
+     (w3m-tab-unselected-unseen ((t (:background "grey20" :foreground "grey80" :height 0.97))))
      (w3m-underline ((t (:underline t))))
      (warning ((t (:bold t :foreground "DarkOrange" :weight bold))))
      (which-func ((t (:foreground "white"))))

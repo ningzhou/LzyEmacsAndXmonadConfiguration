@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-tabbar.el ---
-;; Time-stamp: <2013-03-27 13:54:04 Wednesday by lzy>
+;; Time-stamp: <2013-03-30 07:23:09 Saturday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -37,7 +37,7 @@
   (require 'tabbar-extension)
 
   ;; settings
-  (setq tabbar-separator '(0.3))
+  (setq tabbar-separator '(0.2))
   (tabbar-mode 1)
 
   ;; key bindings

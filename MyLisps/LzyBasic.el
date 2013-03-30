@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyBasic.el ---
-;; Time-stamp: <2013-03-29 11:33:19 Friday by lzy>
+;; Time-stamp: <2013-03-30 07:46:59 Saturday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -185,6 +185,12 @@ region else copy current line"
     (unless mark-active
       (call-interactively 'mark-whole-buffer))
     (call-interactively 'indent-region)))
+
+(defun unfill-paragraph ()
+  "Takes a multi-line paragraph and makes it into a single line of text."
+  (interactive)
+  (let ((fill-column (point-max)))
+    (fill-paragraph nil)))
 
 (defun lazy-set-key (key-alist &optional keymap key-prefix)
   "This function is to little type when define key binding.
