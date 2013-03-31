@@ -3,22 +3,21 @@
 #+OPTIONS: ^:nil
 
 * 更好的内存管理-jemalloc/tcmalloc [[http://google-perftools.googlecode.com/svn/trunk/doc/tcmalloc.html][Site]]
-  2005年发表了一篇文章“免费午餐的时代结束了”。在之前，程序就算不用费脑子，随着cpu时钟速度增加，程序性能
-  自己就会上去。但现在不同，现在cpu时钟趋于稳定，而核数不断地增加。程序员需要适应这样的多线程多进程的环
-  境，并要开发出适合的程序。文章讲的大概是这样的内容。6年之后的如今，这篇文章完全变成现实了。事实上cpu
-  时钟停留在3GHz，而核不断上升。现在程序要适应多线程多进程的分布式计算，速度才能上升。但是这样的程序很
-  难。现在在多线程的环境下，给程序员们的最后一道午餐便是tcmalloc，jemalloc这样的malloc library。对于使
-  用多线程的程序而言，性能会提高数十%。共享一下我本人的经验。我本人在kth技术研究所分布式技术lab中承担
-  iLock（分布式同步工具，请参考google的chubby）。在iLock中用了google的tcmalloc的结果，性能提升了18~22%。
-  最大的优点就是你不需要做任何复杂的工作便可得到这样的效果。
+2005年发表了一篇文章“免费午餐的时代结束了”。在之前，程序就算不用费脑子，随着cpu时钟速度增加，程序性能
+自己就会上去。但现在不同，现在cpu时钟趋于稳定，而核数不断地增加。程序员需要适应这样的多线程多进程的环
+境，并要开发出适合的程序。文章讲的大概是这样的内容。6年之后的如今，这篇文章完全变成现实了。事实上cpu
+时钟停留在3GHz，而核不断上升。现在程序要适应多线程多进程的分布式计算，速度才能上升。但是这样的程序很
+难。现在在多线程的环境下，给程序员们的最后一道午餐便是tcmalloc，jemalloc这样的malloc library。对于使
+用多线程的程序而言，性能会提高数十%。共享一下我本人的经验。我本人在kth技术研究所分布式技术lab中承担
+iLock（分布式同步工具，请参考google的chubby）。在iLock中用了google的tcmalloc的结果，性能提升了18~22%。
+最大的优点就是你不需要做任何复杂的工作便可得到这样的效果。
 ** Usage
-   To use TCMalloc, just link TCMalloc into your application via the "-ltcmalloc" linker flag.  You
-   can use TCMalloc in applications you didn't compile yourself, by using LD_PRELOAD: $
-   LD_PRELOAD="/usr/lib/libtcmalloc.so" LD_PRELOAD is tricky, and we don't necessarily recommend
-   this mode of usage.  TCMalloc includes a heap checker and heap profiler as well.
-   
-   这样在之后执行的应用程序会使用tcmalloc或jemalloc，从而代替glibc标准malloc（ptmalloc）。这需设置此
-   处，我们便可得到性能20%的提升，这真可谓是送给我们的最后的免费午餐。如今，在分布式技术lab中使用
-   google的tcmalloc。原因在于性能上两者差不多，但google的tcmalloc所提供的程序分析工具非常（heap
-   profiler, cpu profiler）丰富。所以tcmalloc可能更方便一些。
-   
+To use TCMalloc, just link TCMalloc into your application via the "-ltcmalloc" linker flag.  You
+can use TCMalloc in applications you didn't compile yourself, by using LD_PRELOAD: $
+LD_PRELOAD="/usr/lib/libtcmalloc.so" LD_PRELOAD is tricky, and we don't necessarily recommend
+this mode of usage.  TCMalloc includes a heap checker and heap profiler as well.
+
+这样在之后执行的应用程序会使用tcmalloc或jemalloc，从而代替glibc标准malloc（ptmalloc）。这需设置此
+处，我们便可得到性能20%的提升，这真可谓是送给我们的最后的免费午餐。如今，在分布式技术lab中使用
+google的tcmalloc。原因在于性能上两者差不多，但google的tcmalloc所提供的程序分析工具非常（heap
+profiler, cpu profiler）丰富。所以tcmalloc可能更方便一些。

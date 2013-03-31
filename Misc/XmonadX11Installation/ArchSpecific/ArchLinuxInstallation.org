@@ -162,8 +162,7 @@ sudo hwclock --set --date="YYYY-MM-DD hh:mm:ss"
 sudo usermod -s /bin/zsh logname
 *** Optional Configuration
 install oh-my-zsh
-   + curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-configure zsh
+   + curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh configure zsh
    + emacs ~/.zshrc
    + ZSH_THEME="fox"
    + plugins=(git git-flow gnu-utils archlinux battery python ssh-agent terminator rultools)

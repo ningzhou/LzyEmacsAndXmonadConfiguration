@@ -92,7 +92,9 @@ c-c c-x o . toggle the ordered property of the current entry.
 s-<up>/<down> . rotate among all kinds of priorities.
 ** todo keywords as workflow states
 #+begin_src emacs-lisp -n
+
   (setq org-todo-keywords
+
         '((sequence "todo" "feedback" "verify" "|" "done" "delegated")))
 #+end_src
 (*notes:* the vertical bar separates the todo keywords(states that need action) from the done stats
@@ -258,7 +260,7 @@ org mode allows you to clock the time you spend on specific tasks in a project.
   c-c c-x 0 . reset the timer without inserting anything into the buffer. by default, the timer is
   reset to 0.
   c-c c-x ; . prompts the user for a duration and displays a countdown timer.
-  
+
 * capture-refile-archive
 ** capture                                                          :attach:
 c-c c-a . the dispatcher for commands related to the attachment system.
@@ -268,13 +270,9 @@ c-c c-x c-a . archive the current entry.
 due to the way org works, todo items, time-stamped items, and tagged headlines can be scattered
 throughout a file or even a number of files. to get an overview of open action items, or of events
 that are important for a particular date, this information must be collected, sorted and displayed
-in an organized way. 
+in an organized way.
 + key bindings for agenda
   c-c [ . add current file to the list of agenda files.
   c-c c-w . write the agenda view to a file. depending on the extension of the selected file name.
 
 * Footnotes
-
-
-
-

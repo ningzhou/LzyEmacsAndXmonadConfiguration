@@ -3,13 +3,13 @@
 [[http://coolshell.cn/articles/1399.html][8个实用而有趣Bash命令提示行]]
 
 #+begin_src sh -n
- if [ "$color_prompt" = yes ]; then
-     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
- else
- ##    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-     PS1='\[\033[35m\]\t\[\033[m\]-\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ '
- fi
- unset color_prompt force_color_prompt
+  if [ "$color_prompt" = yes ]; then
+      PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  else
+      ##    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+      PS1='\[\033[35m\]\t\[\033[m\]-\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ '
+  fi
+  unset color_prompt force_color_prompt
 #+end_src
 
 *** Usage: modify ~/.bashrc file and replace the corresponding part as above.
@@ -23,25 +23,22 @@
 4. sudo fc-cache -f -v
 ** Drawing Tools in Unix/Linux environment <2012-05-20 日>
 *** GnuPlot与MetaPost
-
-    在类UNIX操作系统中，值得掌握的绘图语言有两个。一个是GnuPlot，它是基于函数的绘图语言，譬如三角函数sin(x)等，很多数学软件选用它作图形输出接口（如著名
-的octave等）；另一个是MetaPost，它是基于描述的绘图语言，譬如由三个给定的点构成的三角形等。MetaPost由贝尔实验室的John Hobby设计，是功能最强大的描述绘
-图语言。FreeBSD提供的teTeX缺省地带着命令mpost，无需安装。补充一句，GnuPlot可以输出MetaPost文件，二者可以联手成为绘图工具不二之选。 
-
+在类UNIX操作系统中，值得掌握的绘图语言有两个。一个是GnuPlot，它是基于函数的绘图语言，譬如三角函数
+sin(x)等，很多数学软件选用它作图形输出接口（如著名的octave等）；另一个是MetaPost，它是基于描述的绘图
+语言，譬如由三个给定的点构成的三角形等。MetaPost由贝尔实验室的John Hobby设计，是功能最强大的描述绘图
+语言。FreeBSD提供的teTeX缺省地带着命令mpost，无需安装。补充一句，GnuPlot可以输出MetaPost文件，二者可
+以联手成为绘图工具不二之选。
 *** 为何用MetaPost？
-
-为什么我选用MetaPost，而不是Xfig、Dia或其他的所见即所得的绘图软件？首要的原因是我迷恋精确，而MetaPost是最精确的，精确到像素。如果对图形的精确性没有
-太多的要求和追求，大可不必选择MetaPost，把时间浪费在编程上。Xfig和Visio足够满足很多用户的需求。另外一个原因是MetaPost生成的eps文件可以很好地嵌入TeX
-文件，从而得到图形清晰的高质量的pdf文件—这对用TeX写作的理工科学生和学者来说，非常具有诱惑力。
-
+为什么我选用MetaPost，而不是Xfig、Dia或其他的所见即所得的绘图软件？首要的原因是我迷恋精确，而
+MetaPost是最精确的，精确到像素。如果对图形的精确性没有太多的要求和追求，大可不必选择MetaPost，把时间
+浪费在编程上。Xfig和Visio足够满足很多用户的需求。另外一个原因是MetaPost生成的eps文件可以很好地嵌入
+TeX文件，从而得到图形清晰的高质量的pdf文件—这对用TeX写作的理工科学生和学者来说，非常具有诱惑力。
 *** 其他绘图工具
-
-有时候应急，我也用GraphViz提供的dot来画精确的图，然后用dot2tex生成可嵌入的TeX文件。画精确的图，也可用pic或asymptote。pic是类UNIX下的经典软件（troff
-的一部分），画一些简单的图应急还是可以的。
-
-asymptote的开发者不隐讳asymptote受MetaPost之启发，宣称asymptote特点之一是它的语法是类C++的。搞不懂是MetaFont离TeX近，还是C++离TeX近？有了MetaPost，
-asymptote多此一举。从功能的角度评说，有人把asymptote视为MetaPost的替代品，这是不公正的，譬如MetaPost能解方程，而asymptote不能。从功能之强大来说，
-MetaPost是不争的首选。
+有时候应急，我也用GraphViz提供的dot来画精确的图，然后用dot2tex生成可嵌入的TeX文件。画精确的图，也可用
+pic或asymptote。pic是类UNIX下的经典软件（troff的一部分），画一些简单的图应急还是可以的。asymptote的开
+发者不隐讳asymptote受MetaPost之启发，宣称asymptote特点之一是它的语法是类C++的。搞不懂是MetaFont离TeX
+近，还是C++离TeX近？有了MetaPost，asymptote多此一举。从功能的角度评说，有人把asymptote视为MetaPost的
+替代品，这是不公正的，譬如MetaPost能解方程，而asymptote不能。从功能之强大来说，MetaPost是不争的首选。
 
  [[http://162.105.203.93/member/yujs/BSDFiles/html/MetaPost.html][UNIX下的绘图工具]]
 

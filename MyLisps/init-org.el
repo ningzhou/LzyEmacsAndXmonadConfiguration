@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-org.el ---
-;; Time-stamp: <2013-03-28 14:31:25 Thursday by lzy>
+;; Time-stamp: <2013-04-01 02:29:58 Monday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -47,7 +47,7 @@
   (setq org-notes-file (concat org-directory "/Notes.org"))
   (setq org-tricks-file (concat my-emacs-path "/OrgDir/TrickNotes.org"))
   (setq diary-file (concat org-directory "/Diary.org"))
-  (setq org-startup-indented nil)
+  (setq org-startup-indented t)
   (setq org-log-done 'note)
   (setq diary-file diary-file)
   (setq org-clock-idle-time 10)
@@ -97,7 +97,6 @@
      (ruby . t)
      (scheme . t)
      (sql . t)))
-  (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
   (add-to-list 'iimage-mode-image-regex-alist
                (cons (concat "\\[\\[file:\\(~?" iimage-mode-image-filename-regex
                              "\\)\\]")  1))

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; c-c++-mode-setting.el ---
-;; Time-stamp: <2013-03-22 09:08:23 Friday by lzy>
+;; Time-stamp: <2013-03-31 23:07:44 Sunday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -89,7 +89,7 @@
                  (ov (make-overlay begin end)))
             (overlay-put ov 'c-c++-hightligh-included-files t)
             (overlay-put ov 'keymap c-c++-hightligh-included-files-key-map)
-            (overlay-put ov 'face 'underline))))))
+            (overlay-put ov 'face '((t (:foreground "orange" :underline t :height 1.07)))))))))
 
   (defun c-c++-hightligh-included-files-setup ()
     "key setting for c-c++-hightligh-included-files"

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-03-31 07:26:38 Sunday by lzy>
+;; Time-stamp: <2013-04-01 03:26:37 Monday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -74,7 +74,6 @@
 (require 'init-ido)                          ;ido mode
 (require 'init-yasnippet)                    ;yasnippet setting
 (require 'init-autocomplete)                 ;autocomplete mode setting
-(require 'init-anything)                     ;anyting mode
 (require 'init-cua)                          ;setting for cua mode
 (require 'init-weibo)                        ;sina weibo
 (require 'init-ediff)                        ;ediff and ediff tree

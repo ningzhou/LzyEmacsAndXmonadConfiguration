@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-yasnippet.el ---
-;; Time-stamp: <2013-03-28 09:49:45 Thursday by lzy>
+;; Time-stamp: <2013-04-01 01:28:37 Monday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;

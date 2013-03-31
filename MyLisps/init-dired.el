@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-dired.el ---
-;; Time-stamp: <2013-03-31 06:51:48 Sunday by lzy>
+;; Time-stamp: <2013-03-31 22:06:24 Sunday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -65,7 +65,7 @@
   (setq dired-omit-files
         (concat dired-omit-files "\\|^\\.\\|^semantic.cache$\\|^CVS$"))
   (setq buffer-face-mode-face
-        '(:family "Monospace" :height 1.1 :foreground "grey75"))
+        '(:family "Monospace" :height 1.2 :foreground "grey70"))
   (buffer-face-mode)
   (dired-omit-mode 1)
 

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-w3m.el ---
-;; Time-stamp: <2013-03-31 16:09:04 Sunday by lzy>
+;; Time-stamp: <2013-04-01 00:00:24 Monday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -51,7 +51,6 @@
   (require 'w3m-favicon)
   (require 'w3m-session)
   (require 'w3m-bookmark)
-  (require 'w3m-extension)
 
   ;; functions definition
   (defun w3m-set-proxy (&optional proxy)
@@ -151,21 +150,15 @@
 (eval-after-load "w3m"
   '(w3m-setting))
 
-(autoload 'w3m "w3m"
-  "Visit World Wide Web pages using the external w3m command" t)
-(autoload 'w3m-browse-url "w3m"
-  "Ask emacs-w3m to browse URL" t)
+(autoload 'w3m-browse-url "w3m" "Ask emacs-w3m to browse URL" t)
 (autoload 'toggle-w3m-with-other-buffer "w3m-extension"
   "switch w3m and current buffer smoothly" t)
-(autoload 'emms-play-online "emms-extension"
-  "play music online in w3m mode" t)
 
 ;; global set browse url function
 (setq browse-url-browser-function 'w3m-browse-url)
 
 (lazy-set-key
- '(("C-<f8>" . w3m)
-   ("C-x C-z" . toggle-w3m-with-other-buffer)))
+ '(("C-x C-z" . toggle-w3m-with-other-buffer)))
 
 ;;; provide features
 (provide 'init-w3m)
