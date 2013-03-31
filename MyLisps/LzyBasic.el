@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyBasic.el ---
-;; Time-stamp: <2013-03-31 01:42:47 Sunday by lzy>
+;; Time-stamp: <2013-03-31 17:21:22 Sunday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -178,13 +178,21 @@ region else copy current line"
       (call-interactively 'kill-region)
     (call-interactively 'kill-whole-line)))
 
+(defun indent-buffer ()
+  "Automatic format current buffer."
+  (interactive)
+  (save-excursion
+    (indent-region (point-min) (point-max) nil)
+    (delete-trailing-whitespace)
+    (untabify (point-min) (point-max))))
+
 (defun smart-indent ()
   "If `mark-active', call `indent-region', otherwise indent all buffer."
   (interactive)
   (save-excursion
-    (unless mark-active
-      (call-interactively 'mark-whole-buffer))
-    (call-interactively 'indent-region)))
+    (if mark-active
+        (call-interactively 'indent-region)
+      (call-interactively 'indent-buffer))))
 
 (defun unfill-paragraph ()
   "Takes a multi-line paragraph and makes it into a single line of text."
@@ -250,4 +258,3 @@ contains the /, See also file-name-directory and file-name-nondirectory.."
 (provide 'LzyBasic)
 
 ;;; LzyBasic.el ends here
-

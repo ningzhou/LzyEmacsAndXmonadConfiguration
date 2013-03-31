@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-dired.el ---
-;; Time-stamp: <2013-03-31 04:30:49 Sunday by lzy>
+;; Time-stamp: <2013-03-31 06:51:48 Sunday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;

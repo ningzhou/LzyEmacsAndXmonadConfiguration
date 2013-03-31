@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-w3m.el ---
-;; Time-stamp: <2013-03-29 06:43:45 Friday by lzy>
+;; Time-stamp: <2013-03-31 16:09:04 Sunday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -85,7 +85,6 @@
   (setq w3m-use-header-line-title t)
   (setq w3m-cookie-accept-bad-cookies t)
   (setq browse-url-new-window-flag t)
-  (setq browse-url-browser-function 'w3m-browse-url)
   (setq w3m-session-time-format "%Y-%m-%d (%a) %H:%M")
   (setq w3m-favicon-use-cache-file t)
   (setq w3m-show-graphic-icons-in-mode-line t)
@@ -154,10 +153,15 @@
 
 (autoload 'w3m "w3m"
   "Visit World Wide Web pages using the external w3m command" t)
+(autoload 'w3m-browse-url "w3m"
+  "Ask emacs-w3m to browse URL" t)
 (autoload 'toggle-w3m-with-other-buffer "w3m-extension"
   "switch w3m and current buffer smoothly" t)
 (autoload 'emms-play-online "emms-extension"
   "play music online in w3m mode" t)
+
+;; global set browse url function
+(setq browse-url-browser-function 'w3m-browse-url)
 
 (lazy-set-key
  '(("C-<f8>" . w3m)

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-eperiodic.el ---
-;; Time-stamp: <2013-03-29 06:52:51 Friday by lzy>
+;; Time-stamp: <2013-03-31 16:09:40 Sunday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -35,11 +35,6 @@
 
 (custom-set-variables
  '(eperiodic-web-lookup-location "http://www.webelements.com/webelements/elements/text/%s/key.html"))
-
-(defadvice eperiodic-web-lookup (before set-browse-url-browser-function activate)
-  "set browse url function"
-  (require 'w3m)
-  (setq browse-url-browser-function 'w3m-browse-url))
 
 ;;; provide features
 (provide 'init-eperiodic)

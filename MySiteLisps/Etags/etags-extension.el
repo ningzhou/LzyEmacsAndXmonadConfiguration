@@ -82,11 +82,11 @@
   (or tags-storage-directory
       (setq tags-storage-directory (read-directory-name "Storage directory: ")))
   (or tags-suffix
-      (setq tags-suffix (read-string "Suffix: ")))
+      (setq tags-suffix (read-string "Regexp: ")))
   (with-temp-buffer
     (cd tags-storage-directory)
     (shell-command
-     (format "find %s -name \"%s\" | xargs etags" tags-target-directory (concat "*." tags-suffix)))
+     (format "find %s -name \"%s\" | xargs etags" tags-target-directory tags-suffix))
     (message "Tags index...")))
 
 (defun find-tag-window ()

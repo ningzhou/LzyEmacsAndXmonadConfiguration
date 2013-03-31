@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-newsticker.el ---
-;; Time-stamp: <2013-03-22 09:24:37 Friday by lzy>
+;; Time-stamp: <2013-03-31 19:19:17 Sunday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -41,36 +41,35 @@
   ;; settings
   (setq newsticker-dir "~/.emacs.d/Newsticker")
   (setq newsticker-url-list-defaults nil)
-  (setq newsticker-automatically-mark-items-as-old t)
+  (setq newsticker-automatically-mark-items-as-old nil)
   (setq newsticker-automatically-mark-visited-items-as-old t)
   (setq newsticker-retrieval-interval 600)
   (setq newsticker-html-renderer 'w3m-region)
   (setq newsticker-retrieval-method 'extern)
-  (setq newsticker-treeview-treewindow-width 35)
-  (setq newsticker-treeview-listwindow-height 10)
-  (setq browse-url-browser-function 'w3m-browse-url)
+  (setq newsticker-treeview-treewindow-width 20)
+  (setq newsticker-treeview-listwindow-height 5)
   (setq newsticker-wget-arguments
         '("-q" "-O" "-" "--user-agent" "testing"))
   (setq newsticker-url-list
-        '(("EmacsWiki Recently Change"
+        '(("EmacsWiki"
            "http://www.emacswiki.org/emacs/index.rss"
            nil nil nil)
-          ("Planet Emacsen"
+          ("PlanetEmacsen"
            "http://planet.emacsen.org/atom.xml"
            nil nil nil)
-          ("LUPA Open Source News"
+          ("LUPAOpenSourceNews"
            "http://www.lupaworld.com/myrss.php"
            nil nil nil)
-          ("Google Blog Search -- Emacs"
+          ("EmacsBlog"
            "http://blogsearch.google.com/blogsearch_feeds?hl=en&oe=UTF-8&q=emacs&ie=utf-8&num=50&output=atom"
            nil 86400 nil)
-          ("Google Blog Search -- linux kernel"
+          ("LinuxkernelBlog"
            "http://blogsearch.google.com/blogsearch_feeds?hl=en&oe=UTF-8&q=linux%20kernel&ie=utf-8&num=50&output=atom"
            nil 86400 nil)
-          ("Google Blog Search -- linuxtoy"
+          ("LinuxtoyBlog"
            "http://blogsearch.google.com/blogsearch_feeds?hl=en&oe=UTF-8&q=linuxtoy&ie=utf-8&num=50&output=atom"
            nil 86400 nil)
-          ("Google Blog Search -- Haskell"
+          ("HaskellBlog"
            "http://blogsearch.google.com/blogsearch_feeds?hl=en&oe=UTF-8&q=haskell&ie=utf-8&num=50&output=atom"
            nil 86400 nil))))
 

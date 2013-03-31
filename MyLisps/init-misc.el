@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-misc.el ---
-;; Time-stamp: <2013-03-29 13:13:19 Friday by lzy>
+;; Time-stamp: <2013-03-31 16:27:49 Sunday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -59,7 +59,9 @@
 (setq history-delete-duplicates t)
 (savehist-mode 1)
 ;; load savehist file
-(load-file savehist-file)
+(if (file-exists-p savehist-file)
+    (load-file savehist-file))
+
 
 ;; disable scroll bar
 (scroll-bar-mode -1)

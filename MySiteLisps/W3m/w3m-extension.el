@@ -60,6 +60,7 @@
 
 ;;; required features
 (require 'w3m)
+(require 'revive)
 (require 'w3m-util)
 (require 'w3m-proc)
 (require 'w3m-form)
@@ -72,6 +73,12 @@
 
 (defvar w3m-search-advance-search-object nil
   "The search object cache that `w3m-search-advance' use.")
+
+(defvar toggle-w3m-with-other-buffer-revive nil
+  "Indicate that whether has set windows configuration")
+
+(defvar toggle-w3m-with-other-buffer-newsticker nil
+  "Indicate that whether the previous buffer is newsticker")
 
 (defun beautify-string (string &optional after)
   "Strip starting and ending whitespace and beautify `STRING'.
@@ -281,12 +288,30 @@ Example, your want search pdf of chm about Emacs, you just type emacs pdf|chm."
   (interactive)
   (if (derived-mode-p 'w3m-mode)
       ;; Currently in a w3m buffer
-      ;; Bury buffers until you reach a non-w3m one
-      (while (derived-mode-p 'w3m-mode)
-        (bury-buffer))
+      (if (and toggle-w3m-with-other-buffer-revive
+               (not toggle-w3m-with-other-buffer-newsticker))
+          (resume 1024)
+        (if toggle-w3m-with-other-buffer-newsticker
+            (progn
+              (switch-to-buffer "*Newsticker Item*")
+              (select-window (get-buffer-window "*Newsticker Tree*")))
+          ;; Bury buffers until you reach a non-w3m one
+          (while (derived-mode-p 'w3m-mode)
+            (bury-buffer))))
     ;; Not in w3m
     ;; Find the first w3m buffer
     (let ((list (buffer-list)))
+      (if (or (derived-mode-p 'newsticker-treeview-mode)
+              (derived-mode-p 'newsticker-treeview-list-mode)
+              (derived-mode-p 'newsticker-treeview-item-mode))
+          (progn
+            (setq toggle-w3m-with-other-buffer-revive nil)
+            (setq toggle-w3m-with-other-buffer-newsticker t)
+            (select-window (get-buffer-window "*Newsticker Item*")))
+        (setq toggle-w3m-with-other-buffer-revive t)
+        (setq toggle-w3m-with-other-buffer-newsticker nil)
+        (save-current-configuration 1024)
+        (delete-other-windows))
       (while list
         (if (with-current-buffer (car list)
               (derived-mode-p 'w3m-mode))
@@ -296,6 +321,7 @@ Example, your want search pdf of chm about Emacs, you just type emacs pdf|chm."
           (setq list (cdr list))))
       (unless (derived-mode-p 'w3m-mode)
         (call-interactively 'w3m)))))
+
 
 (defun w3m-startup-background ()
   "Startup w3m background."

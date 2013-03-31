@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-03-31 04:14:19 Sunday by lzy>
+;; Time-stamp: <2013-03-31 07:26:38 Sunday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -71,10 +71,9 @@
 (require 'init-template)                     ;automatically insert templates
 (require 'init-shell-cmd-history)            ;shell command and history
 (require 'init-multis)                       ;multi shell and term
-(require 'init-icomplete)                    ;icomplete mode
 (require 'init-ido)                          ;ido mode
 (require 'init-yasnippet)                    ;yasnippet setting
-;;(require 'init-autocomplete)                 ;autocomplete mode setting
+(require 'init-autocomplete)                 ;autocomplete mode setting
 (require 'init-anything)                     ;anyting mode
 (require 'init-cua)                          ;setting for cua mode
 (require 'init-weibo)                        ;sina weibo
