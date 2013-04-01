@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-highlight-things.el ---
-;; Time-stamp: <2013-03-29 08:22:45 Friday by lzy>
+;; Time-stamp: <2013-04-02 07:00:48 Tuesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -40,7 +40,7 @@
         ("red3" . 25)
         ("black" . 66)))
 
-(highlight-tail-mode 1)
+;;(highlight-tail-mode 1)
 
 ;;============================================================
 ;;; highlight sexp settings

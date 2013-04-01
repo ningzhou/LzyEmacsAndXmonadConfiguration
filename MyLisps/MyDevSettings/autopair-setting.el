@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; autopair-setting.el ---
-;; Time-stamp: <2013-04-01 01:53:58 Monday by lzy>
+;; Time-stamp: <2013-04-02 07:46:51 Tuesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
