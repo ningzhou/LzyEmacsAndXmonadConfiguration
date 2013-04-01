@@ -32,7 +32,7 @@
 ;; M-x find-dired-lisp
 ;; M-x find-grep-dired-lisp
 
-(require 'dired)
+(require 'find-dired)
 (require 'findr)
 
 (defun mmemo-setup-dired-buffer (dir)

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyTheme.el ---
-;; Time-stamp: <2013-04-01 03:28:28 Monday by lzy>
+;; Time-stamp: <2013-04-01 10:45:01 Monday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -115,7 +115,7 @@
      (custom-variable-tag ((t (:foreground "gold" :underline t))))
      (custom-visibility ((t (:foreground "cyan1" :underline t :height 0.8))))
      (diary ((t (:foreground "red1"))))
-     (dired-directory ((t (:foreground "RoyalBlue" :height 1.05 :family "Monaco"))))
+     (dired-directory ((t (:foreground "#00a8ff" :height 1.05 :family "Monaco"))))
      (dired-flagged ((t (:foreground "red"))))
      (dired-header ((t (:foreground "red2"))))
      (dired-ignored ((t (:foreground "white"))))
@@ -185,7 +185,7 @@
      (font-lock-regexp-grouping-backslash ((t (:bold t :weight bold))))
      (font-lock-regexp-grouping-construct ((t (:bold t :weight bold))))
      (font-lock-string-face ((t (:foreground "orange"))))
-     (font-lock-type-face ((t (:foreground "blue" :weight semi-bold))))
+     (font-lock-type-face ((t (:foreground "#0080ff" :weight semi-bold))))
      (font-lock-variable-name-face ((t (:foreground "cyan"))))
      (font-lock-warning-face ((t (:bold t :foreground "yellow3" :weight bold))))
      (fringe ((t (:background "grey2"))))
