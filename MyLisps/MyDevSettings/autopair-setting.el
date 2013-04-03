@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; autopair-setting.el ---
-;; Time-stamp: <2013-04-03 11:15:24 Wednesday by lzy>
+;; Time-stamp: <2013-04-03 15:54:03 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -115,15 +115,11 @@
 
 (add-hook 'c-mode-hook
           #'(lambda ()
-              (push '(?< . ?>)
-                    (getf autopair-extra-pairs :code))
               (push ?{
                     (getf autopair-dont-pair :comment))))
 
 (add-hook 'c++-mode-hook
           #'(lambda ()
-              (push '(?< . ?>)
-                    (getf autopair-extra-pairs :code))
               (push ?{
                     (getf autopair-dont-pair :comment))))
 
