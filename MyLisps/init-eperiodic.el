@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-eperiodic.el ---
-;; Time-stamp: <2013-04-03 07:22:49 Wednesday by lzy>
+;; Time-stamp: <2013-04-03 13:10:49 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -30,8 +30,6 @@
 ;;   (require 'init-eperiodic)
 
 ;;; Code:
-
-;; (require 'eperiodic)
 
 (defun eperiodic-setting ()
   (custom-set-variables
