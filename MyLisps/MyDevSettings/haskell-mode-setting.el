@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; haskell-mode-setting.el ---
-;; Time-stamp: <2013-03-21 15:43:20 Thursday by lzy>
+;; Time-stamp: <2013-04-03 13:34:56 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -32,7 +32,8 @@
 ;;; Code:
 
 ;;; required features:
-(load "/home/lzy/My_Software_Dir/LzyEmacsAndXmonadConfiguration/MySiteLisps/HaskellMode/haskell-mode-2.8.0/haskell-site-file.el")
+(load (concat my-emacs-site-lisps-path
+              "HaskellMode/haskell-mode-2.8.0/haskell-site-file.el"))
 
 (add-hook 'haskell-mode-hook 'turn-on-font-lock)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-ghci)
