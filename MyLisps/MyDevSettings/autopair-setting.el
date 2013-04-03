@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; autopair-setting.el ---
-;; Time-stamp: <2013-04-02 07:46:51 Tuesday by lzy>
+;; Time-stamp: <2013-04-03 11:15:24 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -59,11 +59,19 @@
                          (buffer-string))))
       (save-excursion
         (let* ((old-point (point)))
-          (insert (if current-line current-line "") "{\n")
-          (and lines (insert lines))
-          (move-marker after-point (point))
-          (insert "\n}")
-          (indent-region old-point (point) nil)))
+          (insert (if current-line current-line ""))
+          (if (and current-line (string-match "=[[:space:]]*$" current-line))
+              (progn (insert "{")
+                     (and lines (insert lines))
+                     (move-marker after-point (point))
+                     (insert "};")
+                     (indent-region old-point (point) nil))
+            ;;else
+            (insert "{\n")
+            (and lines (insert lines))
+            (move-marker after-point (point))
+            (insert "\n}")
+            (indent-region old-point (point) nil))))
       (goto-char after-point)
       (c-indent-line))))
 

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-dev-setting.el ---
-;; Time-stamp: <2013-04-01 00:44:42 Monday by lzy>
+;; Time-stamp: <2013-04-03 12:59:12 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -35,7 +35,7 @@
 (require 'autopair-setting)            ;; autopair setting
 (require 'parenthese-setting)          ;; parenthese setting
 (require 'which-func-setting)          ;; which func setting
-(require 'font-lock-setting)           ;; font lock setting
+(require 'zjl-hl-setting)              ;; zjl font lock enhancement
 (require 'etags-setting)               ;; etags setting
 (require 'hex-color-setting)           ;; hex color display setting
 (require 'hideshow-setting)            ;; hide/show setting

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; compile-setting.el ---
-;; Time-stamp: <2013-04-01 00:44:09 Monday by lzy>
+;; Time-stamp: <2013-04-03 11:31:08 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -34,6 +34,7 @@
 (defun compile-setting ()
   "compile setting for c/c++ mode"
   ;; required features
+  (require 'compile)
   (require 'smart-compile)
 
   ;; settings

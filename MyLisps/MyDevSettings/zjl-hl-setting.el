@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
-;;; font-lock-setting.el ---
-;; Time-stamp: <2013-03-29 07:19:58 Friday by lzy>
+;;; zjl-hl-setting.el ---
+;; Time-stamp: <2013-04-03 12:58:05 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -27,7 +27,7 @@
 ;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'font-lock-setting)
+;;   (require 'zjl-hl-setting)
 
 ;;; Code:
 
@@ -43,9 +43,7 @@
 (zjl-hl-enable-global 'lisp-mode)
 (zjl-hl-enable-global 'lisp-interaction-mode)
 
-(global-font-lock-mode 1)
-
 ;;; provide features
-(provide 'font-lock-setting)
+(provide 'zjl-hl-setting)
 
-;;; font-lock-setting.el ends here
+;;; zjl-hl-setting.el ends here

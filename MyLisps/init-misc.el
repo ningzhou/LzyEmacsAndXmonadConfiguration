@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-misc.el ---
-;; Time-stamp: <2013-03-31 16:27:49 Sunday by lzy>
+;; Time-stamp: <2013-04-03 13:01:38 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -121,6 +121,10 @@
 (setq default-process-coding-system '(utf-8 . utf-8))
 (setq default-sendmail-coding-system 'utf-8)
 (setq default-terminal-coding-system 'utf-8)
+
+;; enable font lock
+(global-font-lock-mode 1)
+(set-default 'jit-lock-mode t)
 
 ;; global key binding
 (lazy-set-key
