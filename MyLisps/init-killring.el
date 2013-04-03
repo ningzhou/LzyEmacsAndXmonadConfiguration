@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-killring.el ---
-;; Time-stamp: <2013-03-30 07:42:00 Saturday by lzy>
+;; Time-stamp: <2013-04-03 07:09:14 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -36,8 +36,8 @@
 (setq kill-ring-max 1024)
 (setq kill-do-not-save-duplicates t)
 (setq browse-kill-ring-quit-action 'save-and-restore)
-(browse-kill-ring-default-keybindings)
 
+(browse-kill-ring-default-keybindings)
 (lazy-set-key
  '(("k" . browse-kill-ring-delete))
  browse-kill-ring-mode-map)

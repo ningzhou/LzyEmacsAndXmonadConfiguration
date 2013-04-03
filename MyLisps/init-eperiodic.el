@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-eperiodic.el ---
-;; Time-stamp: <2013-03-31 16:09:40 Sunday by lzy>
+;; Time-stamp: <2013-04-03 07:22:49 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -31,10 +31,17 @@
 
 ;;; Code:
 
-(require 'eperiodic)
+;; (require 'eperiodic)
 
-(custom-set-variables
- '(eperiodic-web-lookup-location "http://www.webelements.com/webelements/elements/text/%s/key.html"))
+(defun eperiodic-setting ()
+  (custom-set-variables
+   '(eperiodic-web-lookup-location "http://www.webelements.com/webelements/elements/text/%s/key.html")))
+
+(eval-after-load "eperiodic"
+  '(eperiodic-setting))
+
+(autoload 'eperiodic "eperiodic"
+  "Display the periodic table of the elements in its own buffer" t)
 
 ;;; provide features
 (provide 'init-eperiodic)

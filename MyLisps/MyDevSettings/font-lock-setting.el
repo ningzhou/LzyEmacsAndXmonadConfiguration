@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; font-lock-setting.el ---
-;; Time-stamp: <2013-03-29 07:19:58 Friday by lzy>
+;; Time-stamp: <2013-04-03 08:24:38 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
