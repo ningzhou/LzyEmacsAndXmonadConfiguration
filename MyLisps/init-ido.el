@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-ido.el ---
-;; Time-stamp: <2013-03-29 06:26:16 Friday by lzy>
+;; Time-stamp: <2013-04-03 07:53:15 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -38,16 +38,14 @@
 
 (defun ido-sort-mtime ()
   "sort ido filelist by mtime instead of alphabetically"
-  (setq ido-temp-list
-        (sort ido-temp-list 
-              (lambda (a b)
-                (time-less-p
-                 (sixth (file-attributes (concat ido-current-directory b)))
-                 (sixth (file-attributes (concat ido-current-directory a)))))))
-  (ido-to-end (delq nil (mapcar
-                         (lambda (x)
-                           (and (char-equal (string-to-char x) ?.) x))
-                         ido-temp-list))))
+  (setq ido-temp-list (sort ido-temp-list
+                            (lambda (a b)
+                              (time-less-p
+                               (sixth (file-attributes (concat ido-current-directory b)))
+                               (sixth (file-attributes (concat ido-current-directory a)))))))
+  (ido-to-end (delq nil (mapcar (lambda (x)
+                                  (and (char-equal (string-to-char x) ?.) x))
+                                ido-temp-list))))
 
 (defun ido-my-keys ()
   "Set up the keymap for `ido'."

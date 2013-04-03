@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-multis.el ---
-;; Time-stamp: <2013-03-27 17:06:40 Wednesday by lzy>
+;; Time-stamp: <2013-04-03 07:50:45 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -44,12 +44,10 @@
 
 (defun set-ansi-term-color ()
   "color setting for ansi term"
-  (if (and (>= emacs-major-version 24)
-           (>= (+ emacs-major-version emacs-minor-version) 27))
+  (set-face-background 'term "black")
+  (set-face-foreground 'term "green")
+  (if (>= emacs-major-version 24)
       (progn
-        (set-face-background 'term "black")
-        (set-face-foreground 'term "green")
-
         (defface term-color-light-yellow
           '((t :foreground "yellow" :background "yellow"))
           "Face used to render light yellow color code."
@@ -76,11 +74,16 @@
                term-color-magenta
                term-color-cyan
                term-color-white]))
-    (progn
-      (setq term-default-fg-color "black")
-      (setq term-default-bg-color "green")
-      (setq ansi-term-color-vector [unspecified "black" "red3" "green" "yellow" "DeepSkyBlue"
-                                                "magenta3" "cyan3" "white"]))))
+    (setq ansi-term-color-vector
+          [unspecified
+           "black"
+           "red3"
+           "green"
+           "yellow"
+           "DeepSkyBlue"
+           "magenta3"
+           "cyan3"
+           "white"])))
 
 (defun term-send-esc ()
   "Send ESC in term mode"

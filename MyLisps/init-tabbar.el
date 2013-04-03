@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-tabbar.el ---
-;; Time-stamp: <2013-03-30 07:23:09 Saturday by lzy>
+;; Time-stamp: <2013-04-03 06:09:59 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -31,24 +31,19 @@
 
 ;;; Code:
 
-(defun tarbar-setting ()
-  "setting for tabbar mode"
-  ;; required features
-  (require 'tabbar-extension)
+(require 'tabbar-extension)
 
-  ;; settings
-  (setq tabbar-separator '(0.2))
-  (tabbar-mode 1)
+;; settings
+(setq tabbar-separator '(0.2))
+(tabbar-mode 1)
 
-  ;; key bindings
-  (lazy-set-key
-   '(("C-<f11>"  . tabbar-backward)
-     ("<f11>"    . tabbar-forward)
-     ("C-<f12>"  . tabbar-backward-group)
-     ("<f12>"    . tabbar-forward-group))
-   tabbar-mode-map))
-
-(tarbar-setting)
+;; key bindings
+(lazy-set-key
+ '(("C-<f11>"  . tabbar-backward)
+   ("<f11>"    . tabbar-forward)
+   ("C-<f12>"  . tabbar-backward-group)
+   ("<f12>"    . tabbar-forward-group))
+ tabbar-mode-map)
 
 ;;; provide features
 (provide 'init-tabbar)

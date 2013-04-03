@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; cc-mode-setting.el ---
-;; Time-stamp: <2013-04-02 10:46:06 Tuesday by lzy>
+;; Time-stamp: <2013-04-03 13:07:10 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -53,10 +53,6 @@
   (lazy-set-key
    '(("C-c M-a" . beginning-of-defun)
      ("C-c M-e" . end-of-defun)
-     ;; cc mode bind "C-c C-c" to comment-region
-     ;; for convenience, so, here need to rebind
-     ;; it to nil in case conflicting with global
-     ;; binding
      ("C-c C-c" . nil))
    c-mode-base-map))
 

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-w3m.el ---
-;; Time-stamp: <2013-04-01 00:00:24 Monday by lzy>
+;; Time-stamp: <2013-04-03 07:28:54 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -51,6 +51,7 @@
   (require 'w3m-favicon)
   (require 'w3m-session)
   (require 'w3m-bookmark)
+  (require 'w3m-extension)
 
   ;; functions definition
   (defun w3m-set-proxy (&optional proxy)

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-smooth-scroll.el ---
-;; Time-stamp: <2013-03-27 15:02:19 Wednesday by lzy>
+;; Time-stamp: <2013-04-03 06:10:25 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -32,6 +32,7 @@
 ;;; Code:
 
 (require 'smooth-scroll)
+
 (smooth-scroll-mode 1)
 
 ;;; provide features

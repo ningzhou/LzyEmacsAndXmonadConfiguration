@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-mode-line.el ---
-;; Time-stamp: <2013-03-31 02:01:02 Sunday by lzy>
+;; Time-stamp: <2013-04-03 14:48:08 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -50,9 +50,9 @@
                 '((:eval
                    (if (eql buffer-read-only t)
                        (propertize " ⚡RO⚡" 'face
-                                   '(:foreground "Deepskyblue" :weight normal))
+                                   '(:foreground "Deepskyblue"))
                      (propertize " ⚡W/R⚡" 'face
-                                 '(:foreground "Deepskyblue" :weight normal))))
+                                 '(:foreground "Deepskyblue"))))
                   (:eval
                    (propertize " %b"
                                'face (if (buffer-modified-p)

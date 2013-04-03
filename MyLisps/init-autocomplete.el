@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-autocomplete.el ---
-;; Time-stamp: <2013-03-29 06:31:06 Friday by lzy>
+;; Time-stamp: <2013-04-03 07:55:32 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -132,7 +132,7 @@
 (setq ac-auto-start 2)
 (setq ac-disable-faces nil)
 (setq ac-candidate-limit 15)
-(setq ac-auto-show-menu 0.8)
+(setq ac-auto-show-menu 0.4)
 (setq ac-quick-help-delay 0.5)
 (setq help-xref-following nil)
 ;; set clang flags

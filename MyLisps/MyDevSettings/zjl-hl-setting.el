@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; zjl-hl-setting.el ---
-;; Time-stamp: <2013-04-03 12:58:05 Wednesday by lzy>
+;; Time-stamp: <2013-04-03 13:07:34 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
