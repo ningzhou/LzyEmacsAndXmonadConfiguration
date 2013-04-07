@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; c-c++-mode-setting.el ---
-;; Time-stamp: <2013-03-31 23:07:44 Sunday by lzy>
+;; Time-stamp: <2013-04-07 07:42:26 Sunday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;

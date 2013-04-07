@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyTheme.el ---
-;; Time-stamp: <2013-04-01 10:45:01 Monday by lzy>
+;; Time-stamp: <2013-04-07 07:22:55 Sunday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -86,9 +86,9 @@
      (completions-annotations ((t (:italic t :slant italic))))
      (completions-common-part ((t (:foundry "unknown" :width normal :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "black" :background "white" :stipple nil :height 110))))
      (completions-first-difference ((t (:bold t :weight bold))))
-     (cscope-file-face ((t (:foreground "blue"))))
+     (cscope-file-face ((t (:foreground "DeepSkyBlue"))))
      (cscope-function-face ((t (:foreground "magenta"))))
-     (cscope-line-face ((t (:foreground "black"))))
+     (cscope-line-face ((t (:foreground "grey80"))))
      (cscope-line-number-face ((t (:foreground "red"))))
      (cscope-mouse-face ((t (:background "blue" :foreground "white"))))
      (custom-button ((t (:background "DarkRed" :foreground "white" :box (:line-width 1 :style released-button)))))

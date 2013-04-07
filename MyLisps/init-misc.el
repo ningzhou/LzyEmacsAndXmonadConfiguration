@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-misc.el ---
-;; Time-stamp: <2013-04-03 13:01:38 Wednesday by lzy>
+;; Time-stamp: <2013-04-07 07:49:54 Sunday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -52,6 +52,11 @@
 (setq isearch-allow-scroll t)
 (setq minibuffer-message-timeout 1)
 (setq require-final-newline t)
+
+;; ask y-or-n before exiting
+(setq kill-emacs-query-functions
+      #'(lambda ()
+          (y-or-n-p "Do you really want to quit? ")))
 
 ;; enable history save
 (setq savehist-file "~/.emacs.d/minibuf-history")
@@ -132,6 +137,7 @@
    ("M-w" . smart-copy)
    ("M-M" . mark-whole-sexp)
    ("M-k" . smart-kill)
+   ("M-g" . goto-line)
    ("C-x m" . get-mode-name)
    ("C-x k" . kill-this-buffer)
    ("C-x C-b" . ibuffer)

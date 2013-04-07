@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; compile-setting.el ---
-;; Time-stamp: <2013-04-03 11:31:08 Wednesday by lzy>
+;; Time-stamp: <2013-04-07 07:45:32 Sunday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -37,8 +37,18 @@
   (require 'compile)
   (require 'smart-compile)
 
+  ;; functions definition
+  (defun kill-buffer-when-compile-success (process)
+    "Close current buffer when `shell-command' exit."
+    (set-process-sentinel
+     process
+     (lambda (proc change)
+       (when (string-match "finished" change)
+         (delete-windows-on (process-buffer proc))))))
+
   ;; settings
   (setq compilation-scroll-output t)
+  (add-hook 'compilation-start-hook 'kill-buffer-when-compile-success)
 
   ;; key bindings
   (lazy-set-key

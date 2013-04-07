@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-dev-setting.el ---
-;; Time-stamp: <2013-04-03 12:59:12 Wednesday by lzy>
+;; Time-stamp: <2013-04-07 16:25:08 Sunday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -54,6 +54,7 @@
 (require 'python-mode-setting)         ;; python mode
 (require 'sh-mode-setting)             ;; shell mode setting
 (require 'haskell-mode-setting)        ;; haskell mode setting
+(require 'script-common-setting)       ;; common settings for script mode
 
 ;;; provide features
 (provide 'init-dev-setting)
