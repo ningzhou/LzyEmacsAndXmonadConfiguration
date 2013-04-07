@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyTheme.el ---
-;; Time-stamp: <2013-04-07 07:22:55 Sunday by lzy>
+;; Time-stamp: <2013-04-07 10:40:42 Sunday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -342,9 +342,9 @@
      (org-verbatim ((t (:foreground "grey70"))))
      (org-verse ((t (:foreground "grey70"))))
      (org-warning ((t (:foreground "red" :weight normal))))
-     (paren-face-match ((t (:background "SteelBlue1" :foreground "black"))))
-     (paren-face-mismatch ((t (:background "red2" :foreground "black"))))
-     (paren-face-no-match ((t (:background "yellow" :foreground "black"))))
+     (paren-face-match ((t (:background "black" :foreground "yellow" :weight bold))))
+     (paren-face-mismatch ((t (:background "red2" :foreground "black" :height 1.2))))
+     (paren-face-no-match ((t (:background "red2" :foreground "black" :height 1.2))))
      (popup-scroll-bar-background-face ((t (nil))))
      (popup-scroll-bar-foreground-face ((t (nil))))
      (query-replace ((t (:foreground "lightskyblue1" :background "magenta3"))))
@@ -353,7 +353,7 @@
      (search-buffers-face ((t (:bold t :background "SkyBlue" :foreground "Black" :weight bold))))
      (search-buffers-header-face ((t (:bold t :background "gray20" :foreground "azure3" :weight bold))))
      (secondary-selection ((t (:background "grey20"))))
-     (show-paren-match ((t (:background "SteelBlue3" :foreground "black"))))
+     (show-paren-match ((t (:background "black" :foreground "yellow"))))
      (show-paren-mismatch ((t (:background "red2" :foreground "black" :height 1.2))))
      (success ((t (:bold t :foreground "ForestGreen" :weight bold))))
      (tabbar-default ((t (:height 0.97 :background "black"))))
