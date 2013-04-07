@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-misc.el ---
-;; Time-stamp: <2013-04-07 07:49:54 Sunday by lzy>
+;; Time-stamp: <2013-04-07 16:34:10 Sunday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -54,9 +54,7 @@
 (setq require-final-newline t)
 
 ;; ask y-or-n before exiting
-(setq kill-emacs-query-functions
-      #'(lambda ()
-          (y-or-n-p "Do you really want to quit? ")))
+(setq confirm-kill-emacs 'y-or-n-p)
 
 ;; enable history save
 (setq savehist-file "~/.emacs.d/minibuf-history")
