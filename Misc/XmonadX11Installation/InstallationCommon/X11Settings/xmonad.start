@@ -1,17 +1,11 @@
 #!/bin/bash
 
-trayer --edge top --align right --SetDockType true --expand true --width 8 --transparent true --tint 0x000000 --alpha 0 --height 21&
-
-if [ -x /usr/bin/gnome-power-manager ] ; then
-   sleep 1
-   gnome-power-manager
-fi
+trayer --edge top --align right --SetDockType true --expand true --width 7 --transparent true --tint 0x000000 --alpha 0 --height 18&
 
 if [ -x /usr/bin/nm-applet ] ; then
    nm-applet --sm-disable &
 fi
 
 wallpaper.sh&
-conky&
 
 exec xmonad

@@ -28,9 +28,8 @@ scim -d
 
 nm-applet --sm-disable&
 wallpaper.sh&
-conky&
 
-trayer --edge top --align right --SetDockType true --expand true --width 8 --transparent true --tint 0x000000 --alpha 0 --height 19&
+trayer --edge top --align right --SetDockType true --expand true --width 7 --transparent true --tint 0x000000 --alpha 0 --height 18&
 # set the cursor
 xsetroot -cursor_name left_ptr
 # start xmonad

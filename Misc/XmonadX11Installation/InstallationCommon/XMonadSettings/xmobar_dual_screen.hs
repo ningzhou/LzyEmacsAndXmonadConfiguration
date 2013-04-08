@@ -1,5 +1,4 @@
 Config { font = "xft:Monospace:size=8:antialias=true"
---       , bgColor = "#002b36"
        , bgColor = "#000000"
        , fgColor = "#657b83"
        , position = TopW L 100

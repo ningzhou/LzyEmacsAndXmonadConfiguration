@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Time-stamp: <2013-03-01 15:38:46 Friday by lzy>
+# Time-stamp: <2013-04-09 03:39:17 Tuesday by lzy>
 
 BASE_DIR=$(cd $(dirname $0); pwd)
 SCREEN_XRES=$(xrandr|grep "current"|cut -d " " -f 8)
@@ -38,22 +38,6 @@ fi
 mkdir -p $TMP_DIR
 
 # Common Installation
-echo "installing backgrounds... .. ."
-if [ ! -e $HOME/.WallPaper ]; then
-    mkdir -p $HOME/.WallPaper
-fi
-cp $BASE_DIR/InstallationCommon/Backgrounds/src/* $HOME/.WallPaper -v
-sudo cp $BASE_DIR/InstallationCommon/Backgrounds/wallpaper.sh /usr/bin/wallpaper.sh -v
-
-echo "Installing conky... .. ."
-mkdir -p $HOME/.lua/scripts
-cp $BASE_DIR/InstallationCommon/Conky/clock_rings.lua $HOME/.lua/scripts -v
-if [ $SCREEN_XRES -ge 1600 ]; then
-    cp $BASE_DIR/InstallationCommon/Conky/conkyrc_large $HOME/.conkyrc -v
-else
-    cp $BASE_DIR/InstallationCommon/Conky/conkyrc_small $HOME/.conkyrc -v
-fi
-
 echo "Installing mouse theme... .. ."
 mkdir -p $HOME/.icons
 rm $HOME/.icons/* -rf
@@ -62,16 +46,6 @@ sudo rm /usr/share/icons/default -rf
 sudo ln -s /usr/share/icons/Pulse-Glass /usr/share/icons/default
 ln -s /usr/share/icons/Pulse-Glass $HOME/.icons/default
 
-if [ ! -e $HOME/.oh-my-zsh ]; then
-    echo "Installing oh-my-zsh ... .. ."
-    curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-fi
-
-if [ -e ~/.oh-my-zsh ]; then
-    echo "Installing zsh theme ... .. ."
-    cp $BASE_DIR/InstallationCommon/Zsh/fox.zsh-theme $HOME/.oh-my-zsh/themes/ -v
-fi
-
 echo "Installing Xdefaults and Xresources ... .. ."
 cp $BASE_DIR/InstallationCommon/TerminalSettings/Xdefaults $TMP_DIR
 cp $BASE_DIR/InstallationCommon/TerminalSettings/Xresources $TMP_DIR
@@ -79,11 +53,12 @@ if [ $SCREEN_XRES -ge 1600 ]; then
     sed -i -e 's/Xft.dpi:.*/Xft.dpi: 105/g' $TMP_DIR/Xdefaults
     sed -i -e 's/Xft.dpi:.*/Xft.dpi: 105/g' $TMP_DIR/Xresources
 else
-    sed -i -e 's/Xft.dpi:.*/Xft.dpi: 102/g' $TMP_DIR/Xdefaults
-    sed -i -e 's/Xft.dpi:.*/Xft.dpi: 102/g' $TMP_DIR/Xresources
+    sed -i -e 's/Xft.dpi:.*/Xft.dpi: 101/g' $TMP_DIR/Xdefaults
+    sed -i -e 's/Xft.dpi:.*/Xft.dpi: 101/g' $TMP_DIR/Xresources
 fi
 cp $TMP_DIR/Xdefaults $HOME/.Xdefaults -v
 cp $TMP_DIR/Xresources $HOME/.Xresources -v
+
 if [ $OS_NAME = "ubuntu" ];then
     sudo cp $BASE_DIR/InstallationCommon/X11Settings/xmonad.start /usr/bin/ -v
 else
@@ -93,6 +68,14 @@ fi
 sudo cp $BASE_DIR/InstallationCommon/TerminalSettings/clipboard /usr/lib/urxvt/perl/ -v
 
 echo "Installing xmonad and xmobar configurations... .. ."
+if [ ! -e xmonad ]; then
+    if [ $OS_NAME = "centos" ] || [ $OS_NAME = "fedora" ]; then
+        echo "ignore xmonad installation"
+    else
+        $INSTALL_CMD xmonad
+    fi
+fi    
+
 if [ ! -e $HOME/.xmonad/back ]; then
     mkdir -p $HOME/.xmonad/back
 fi
@@ -118,35 +101,19 @@ fi
 
 cp $TMP_DIR/xmobar.hs $HOME/.xmonad/xmobar.hs
 cp $TMP_DIR/xmobar_dual_screen.hs $HOME/.xmonad/xmobar_dual_screen.hs
+cp $TMP_DIR/xmonad.hs $HOME/.xmonad/xmonad.hs -v
+cp $TMP_DIR/xmonad.hs $HOME/.xmonad/back/xmonad.hs -v
+cp $TMP_DIR/xmonad_dual_screen.hs $HOME/.xmonad/back/xmonad_dual_screen.hs -v
 
-if [ $OS_NAME = "ubuntu" ]; then
-    cp $TMP_DIR/ubuntu_xmonad.hs $HOME/.xmonad/xmonad.hs -v
-    cp $TMP_DIR/ubuntu_xmonad.hs $HOME/.xmonad/back/xmonad.hs -v
-    cp $TMP_DIR/ubuntu_xmonad_dual_screen.hs $HOME/.xmonad/back/xmonad_dual_screen.hs -v
-else
-    cp $TMP_DIR/arch_xmonad.hs $HOME/.xmonad/xmonad.hs -v
-    cp $TMP_DIR/arch_xmonad.hs $HOME/.xmonad/back/xmonad.hs -v
-    cp $TMP_DIR/arch_xmonad_dual_screen.hs $HOME/.xmonad/back/xmonad_dual_screen.hs -v
+# Install wallpaper
+echo "installing wallpaper"
+if [ ! -e $HOME/.WallPaper ]; then
+    mkdir -p $HOME/.WallPaper
 fi
+cp $BASE_DIR/InstallationCommon/Backgrounds/src/* $HOME/.WallPaper -rv
+sudo cp $BASE_DIR/InstallationCommon/Backgrounds/wallpaper.sh /usr/bin/ -v
 
 sudo cp $TMP_DIR/single_screen.sh /usr/bin/ -v
 sudo cp $TMP_DIR/dual_screen.sh /usr/bin/ -v
 
 rm $TMP_DIR -rf
-
-echo "Installing tmux... .. ."
-if [ ! -e "/usr/bin/tmux" ] && [ ! -e "/usr/local/bin/tmux" ]; then
-    $INSTALL_CMD tmux
-fi
-cp $BASE_DIR/InstallationCommon/Tmux/tmux.conf $HOME/.tmux.conf -v
-
-if [ ! -e "/usr/bin/scrot" ] && [ ! -e "/usr/local/bin/scrot" ]; then
-    $INSTALL_CMD scrot
-fi
-
-if [ -e "/usr/share/slim/themes" ]; then
-    if [ -e "/usr/share/slim/themes/my-theme" ]; then
-        sudo rm /usr/share/slim/themes/my-theme -rf
-    fi
-    sudo cp $BASE_DIR/InstallationCommon/SlimTheme /usr/share/slim/themes/my-theme -rv
-fi

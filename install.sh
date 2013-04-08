@@ -1,5 +1,5 @@
 #!/bin/bash
-# Time-stamp: <2013-04-08 23:14:51 Monday by lzy>
+# Time-stamp: <2013-04-09 00:55:12 Tuesday by lzy>
 
 BASE_DIR=$(cd $(dirname $0); pwd)
 DOT_EMACS=$HOME/.emacs
@@ -71,6 +71,19 @@ if cmd_noexist w3m; then
     $INSTALL_CMD w3m 
 fi
 
+if cmd_noexist scrot; then
+    $INSTALL_CMD scrot
+fi
+
+if cmd_noexist zsh; then
+    $INSTALL_CMD zsh
+    curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+fi
+
+if cmd_noexist feh; then
+    $INSTALL_CMD feh
+fi
+
 if cmd_noexist mpg123; then
     if [ $OS_NAME = "centos" ] || [ $OS_NAME = "fedora" ]; then
         echo "Ignore mpg123"
@@ -110,6 +123,14 @@ if cmd_noexist clang; then
         echo "Ignore clang, but you should intall it manually"
     else
         $INSTALL_CMD clang
+    fi
+fi
+
+if cmd_noexist convert; then
+    if [ $OS_NAME = "centos" ] || [ $OS_NAME = "fedora" ]; then
+        echo "Ignore imagemagick"
+    else
+        $INSTALL_CMD imagemagick
     fi
 fi
 

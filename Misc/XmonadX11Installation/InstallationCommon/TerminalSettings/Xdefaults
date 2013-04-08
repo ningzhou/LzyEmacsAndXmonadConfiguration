@@ -87,11 +87,11 @@ URxvt.scrollWithBuffer:false
 URxvt.saveLines:5000
 
 ! font set
-URxvt*font:xft:Bitstream Vera Sans Mono:antialias=True:pixelsize=16
-URxvt*mfont:xft:Bitstream Vera Sans Mono:antialias=True:pixelsize=16
-URxvt*boldfont:xft:Bitstream Vera Sans Mono:antialias=True:pixelsize=16:Bold
-URxvt*italicFont:xft:Bitstream Vera Sans Mono:antialias=True:pixelsize=16:Bold          
-URxvt*bolditalicFont:xft:Bitstream Vera Sans Mono:antialias=True:pixelsize=16:Bold
+URxvt*font:xft:Bitstream Vera Sans Mono:antialias=True:pixelsize=15
+URxvt*mfont:xft:Bitstream Vera Sans Mono:antialias=True:pixelsize=15
+URxvt*boldfont:xft:Bitstream Vera Sans Mono:antialias=True:pixelsize=15:Bold
+URxvt*italicFont:xft:Bitstream Vera Sans Mono:antialias=True:pixelsize=15:Bold          
+URxvt*bolditalicFont:xft:Bitstream Vera Sans Mono:antialias=True:pixelsize=15:Bold
 
 URxvt.cutchars:"()*,<>[]{}|'"
 URxvt.buffered:true
