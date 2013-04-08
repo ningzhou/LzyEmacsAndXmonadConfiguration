@@ -1,5 +1,5 @@
 #!/bin/bash
-# Time-stamp: <2013-03-14 17:52:38 Thursday by lzy>
+# Time-stamp: <2013-04-08 23:14:51 Monday by lzy>
 
 BASE_DIR=$(cd $(dirname $0); pwd)
 DOT_EMACS=$HOME/.emacs
@@ -117,7 +117,11 @@ if cmd_noexist emms-print-metadata; then
     if [ $OS_NAME = "centos" ] || [ $OS_NAME = "fedora" ]; then
         echo "Ignore taglib"
     else
-        $INSTALL_CMD taglib
-        sudo cp ${bin}/Site-Lisps/Emms/emms-print-metadata /usr/bin/
+        if [ $OS_NAME = "arch" ]; then
+            $INSTALL_CMD taglib
+        else
+            $INSTALL_CMD libtagc0-dev
+        fi
+        sudo cp ${BASE_DIR}/MySiteLisps/Emms/emms-print-metadata /usr/bin/
     fi
 fi

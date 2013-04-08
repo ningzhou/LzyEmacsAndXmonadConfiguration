@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-fullscreen.el ---
-;; Time-stamp: <2013-03-15 16:22:06 Friday by lzy>
+;; Time-stamp: <2013-04-08 23:22:13 Monday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -37,9 +37,10 @@
   "toggle max window status" t)
 
 (when (window-system)
-    (lazy-set-key
-     '(("C-<f10>" . fullscreen-toggle)
-       ("M-<f10>" . max-window-toggle))))
+  (fullscreen-toggle)
+  (lazy-set-key
+   '(("C-<f10>" . fullscreen-toggle)
+     ("M-<f10>" . max-window-toggle))))
 
 ;;; provide features
 (provide 'init-fullscreen)
