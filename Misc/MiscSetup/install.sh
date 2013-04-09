@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Time-stamp: <2013-04-09 13:09:48 Tuesday by lzy>
+# Time-stamp: <2013-04-09 22:50:46 Tuesday by lzy>
 
 BASE_DIR=$(cd $(dirname $0); pwd)
 SCREEN_XRES=$(xrandr|grep "current"|cut -d " " -f 8)
@@ -55,20 +55,20 @@ sudo cp $BASE_DIR/Backgrounds/wallpaper.sh /usr/bin/ -v
 echo "Installing Xdefaults and Xresources ... .. ."
 mkdir -p $TMP_DIR
 cp $BASE_DIR/TerminalSettings/Xdefaults $TMP_DIR
-cp $BASE_DIR/TerminalSettings/Xresources $TMP_DIR
 
 if [ $SCREEN_XRES -ge 1600 ]; then
     sed -i -e 's/Xft.dpi:.*/Xft.dpi: 105/g' $TMP_DIR/Xdefaults
-    sed -i -e 's/Xft.dpi:.*/Xft.dpi: 105/g' $TMP_DIR/Xresources
 else
     sed -i -e 's/Xft.dpi:.*/Xft.dpi: 101/g' $TMP_DIR/Xdefaults
-    sed -i -e 's/Xft.dpi:.*/Xft.dpi: 101/g' $TMP_DIR/Xresources
 fi
 
 cp $TMP_DIR/Xdefaults $HOME/.Xdefaults -v
-cp $TMP_DIR/Xresources $HOME/.Xresources -v
+cp $TMP_DIR/Xdefaults $HOME/.Xresources -v
 
-sudo cp $BASE_DIR/TerminalSettings/clipboard /usr/lib/urxvt/perl/ -v
+if [ ! -e /usr/bin/xsel ] && [ ! -e /usr/local/bin/xsel ]; then
+    $INSTALL_CMD xsel
+fi
+sudo cp $BASE_DIR/TerminalSettings/urxvt-perls/* /usr/lib/urxvt/perl/ -v
 
 echo "Installing xmonad and xmobar configurations... .. ."
 if [ ! -e /usr/bin/xmonad ] && [ ! -e /usr/local/bin/xmonad ]; then
