@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Save old dir
 old_dir=$(pwd)

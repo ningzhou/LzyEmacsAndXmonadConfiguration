@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Time-stamp: <2013-03-01 14:45:29 Friday by lzy>
+# Time-stamp: <2013-04-09 11:15:55 Tuesday by lzy>
 
 shopt -s nullglob
 
@@ -15,11 +15,7 @@ while true; do
     ((range))
     
     file="${files[RANDOM % range]}"
-    if [ "mars.jpg" = $file ]; then
-        feh --bg-max "${files[RANDOM % range]}"
-    else
-        feh --bg-scale "${files[RANDOM % range]}"
-    fi
+    feh --bg-scale "${files[RANDOM % range]}"
 
 	sleep 10m
 done

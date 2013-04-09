@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
-# Time-stamp: <2013-04-09 03:34:39 Tuesday by lzy>
+# Time-stamp: <2013-04-09 12:35:50 Tuesday by lzy>
 
 rm ~/.xmonad/xmonad.hs
-cp ~/.xmonad/back/xmonad.hs ~/.xmonad/xmonad.hs
+cp ~/.xmonad/backup/xmonad.hs ~/.xmonad/xmonad.hs
 
 xrandr --output LVDS1 --auto --same-as VGA1
 

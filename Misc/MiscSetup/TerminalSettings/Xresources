@@ -1,5 +1,5 @@
 !! fonts
-Xft.dpi: 102
+Xft.dpi: 100
 Xft.antialias: true
 Xft.hinting: true
 !! hintnone, hintslight, hintmedium, hintfull

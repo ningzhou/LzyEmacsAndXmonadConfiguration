@@ -1,5 +1,5 @@
 #!/bin/bash
-# Time-stamp: <2013-04-09 00:55:12 Tuesday by lzy>
+# Time-stamp: <2013-04-09 12:54:00 Tuesday by lzy>
 
 BASE_DIR=$(cd $(dirname $0); pwd)
 DOT_EMACS=$HOME/.emacs
@@ -46,7 +46,7 @@ cp $BASE_DIR/emacs.config $BASE_DIR/.emacs.local
 sed -i -e s:_EMACS_DIR_:$BASE_DIR/:g $BASE_DIR/.emacs.local
 
 # Font installation
-$BASE_DIR/Misc/XmonadX11Installation/InstallationCommon/Fonts/fonts-install.sh
+$BASE_DIR/Misc/MiscSetup/Fonts/fonts-install.sh
 
 # Emacs root configurations file installation
 if [ -e $DOT_EMACS ]; then

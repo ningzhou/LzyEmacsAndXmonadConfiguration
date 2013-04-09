@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyTheme.el ---
-;; Time-stamp: <2013-04-07 10:40:42 Sunday by lzy>
+;; Time-stamp: <2013-04-08 10:58:05 Monday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -342,7 +342,7 @@
      (org-verbatim ((t (:foreground "grey70"))))
      (org-verse ((t (:foreground "grey70"))))
      (org-warning ((t (:foreground "red" :weight normal))))
-     (paren-face-match ((t (:background "black" :foreground "yellow" :weight bold))))
+     (paren-face-match ((t (:background "grey40" :foreground "blue" :weight bold))))
      (paren-face-mismatch ((t (:background "red2" :foreground "black" :height 1.2))))
      (paren-face-no-match ((t (:background "red2" :foreground "black" :height 1.2))))
      (popup-scroll-bar-background-face ((t (nil))))

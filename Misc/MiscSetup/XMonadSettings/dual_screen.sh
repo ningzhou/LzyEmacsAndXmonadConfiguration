@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
-# Time-stamp: <2013-04-09 03:34:12 Tuesday by lzy>
+# Time-stamp: <2013-04-09 12:35:42 Tuesday by lzy>
 
 rm ~/.xmonad/xmonad.hs
-cp ~/.xmonad/back/xmonad_dual_screen.hs ~/.xmonad/xmonad.hs
+cp ~/.xmonad/backup/xmonad_dual_screen.hs ~/.xmonad/xmonad.hs
 
 xrandr --output LVDS1 --auto --left-of VGA1
 

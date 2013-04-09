@@ -41,14 +41,3 @@ pic或asymptote。pic是类UNIX下的经典软件（troff的一部分），画�
 替代品，这是不公正的，譬如MetaPost能解方程，而asymptote不能。从功能之强大来说，MetaPost是不争的首选。
 
  [[http://162.105.203.93/member/yujs/BSDFiles/html/MetaPost.html][UNIX下的绘图工具]]
-
-** Git related
-*** git config [[http:opengit.org/open/?f%3Dprogit_07-customizing-git][Git documents]]
-git config --global user.name "name"
-git config --global user.email "mailname@gmail.com"
-git config --global color.diff auto # git diff 要顯示顏色
-git config --global color.status auto # git status 要顯示顏色
-git config --global color.branch auto
-
-** Stardict dictionary
-get dictionary from:[[http://abloz.com/huzheng/stardict-dic/zh_CN/]]

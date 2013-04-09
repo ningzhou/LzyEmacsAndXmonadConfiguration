@@ -1,12 +1,7 @@
-import System.IO
-import System.IO.UTF8
 import System.Exit
 import Data.Ratio
-import qualified Data.Map        as M
-import qualified XMonad.StackSet as W
 import XMonad
 import XMonad.Util.Run
-import XMonad.Util.EZConfig
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.ICCCMFocus
 import XMonad.Hooks.DynamicLog
@@ -14,18 +9,12 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.Grid
-import XMonad.Layout.Combo
 import XMonad.Layout.Tabbed
-import XMonad.Layout.Spiral
-import XMonad.Layout.TwoPane
-import XMonad.Layout.Maximize
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Magnifier
-import XMonad.Layout.Decoration
-import XMonad.Layout.SimplestFloat
 import XMonad.Layout.ResizableTile
-import XMonad.Layout.WindowNavigation
-import XMonad.Layout.IndependentScreens
+import qualified Data.Map as M
+import qualified XMonad.StackSet as W
 
 ------------------------------------------------------------------------
 -- Terminal
@@ -319,7 +308,7 @@ main = do
   xmproc <- spawnPipe "/usr/bin/xmobar ~/.xmonad/xmobar.hs"
   xmonad defaults {
                logHook =  dynamicLogWithPP $ xmobarPP {
-                            ppOutput = System.IO.UTF8.hPutStrLn xmproc
+                            ppOutput = hPutStrLn xmproc
                           , ppTitle = xmobarColor xmobarTitleColor "" . shorten 1
                           , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
                           , ppSep = "  "}

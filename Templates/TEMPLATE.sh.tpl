@@ -1,5 +1,5 @@
-#!/bin/bash
+#!/bin/sh
 
-# Time-stamp: <2013-03-01 14:49:01 Friday by lzy>
+# Time-stamp: <2013-04-09 11:33:38 Tuesday by lzy>
 
 (>>>POINT<<<)
