@@ -141,7 +141,7 @@
 11. pacman -S chmsee xpdf gcalctool
 
 ** install Xmonad
-1. pacman -S xmonad xmonad-contrib dmenu trayer feh xlockmore xmobar
+1. pacman -S xmonad xmonad-contrib dmenu trayer feh xlockmore xmobar consolekit parcellite lxappearance
 2. install GNOME's applets, these applets will be shown on trayer panel
    + pacman -S network-manager-applet gnome-keyring
    + You must remove the default network daemon and add the networkmanager daemon, after the dbus
