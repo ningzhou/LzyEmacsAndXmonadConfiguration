@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Time-stamp: <2013-04-09 22:50:46 Tuesday by lzy>
+# Time-stamp: <2013-04-10 15:51:35 Wednesday by lzy>
 
 BASE_DIR=$(cd $(dirname $0); pwd)
 SCREEN_XRES=$(xrandr|grep "current"|cut -d " " -f 8)
@@ -65,6 +65,7 @@ fi
 cp $TMP_DIR/Xdefaults $HOME/.Xdefaults -v
 cp $TMP_DIR/Xdefaults $HOME/.Xresources -v
 
+# urxvt perl extension
 if [ ! -e /usr/bin/xsel ] && [ ! -e /usr/local/bin/xsel ]; then
     $INSTALL_CMD xsel
 fi

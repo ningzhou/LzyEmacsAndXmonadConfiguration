@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; cc-mode-setting.el ---
-;; Time-stamp: <2013-04-03 13:07:10 Wednesday by lzy>
+;; Time-stamp: <2013-04-10 15:21:34 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -51,9 +51,11 @@
   (c-toggle-hungry-state)
   ;; key bindings
   (lazy-set-key
-   '(("C-c M-a" . beginning-of-defun)
-     ("C-c M-e" . end-of-defun)
-     ("C-c C-c" . nil))
+   '(("C-x <tab>" . smart-indent)
+     ("C-c C-c" . comment)
+     ("C-c k" . uncomment)
+     ("C-c M-a" . beginning-of-defun)
+     ("C-c M-e" . end-of-defun))
    c-mode-base-map))
 
 (add-hook 'c-mode-common-hook 'cc-mode-setting)

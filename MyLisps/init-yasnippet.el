@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-yasnippet.el ---
-;; Time-stamp: <2013-04-01 01:28:37 Monday by lzy>
+;; Time-stamp: <2013-04-10 14:29:44 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -41,6 +41,11 @@
   (yas-reload-all))
 
 (setq yas-snippet-dirs my-emacs-snippets-path)
+(define-key yas-minor-mode-map [(tab)] nil)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
+(lazy-set-key
+ '(("M-/" . yas-expand))
+ yas-minor-mode-map)
 (yas-global-mode 1)
 
 (add-hook 'term-mode-hook #'(lambda ()

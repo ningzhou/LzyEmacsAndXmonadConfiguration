@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; compile-setting.el ---
-;; Time-stamp: <2013-04-07 07:45:32 Sunday by lzy>
+;; Time-stamp: <2013-04-10 15:09:55 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;

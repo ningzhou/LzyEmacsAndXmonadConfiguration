@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; nxml-mode-setting.el ---
-;; Time-stamp: <2013-03-28 11:14:56 Thursday by lzy>
+;; Time-stamp: <2013-04-10 15:17:51 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -40,7 +40,16 @@
   (setq nxml-outline-child-indent 2)
   (setq nxml-slash-auto-complete-flag t)
   (setq nxml-prefer-utf-16-to-utf-8-flag nil)
-  (setq nxml-auto-insert-xml-declaration-flag t))
+  (setq nxml-auto-insert-xml-declaration-flag t)
+
+  ;; key bindings
+  (lazy-set-key
+   '(("C-x <tab>" . smart-indent)
+     ("C-c C-c" . comment)
+     ("C-c k" . uncomment)
+     ("C-c M-a" . beginning-of-defun)
+     ("C-c M-e" . end-of-defun))
+   nxml-mode-map))
 
 (eval-after-load "nxml-mode"
   '(nxml-mode-setting))

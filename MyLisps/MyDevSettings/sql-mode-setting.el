@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; sql-mode-setting.el ---
-;; Time-stamp: <2013-03-28 11:16:46 Thursday by lzy>
+;; Time-stamp: <2013-04-10 15:20:49 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;

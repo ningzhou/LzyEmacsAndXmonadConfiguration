@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; python-mode-setting.el ---
-;; Time-stamp: <2013-03-28 11:15:34 Thursday by lzy>
+;; Time-stamp: <2013-04-10 15:18:28 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -33,7 +33,13 @@
 
 (defun python-mode-setting ()
   "setting for python mode"
-  (message "python mode"))
+  (lazy-set-key
+   '(("C-x <tab>" . smart-indent)
+     ("C-c C-c" . comment)
+     ("C-c k" . uncomment)
+     ("C-c M-a" . beginning-of-defun)
+     ("C-c M-e" . end-of-defun))
+   python-mode-map))
 
 (eval-after-load "python"
   '(python-mode-setting))

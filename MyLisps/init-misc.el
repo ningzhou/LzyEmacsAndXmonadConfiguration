@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-misc.el ---
-;; Time-stamp: <2013-04-07 16:34:10 Sunday by lzy>
+;; Time-stamp: <2013-04-10 15:24:52 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -139,12 +139,7 @@
    ("C-x m" . get-mode-name)
    ("C-x k" . kill-this-buffer)
    ("C-x C-b" . ibuffer)
-   ("C-j" . newline-and-indent)
-   ("C-x <tab>" . smart-indent)
-   ("C-c C-c" . comment)
-   ("C-c k" . uncomment)
-   ("C-c M-a" . beginning-of-defun)
-   ("C-c M-e" . end-of-defun)))
+   ("C-j" . newline-and-indent)))
 
 ;; cleanup tmp buffer
 (if (get-buffer ".bash_history")

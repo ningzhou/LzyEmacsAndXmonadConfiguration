@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-04-07 07:20:34 Sunday by lzy>
+;; Time-stamp: <2013-04-10 14:33:20 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -59,7 +59,6 @@
 (require 'init-sdcv)                         ;stardict console client
 (require 'init-youdao)                       ;youdao tanslation
 (require 'init-babel)                        ;a web translations interface
-(require 'init-abbrev)                       ;save abbreviation
 (require 'init-go2chg)                       ;go to last change place
 (require 'init-apropos)                      ;all apropos related setting
 (require 'init-iman)                         ;extend man information

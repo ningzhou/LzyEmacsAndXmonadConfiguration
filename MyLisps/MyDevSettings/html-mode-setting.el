@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; html-mode-setting.el ---
-;; Time-stamp: <2013-03-28 11:11:17 Thursday by lzy>
+;; Time-stamp: <2013-04-10 15:34:24 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -54,8 +54,13 @@
 
   ;; key bindings
   (lazy-set-key
-   '(("C-c C-w" . w3m-browse-current-buffer))
-   sgml-mode-map))
+   '(("C-x <tab>" . smart-indent)
+     ("C-c C-c" . comment)
+     ("C-c k" . uncomment)
+     ("C-c M-a" . beginning-of-defun)
+     ("C-c M-e" . end-of-defun)
+     ("C-c C-w" . w3m-browse-current-buffer))
+   html-mode-map))
 
 (eval-after-load "sgml-mode"
   '(html-mode-setting))
