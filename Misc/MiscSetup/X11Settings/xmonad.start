@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# Time-stamp: <2013-04-09 11:33:19 Tuesday by lzy>
+# Time-stamp: <2013-04-10 22:09:57 Wednesday by lzy>
 
-trayer --edge top --align right --SetDockType true --expand true --width 7 --transparent true --tint 0x000000 --alpha 0 --height 18&
+trayer --edge top --align right --SetDockType true --expand true --width 7 --transparent true --tint 0x000000 --alpha 0 --height 21&
 
 if [ -x /usr/bin/nm-applet ] || [ -x /usr/local/bin/nm-applet ]; then
    nm-applet --sm-disable &

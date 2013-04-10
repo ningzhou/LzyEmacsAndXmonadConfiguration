@@ -45,18 +45,19 @@ myWorkspaces = ["1:Terminal","2:Emacs","3:Browser","4:Media", "5:VM"] ++ map sho
 -- 'className' and 'resource' are used below.
 --
 myManageHook = composeAll
-               [ className =? "Chromium"               --> doShift "3:Browser"
-               , className =? "Firefox"                --> doShift "3:Browser"
-               , className =? "Emacs"                  --> doShift "2:Emacs"
-               , className =? "VirtualBox"             --> doShift "5:VM"
-               , className =? "MPlayer"                --> doFloat
-               , className =? "Stardict"               --> doFloat <+> doShift "6"
-               , className =? "Skype"                  --> doFloat
-               , className =? "Pidgin"                 --> doFloat
-               , className =? "Qq"                     --> doFloat
-               , resource  =? "desktop_window"         --> doIgnore
-               , className =? "Galculator"             --> doFloat
-               , className =? "Gimp"                   --> doFloat <+> doShift "4:Media"
+               [ className =? "Firefox" --> doShift "3:Browser"
+               , className =? "Google-chrome" --> doShift "3:Browser"
+               , className =? "Chromium" --> doShift "3:Browser"
+               , className =? "Chromium-browser" --> doShift "3:Browser"
+               , className =? "Emacs" --> doShift "2:Emacs"
+               , className =? "VirtualBox" --> doShift "5:VM"
+               , className =? "MPlayer" --> doFloat
+               , className =? "Stardict" --> doFloat <+> doShift "6"
+               , className =? "Skype" --> doFloat
+               , className =? "Pidgin" --> doFloat
+               , resource  =? "desktop_window" --> doIgnore
+               , className =? "Galculator" --> doFloat
+               , className =? "Gimp" --> doFloat <+> doShift "4:Media"
                , isFullscreen --> (doF W.focusDown <+> doFullFloat)]
 
 

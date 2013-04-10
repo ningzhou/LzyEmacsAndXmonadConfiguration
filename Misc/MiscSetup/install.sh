@@ -1,10 +1,8 @@
 #!/bin/sh
 
-# Time-stamp: <2013-04-10 15:51:35 Wednesday by lzy>
+# Time-stamp: <2013-04-10 22:18:45 Wednesday by lzy>
 
 BASE_DIR=$(cd $(dirname $0); pwd)
-SCREEN_XRES=$(xrandr|grep "current"|cut -d " " -f 8)
-TMP_DIR=$HOME/.tmp
 
 if [ -z $1 ]; then
     echo "Please input OS: (e.g. centos, arch, ubuntu, fedora)"
@@ -53,17 +51,8 @@ sudo cp $BASE_DIR/Backgrounds/wallpaper.sh /usr/bin/ -v
 
 # X11 and Xmonad installation
 echo "Installing Xdefaults and Xresources ... .. ."
-mkdir -p $TMP_DIR
-cp $BASE_DIR/TerminalSettings/Xdefaults $TMP_DIR
-
-if [ $SCREEN_XRES -ge 1600 ]; then
-    sed -i -e 's/Xft.dpi:.*/Xft.dpi: 105/g' $TMP_DIR/Xdefaults
-else
-    sed -i -e 's/Xft.dpi:.*/Xft.dpi: 101/g' $TMP_DIR/Xdefaults
-fi
-
-cp $TMP_DIR/Xdefaults $HOME/.Xdefaults -v
-cp $TMP_DIR/Xdefaults $HOME/.Xresources -v
+cp $BASE_DIR/TerminalSettings/Xdefaults $HOME/.Xdefaults -v
+cp $BASE_DIR/TerminalSettings/Xdefaults $HOME/.Xresources -v
 
 # urxvt perl extension
 if [ ! -e /usr/bin/xsel ] && [ ! -e /usr/local/bin/xsel ]; then
@@ -77,45 +66,31 @@ if [ ! -e /usr/bin/xmonad ] && [ ! -e /usr/local/bin/xmonad ]; then
         echo "ignore xmonad installation here, please intall it manually."
     else
         $INSTALL_CMD xmonad
+        $INSTALL_CMD xmonad-contrib
+        $INSTALL_CMD dmenu
+        $INSTALL_CMD trayer
+        $INSTALL_CMD feh
+        $INSTALL_CMD xmobar
     fi
-fi    
+fi
 
 if [ ! -e $HOME/.xmonad/backup ]; then
     mkdir -p $HOME/.xmonad/backup
 fi
 
-cp $BASE_DIR/XMonadSettings/* $TMP_DIR
-cp $BASE_DIR/X11Settings/* $TMP_DIR
-
-if [ $SCREEN_XRES -ge 1600 ]; then
-    sed -i -e 's/size=.*:/size=9:/g' $TMP_DIR/xmobar_dual_screen.hs
-    sed -i -e 's/size=.*:/size=9:/g' $TMP_DIR/xmobar.hs
-    sed -i -e 's/height.*\&/height 21\&/g' $TMP_DIR/dual_screen.sh
-    sed -i -e 's/height.*\&/height 21\&/g' $TMP_DIR/single_screen.sh
-    sed -i -e 's/height.*\&/height 21\&/g' $TMP_DIR/xmonad.start
-    sed -i -e 's/height.*\&/height 21\&/g' $TMP_DIR/xinitrc
-else
-    sed -i -e 's/size=.*:/size=8:/g' $TMP_DIR/xmobar_dual_screen.hs
-    sed -i -e 's/size=.*:/size=8:/g' $TMP_DIR/xmobar.hs
-    sed -i -e 's/height.*\&/height 18\&/g' $TMP_DIR/dual_screen.sh
-    sed -i -e 's/height.*\&/height 18\&/g' $TMP_DIR/single_screen.sh
-    sed -i -e 's/height.*\&/height 18\&/g' $TMP_DIR/xmonad.start
-    sed -i -e 's/height.*\&/height 18\&/g' $TMP_DIR/xinitrc
-fi
-
 if [ -e /usr/bin/gnome-session ] || [ -e /usr/local/bin/gnome-session ]; then
-    sudo cp $TMP_DIR/xmonad.start /usr/bin/ -v
+    sudo cp $BASE_DIR/X11Settings/xmonad.start /usr/bin/ -v
 else
-    cp $TMP_DIR/xinitrc $HOME/.xinitrc -v
+    cp $BASE_DIR/X11Settings/xinitrc $HOME/.xinitrc -v
 fi
 
-cp $TMP_DIR/xmobar.hs $HOME/.xmonad/xmobar.hs
-cp $TMP_DIR/xmobar_dual_screen.hs $HOME/.xmonad/xmobar_dual_screen.hs
-cp $TMP_DIR/xmonad.hs $HOME/.xmonad/xmonad.hs -v
-cp $TMP_DIR/xmonad.hs $HOME/.xmonad/backup/xmonad.hs -v
-cp $TMP_DIR/xmonad_dual_screen.hs $HOME/.xmonad/backup/xmonad_dual_screen.hs -v
+cp $BASE_DIR/XMonadSettings/xmobar.hs $HOME/.xmonad/xmobar.hs -v
+cp $BASE_DIR/XMonadSettings/xmobar_dual_screen.hs $HOME/.xmonad/xmobar_dual_screen.hs -v
+cp $BASE_DIR/XMonadSettings/xmonad.hs $HOME/.xmonad/xmonad.hs -v
+cp $BASE_DIR/XMonadSettings/xmonad.hs $HOME/.xmonad/backup/xmonad.hs -v
+cp $BASE_DIR/XMonadSettings/xmonad_dual_screen.hs $HOME/.xmonad/backup/xmonad_dual_screen.hs -v
 
-sudo cp $TMP_DIR/single_screen.sh /usr/bin/ -v
-sudo cp $TMP_DIR/dual_screen.sh /usr/bin/ -v
+sudo cp $BASE_DIR/XMonadSettings/single_screen.sh /usr/bin/ -v
+sudo cp $BASE_DIR/XMonadSettings/dual_screen.sh /usr/bin/ -v
 
 rm $TMP_DIR -rf

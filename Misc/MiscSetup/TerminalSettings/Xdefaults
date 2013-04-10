@@ -1,70 +1,117 @@
-!! fonts
-Xft.dpi: 101
+!!! xft font config
+Xft.dpi: 105
 Xft.antialias: true
 Xft.hinting: true
-!! hintnone, hintslight, hintmedium, hintfull
 Xft.hintstyle: hintfull
 Xft.rgba: rgb
-!! lcdnone, lcddefault, lcdlight, lcdlegacy
 Xft.lcdfilter: lcddefault
-!Xcursor.theme: OpenZone_White_Slim
 Xcursor.theme: Pulse-Glass
 
-!!! config for xterm
-!look and feel
-xterm.termName: xterm
-xterm.geometry: 80x36
-xterm*scrollBar: false
-xterm*rightScrollBar: true
-xterm*loginshell: true
-xterm*cursorBlink: true
-xterm*background: black
-xterm*foreground: gray
-xterm.borderLess: true
-xterm.cursorBlink: true
-xterm*colorUL: yellow
-xterm*colorBD: white 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! xterm config
+!!look and feel
+XTerm.termName: xterm-256color
+XTerm.geometry: 80x36
+XTerm*scrollBar: false
+XTerm*rightScrollBar: true
+XTerm*jumpScroll: true
+XTerm*SaveLines: 3000
+XTerm*loginshell: true
+XTerm*cursorBlink: true
+XTerm*background: black
+XTerm*foreground: green
+XTerm.borderLess: true
+XTerm.cursorBlink: true
+XTerm*colorUL: yellow
+XTerm*colorBD: white
 
-!fix alt key input 
-xterm*eightBitInput: false
-xterm*altSendsEscape: true
+!!fix alt key input
+XTerm*eightBitInput: false
+XTerm*altSendsEscape: true
 
-!mouse selecting to copy, ctrl-v to paste
-!Ctrl p to print screen content to file
+!!mouse selecting to copy, ctrl-v to paste
+!!Ctrl p to print screen content to file
 XTerm*VT100.Translations: #override \
 Ctrl <KeyPress> y: insert-selection(CLIPBOARD,PRIMARY,CUT_BUFFER0) \n\
 <BtnUp>: select-end(CLIPBOARD,PRIMARY,CUT_BUFFER0) \n\
 
-!font and locale
-xterm*locale: true
-xterm.utf8: true
-xterm*utf8Title: true
-xterm*fontMenu*fontdefault*Label: Default
-xterm*faceName: Bitstream Vera Sans Mono:antialias=True:pixelsize=15
-xterm*faceNameDoublesize: WenQuanYi Zen Hei Mono:pixelsize=16:antialias=True
-xterm*xftAntialias: true
-xterm*cjkWidth:false
+!!font and locale
+XTerm*locale: true
+XTerm.utf8: true
+XTerm*utf8Title: true
+XTerm*fontMenu*fontdefault*Label: Default
+XTerm*faceName: Monaco:antialias=True:pixelsize=16
+XTerm*boldFont: Monaco:style=Bold:pixelsize=16
+XTerm*faceNameDoublesize: WenQuanYi Micro Hei:antialias=True:pixelsize=16
+XTerm*xftAntialias: true
+XTerm*cjkWidth:false
+XTerm*faceSize: 12
+XTerm*faceSize1: 12
+XTerm*faceSize2: 12
+XTerm*faceSize3: 12
+XTerm*faceSize4: 12
+XTerm*faceSize5: 12
+XTerm*faceSize6: 12
 
-!Tango color scheme
-*xterm*color0: #2e3436
-*xterm*color1: #cc0000
-*xterm*color2: #4e9a06
-*xterm*color3: #c4a000
-*xterm*color4: #3465a4
-*xterm*color5: #75507b
-*xterm*color6: #0b939b
-*xterm*color7: #d3d7cf
-*xterm*color8: #555753
-*xterm*color9: #ef2929
-*xterm*color10: #8ae234
-*xterm*color11: #fce94f
-*xterm*color12: #729fcf
-*xterm*color13: #ad7fa8
-*xterm*color14: #00f5e9
-*xterm*color15: #eeeeec
+!!Tango color scheme
+*XTerm*color0: #2e3436
+*XTerm*color1: #cc0000
+*XTerm*color2: #4e9a06
+*XTerm*color3: #c4a000
+*XTerm*color4: #3465a4
+*XTerm*color5: #75507b
+*XTerm*color6: #0b939b
+*XTerm*color7: #d3d7cf
+*XTerm*color8: #555753
+*XTerm*color9: #ef2929
+*XTerm*color10: #8ae234
+*XTerm*color11: #fce94f
+*XTerm*color12: #729fcf
+*XTerm*color13: #ad7fa8
+*XTerm*color14: #00f5e9
+*XTerm*color15: #eeeeec
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!! config for urxvt
-!color setting
+!!general setting
+URxvt.title:rxvt-unicode
+URxvt.visualBell:False
+URxvt.urlLauncher:chromium
+URxvt.matcher.button:True
+URxvt.underlineURLs:True
+URxvt.multichar_encoding:utf-8
+URxvt.cutchars:"()*,<>[]{}|'"
+
+!!scroll setting
+URxvt.scrollBar:False
+URxvt.saveLines:5000
+
+!!font setting
+URxvt*font:xft:Monaco:antialias=True:pixelsize=16,\
+xft:WenQuanYi Micro Hei:antialias=True:pixelsize=16
+URxvt*mfont:xft:Monaco:antialias=True:pixelsize=16,\
+xft:WenQuanYi Micro Hei:antialias=True:pixelsize=16
+URxvt*boldfont:xft:Monaco:antialias=True:pixelsize=16:Bold,\
+xft:WenQuanYi Micro Hei:antialias=True:pixelsize=16:Bold
+URxvt*italicFont:xft:Monaco:antialias=True:pixelsize=16:Bold,\
+xft:WenQuanYi Micro Hei:antialias=True:pixelsize=16:Bold
+URxvt*bolditalicFont:xft:Monaco:antialias=True:pixelsize=16:Bold,\
+xft:WenQuanYi Micro Hei:antialias=True:pixelsize=16:Bold
+
+!!key bindings
+URxvt.perl-ext-common:default,matcher,clipboard,keyboard-select,url-select
+URxvt.keysym.Mod4-u:perl:url-select:select_next
+URxvt.keysym.M-w:perl:clipboard:copy
+URxvt.keysym.C-y:perl:clipboard:paste
+URxvt.keysym.Mod4-C-v:perl:clipboard:paste_escaped
+URxvt.keysym.Mod4-s:perl:keyboard-select:search
+
+!!input Method setting
+!Urxvt.inputMethod:SCIM
+URxvt.imLocale:zh_CN.UTF-8
+URxvt.preeditType:OverTheSpot
+
+!!color setting
 URxvt.foreground:green
 URxvt.colorBD:yellow
 URxvt.colorUL:green
@@ -84,47 +131,10 @@ URxvt.color11:lightgoldenrod2
 URxvt.color12:skyblue1
 URxvt.color13:pink1
 URxvt.color14:lightblue1
-URxvt.color15:#EEEEEC
 
-!scroll setting
-URxvt.scrollBar:false
-URxvt.scrollBar_right:True
-URxvt.scrollBar_floating:True
-URxvt.scrollstyle:plain
-URxvt.scrollWithBuffer:false
-URxvt.saveLines:5000
-
-!font setting
-URxvt*font:xft:Bitstream Vera Sans Mono:antialias=True:pixelsize=15
-URxvt*mfont:xft:Bitstream Vera Sans Mono:antialias=True:pixelsize=15
-URxvt*boldfont:xft:Bitstream Vera Sans Mono:antialias=True:pixelsize=15:Bold
-URxvt*italicFont:xft:Bitstream Vera Sans Mono:antialias=True:pixelsize=15:Bold
-URxvt*bolditalicFont:xft:Bitstream Vera Sans Mono:antialias=True:pixelsize=15:Bold
-
-URxvt.cutchars:"()*,<>[]{}|'"
-URxvt.buffered:true
-URxvt.thickness:0
-URxvt.termName:rxvt
-URxvt.title:Urxvt
-URxvt.tintColor:lightgray
-URxvt.perl-ext-common:default,matcher,clipboard,keyboard-select,url-select
-URxvt.keysym.Mod4-u:perl:url-select:select_next
-URxvt.keysym.M-w:perl:clipboard:copy
-URxvt.keysym.C-y:perl:clipboard:paste
-URxvt.keysym.Mod4-C-v:perl:clipboard:paste_escaped
-URxvt.keysym.Mod4-s:perl:keyboard-select:search
-URxvt.urlLauncher:chromium
-URxvt.matcher.button:1
-URxvt.underlineURLs:true
-
-!Input Method setting
-URxvt.imFont:-bitstream-bitstream charter-medium-r-normal-*-0-0-0-0-p-0-iso10646-1
-URxvt.preeditType:OverTheSpot
-!URxvt.inputMethod:SCIM
-
-!bg transparent setting
-URxvt.inheritPixmap: true
-URxvt.tintCddolor: white
-URxvt.shading: 5
+!!bg transparent setting
+URxvt.inheritPixmap:True
+URxvt.tintCddolor:white
+URxvt.shading:15
 URxvt.depth:32
 URxvt.background:rgba:0000/0000/0000/dddd
