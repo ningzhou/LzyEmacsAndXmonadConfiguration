@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-youdao.el ---
-;; Time-stamp: <2013-03-15 16:38:43 Friday by lzy>
+;; Time-stamp: <2013-04-11 23:21:07 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -32,8 +32,11 @@
 ;;; Code:
 
 (autoload 'youdao-translate "youdao-translation" nil t)
+(autoload 'youdao-translate-interact "youdao-translation" nil t)
 
-(global-set-key (kbd "C-x p") 'youdao-translate)
+(lazy-set-key
+ '(("C-x p" . youdao-translate)
+   ("C-x P" . youdao-translate-interact)))
 
 ;;; provide features
 (provide 'init-youdao)

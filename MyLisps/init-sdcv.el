@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-sdcv.el ---
-;; Time-stamp: <2013-03-15 16:30:31 Friday by lzy>
+;; Time-stamp: <2013-04-11 23:21:42 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -32,9 +32,6 @@
 ;;; Code:
 
 (autoload 'sdcv-search "sdcv-mode" nil t)
-
-(lazy-set-key
- '(("C-x P" . sdcv-search)))
 
 ;;; provide features
 (provide 'init-sdcv)

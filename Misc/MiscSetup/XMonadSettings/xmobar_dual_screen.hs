@@ -1,7 +1,7 @@
 Config { font = "xft:Monospace:size=9:antialias=true"
        , bgColor = "#000000"
        , fgColor = "#657b83"
-       , position = TopW L 100
+       , position = TopW L 93
        , lowerOnStart = True
        , commands = [ Run StdinReader
                     , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10

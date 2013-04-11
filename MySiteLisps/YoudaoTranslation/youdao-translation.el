@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; youdao-translation.el ---
-;; Time-stamp: <2013-03-27 16:55:30 Wednesday by lzy>
+;; Time-stamp: <2013-04-11 23:19:12 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -78,11 +78,21 @@
 (defun youdao-translate ()
   "translate world from youdao fanyi or sdcv"
   (interactive)
-  (let* ((word (get-current-word))
-         (sdcv-command (if (executable-find "sdcv")
-                           (format "sdcv -n %s" word)
+  (let ((words (get-current-word)))
+    (translate-words words)))
+
+;;; autoload
+(defun youdao-translate-interact (words)
+  "translate world from youdao fanyi or sdcv"
+  (interactive "swords: ")
+  (translate-words words))
+
+(defun translate-words (words)
+  "translate words by youdao or sdcv"
+  (let* ((sdcv-command (if (executable-find "sdcv")
+                           (format "sdcv -n %s" words)
                          nil))
-         (translate-result (get-translate-result word))
+         (translate-result (get-translate-result words))
          (explains-texts (if (string= translate-result "")
                              (if sdcv-command
                                  (shell-command-to-string sdcv-command))
