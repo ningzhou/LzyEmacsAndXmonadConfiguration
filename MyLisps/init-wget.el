@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-wget.el ---
-;; Time-stamp: <2013-03-27 17:12:29 Wednesday by lzy>
+;; Time-stamp: <2013-04-11 15:20:24 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -39,7 +39,7 @@
              ("\\.\\([rR][mM]?[vV][bB]\\|[v][V][oO][bB]\\|[aA][vV][iI]\\|[dD][vV][dD]\\)$" . "~/Videos/")
              ("\\.\\(el\\|sh\\|perl\\|py\\|[cC]\\|[cC][pP][pP]\\|[jJ][aA][vV][aA]\\|[hH][sS]\\|[tT][xX][tT]\\)$" . "~/Downloads/Source/")
              ("\\.\\([dD][oO][cC]\\|[pP][dD][fF]\\|[xX][mM][lL]\\|[xX][lL][sS]\\)$" . "~/Documents/")
-             ("\\.\\(tar\\|gz\\|zip\\|rar\\|msi\\|exe\\|iso\\|torrent\\)$" . "~/Downloads/")
+             ("\\.\\(tar\\|gz\\|zip\\|bz2\\|rar\\|msi\\|exe\\|iso\\|torrent\\)$" . "~/Downloads/")
              ("." . "~/.emacs.d/W3M/DownloadPages/")))
      (setq wget-download-directory-filter
            'wget-download-dir-filter-regexp)))

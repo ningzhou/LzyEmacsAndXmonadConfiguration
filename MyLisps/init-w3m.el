@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-w3m.el ---
-;; Time-stamp: <2013-04-03 07:28:54 Wednesday by lzy>
+;; Time-stamp: <2013-04-11 11:49:41 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -154,12 +154,15 @@
 (autoload 'w3m-browse-url "w3m" "Ask emacs-w3m to browse URL" t)
 (autoload 'toggle-w3m-with-other-buffer "w3m-extension"
   "switch w3m and current buffer smoothly" t)
+(autoload 'w3m-search-google-web-en "w3m-extension"
+  "search google web en")
 
 ;; global set browse url function
 (setq browse-url-browser-function 'w3m-browse-url)
 
 (lazy-set-key
- '(("C-x C-z" . toggle-w3m-with-other-buffer)))
+ '(("C-x C-z" . toggle-w3m-with-other-buffer)
+   ("C-c s" . w3m-search-google-web-en)))
 
 ;;; provide features
 (provide 'init-w3m)
