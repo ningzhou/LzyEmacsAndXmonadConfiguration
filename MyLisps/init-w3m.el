@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-w3m.el ---
-;; Time-stamp: <2013-04-12 17:31:40 Friday by lzy>
+;; Time-stamp: <2013-04-12 17:37:25 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -162,7 +162,7 @@
 
 (lazy-set-key
  '(("C-x C-z" . toggle-w3m-with-other-buffer)
-   ("C-c p" . w3m-search-google-web-en)))
+   ("<f8>" . w3m-search-google-web-en)))
 
 ;;; provide features
 (provide 'init-w3m)
