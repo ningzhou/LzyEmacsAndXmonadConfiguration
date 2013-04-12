@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-mode-line.el ---
-;; Time-stamp: <2013-04-12 13:44:13 Friday by lzy>
+;; Time-stamp: <2013-04-12 15:47:32 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -65,7 +65,7 @@
                    (propertize (get-size-indication-format)
                                'face '(:foreground "yellow")))
                   (:eval
-                   (propertize " (%02l,%02c)"
+                   (propertize " (%l,%c)"
                                'face '(:foreground "#00eedd")))
                   (:eval
                    (propertize " ("
