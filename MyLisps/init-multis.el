@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-multis.el ---
-;; Time-stamp: <2013-04-03 07:50:45 Wednesday by lzy>
+;; Time-stamp: <2013-04-12 11:25:18 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -34,13 +34,6 @@
 ;; required features
 (require 'multi-term)
 (require 'multi-scratch)
-
-(defun set-ansi-term-font ()
-  "font setting for ansi term"
-  (interactive)
-  (setq buffer-face-mode-face
-        '(:family "Monospace" :height 1.0 :weight normal))
-  (buffer-face-mode))
 
 (defun set-ansi-term-color ()
   "color setting for ansi term"
@@ -97,7 +90,6 @@
   (add-to-list 'term-bind-key-alist '("C-p" . term-send-up) t)
   (add-to-list 'term-bind-key-alist '("C-n" . term-send-down) t))
 
-(add-hook 'term-mode-hook 'set-ansi-term-font)
 (add-hook 'term-mode-hook 'set-ansi-term-color)
 
 (eval-after-load "multi-term"

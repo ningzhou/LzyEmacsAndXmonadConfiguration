@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyFont.el ---
-;; Time-stamp: <2013-03-21 16:00:56 Thursday by lzy>
+;; Time-stamp: <2013-04-12 13:36:16 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -31,8 +31,8 @@
 
 ;;; Code:
 
-(defvar default-zh-font "Monospace-11" "default chinese font") ;; default zh font
-(defvar default-font "Monospace-11" "default english font")    ;; default en font
+(defvar emacs-en-font "Monospace:pixelsize=16" "default english font")
+(defvar emacs-zh-font nil "zh font")
 
 ;; font setting tools
 (defun font-existsp (font)
@@ -48,25 +48,20 @@
 
 (defun font-setting ()
   "global font setting for emacs"
-  (setq default-zh-font (make-font-string
-                         (find-if #'font-existsp
-                                  '("Microsoft Yahei" "文泉驿等宽微米黑" "黑体" "新宋体" "宋体"))
-                         ":pixelsize=16"))
   ;; default en font
-  (set-default-font "Monospace-11")
+  (set-face-attribute 'default nil :font emacs-en-font)
   ;; default zh font
+  (setq emacs-zh-font (find-if #'font-existsp
+                               '("Microsoft Yahei" "WenQuanYi Zen Hei")))
+
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
-    (set-fontset-font (frame-parameter nil 'font)
-                      charset
-                      default-zh-font)))
+    (set-fontset-font t charset emacs-zh-font)))
 
 ;; gloal font setting
 (if window-system
-    (font-setting)
-  (set-default-font default-font))
+    (font-setting))
 
 ;;; provide features
 (provide 'LzyFont)
 
 ;;; LzyFont.el ends here
-

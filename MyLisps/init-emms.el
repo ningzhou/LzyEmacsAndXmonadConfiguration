@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-emms.el ---
-;; Time-stamp: <2013-03-27 17:22:43 Wednesday by lzy>
+;; Time-stamp: <2013-04-12 13:36:10 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -34,7 +34,7 @@
 (defun emms-setting ()
   "settings for emms"
   ;; required features
-  (require 'emms-info)          
+  (require 'emms-info)
   (require 'emms-i18n)
   (require 'emms-setup)
   (require 'emms-cache)
@@ -54,21 +54,17 @@
   (require 'emms-player-mpg321-remote)
 
   ;; variables definition
-  (defface emms-playlist-mark-face
-    '((t :foreground "red2"))
-    "face for playlist marked")
-  (defvar emms-en-font
-    "Monospace:pixelsize=14"
-    "default english font for emms mode")
   (defvar emms-playlist-last-track nil)
   (defvar emms-playlist-last-indent "\\")
 
   ;; functions definition
-  (defun set-emms-playlist-font ()
-    "font setting for emms playlist"
-    (set-face-attribute 'emms-playlist-mark-face nil :font emms-en-font)
-    (set-face-attribute 'emms-playlist-track-face nil :font emms-en-font)
-    (set-face-attribute 'emms-playlist-selected-face nil :font emms-en-font))
+  (defun set-emms-buffer-face-mode ()
+    "font setting for ansi term"
+    (make-variable-buffer-local 'face-font-rescale-alist)
+    (setq face-font-rescale-alist '(("Microsoft Yahei" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))
+    (setq buffer-face-mode-face
+          '(:family "Monospace" :height 0.95 :weight normal))
+    (buffer-face-mode))
 
   (defun my-emms-track-description-function (track)
     "return a description of the current track."
@@ -121,14 +117,14 @@
             (t
              (format "%-3d%s" play-count (concat (symbol-name type) ":" name))))
         (setq emms-playlist-last-track track))))
-  
+
   (defun emms-show-lyrics-on-minibuffer ()
     "show lyrics in minibuffer"
     (interactive)
     (progn
       (emms-lyrics-enable)
       (emms-lyrics-toggle-display-on-minibuffer)))
-  
+
   ;; basic settings
   (setq emms-directory "~/.emacs.d/Emms/")
   (setq emms-cache-file "~/.emacs.d/Emms/cache")
@@ -136,12 +132,12 @@
   (setq emms-history-file "~/.emacs.d/Emms/history")
   (setq emms-source-file-default-directory "~/Music/")
   (setq emms-stream-bookmarks-file "~/.emacs.d/Emms/streams")
-  (setq emms-playlist-default-major-mode 'emms-playlist-mode) 
-  (setq emms-repeat-playlist nil) 
+  (setq emms-playlist-default-major-mode 'emms-playlist-mode)
+  (setq emms-repeat-playlist nil)
   (setq emms-info-asynchronously nil)
   (setq emms-player-next-function 'emms-next)
   (setq emms-playlist-buffer-name "*Music playlist*")
-  (setq emms-playlist-sort-function 'emms-playlist-sort-by-natural-order) 
+  (setq emms-playlist-sort-function 'emms-playlist-sort-by-natural-order)
   (setq emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find)
   (setq emms-mark-face-alist
         '((?* . emms-playlist-mark-face)
@@ -180,8 +176,8 @@
                             (lambda (track)
                               (not (funcall (emms-browser-filter-only-recent 30) track))))
   (put 'emms-browser-delete-files 'disabled nil)
-  ;; emms playlist font setting
-  (add-hook 'emms-playlist-mode-hook 'set-emms-playlist-font)
+
+  (add-hook 'emms-playlist-mode-hook 'set-emms-buffer-face-mode)
   (add-hook 'emms-browser-delete-files-hook 'de-kill-covers-and-parents)
   ;; init emms with devel mode
   (emms-devel)
@@ -199,7 +195,7 @@
      ("C-w" . emms-playlist-mode-kill)            ;delete region
      ("C-/" . emms-playlist-mode-undo)            ;undo
      ("M-p" . emms-playlist-mode-previous)        ;the previous playlist
-     ("M-n" . emms-playlist-mode-next)            ;the next playlist     
+     ("M-n" . emms-playlist-mode-next)            ;the next playlist
      ("C-j" . emms-playlist-mode-insert-newline)  ;new line
      ("M-y" . emms-playlist-mode-yank-pop)        ;pop up yank ring
      ("a" . emms-playlist-mode-add-contents)      ;add track to current playlist
@@ -240,19 +236,19 @@
 
   ;; emms tag editor key bindings
   (lazy-set-key
-   '(("M-p" . emms-tag-editor-prev-same-field)  
+   '(("M-p" . emms-tag-editor-prev-same-field)
      ("M-n" . emms-tag-editor-next-same-field)
-     ("C-c a" . emms-tag-editor-set-all+)  
+     ("C-c a" . emms-tag-editor-set-all+)
      ("C-c n" . emms-tag-editor-set-tracknumber)
      ("C-c i" . emms-tag-editor-set-tracknumber+))
    emms-tag-editor-mode-map)
 
   ;; emms browser key bindings
   (lazy-set-key
-   '(("J" . emms-browser-next-non-track)      
-     ("K" . emms-browser-prev-non-track)     
-     ("f" . emms-browser-toggle-subitems) 
-     ("s" . one-key-menu-emms-browser-search) 
+   '(("J" . emms-browser-next-non-track)
+     ("K" . emms-browser-prev-non-track)
+     ("f" . emms-browser-toggle-subitems)
+     ("s" . one-key-menu-emms-browser-search)
      ("L" . one-key-menu-emms-browser-lookup))
    emms-browser-mode-map)
 
@@ -261,11 +257,11 @@
    '(("a" . emms-stream-add-bookmark)
      ("d" . emms-stream-delete-bookmark)
      ("E" . emms-stream-edit-bookmark)
-     ("q" . emms-stream-quit)         
+     ("q" . emms-stream-quit)
      ("S" . emms-stream-save-bookmarks-file)
      ("t" . emms-stream-toggle-default-action)
-     ("i" . emms-stream-info-bookmark) 
-     ("f" . emms-stream-play))         
+     ("i" . emms-stream-info-bookmark)
+     ("f" . emms-stream-play))
    emms-stream-mode-map)
 
   ;; global emms key bindings, these key bindings should be
