@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyBasic.el ---
-;; Time-stamp: <2013-03-31 17:21:22 Sunday by lzy>
+;; Time-stamp: <2013-04-14 00:29:34 Sunday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -195,10 +195,18 @@ region else copy current line"
       (call-interactively 'indent-buffer))))
 
 (defun unfill-paragraph ()
-  "Takes a multi-line paragraph and makes it into a single line of text."
+  "Replace newline chars in current paragraph by single spaces.
+This command does the inverse of `fill-paragraph'."
   (interactive)
-  (let ((fill-column (point-max)))
+  (let ((fill-column most-positive-fixnum))
     (fill-paragraph nil)))
+
+(defun unfill-region (start end)
+  "Replace newline chars in region from START to END by single spaces.
+This command does the inverse of `fill-region'."
+  (interactive "r")
+  (let ((fill-column most-positive-fixnum))
+    (fill-region start end)))
 
 (defun dir-file-ext (file)
   "Given a full file's path name, returns a list of directory, filename
@@ -222,6 +230,69 @@ contains the /, See also file-name-directory and file-name-nondirectory.."
                       (buffer-substring bb (point-max)))))
         (if (interactive-p) (message "%S" cc))
         cc))))
+
+(defun add-auto-mode (mode &rest patterns)
+  "Add entries to `auto-mode-alist' to use `MODE' for all given file `PATTERNS'."
+  (dolist (pattern patterns)
+    (add-to-list 'auto-mode-alist (cons pattern mode))))
+
+(defun string-all-matches (regex str &optional group)
+  "Find all matches for `REGEX' within `STR', returning the full match string or group `GROUP'."
+  (let ((result nil)
+        (pos 0)
+        (group (or group 0)))
+    (while (string-match regex str pos)
+      (push (match-string group str) result)
+      (setq pos (match-end group)))
+    result))
+
+(defun string-rtrim (str)
+  "Remove trailing whitespace from `STR'."
+  (replace-regexp-in-string "[ \t\n]*$" "" str))
+
+(autoload 'find-library-name "find-func")
+(defun directory-of-library (library-name)
+  "Return the directory in which the `LIBRARY-NAME' load file is found."
+  (file-name-as-directory (file-name-directory (find-library-name library-name))))
+
+(defun delete-this-file ()
+  "Delete the current file, and kill the buffer."
+  (interactive)
+  (or (buffer-file-name) (error "No file is currently being edited"))
+  (when (yes-or-no-p (format "Really delete '%s'?"
+                             (file-name-nondirectory buffer-file-name)))
+    (delete-file (buffer-file-name))
+    (kill-this-buffer)))
+
+(defun rename-this-file-and-buffer (new-name)
+  "Renames both current buffer and file it's visiting to NEW-NAME."
+  (interactive "sNew name: ")
+  (let ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (unless filename
+      (error "Buffer '%s' is not visiting a file!" name))
+    (if (get-buffer new-name)
+        (message "A buffer named '%s' already exists!" new-name)
+      (progn
+        (rename-file filename new-name 1)
+        (rename-buffer new-name)
+        (set-visited-file-name new-name)
+        (set-buffer-modified-p nil)))))
+
+(defun adjust-opacity (frame incr)
+  (let* ((oldalpha (or (frame-parameter frame 'alpha) 100))
+         (newalpha (+ incr oldalpha)))
+    (when (and (<= frame-alpha-lower-limit newalpha) (>= 100 newalpha))
+      (modify-frame-parameters frame (list (cons 'alpha newalpha))))))
+
+;; Provide a version of Emacs 24's 'string-prefix-p in older emacsen
+(unless (fboundp 'string-prefix-p)
+  (defun string-prefix-p (str1 str2 &optional ignore-case)
+    "Return non-nil if STR1 is a prefix of STR2.
+If IGNORE-CASE is non-nil, the comparison is done without paying attention
+to case differences."
+    (eq t (compare-strings str1 nil nil
+                           str2 0 (length str1) ignore-case))))
 
 (defun lazy-set-key (key-alist &optional keymap key-prefix)
   "This function is to little type when define key binding.

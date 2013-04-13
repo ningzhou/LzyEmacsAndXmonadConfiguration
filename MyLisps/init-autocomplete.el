@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-autocomplete.el ---
-;; Time-stamp: <2013-04-03 07:55:32 Wednesday by lzy>
+;; Time-stamp: <2013-04-14 02:10:39 Sunday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -32,32 +32,8 @@
 ;;; Code:
 
 (require 'auto-complete-config)
-(require 'auto-complete-clang)
 
-(defun set-ac-clang-flags ()
-  "-I flags for auto-complete clang source"
-  (let (begin end result)
-    (if (executable-find "g++")
-        (with-temp-buffer
-          (shell-command-surpress-popup-window "echo''|g++ -v -x c++ -E -"
-                                               (buffer-name (current-buffer)))
-          (goto-char (point-min))
-          (setq begin (progn
-                        (search-forward "#include <...>")
-                        (next-line)
-                        (line-beginning-position)))
-          (setq end (progn
-                      (search-forward "End of search list")
-                      (previous-line)
-                      (line-end-position)))
-          (setq result (buffer-substring begin end))))
-    (setq ac-clang-flags
-          (mapcar #'(lambda (item)
-                      (concat "-I" item))
-                  (split-string (concat "./\n./include\n../include\n../../include\n../../../include\n" result))))
-    ;; kill command history buffer
-    (if (get-buffer ".bash_history")
-        (kill-buffer ".bash_history"))))
+
 
 (defadvice ac-error (after reopen-ac-mode activate)
   "reopen auto-complete-mode after ac-error"
@@ -83,6 +59,35 @@
 
 (defun ac-settings-4-c/c++ ()
   "auto-complete settings for c/c++ mode"
+  ;; required features
+  (require 'auto-complete-clang)
+  ;; functions definition
+  (defun set-ac-clang-flags ()
+    "-I flags for auto-complete clang source"
+    (let (begin end result)
+      (if (executable-find "g++")
+          (with-temp-buffer
+            (shell-command-surpress-popup-window "echo''|g++ -v -x c++ -E -"
+                                                 (buffer-name (current-buffer)))
+            (goto-char (point-min))
+            (setq begin (progn
+                          (search-forward "#include <...>")
+                          (next-line)
+                          (line-beginning-position)))
+            (setq end (progn
+                        (search-forward "End of search list")
+                        (previous-line)
+                        (line-end-position)))
+            (setq result (buffer-substring begin end))))
+      (setq ac-clang-flags
+            (mapcar #'(lambda (item)
+                        (concat "-I" item))
+                    (split-string (concat "./\n./include\n../include\n../../include\n../../../include\n" result))))
+      ;; kill command history buffer
+      (if (get-buffer ".bash_history")
+          (kill-buffer ".bash_history"))))
+  ;; settings
+  (set-ac-clang-flags)
   (setq ac-sources
         (append
          '(ac-source-clang)
@@ -93,6 +98,13 @@
   (setq ac-sources
         (append
          '(ac-source-eclim)
+         ac-sources)))
+
+(defun ac-settings-4-python ()
+  "auto-complete settings for python mode"
+  (setq ac-sources
+        (append
+         '(ac-source-yasnippet)
          ac-sources)))
 
 (defun ac-settings-4-text ()
@@ -135,8 +147,6 @@
 (setq ac-auto-show-menu 0.4)
 (setq ac-quick-help-delay 0.5)
 (setq help-xref-following nil)
-;; set clang flags
-(set-ac-clang-flags)
 ;; auto-complete auto start modes
 (add-to-list 'ac-modes 'org-mode)
 (add-to-list 'ac-modes 'text-mode)
@@ -163,6 +173,7 @@
 (add-hook 'c-mode-hook 'ac-settings-4-c/c++)
 (add-hook 'c++-mode-hook 'ac-settings-4-c/c++)
 (add-hook 'java-mode-hook 'ac-settings-4-java)
+(add-hook 'python-mode-hook 'ac-settings-4-python)
 (add-hook 'text-mode-hook 'ac-settings-4-text)
 (add-hook 'org-mode-hook 'ac-settings-4-org)
 (add-hook 'html-mode-hook 'ac-settings-4-nxml)

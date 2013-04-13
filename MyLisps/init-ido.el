@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-ido.el ---
-;; Time-stamp: <2013-04-03 07:53:15 Wednesday by lzy>
+;; Time-stamp: <2013-04-14 02:13:00 Sunday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -32,6 +32,9 @@
 ;;; Code:
 
 (require 'ido)
+(require 'ido-ubiquitous)
+(require 'smex)
+(require 'idomenu)
 (if (equal 24 emacs-major-version)
     (require 'ido-hacks-24)
   (require 'ido-hacks))
@@ -57,6 +60,9 @@
 
 (setq ido-save-directory-list-file "~/.emacs.d/ido.last")
 (setq ido-enable-flex-matching t)
+(setq ido-use-filename-at-point nil)
+(setq ido-auto-merge-work-directories-length 0)
+(setq ido-use-virtual-buffers t)
 (setq ido-max-directory-size 1000000)
 ;; Display ido results vertically, rather than horizontally
 (setq ido-decorations
@@ -67,7 +73,12 @@
 (add-hook 'ido-make-file-list-hook 'ido-sort-mtime)
 (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-truncation)
 (ido-mode 1)
+(ido-everywhere t)
+(ido-ubiquitous-mode t)
 (ido-hacks-mode 1)
+
+(lazy-set-key
+ '(("M-x" . smex)))
 
 ;;; provide features
 (provide 'init-ido)

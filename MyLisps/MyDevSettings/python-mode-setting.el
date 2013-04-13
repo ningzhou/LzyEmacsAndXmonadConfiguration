@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; python-mode-setting.el ---
-;; Time-stamp: <2013-04-10 15:18:28 Wednesday by lzy>
+;; Time-stamp: <2013-04-14 02:32:10 Sunday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -33,6 +33,11 @@
 
 (defun python-mode-setting ()
   "setting for python mode"
+  ;; required features
+  (require 'flymake-python-pyflakes)
+  ;; settings
+  (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
+  ;; key bindings
   (lazy-set-key
    '(("C-x <tab>" . smart-indent)
      ("C-c C-c" . comment)

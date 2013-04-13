@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-uniquify.el ---
-;; Time-stamp: <2013-03-29 05:57:39 Friday by lzy>
+;; Time-stamp: <2013-04-13 22:52:42 Saturday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -33,8 +33,10 @@
 
 (require 'uniquify)
 
-(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
-(setq uniquify-separator "/")
+(setq uniquify-buffer-name-style 'reverse)
+(setq uniquify-separator " • ")
+(setq uniquify-after-kill-buffer-p t)
+(setq uniquify-ignore-buffers-re "^\\*")
 
 ;;; provide features
 (provide 'init-uniquify)

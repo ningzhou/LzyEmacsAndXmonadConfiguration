@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-windows.el ---
-;; Time-stamp: <2013-03-27 16:26:02 Wednesday by lzy>
+;; Time-stamp: <2013-04-14 00:23:34 Sunday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -37,7 +37,7 @@
 ;;; revive settings
 (defun revive-setting ()
   "settings for revive"
-  (setq revive:configuration-file "~/.emacs.d/ReviveConfigure"))
+  (setq revive:configuration-file "~/.emacs.d/reviveConfigure"))
 
 (eval-after-load "revive"
   '(revive-setting))

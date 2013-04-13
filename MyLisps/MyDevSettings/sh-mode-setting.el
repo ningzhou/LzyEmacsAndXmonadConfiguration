@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; sh-mode-setting.el ---
-;; Time-stamp: <2013-04-10 15:19:48 Wednesday by lzy>
+;; Time-stamp: <2013-04-14 01:11:06 Sunday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -33,6 +33,10 @@
 
 (defun sh-mode-setting ()
   "settings for `sh-mode'."
+  ;; required features
+  (require 'flymake-shell)
+  ;; settings
+  (add-hook 'sh-set-shell-hook 'flymake-shell-load)
   ;; key bindings
   (lazy-set-key
    '(("C-c M-c" . sh-case)

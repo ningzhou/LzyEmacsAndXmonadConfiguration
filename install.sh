@@ -1,5 +1,5 @@
 #!/bin/bash
-# Time-stamp: <2013-04-09 12:54:00 Tuesday by lzy>
+# Time-stamp: <2013-04-14 01:24:27 Sunday by lzy>
 
 BASE_DIR=$(cd $(dirname $0); pwd)
 DOT_EMACS=$HOME/.emacs
@@ -24,7 +24,7 @@ if [ -z $1 ]; then
 else
     OS_NAME=$1
 fi
-    
+
 OS_NAME="$(echo $OS_NAME | tr '[A-Z]' '[a-z]')"
 if [ $OS_NAME = "ubuntu" ]; then
     INSTALL_CMD="sudo apt-get install"
@@ -64,11 +64,11 @@ if [ ! -e ~/OrgDir ]; then
 fi
 
 if cmd_noexist cscope; then
-    $INSTALL_CMD cscope 
+    $INSTALL_CMD cscope
 fi
 
 if cmd_noexist w3m; then
-    $INSTALL_CMD w3m 
+    $INSTALL_CMD w3m
 fi
 
 if cmd_noexist scrot; then
@@ -105,7 +105,7 @@ if cmd_noexist ogginfo; then
     if [ $OS_NAME = "centos" ] || [ $OS_NAME = "fedora" ]; then
         echo "Ignore ogginfo"
     else
-        $INSTALL_CMD vorbis-tools 
+        $INSTALL_CMD vorbis-tools
     fi
 fi
 
@@ -113,8 +113,8 @@ if cmd_noexist stardict; then
     if [ $OS_NAME = "centos" ] || [ $OS_NAME = "fedora" ]; then
         echo "Ignore stardict"
     else
-        $INSTALL_CMD stardict 
-        $INSTALL_CMD sdcv 
+        $INSTALL_CMD stardict
+        $INSTALL_CMD sdcv
     fi
 fi
 
@@ -132,6 +132,10 @@ if cmd_noexist convert; then
     else
         $INSTALL_CMD imagemagick
     fi
+fi
+
+if cmd_noexist pyflakes; then
+    $INSTALL_CMD pyflakes
 fi
 
 if cmd_noexist emms-print-metadata; then

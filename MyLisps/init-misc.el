@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-misc.el ---
-;; Time-stamp: <2013-04-10 15:24:52 Wednesday by lzy>
+;; Time-stamp: <2013-04-14 01:49:20 Sunday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -31,27 +31,44 @@
 
 ;;; Code:
 
-(setq echo-keystrokes 0.1)
-(setq ring-bell-function 'ignore)
-(setq inhibit-startup-message t)
-(setq initial-scratch-message nil)
-(setq message-log-max t)
-(setq default-major-mode 'text-mode)
-(setq mouse-yank-at-point t)
-(setq x-stretch-cursor t)
-(setq x-select-enable-clipboard t)
-(setq auto-revert-mode 1)
-(setq max-lisp-eval-depth 40000)
-(setq max-specpdl-size 10000)
-(setq mark-ring-max 1024)
-(setq global-mark-ring-max 1024)
-(setq read-quoted-char-radix 16)
-(setq enable-recursive-minibuffers t)
-(setq eval-expression-print-length nil)
-(setq eval-expression-print-level nil)
-(setq isearch-allow-scroll t)
-(setq minibuffer-message-timeout 1)
-(setq require-final-newline t)
+(setq-default echo-keystrokes 0.1)
+(setq-default ring-bell-function 'ignore)
+(setq-default use-file-dialog nil)
+(setq-default use-dialog-box nil)
+(setq-default inhibit-startup-message t)
+(setq-default inhibit-startup-echo-area-message t)
+(setq-default indicate-empty-lines nil)
+(setq-default initial-scratch-message nil)
+(setq-default message-log-max t)
+(setq-default default-major-mode 'text-mode)
+(setq-default mouse-yank-at-point t)
+(setq-default x-stretch-cursor t)
+(setq-default x-select-enable-clipboard t)
+(setq-default max-lisp-eval-depth 40000)
+(setq-default max-specpdl-size 10000)
+(setq-default mark-ring-max 1024)
+(setq-default global-mark-ring-max 1024)
+(setq-default read-quoted-char-radix 16)
+(setq-default enable-recursive-minibuffers t)
+(setq-default eval-expression-print-length nil)
+(setq-default eval-expression-print-level nil)
+(setq-default isearch-allow-scroll t)
+(setq-default minibuffer-message-timeout 1)
+(setq-default require-final-newline t)
+(setq-default bookmark-default-file "~/.emacs.d/bookmarks")
+(setq-default buffers-menu-max-size 30)
+(setq-default case-fold-search t)
+(setq-default line-spacing 0.2)
+(setq-default set-mark-command-repeat-pop t)
+(setq-default show-trailing-whitespace t)
+(setq-default truncate-lines nil)
+(setq-default truncate-partial-width-windows nil)
+(setq-default visible-bell t)
+
+;; But don't show trailing whitespace in SQLi, inf-ruby etc.
+(dolist (hook '(term-mode-hook comint-mode-hook compilation-mode-hook))
+  (add-hook hook
+            (lambda () (setq show-trailing-whitespace nil))))
 
 ;; ask y-or-n before exiting
 (setq confirm-kill-emacs 'y-or-n-p)
@@ -83,9 +100,9 @@
 ;; ask user a "y or n" question
 (fset 'yes-or-no-p 'y-or-n-p)
 ;; style to be used for comment-region
-(setq-default comment-style 'indent)
+(setq comment-style 'indent)
 ;; automatically save place in each file
-(setq-default save-place t)
+(setq save-place t)
 ;; mouse avoidance mode style
 (mouse-avoidance-mode "banish")
 ;; Prompt in the minibuffer for password
@@ -94,19 +111,20 @@
 
 ;; indent settings
 (setq-default indent-tabs-mode nil)
+(setq-default default-tab-width 4)
 (setq tab-always-indent 'complete)
-(setq default-tab-width 4)
 (setq tab-stop-list nil)
 (loop for x downfrom 40 to 1 do
       (setq tab-stop-list
             (cons (* x tab-width) tab-stop-list)))
 
 ;; backup setting
-(setq make-backup-files nil)
-(setq auto-save-default nil)
+(setq-default make-backup-files nil)
+(setq-default auto-save-default nil)
 
 ;; recent file setting
-(set-default 'recentf-max-saved-items 100)
+(setq recentf-max-saved-items 1000)
+(setq recentf-exclude '("/tmp/" "ssh:"))
 (setq recentf-save-file "~/.emacs.d/recentfiles")
 (custom-set-variables '(recentf-auto-cleanup 'never))
 (recentf-mode 1)
@@ -127,7 +145,12 @@
 
 ;; enable font lock
 (global-font-lock-mode 1)
-(set-default 'jit-lock-mode t)
+(set 'jit-lock-mode t)
+
+;; enable global auto-revert-mode
+(global-auto-revert-mode)
+(setq global-auto-revert-non-file-buffers t
+      auto-revert-verbose nil)
 
 ;; global key binding
 (lazy-set-key
@@ -139,7 +162,10 @@
    ("C-x m" . get-mode-name)
    ("C-x k" . kill-this-buffer)
    ("C-x C-b" . ibuffer)
-   ("C-j" . newline-and-indent)))
+   ("C-j" . newline-and-indent)
+   ("M-C-8" . (lambda () (interactive) (adjust-opacity nil -5)))
+   ("M-C-9" . (lambda () (interactive) (adjust-opacity nil 5)))
+   ("M-C-0" . (lambda () (interactive) (modify-frame-parameters nil '((alpha . 100)))))))
 
 ;; cleanup tmp buffer
 (if (get-buffer ".bash_history")

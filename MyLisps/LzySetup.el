@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-04-10 14:33:20 Wednesday by lzy>
+;; Time-stamp: <2013-04-14 00:11:14 Sunday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -36,6 +36,7 @@
 (require 'init-cursor)                       ;cursor changes with state
 (require 'init-fullscreen)                   ;full screen setting
 (require 'init-windows)                      ;resize windows/save windows configuraion
+(require 'init-sessions)                     ;restore hsitories and registers after saving
 (require 'init-uniquify)                     ;uniquify file name
 (require 'init-tabbar)                       ;tabbar for multi-tab
 (require 'init-smooth-scroll)                ;provide smooth scroll features
