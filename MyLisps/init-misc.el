@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-misc.el ---
-;; Time-stamp: <2013-04-14 01:49:20 Sunday by lzy>
+;; Time-stamp: <2013-04-14 14:37:46 Sunday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -60,7 +60,7 @@
 (setq-default case-fold-search t)
 (setq-default line-spacing 0.2)
 (setq-default set-mark-command-repeat-pop t)
-(setq-default show-trailing-whitespace t)
+(setq-default show-trailing-whitespace nil)
 (setq-default truncate-lines nil)
 (setq-default truncate-partial-width-windows nil)
 (setq-default visible-bell t)

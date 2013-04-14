@@ -1085,7 +1085,7 @@ the completion or nil if canceled by the user."
 ;; Default templates
 
 (defconst doxymacs-JavaDoc-blank-multiline-comment-template
- '("/**" > n "* " p > n "* " > n "*/" > n)
+ '("/** " > n "* " p > n "* " > n "*/" > n)
  "Default JavaDoc-style template for a blank multiline doxygen comment.")
 
 (defconst doxymacs-Qt-blank-multiline-comment-template
@@ -1125,7 +1125,7 @@ the completion or nil if canceled by the user."
 	(list 'l " <" user-mail-address ">"))))
 
 (defconst doxymacs-JavaDoc-file-comment-template
- '("/**" > n
+ '("/** " > n
    " * " (doxymacs-doxygen-command-char) "file   "
    (if (buffer-file-name)
        (file-name-nondirectory (buffer-file-name))

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyTheme.el ---
-;; Time-stamp: <2013-04-12 13:37:51 Friday by lzy>
+;; Time-stamp: <2013-04-14 14:21:48 Sunday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -363,7 +363,7 @@
      (tabbar-selected ((t (:background "grey30" :foreground "DeepSkyBlue" :height 0.97))))
      (tabbar-separator ((t (:background "black" :height 0.97))))
      (tabbar-unselected ((t (:background "grey20" :foreground "grey60" :height 0.97))))
-     (trailing-whitespace ((t (:background "red2"))))
+     (trailing-whitespace ((t (:background "grey50"))))
      (undo-tree-visualizer-active-branch-face ((t (:foreground "white"))))
      (undo-tree-visualizer-current-face ((t (:bold t :foreground "red" :weight bold))))
      (undo-tree-visualizer-default-face ((t (:foreground "gray"))))
