@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-# Time-stamp: <2013-04-10 22:18:45 Wednesday by lzy>
+# Time-stamp: <2013-04-14 12:59:49 Sunday by lzy>
 
 BASE_DIR=$(cd $(dirname $0); pwd)
 

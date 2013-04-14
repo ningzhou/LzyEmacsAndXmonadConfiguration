@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; etags-setting.el ---
-;; Time-stamp: <2013-03-29 17:34:48 Friday by lzy>
+;; Time-stamp: <2013-04-14 13:14:47 Sunday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -33,7 +33,7 @@
 
 (require 'etags-extension)
 
-(setq tags-default-target-directory "~/My_Software_Dir/LzyEmacsAndXmonadConfiguration/")
+(setq tags-default-target-directory my-emacs-path)
 (setq tags-default-storage-directory "~/.emacs.d/Etags")
 
 (unless (file-exists-p tags-default-storage-directory)

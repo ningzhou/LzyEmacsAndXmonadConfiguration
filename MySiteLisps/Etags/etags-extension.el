@@ -62,8 +62,8 @@
 ;;; Code:
 
 (defvar tags-default-target-directory "./")  ;default index directory.
-(defvar tags-default-storage-directory "~/.emacs.d/etags") ;default storage directory.
-(defvar tags-default-suffix "el") ;default suffix
+(defvar tags-default-storage-directory "~/.emacs.d/") ;default storage directory.
+(defvar tags-default-suffix "*.el") ;default suffix
 
 (defun generate-tag-table-of-emacs ()
   "Generate tag tables of emacs"
@@ -82,7 +82,7 @@
   (or tags-storage-directory
       (setq tags-storage-directory (read-directory-name "Storage directory: ")))
   (or tags-suffix
-      (setq tags-suffix (read-string "Regexp: ")))
+      (setq tags-suffix (read-string "Regexp:")))
   (with-temp-buffer
     (cd tags-storage-directory)
     (shell-command

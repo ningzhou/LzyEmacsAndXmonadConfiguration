@@ -1,5 +1,5 @@
 #!/bin/bash
-# Time-stamp: <2013-04-14 01:24:27 Sunday by lzy>
+# Time-stamp: <2013-04-14 12:59:26 Sunday by lzy>
 
 BASE_DIR=$(cd $(dirname $0); pwd)
 DOT_EMACS=$HOME/.emacs

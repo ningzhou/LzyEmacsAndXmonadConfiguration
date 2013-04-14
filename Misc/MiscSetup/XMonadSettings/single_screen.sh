@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-# Time-stamp: <2013-04-10 22:08:52 Wednesday by lzy>
+# Time-stamp: <2013-04-14 13:00:39 Sunday by lzy>
 
 rm ~/.xmonad/xmonad.hs
 cp ~/.xmonad/backup/xmonad.hs ~/.xmonad/xmonad.hs

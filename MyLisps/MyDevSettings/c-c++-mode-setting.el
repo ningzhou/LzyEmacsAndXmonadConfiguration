@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; c-c++-mode-setting.el ---
-;; Time-stamp: <2013-04-07 07:42:26 Sunday by lzy>
+;; Time-stamp: <2013-04-14 12:49:10 Sunday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -34,7 +34,7 @@
 (defun c-c++-mode-setting ()
   "settings for c/c++ mode"
   (require 'ffap)
-  
+
   ;; variables definition
   (defvar c-c++-hightligh-included-files-key-map nil
     "keymap for highlight include overlay")
@@ -67,7 +67,7 @@
 
   (defun c-c++-include-file-setup ()
     "add a system/user header file quickly"
-    (mapc                                 
+    (mapc
      (lambda (mode)
        (define-abbrev-table mode '(("incs" "" skeleton-include-system 1)))
        (define-abbrev-table mode '(("incu" "" skeleton-include-user 1))))
