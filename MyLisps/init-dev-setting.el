@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-dev-setting.el ---
-;; Time-stamp: <2013-04-07 16:25:08 Sunday by lzy>
+;; Time-stamp: <2013-04-16 16:14:26 Tuesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;

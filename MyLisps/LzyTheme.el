@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyTheme.el ---
-;; Time-stamp: <2013-04-14 14:21:48 Sunday by lzy>
+;; Time-stamp: <2013-04-16 15:48:21 Tuesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -174,7 +174,7 @@
      (ffap ((t (:background "DarkRed" :foreground "White"))))
      (file-name-shadow ((t (:foreground "grey70"))))
      (font-lock-builtin-face ((t (:foreground "green"))))
-     (font-lock-comment-delimiter-face ((t (:foreground "red" :height 1.05))))
+     (font-lock-comment-delimiter-face ((t (:slant italic :foreground "red" :height 1.05))))
      (font-lock-comment-face ((t (:slant italic :foreground "red" :height 1.05))))
      (font-lock-constant-face ((t (:foreground "pink"))))
      (font-lock-doc-face ((t (:foreground "orange"))))
