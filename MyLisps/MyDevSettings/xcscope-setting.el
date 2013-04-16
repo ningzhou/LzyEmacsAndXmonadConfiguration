@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; xcscope-setting.el ---
-;; Time-stamp: <2013-03-30 21:15:30 Saturday by lzy>
+;; Time-stamp: <2013-04-16 11:10:48 Tuesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -38,6 +38,7 @@
 
 (add-hook 'c-mode-hook 'xcscope-setting)
 (add-hook 'c++-mode-hook 'xcscope-setting)
+(add-hook 'java-mode-hook 'xcscope-setting)
 
 ;;; provide features
 (provide 'xcscope-setting)

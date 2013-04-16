@@ -45,6 +45,9 @@
 
 ;;; Change log:
 ;;
+;; 2013/04/16 by zhengyu li <lizhengyu419@gmail.com>
+;;         support multi suffix for generate-tag-table
+;;
 ;; 2008/07/05
 ;;         First release.
 ;;
@@ -83,11 +86,15 @@
       (setq tags-storage-directory (read-directory-name "Storage directory: ")))
   (or tags-suffix
       (setq tags-suffix (read-string "Regexp:")))
-  (with-temp-buffer
-    (cd tags-storage-directory)
-    (shell-command
-     (format "find %s -name \"%s\" | xargs etags" tags-target-directory tags-suffix))
-    (message "Tags index...")))
+  (if (equal tags-suffix "")
+      (message "tags suffix is null")
+    (progn
+      (setq tags-suffix (replace-regexp-in-string "[ ]+" "\" -o -name \"" tags-suffix)))
+    (with-temp-buffer
+      (cd tags-storage-directory)
+      (shell-command
+       (format "find %s -name \"%s\" | xargs etags" tags-target-directory tags-suffix))
+      (message "Tags index..."))))
 
 (defun find-tag-window ()
   "View tag in little window."
