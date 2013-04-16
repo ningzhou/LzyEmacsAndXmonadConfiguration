@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-misc.el ---
-;; Time-stamp: <2013-04-14 14:37:46 Sunday by lzy>
+;; Time-stamp: <2013-04-16 22:19:20 Tuesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -130,7 +130,7 @@
 (recentf-mode 1)
 
 ;; auto fill mode setting
-(dolist (hook '(text-mode-hook org-mode-hook change-log-mode-hook))
+(dolist (hook '(org-mode-hook))
   (add-hook hook #'(lambda ()
                      (set-fill-column 100)
                      (turn-on-auto-fill))))

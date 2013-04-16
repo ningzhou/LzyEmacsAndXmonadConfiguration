@@ -286,41 +286,44 @@ Example, your want search pdf of chm about Emacs, you just type emacs pdf|chm."
 (defun toggle-w3m-with-other-buffer ()
   "Switch to a w3m buffer or return to the previous buffer."
   (interactive)
-  (if (derived-mode-p 'w3m-mode)
-      ;; Currently in a w3m buffer
-      (if (and toggle-w3m-with-other-buffer-revive
-               (not toggle-w3m-with-other-buffer-newsticker))
-          (resume 1024)
-        (if toggle-w3m-with-other-buffer-newsticker
+  (let ((current-url (thing-at-point 'url)))
+    (if (derived-mode-p 'w3m-mode)
+        ;; Currently in a w3m buffer
+        (if (and toggle-w3m-with-other-buffer-revive
+                 (not toggle-w3m-with-other-buffer-newsticker))
+            (resume 1024)
+          (if toggle-w3m-with-other-buffer-newsticker
+              (progn
+                (switch-to-buffer "*Newsticker Item*")
+                (select-window (get-buffer-window "*Newsticker Tree*")))
+            ;; Bury buffers until you reach a non-w3m one
+            (while (derived-mode-p 'w3m-mode)
+              (bury-buffer))))
+      ;; Not in w3m
+      ;; Find the first w3m buffer
+      (let ((list (buffer-list)))
+        (if (or (derived-mode-p 'newsticker-treeview-mode)
+                (derived-mode-p 'newsticker-treeview-list-mode)
+                (derived-mode-p 'newsticker-treeview-item-mode))
             (progn
-              (switch-to-buffer "*Newsticker Item*")
-              (select-window (get-buffer-window "*Newsticker Tree*")))
-          ;; Bury buffers until you reach a non-w3m one
-          (while (derived-mode-p 'w3m-mode)
-            (bury-buffer))))
-    ;; Not in w3m
-    ;; Find the first w3m buffer
-    (let ((list (buffer-list)))
-      (if (or (derived-mode-p 'newsticker-treeview-mode)
-              (derived-mode-p 'newsticker-treeview-list-mode)
-              (derived-mode-p 'newsticker-treeview-item-mode))
-          (progn
-            (setq toggle-w3m-with-other-buffer-revive nil)
-            (setq toggle-w3m-with-other-buffer-newsticker t)
-            (select-window (get-buffer-window "*Newsticker Item*")))
-        (setq toggle-w3m-with-other-buffer-revive t)
-        (setq toggle-w3m-with-other-buffer-newsticker nil)
-        (save-current-configuration 1024)
-        (delete-other-windows))
-      (while list
-        (if (with-current-buffer (car list)
-              (derived-mode-p 'w3m-mode))
-            (progn
-              (switch-to-buffer (car list))
-              (setq list nil))
-          (setq list (cdr list))))
-      (unless (derived-mode-p 'w3m-mode)
-        (call-interactively 'w3m)))))
+              (setq toggle-w3m-with-other-buffer-revive nil)
+              (setq toggle-w3m-with-other-buffer-newsticker t)
+              (select-window (get-buffer-window "*Newsticker Item*")))
+          (setq toggle-w3m-with-other-buffer-revive t)
+          (setq toggle-w3m-with-other-buffer-newsticker nil)
+          (save-current-configuration 1024)
+          (delete-other-windows))
+        (while list
+          (if (with-current-buffer (car list)
+                (derived-mode-p 'w3m-mode))
+              (progn
+                (switch-to-buffer (car list))
+                (setq list nil))
+            (setq list (cdr list))))
+        (unless (derived-mode-p 'w3m-mode)
+          (if current-url
+              (w3m-browse-url current-url)
+            (call-interactively 'w3m)))))))
 
 
 (defun w3m-startup-background ()

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-ido.el ---
-;; Time-stamp: <2013-04-14 02:13:00 Sunday by lzy>
+;; Time-stamp: <2013-04-16 21:24:54 Tuesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -74,7 +74,10 @@
 (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-truncation)
 (ido-mode 1)
 (ido-everywhere t)
+;; use ido-completing-read instead of completing-read
 (ido-ubiquitous-mode t)
+;; disable ido-completing-read in some functions
+(ido-ubiquitous-disable-in find-file-at-point)
 (ido-hacks-mode 1)
 
 (lazy-set-key

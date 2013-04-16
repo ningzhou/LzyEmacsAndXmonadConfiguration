@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-dired.el ---
-;; Time-stamp: <2013-03-31 22:06:24 Sunday by lzy>
+;; Time-stamp: <2013-04-16 21:01:28 Tuesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -35,6 +35,7 @@
   "Settings for dired"
   ;;required features
   (require 'wdired)
+  (require 'dired-x)
   (require 'dired-isearch)
   (require 'dired-aux)
   (require 'dired-tar)
