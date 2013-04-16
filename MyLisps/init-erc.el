@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-erc.el ---
-;; Time-stamp: <2013-03-22 08:31:59 Friday by lzy>
+;; Time-stamp: <2013-04-16 22:49:21 Tuesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -109,12 +109,7 @@
    '(("C-c C-w" . my-erc-cmd-whois))
    erc-mode-map))
 
-(defun my-erc-join-hook ()
-  "erc join hook"
-  (less-minor-mode-on))
-
 (add-hook 'erc-mode-hook 'my-erc-mode-hook)
-(add-hook 'erc-join-hook 'my-erc-join-hook)
 
 (autoload 'erc-select "erc" "emacs irc client" t)
 

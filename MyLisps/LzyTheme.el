@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyTheme.el ---
-;; Time-stamp: <2013-04-16 15:48:21 Tuesday by lzy>
+;; Time-stamp: <2013-04-17 00:37:55 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -254,6 +254,33 @@
      (link ((t (:foreground "RoyalBlue3" :underline t))))
      (link-visited ((t (:underline t :foreground "magenta4"))))
      (linum ((t (:foreground "grey90" :weight light))))
+     (markdown-blockquote-face ((t (:foreground "orange"))))
+     (markdown-bold-face ((t (:bold t :foreground "cyan" :weight bold))))
+     (markdown-comment-face ((t (:italic t :slant italic :foreground "red" :height 1.1))))
+     (markdown-footnote-face ((t (:foreground "green"))))
+     (markdown-header-delimiter-face ((t (:foreground "red" :height 1.1))))
+     (markdown-header-face ((t (:bold t :foreground "red" :height 1.1))))
+     (markdown-header-face-1 ((t (:foreground "red" :height 1.1))))
+     (markdown-header-face-2 ((t (:foreground "red" :height 1.1))))
+     (markdown-header-face-3 ((t (:foreground "red" :height 1.1))))
+     (markdown-header-face-4 ((t (:foreground "red" :height 1.1))))
+     (markdown-header-face-5 ((t (:foreground "red" :height 1.1))))
+     (markdown-header-face-6 ((t (:foreground "red" :height 1.1))))
+     (markdown-header-rule-face ((t (:bold t :foreground "red" :weight semi-bold :height 1.1))))
+     (markdown-inline-code-face ((t (:foreground "pink"))))
+     (markdown-italic-face ((t (:italic t :foreground "cyan" :slant italic))))
+     (markdown-language-keyword-face ((t (:foreground "#0080ff"))))
+     (markdown-line-break-face ((t (:foreground "pink" :underline t))))
+     (markdown-link-face ((t (:foreground "green"))))
+     (markdown-link-title-face ((t (:italic t :slant italic :foreground "red" :height 1.1))))
+     (markdown-list-face ((t (:foreground "green"))))
+     (markdown-math-face ((t (:foreground "orange"))))
+     (markdown-metadata-key-face ((t (:foreground "cyan"))))
+     (markdown-metadata-value-face ((t (:foreground "orange"))))
+     (markdown-missing-link-face ((t (:foreground "yellow3"))))
+     (markdown-pre-face ((t (:foreground "pink"))))
+     (markdown-reference-face ((t (:foreground "#0080ff"))))
+     (markdown-url-face ((t (:foreground "orange"))))
      (match ((t (:background "yellow1"))))
      (minibuffer-prompt ((t (:foreground "SteelBlue1"))))
      (mm-uu-extract ((t (:background "light yellow" :foreground "dark green"))))
@@ -317,7 +344,7 @@
      (org-level-1 ((t (:foreground "red2" :weight normal :height 130))))
      (org-level-2 ((t (:foreground "DeepPink" :weight normal :height 125))))
      (org-level-3 ((t (:foreground "RoyalBlue1" :weight normal :height 120))))
-     (org-level-4 ((t (:foreground "red" :height 1.15))))
+     (org-level-4 ((t (:foreground "red" :height 115))))
      (org-level-5 ((t (:foreground "SpringGreen1" :height 110))))
      (org-level-6 ((t (:foreground "cyan"))))
      (org-level-7 ((t (:foreground "yellow"))))

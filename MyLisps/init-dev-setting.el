@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-dev-setting.el ---
-;; Time-stamp: <2013-04-16 16:14:26 Tuesday by lzy>
+;; Time-stamp: <2013-04-17 00:11:10 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -46,6 +46,7 @@
 (require 'compile-setting)             ;; setting for smart compile
 (require 'cc-mode-setting)             ;; CC mode setting
 (require 'c-c++-mode-setting)          ;; common setting for c&c++ mode
+(require 'java-mode-setting)           ;; java mode setting
 (require 'lisp-mode-setting)           ;; lisp realted setting
 (require 'autoconf-mode-setting)       ;; autoconf setting
 (require 'sql-mode-setting)            ;; sql mode setting

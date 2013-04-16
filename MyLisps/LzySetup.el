@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-04-16 21:16:13 Tuesday by lzy>
+;; Time-stamp: <2013-04-17 00:29:22 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -83,6 +83,7 @@
 (require 'init-emms)                         ;emms setting
 (require 'init-w3m)                          ;w3m setting
 (require 'init-org)                          ;setting for org mode
+(require 'init-markdown)                     ;setting for markdown mode
 (require 'init-erc)                          ;erc setting
 (require 'init-gnus)                         ;setting for gnus
 (require 'init-newsticker)                   ;setting for newsticker
