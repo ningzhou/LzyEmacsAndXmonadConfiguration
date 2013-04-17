@@ -22,10 +22,10 @@ core-y          := usr/
 core-y          := usr/ examples/
 注意：如果读者创建的新目录和重新命名的文件名与上面不同，需要修改上面所说 Makefile 文件相应的位置。做
 完以上工作就可以按照内核构建步骤去构建新的内核，在构建好内核并设置好lilo或grub为该内核的启动条目后，
-就可以启动该内核，然后使用lilo或grub的编辑功能为该内核的启动参数行增加如下参数串：
-setup_example_int=1234 setup_example_int_array=100,200,300,400 setup_example_string=Thisisatest当然，
-该参数串也可以直接写入到lilo或grub的配置文件中对应于该新内核的内核命令行参数串中。读者可以使用其它参
-数值来测试该功能。下面是作者系统上使用上面参数行的输出：
+就可以启动该内核，然后使用lilo或grub的编辑功能为该内核的启动参数行增加如下参数串：setup_example_int
+= 1234 setup_example_int_array = 100, 200, 300, 400 setup_example_string = Thisisatest 当然，该参数串
+也可以直接写入到lilo或grub的配置文件中对应于该新内核的内核命令行参数串中。读者可以使用其它参数值来测
+试该功能。下面是作者系统上使用上面参数行的输出：
 setup_example_int=1234
 setup_example_int_array=100,200,300,400
 setup_example_int_array includes 4 intergers

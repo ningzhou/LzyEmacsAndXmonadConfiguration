@@ -188,21 +188,6 @@ git config --global color.branch auto
 ** Stardict dictionary
 get dictionary from:[[http://abloz.com/huzheng/stardict-dic/zh_CN/]]
 
-** Emacs eclim installation
-*** Download / Install
-You can find the official eclim installer on eclim's sourceforge [[https://sourceforge.net/projects/eclim/files/eclim/][download link]]
-+ [[http://sourceforge.net/projects/eclim/files/eclim/2.2.5/eclim_2.2.5.jar/download][eclim_2.2.5.jar]] (for Eclipse 4.2.x, Juno)
-+ [[http://sourceforge.net/projects/eclim/files/eclim/1.7.13/eclim_1.7.13.jar/download][eclim_1.7.13.jar]] (for Eclipse 3.8 or Eclipse 3.7.x, Indigo)
-
-*** Installing / Upgrading
-#+BEGIN_SRC sh
-  java -jar eclim_2.2.5.jar
-  # if install behind a proxy
-  java -Dhttp.proxyHost=my.proxy -Dhttp.proxyPort=8080 -jar eclim_2.2.5.jar
-#+END_SRC
-
-set $ECLIPSE_HOME env
-
 * Footnotes
 
 [fn:1] http://blog.csdn.net/leo_wanta/article/details/6885821

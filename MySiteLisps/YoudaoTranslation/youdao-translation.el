@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; youdao-translation.el ---
-;; Time-stamp: <2013-04-11 23:19:12 Thursday by lzy>
+;; Time-stamp: <2013-04-17 20:50:55 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -33,7 +33,9 @@
 
 (require 'xml)
 (require 'xml-parse)
-(require 'pos-tip)
+(if (window-system)
+    (require 'pos-tip)
+  (require 'popup))
 
 (defun get-translate-result (word)
   (shell-command-to-string (concat (format "curl --max-time 2 'http://fanyi.youdao.com/openapi.do\
@@ -97,7 +99,9 @@
                              (if sdcv-command
                                  (shell-command-to-string sdcv-command))
                            (analytic-translate-result translate-result))))
-    (pos-tip-show explains-texts '("blue3" . "light yellow") nil nil -1)))
+    (if (window-system)
+        (pos-tip-show explains-texts '("blue3" . "light yellow") nil nil -1)
+      (popup-tip explains-texts))))
 
 ;;; provide features
 (provide 'youdao-translation)

@@ -1,3 +1,7 @@
+#+TITLE: Trick Notes
+#+AUTHOR: zhengyu li <lizhengyu419@gmail.com>
+#+OPTIONS: ^:nil
+
 * Tricks
 ** Bash multi-color display <2012-05-16 Wed>
 [[http://coolshell.cn/articles/1399.html][8个实用而有趣Bash命令提示行]]

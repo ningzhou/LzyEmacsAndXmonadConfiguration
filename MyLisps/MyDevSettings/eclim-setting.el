@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; eclim-setting.el ---
-;; Time-stamp: <2013-04-17 13:44:04 Wednesday by lzy>
+;; Time-stamp: <2013-04-17 22:00:49 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -32,13 +32,14 @@
 ;;; Code:
 
 (require 'eclim)
-(require 'eclimd)
 (require 'ac-emacs-eclim-source)
 
 (setq eclim-executable (concat (getenv "ECLIPSE_HOME") "eclim"))
+(setq eclimd-wait-for-process nil)
 (setq help-at-pt-display-when-idle t)
 (setq help-at-pt-timer-delay 0.1)
 (setq compilation-skip-threshold 2)
+(setq eclim-auto-save t)
 (help-at-pt-set-timer)
 (ac-emacs-eclim-config)
 (global-eclim-mode)
