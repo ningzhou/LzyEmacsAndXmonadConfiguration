@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-dev-setting.el ---
-;; Time-stamp: <2013-04-17 00:11:10 Wednesday by lzy>
+;; Time-stamp: <2013-04-17 11:30:52 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -44,6 +44,7 @@
 (require 'doxymacs-setting)            ;; setting for doxymacs
 (require 'xcscope-setting)             ;; c code navigation setting
 (require 'compile-setting)             ;; setting for smart compile
+(require 'eclim-setting)               ;; setting for emacs eclim
 (require 'cc-mode-setting)             ;; CC mode setting
 (require 'c-c++-mode-setting)          ;; common setting for c&c++ mode
 (require 'java-mode-setting)           ;; java mode setting

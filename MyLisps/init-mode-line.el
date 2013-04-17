@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-mode-line.el ---
-;; Time-stamp: <2013-04-12 15:47:32 Friday by lzy>
+;; Time-stamp: <2013-04-17 11:40:09 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;

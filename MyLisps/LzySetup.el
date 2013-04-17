@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzySetup.el ---
-;; Time-stamp: <2013-04-17 00:29:22 Wednesday by lzy>
+;; Time-stamp: <2013-04-17 11:34:52 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
-;;; java-mode-setting.el ---
-;; Time-stamp: <2013-04-17 11:28:55 Wednesday by lzy>
+;;; eclim-setting.el ---
+;; Time-stamp: <2013-04-17 13:44:04 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -27,24 +27,29 @@
 ;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'java-mode-setting)
+;;   (require 'eclim-setting)
 
 ;;; Code:
 
-(defun java-mode-setting ()
-  "settings for java mode"
-  ;; keybinds
-  (lazy-set-key
-   '(("C-x <tab>" . smart-indent)
-     ("C-c C-c" . comment)
-     ("C-c k" . uncomment)
-     ("C-c M-a" . beginning-of-defun)
-     ("C-c M-e" . end-of-defun))
-   java-mode-map))
+(require 'eclim)
+(require 'eclimd)
+(require 'ac-emacs-eclim-source)
 
-(add-hook 'java-mode-hook 'java-mode-setting)
+(setq eclim-executable (concat (getenv "ECLIPSE_HOME") "eclim"))
+(setq help-at-pt-display-when-idle t)
+(setq help-at-pt-timer-delay 0.1)
+(setq compilation-skip-threshold 2)
+(help-at-pt-set-timer)
+(ac-emacs-eclim-config)
+(global-eclim-mode)
+
+;; key binds
+(lazy-set-key
+ '(("p" . previous-line)
+   ("n" . next-line))
+ eclim-project-mode-map)
 
 ;;; provide features
-(provide 'java-mode-setting)
+(provide 'eclim-setting)
 
-;;; java-mode-setting.el ends here
+;;; eclim-setting.el ends here

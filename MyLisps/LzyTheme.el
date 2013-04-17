@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyTheme.el ---
-;; Time-stamp: <2013-04-17 00:37:55 Wednesday by lzy>
+;; Time-stamp: <2013-04-17 11:59:19 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -52,6 +52,8 @@
      (ac-candidate-face ((t (:background "grey80" :foreground "black"))))
      (ac-completion-face ((t (:foreground "white"))))
      (ac-selection-face ((t (:background "blue" :foreground "grey90"))))
+     (ac-emacs-eclim-candidate-face ((t (:background "yellow" :foreground "black"))))
+     (ac-emacs-eclim-selection-face ((t (:background "DarkRed" :foreground "white"))))
      (ac-yasnippet-candidate-face ((t (:background "yellow" :foreground "black"))))
      (ac-yasnippet-selection-face ((t (:background "DarkRed" :foreground "white"))))
      (apropos-function-button ((t (:foreground "Steelblue1"))))
@@ -156,6 +158,8 @@
      (ediff-odd-diff-C ((t (:background "Grey" :foreground "black"))))
      (ediff-trees-deleted-original-face ((t (:background "Pink"))))
      (eldoc-highlight-function-argument ((t (:foreground "Red"))))
+     (eclim-problems-highlight-error-face ((t (:underline "gold1" :background "red4" :foreground "grey80"))))
+     (eclim-problems-highlight-warning-face ((t (:underline "red4" :background "gold1" :foreground "black"))))
      (emms-browser-album-face ((t (:foreground "Deep Pink" :height 1.1))))
      (emms-browser-artist-face ((t (:foreground "Springgreen" :height 1.2))))
      (emms-browser-composer-face ((t (:foreground "#aaaaff" :height 1.3))))

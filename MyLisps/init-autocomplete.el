@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-autocomplete.el ---
-;; Time-stamp: <2013-04-14 02:10:39 Sunday by lzy>
+;; Time-stamp: <2013-04-17 13:20:42 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -93,13 +93,6 @@
          '(ac-source-clang)
          ac-sources)))
 
-(defun ac-settings-4-java ()
-  "auto-complete settings for java mode"
-  (setq ac-sources
-        (append
-         '(ac-source-eclim)
-         ac-sources)))
-
 (defun ac-settings-4-python ()
   "auto-complete settings for python mode"
   (setq ac-sources
@@ -172,7 +165,6 @@
 (add-hook 'c-mode-common-hook 'ac-settings-4-cc)
 (add-hook 'c-mode-hook 'ac-settings-4-c/c++)
 (add-hook 'c++-mode-hook 'ac-settings-4-c/c++)
-(add-hook 'java-mode-hook 'ac-settings-4-java)
 (add-hook 'python-mode-hook 'ac-settings-4-python)
 (add-hook 'text-mode-hook 'ac-settings-4-text)
 (add-hook 'org-mode-hook 'ac-settings-4-org)
