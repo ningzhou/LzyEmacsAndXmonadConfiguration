@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-emms.el ---
-;; Time-stamp: <2013-04-12 13:36:10 Friday by lzy>
+;; Time-stamp: <2013-04-19 01:34:21 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -60,10 +60,12 @@
   ;; functions definition
   (defun set-emms-buffer-face-mode ()
     "font setting for ansi term"
-    (make-variable-buffer-local 'face-font-rescale-alist)
-    (setq face-font-rescale-alist '(("Microsoft Yahei" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))
+    (make-local-variable 'face-font-rescale-alist)
+    (setq face-font-rescale-alist '(("WenQuanYi Micro Hei Mono" . 1.2)
+                                    ("Microsoft Yahei" . 1.2)
+                                    ("WenQuanYi Zen Hei" . 1.2)))
     (setq buffer-face-mode-face
-          '(:family "Monospace" :height 0.95 :weight normal))
+          '(:family "Monospace" :height 0.90))
     (buffer-face-mode))
 
   (defun my-emms-track-description-function (track)
@@ -177,7 +179,8 @@
                               (not (funcall (emms-browser-filter-only-recent 30) track))))
   (put 'emms-browser-delete-files 'disabled nil)
 
-  (add-hook 'emms-playlist-mode-hook 'set-emms-buffer-face-mode)
+  (if (window-system)
+      (add-hook 'emms-playlist-mode-hook 'set-emms-buffer-face-mode))
   (add-hook 'emms-browser-delete-files-hook 'de-kill-covers-and-parents)
   ;; init emms with devel mode
   (emms-devel)

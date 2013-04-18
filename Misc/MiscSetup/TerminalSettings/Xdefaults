@@ -32,8 +32,9 @@ XTerm*altSendsEscape: true
 !!mouse selecting to copy, ctrl-v to paste
 !!Ctrl p to print screen content to file
 XTerm*VT100.Translations: #override \
-Ctrl <KeyPress> y: insert-selection(CLIPBOARD,PRIMARY,CUT_BUFFER0) \n\
-<BtnUp>: select-end(CLIPBOARD,PRIMARY,CUT_BUFFER0) \n\
+                          Ctrl Shift <KeyPress> C:  select-end(PRIMARY,CLIPBOARD,CUT_BUFFER0) \n\
+                          Ctrl Shift <KeyPress> V:  insert-selection(CLIPBOARD, CUT_BUFFER0, PRIMARY) \n\
+                          <BtnUp>: select-end(CLIPBOARD,PRIMARY,CUT_BUFFER0) \n\
 
 !!font and locale
 XTerm*locale: true
@@ -100,12 +101,10 @@ xft:WenQuanYi Micro Hei:antialias=True:pixelsize=16:Bold
 
 !!key bindings
 URxvt.meta8:false
+URxvt.iso14755:false
 URxvt.perl-ext-common:default,matcher,clipboard,keyboard-select,url-select
-URxvt.keysym.Mod4-u:perl:url-select:select_next
-URxvt.keysym.M-w:perl:clipboard:copy
-URxvt.keysym.C-y:perl:clipboard:paste
-URxvt.keysym.Mod4-C-v:perl:clipboard:paste_escaped
-URxvt.keysym.Mod4-s:perl:keyboard-select:search
+URxvt.keysym.Shift-Control-C:perl:clipboard:copy
+URxvt.keysym.Shift-Control-V:perl:clipboard:paste
 
 !!input Method setting
 !Urxvt.inputMethod:SCIM
@@ -136,6 +135,6 @@ URxvt.color14:lightblue1
 !!bg transparent setting
 URxvt.inheritPixmap:True
 URxvt.tintCddolor:white
-URxvt.shading:8
+URxvt.shading:0
 URxvt.depth:32
 URxvt.background:rgba:0000/0000/0000/dddd

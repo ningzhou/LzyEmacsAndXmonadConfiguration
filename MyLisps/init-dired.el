@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-dired.el ---
-;; Time-stamp: <2013-04-18 17:42:15 Thursday by lzy>
+;; Time-stamp: <2013-04-18 22:29:25 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -131,7 +131,6 @@
    dired-mode-map))
 
 (autoload 'his-dired-sort "dired-extension" nil nil)
-(autoload 'wuxch-dired-mode-hook-fun "dired-extension" nil nil)
 
 (add-hook 'dired-after-readin-hook 'his-dired-sort)
 (add-hook 'dired-mode-hook 'dired-settings)

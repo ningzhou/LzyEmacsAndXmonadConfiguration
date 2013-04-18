@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; eclim-setting.el ---
-;; Time-stamp: <2013-04-18 17:17:39 Thursday by lzy>
+;; Time-stamp: <2013-04-18 22:37:21 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -38,28 +38,38 @@
   "flag to indicate whether use eclim ac sources")
 
 ;; redefinition of original eclim ac sources setup
-(defun ac-emacs-eclim-java-setup ()
-  (if eclim-enable-ac-sources
-      (push 'ac-source-emacs-eclim ac-sources)))
+(defun help-at-pt-config ()
+  (make-local-variable 'help-at-pt-display-when-idle)
+  (make-local-variable 'help-at-pt-timer-delay)
+  (setq help-at-pt-display-when-idle t)
+  (setq help-at-pt-timer-delay 0.1))
 
-(defun ac-emacs-eclim-xml-setup ()
+(defun eclim-java-setup ()
   (if eclim-enable-ac-sources
-      (push 'ac-source-emacs-eclim ac-sources)))
+      (push 'ac-source-emacs-eclim ac-sources))
+  (help-at-pt-config))
 
-(defun ac-emacs-eclim-php-setup ()
+(defun eclim-xml-setup ()
   (if eclim-enable-ac-sources
-      (push 'ac-source-emacs-eclim ac-sources)))
+      (push 'ac-source-emacs-eclim ac-sources))
+  (help-at-pt-config))
 
-(defun ac-emacs-eclim-ruby-setup ()
+(defun eclim-php-setup ()
   (if eclim-enable-ac-sources
-      (push 'ac-source-emacs-eclim ac-sources)))
+      (push 'ac-source-emacs-eclim ac-sources))
+  (help-at-pt-config))
 
-(defun ac-emacs-eclim-config ()
-  (add-hook 'java-mode-hook 'ac-emacs-eclim-java-setup)
-  (add-hook 'xml-mode-hook 'ac-emacs-eclim-xml-setup)
-  (add-hook 'nxml-mode-hook 'ac-emacs-eclim-xml-setup)
-  (add-hook 'php-mode-hook 'ac-emacs-eclim-php-setup)
-  (add-hook 'ruby-mode-hook 'ac-emacs-eclim-ruby-setup))
+(defun eclim-ruby-setup ()
+  (if eclim-enable-ac-sources
+      (push 'ac-source-emacs-eclim ac-sources))
+  (help-at-pt-config))
+
+(defun eclim-config ()
+  (add-hook 'java-mode-hook 'eclim-java-setup)
+  (add-hook 'xml-mode-hook 'eclim-xml-setup)
+  (add-hook 'nxml-mode-hook 'eclim-xml-setup)
+  (add-hook 'php-mode-hook 'eclim-php-setup)
+  (add-hook 'ruby-mode-hook 'eclim-ruby-setup))
 
 (defun eclim-disable-ac-sources ()
   "remove ac-emacs-eclim-source from hook"
@@ -75,12 +85,10 @@
 
 (setq eclim-executable (concat (getenv "ECLIPSE_HOME") "eclim"))
 (setq eclimd-wait-for-process nil)
-(setq help-at-pt-display-when-idle t)
-(setq help-at-pt-timer-delay 0.1)
 (setq compilation-skip-threshold 2)
 (setq eclim-auto-save t)
 (help-at-pt-set-timer)
-(ac-emacs-eclim-config)
+(eclim-config)
 (global-eclim-mode)
 
 ;; key binds
