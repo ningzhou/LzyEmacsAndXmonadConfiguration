@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; c-c++-mode-setting.el ---
-;; Time-stamp: <2013-04-14 12:49:10 Sunday by lzy>
+;; Time-stamp: <2013-04-18 17:43:06 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -97,7 +97,8 @@
     (setq c-c++-hightligh-included-files-timer
           (run-with-idle-timer 0.5 t 'c-c++-hightligh-included-files))
     (lazy-set-key
-     '(("<return>" . find-file-at-point))
+     '(("<return>" . find-file-at-point)
+       ("<RET>" . find-file-at-point))
      c-c++-hightligh-included-files-key-map))
 
   ;; settings

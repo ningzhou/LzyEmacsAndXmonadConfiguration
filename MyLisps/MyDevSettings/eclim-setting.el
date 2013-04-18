@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; eclim-setting.el ---
-;; Time-stamp: <2013-04-17 22:00:49 Wednesday by lzy>
+;; Time-stamp: <2013-04-18 17:17:39 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -33,6 +33,45 @@
 
 (require 'eclim)
 (require 'ac-emacs-eclim-source)
+
+(defvar eclim-enable-ac-sources t
+  "flag to indicate whether use eclim ac sources")
+
+;; redefinition of original eclim ac sources setup
+(defun ac-emacs-eclim-java-setup ()
+  (if eclim-enable-ac-sources
+      (push 'ac-source-emacs-eclim ac-sources)))
+
+(defun ac-emacs-eclim-xml-setup ()
+  (if eclim-enable-ac-sources
+      (push 'ac-source-emacs-eclim ac-sources)))
+
+(defun ac-emacs-eclim-php-setup ()
+  (if eclim-enable-ac-sources
+      (push 'ac-source-emacs-eclim ac-sources)))
+
+(defun ac-emacs-eclim-ruby-setup ()
+  (if eclim-enable-ac-sources
+      (push 'ac-source-emacs-eclim ac-sources)))
+
+(defun ac-emacs-eclim-config ()
+  (add-hook 'java-mode-hook 'ac-emacs-eclim-java-setup)
+  (add-hook 'xml-mode-hook 'ac-emacs-eclim-xml-setup)
+  (add-hook 'nxml-mode-hook 'ac-emacs-eclim-xml-setup)
+  (add-hook 'php-mode-hook 'ac-emacs-eclim-php-setup)
+  (add-hook 'ruby-mode-hook 'ac-emacs-eclim-ruby-setup))
+
+(defun eclim-disable-ac-sources ()
+  "remove ac-emacs-eclim-source from hook"
+  (interactive)
+  (setq eclim-enable-ac-sources nil)
+  (setq ac-sources (remove 'ac-source-emacs-eclim ac-sources)))
+
+(defun eclim-enable-ac-sources ()
+  "remove ac-emacs-eclim-source from hook"
+  (interactive)
+  (setq eclim-enable-ac-sources t)
+  (setq ac-sources (push 'ac-source-emacs-eclim ac-sources)))
 
 (setq eclim-executable (concat (getenv "ECLIPSE_HOME") "eclim"))
 (setq eclimd-wait-for-process nil)

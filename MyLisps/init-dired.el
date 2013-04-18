@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-dired.el ---
-;; Time-stamp: <2013-04-16 21:01:28 Tuesday by lzy>
+;; Time-stamp: <2013-04-18 17:42:15 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -78,6 +78,7 @@
   (lazy-set-key
    '(("f"              . dired-single-buffer)
      ("<return>"       . dired-single-buffer)
+     ("<RET>"          . dired-single-buffer)
      ("<down-mouse-1>" . dired-single-buffer)
      ("h"              . dired-up-directory-same-buffer)
      ("<backspace>"    . dired-up-directory-same-buffer)

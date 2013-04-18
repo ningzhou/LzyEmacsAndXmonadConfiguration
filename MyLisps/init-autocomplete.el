@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-autocomplete.el ---
-;; Time-stamp: <2013-04-17 13:20:42 Wednesday by lzy>
+;; Time-stamp: <2013-04-18 14:48:25 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -133,6 +133,7 @@
            ac-source-imenu)
          ac-sources)))
 
+;; basic settings
 (setq ac-dwim t)
 (setq ac-auto-start 2)
 (setq ac-disable-faces nil)

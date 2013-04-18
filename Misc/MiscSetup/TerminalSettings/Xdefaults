@@ -99,6 +99,7 @@ URxvt*bolditalicFont:xft:Monaco:antialias=True:pixelsize=16:Bold,\
 xft:WenQuanYi Micro Hei:antialias=True:pixelsize=16:Bold
 
 !!key bindings
+URxvt.meta8:false
 URxvt.perl-ext-common:default,matcher,clipboard,keyboard-select,url-select
 URxvt.keysym.Mod4-u:perl:url-select:select_next
 URxvt.keysym.M-w:perl:clipboard:copy
@@ -135,6 +136,6 @@ URxvt.color14:lightblue1
 !!bg transparent setting
 URxvt.inheritPixmap:True
 URxvt.tintCddolor:white
-URxvt.shading:15
+URxvt.shading:8
 URxvt.depth:32
 URxvt.background:rgba:0000/0000/0000/dddd
