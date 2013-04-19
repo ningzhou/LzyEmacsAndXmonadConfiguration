@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; eclim-setting.el ---
-;; Time-stamp: <2013-04-18 22:37:21 Thursday by lzy>
+;; Time-stamp: <2013-04-19 11:35:23 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -34,7 +34,7 @@
 (require 'eclim)
 (require 'ac-emacs-eclim-source)
 
-(defvar eclim-enable-ac-sources t
+(defvar eclim-enable-ac-sources nil
   "flag to indicate whether use eclim ac sources")
 
 ;; redefinition of original eclim ac sources setup

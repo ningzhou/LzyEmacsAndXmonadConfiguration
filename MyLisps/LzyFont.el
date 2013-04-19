@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyFont.el ---
-;; Time-stamp: <2013-04-19 01:28:54 Friday by lzy>
+;; Time-stamp: <2013-04-19 11:14:10 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
