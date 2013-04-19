@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyFont.el ---
-;; Time-stamp: <2013-04-19 11:14:10 Friday by lzy>
+;; Time-stamp: <2013-04-19 13:53:25 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -52,7 +52,7 @@
   (set-face-attribute 'default nil :font emacs-en-font)
   ;; default zh font
   (setq emacs-zh-font (find-if #'font-existsp
-                               '("WenQuanYi Micro Hei Mono" "Microsoft Yahei" "WenQuanYi Zen Hei")))
+                               '("Microsoft Yahei" "WenQuanYi Zen Hei")))
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font t charset emacs-zh-font)))
 

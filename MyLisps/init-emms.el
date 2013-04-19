@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-emms.el ---
-;; Time-stamp: <2013-04-19 01:34:21 Friday by lzy>
+;; Time-stamp: <2013-04-19 12:58:17 Friday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -59,7 +59,8 @@
 
   ;; functions definition
   (defun set-emms-buffer-face-mode ()
-    "font setting for ansi term"
+    "font setting for emms"
+    (interactive)
     (make-local-variable 'face-font-rescale-alist)
     (setq face-font-rescale-alist '(("WenQuanYi Micro Hei Mono" . 1.2)
                                     ("Microsoft Yahei" . 1.2)
@@ -178,9 +179,6 @@
                             (lambda (track)
                               (not (funcall (emms-browser-filter-only-recent 30) track))))
   (put 'emms-browser-delete-files 'disabled nil)
-
-  (if (window-system)
-      (add-hook 'emms-playlist-mode-hook 'set-emms-buffer-face-mode))
   (add-hook 'emms-browser-delete-files-hook 'de-kill-covers-and-parents)
   ;; init emms with devel mode
   (emms-devel)
