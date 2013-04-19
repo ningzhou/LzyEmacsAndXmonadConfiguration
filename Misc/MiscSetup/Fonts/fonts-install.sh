@@ -14,6 +14,10 @@ if [ ! -e "$dest_dir" ]; then
     echo "install micro black font"
     sudo cp $src_dir/msyh.ttf $dest_dir
     sudo cp $src_dir/msyhbd.ttf $dest_dir
+
+    echo "install elements font"
+    sudo cp $src_dir/elements.ttf $dest_dir
+
     echo "waiting, flushing font cache..."
     sudo fc-cache -f -v
     echo "done, logout and see effect!"

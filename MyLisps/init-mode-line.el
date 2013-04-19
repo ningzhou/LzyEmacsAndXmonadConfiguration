@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-mode-line.el ---
-;; Time-stamp: <2013-04-17 11:40:09 Wednesday by lzy>
+;; Time-stamp: <2013-04-19 12:34:19 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -49,10 +49,10 @@
   (setq-default mode-line-format
                 '((:eval
                    (if (eql buffer-read-only t)
-                       (propertize " **RO**" 'face
-                                   '(:foreground "Deepskyblue"))
+                       (propertize " --RO--" 'face
+                                   '(:foreground "Deepskyblue" :family "BN Elements"))
                      (propertize " --W/R--" 'face
-                                 '(:foreground "Deepskyblue"))))
+                                 '(:foreground "Deepskyblue" :family "BN Elements"))))
                   (:eval
                    (propertize " %b"
                                'face (if (buffer-modified-p)
