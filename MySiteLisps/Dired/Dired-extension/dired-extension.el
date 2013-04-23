@@ -183,7 +183,7 @@
 (defun wuxch-dired-goto-first-line ()
   "moving to the last line"
   (interactive)
-  (goto-line (wuxch-get-first-line-of-dired))
+  (goto-line (+ (wuxch-get-first-line-of-dired) 1))
   (dired-move-to-filename))
 
 (defun wuxch-dired-goto-last-line ()

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-tabbar.el ---
-;; Time-stamp: <2013-04-23 16:08:12 Tuesday by lzy>
+;; Time-stamp: <2013-04-23 18:00:18 Tuesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -33,17 +33,21 @@
 
 (require 'tabbar-extension)
 
+(defadvice tabbar-forward (around tabbar-forward-w3m activate)
+  ""
+  (if (derived-mode-p 'w3m-mode)
+      (w3m-next-buffer 1)
+    ad-do-it))
+
+(defadvice tabbar-backward (around tabbar-backward-w3m activate)
+  ""
+  (if (derived-mode-p 'w3m-mode)
+      (w3m-previous-buffer 1)
+    ad-do-it))
+
 ;; settings
 (setq tabbar-separator '(0.2))
 (tabbar-mode 1)
-
-;; disable tabbar mode in w3m
-(add-hook 'w3m-mode-hook
-          #'(lambda ()
-              (lazy-unset-key
-               '("C-<f11>"
-                 "<f11>")
-               tabbar-mode-map)))
 
 ;; key bindings
 (lazy-set-key

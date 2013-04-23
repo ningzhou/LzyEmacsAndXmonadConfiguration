@@ -1,5 +1,5 @@
 #!/bin/bash
-# Time-stamp: <2013-04-14 12:59:26 Sunday by lzy>
+# Time-stamp: <2013-04-23 17:16:05 Tuesday by lzy>
 
 BASE_DIR=$(cd $(dirname $0); pwd)
 DOT_EMACS=$HOME/.emacs
@@ -44,9 +44,6 @@ fi
 # Template replace
 cp $BASE_DIR/emacs.config $BASE_DIR/.emacs.local
 sed -i -e s:_EMACS_DIR_:$BASE_DIR/:g $BASE_DIR/.emacs.local
-
-# Font installation
-$BASE_DIR/Misc/MiscSetup/Fonts/fonts-install.sh
 
 # Emacs root configurations file installation
 if [ -e $DOT_EMACS ]; then
@@ -136,6 +133,10 @@ fi
 
 if cmd_noexist pyflakes; then
     $INSTALL_CMD pyflakes
+fi
+
+if cmd_noexist markdown; then
+    $INSTALL_CMD markdown
 fi
 
 if cmd_noexist emms-print-metadata; then

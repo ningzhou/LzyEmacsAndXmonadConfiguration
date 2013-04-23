@@ -1,8 +1,3 @@
-## Copyright 2013 
-## Author: chieftain <lizhengyu419@gmail.com>
-## Version: $Id: README,v 0.0 2013/03/14 09:13:44 lzy Exp $
-
-Emacs And Xmonad Configuration
-==============================
+# Emacs And Xmonad Configuration
 
 This package contains configurations for Emacs and Xmonad.

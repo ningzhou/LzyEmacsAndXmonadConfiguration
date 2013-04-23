@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyFont.el ---
-;; Time-stamp: <2013-04-19 13:53:25 Friday by lzy>
+;; Time-stamp: <2013-04-23 17:48:25 Tuesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -31,7 +31,7 @@
 
 ;;; Code:
 
-(defvar emacs-en-font "DejaVu Sans Mono:pixelsize=16" "default english font")
+(defvar emacs-en-font "Bitstream Vera Sans Mono:pixelsize=16" "default english font")
 (defvar emacs-zh-font nil "zh font")
 
 ;; font setting tools
@@ -52,7 +52,7 @@
   (set-face-attribute 'default nil :font emacs-en-font)
   ;; default zh font
   (setq emacs-zh-font (find-if #'font-existsp
-                               '("Microsoft Yahei" "WenQuanYi Zen Hei")))
+                               '("DejaVu Sans YuanTi Mono" "Microsoft Yahei" "WenQuanYi Zen Hei")))
   (dolist (charset '(kana han symbol cjk-misc bopomofo))
     (set-fontset-font t charset emacs-zh-font)))
 

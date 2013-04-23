@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-mode-line.el ---
-;; Time-stamp: <2013-04-19 12:34:19 Friday by lzy>
+;; Time-stamp: <2013-04-23 17:52:16 Tuesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -69,18 +69,18 @@
                                'face '(:foreground "#00eedd")))
                   (:eval
                    (propertize " ("
-                               'face '(:foreground "Yellow" :weight normal)))
+                               'face '(:foreground "Yellow" :weight bold)))
                   (:eval
                    (propertize "%m"
-                               'face '(:foreground "Yellow" :weight normal)))
+                               'face '(:foreground "Yellow" :weight bold)))
                   minor-mode-alist
                   (:eval
                    (propertize ") "
-                               'face '(:foreground "Yellow" :weight normal)))
+                               'face '(:foreground "Yellow" :weight bold)))
                   which-func-format
                   (:eval
                    (propertize (format-time-string " %H:%M ")
-                               'face '(:foreground "White" :weight normal)
+                               'face '(:foreground "White")
                                'help-echo
                                (concat (format-time-string "%c; ")
                                        (emacs-uptime "Uptime:%hh")))))))
