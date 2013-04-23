@@ -77,9 +77,6 @@
 (defvar toggle-w3m-with-other-buffer-revive nil
   "Indicate that whether has set windows configuration")
 
-(defvar toggle-w3m-with-other-buffer-newsticker nil
-  "Indicate that whether the previous buffer is newsticker")
-
 (defun beautify-string (string &optional after)
   "Strip starting and ending whitespace and beautify `STRING'.
 Replace any chars after AFTER with '...'.
@@ -286,45 +283,42 @@ Example, your want search pdf of chm about Emacs, you just type emacs pdf|chm."
 (defun toggle-w3m-with-other-buffer ()
   "Switch to a w3m buffer or return to the previous buffer."
   (interactive)
-  (let ((current-url (thing-at-point 'url)))
+  (let ((current-url (thing-at-point 'url))
+        (buffers (buffer-list)))
     (if (derived-mode-p 'w3m-mode)
         ;; Currently in a w3m buffer
-        (if (and toggle-w3m-with-other-buffer-revive
-                 (not toggle-w3m-with-other-buffer-newsticker))
-            (resume 1024)
-          (if toggle-w3m-with-other-buffer-newsticker
-              (progn
-                (switch-to-buffer "*Newsticker Item*")
-                (select-window (get-buffer-window "*Newsticker Tree*")))
+        (if toggle-w3m-with-other-buffer-revive
+            (progn
+              (resume 1024)
+              (setq toggle-w3m-with-other-buffer-revive nil))
             ;; Bury buffers until you reach a non-w3m one
-            (while (derived-mode-p 'w3m-mode)
-              (bury-buffer))))
+          (while (derived-mode-p 'w3m-mode)
+            (bury-buffer)))
       ;; Not in w3m
       ;; Find the first w3m buffer
-      (let ((list (buffer-list)))
-        (if (or (derived-mode-p 'newsticker-treeview-mode)
-                (derived-mode-p 'newsticker-treeview-list-mode)
-                (derived-mode-p 'newsticker-treeview-item-mode))
-            (progn
-              (setq toggle-w3m-with-other-buffer-revive nil)
-              (setq toggle-w3m-with-other-buffer-newsticker t)
-              (select-window (get-buffer-window "*Newsticker Item*")))
-          (setq toggle-w3m-with-other-buffer-revive t)
-          (setq toggle-w3m-with-other-buffer-newsticker nil)
-          (save-current-configuration 1024)
-          (delete-other-windows))
-        (while list
-          (if (with-current-buffer (car list)
-                (derived-mode-p 'w3m-mode))
-              (progn
-                (switch-to-buffer (car list))
-                (setq list nil))
-            (setq list (cdr list))))
-        (unless (derived-mode-p 'w3m-mode)
-          (if current-url
-              (w3m-browse-url current-url)
-            (call-interactively 'w3m)))))))
+      (progn
+        (setq toggle-w3m-with-other-buffer-revive t)
+        (save-current-configuration 1024)
+        (if current-url
+            (if (y-or-n-p (format "visit url: %s" current-url))
+                (progn
+                  (w3m-browse-url current-url t)
+                  (delete-other-windows))
+              (switch-to-w3m-buffer buffers))
+          (switch-to-w3m-buffer buffers))))))
 
+(defun switch-to-w3m-buffer (buffers)
+  (while buffers
+    (if (with-current-buffer (car buffers)
+          (derived-mode-p 'w3m-mode))
+        (progn
+          (switch-to-buffer (car buffers))
+          (delete-other-windows)
+          (setq buffers nil))
+      (setq buffers (cdr buffers))))
+  (unless (derived-mode-p 'w3m-mode)
+    (call-interactively 'w3m)
+    (delete-other-windows)))
 
 (defun w3m-startup-background ()
   "Startup w3m background."
@@ -332,19 +326,28 @@ Example, your want search pdf of chm about Emacs, you just type emacs pdf|chm."
   (w3m-view-this-url-1 (w3m-input-url nil nil nil w3m-quick-start
                                       'feeling-lucky) nil t))
 
-(defun w3m-delete-buffer-and-select-right ()
+(defun w3m-delete-buffer-and-select ()
   "Delete current w3m buffer.
 If current tab is at right side of tabs, select left tab, otherwise, select right tab."
   (interactive)
   (if (require 'tabbar nil t)
       (let* ((tabset (tabbar-current-tabset t))
+             (search-prev nil)
              selected tab)
         (when tabset
           (setq selected (tabbar-selected-tab tabset))
-          (setq tab (tabbar-tab-next tabset selected))
+          (setq tab (tabbar-tab-next tabset selected search-prev))
+          (setq search-prev (not tab))
+          (setq tab (tabbar-tab-next tabset selected search-prev))
           (w3m-delete-buffer 1)
           (if tab                       ;if tab is not right side of tabs
-              (tabbar-forward-tab))))))
+              (if search-prev
+                  (tabbar-backward-tab)
+                (tabbar-forward-tab))
+            (if toggle-w3m-with-other-buffer-revive
+                (progn
+                  (resume 1024)
+                  (setq toggle-w3m-with-other-buffer-revive nil))))))))
 
 (defun w3m-visual-scroll-up (&optional arg)
   "Visual scroll up with image and text."

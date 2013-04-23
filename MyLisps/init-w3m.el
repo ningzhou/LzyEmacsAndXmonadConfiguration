@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-w3m.el ---
-;; Time-stamp: <2013-04-12 17:37:25 Friday by lzy>
+;; Time-stamp: <2013-04-23 15:58:31 Tuesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -132,7 +132,7 @@
      ("P" . w3m-view-previous-page)
      ("<backspace>" . w3m-view-previous-page)
      ("F" . w3m-view-next-page)
-     ("c" . w3m-delete-buffer-and-select-right)
+     ("c" . w3m-delete-buffer-and-select)
      ("C" . w3m-delete-other-buffers)
      ("d" . w3m-wget)
      ("o" . w3m-lnum-goto)
@@ -145,7 +145,9 @@
      ("M-n" . w3m-next-buffer)
      ("M-p" . w3m-previous-buffer)
      ("<f5>" . w3m-reload-this-page)
-     ("M-<f5>" . w3m-reload-all-pages))
+     ("M-<f5>" . w3m-reload-all-pages)
+     ("<f11>" . w3m-next-buffer)
+     ("C-<f11>" . w3m-previous-buffer))
    w3m-mode-map))
 
 (eval-after-load "w3m"

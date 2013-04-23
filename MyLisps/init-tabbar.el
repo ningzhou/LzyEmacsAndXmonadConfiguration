@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-tabbar.el ---
-;; Time-stamp: <2013-04-03 06:09:59 Wednesday by lzy>
+;; Time-stamp: <2013-04-23 16:08:12 Tuesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -36,6 +36,14 @@
 ;; settings
 (setq tabbar-separator '(0.2))
 (tabbar-mode 1)
+
+;; disable tabbar mode in w3m
+(add-hook 'w3m-mode-hook
+          #'(lambda ()
+              (lazy-unset-key
+               '("C-<f11>"
+                 "<f11>")
+               tabbar-mode-map)))
 
 ;; key bindings
 (lazy-set-key
