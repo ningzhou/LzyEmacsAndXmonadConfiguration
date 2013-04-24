@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; LzyTheme.el ---
-;; Time-stamp: <2013-04-19 11:40:52 Friday by lzy>
+;; Time-stamp: <2013-04-24 13:12:07 Wednesday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -415,7 +415,11 @@
      (w3m-image-anchor ((t (:background "Black"))))
      (w3m-insert ((t (:foreground "orchid"))))
      (w3m-italic ((t (:italic t :slant italic))))
-     (w3m-link-numbering ((t (:background "Black" :foreground "yellow"))))
+     (w3m-link-numbering ((t (:foreground "yellow2"))))
+     (w3m-linknum-match ((t (:inverse-video t))))
+     (w3m-linknum-minibuffer-prompt ((t (:foreground "yellow"))))
+     (w3m-session-select ((t (:foreground "white"))))
+     (w3m-session-selected ((t (:bold t :foreground "white" :underline t :weight bold))))
      (w3m-strike-through ((t (:strike-through t))))
      (w3m-tab-background ((t (:background "black" :foreground "black" :height 0.97))))
      (w3m-tab-mouse ((t (:background "grey30" :foreground "DeepSkyBlue" :height 0.97))))

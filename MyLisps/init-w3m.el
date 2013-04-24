@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-w3m.el ---
-;; Time-stamp: <2013-04-23 15:58:31 Tuesday by lzy>
+;; Time-stamp: <2013-04-24 13:01:29 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -135,7 +135,7 @@
      ("c" . w3m-delete-buffer-and-select)
      ("C" . w3m-delete-other-buffers)
      ("d" . w3m-wget)
-     ("o" . w3m-lnum-goto)
+     ("o" . w3m-go-to-linknum)
      ("O" . org-w3m-copy-for-org-mode)
      ("l" . w3m-copy-link-in-region)
      ("<" . w3m-shift-left)

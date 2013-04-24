@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-autocomplete.el ---
-;; Time-stamp: <2013-04-18 14:48:25 Thursday by lzy>
+;; Time-stamp: <2013-04-24 11:36:28 Wednesday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -33,7 +33,10 @@
 
 (require 'auto-complete-config)
 
-
+(defface popup-mouse-face
+  '((t (nil)))
+  "Face for popup mouse"
+  :group 'popup)
 
 (defadvice ac-error (after reopen-ac-mode activate)
   "reopen auto-complete-mode after ac-error"
