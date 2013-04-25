@@ -112,9 +112,12 @@
    [archlinuxfr]
    Server = http://repo-fr.archlinuxcn.org/$arch
    #+end_example
+
 2. # sudo pacman -Syu yaourt (install yaourt)
+
 3. uninstall cairo fontconfig freetype2 libxft
    sudo pacman -Rdd cairo fontconfig freetype2 libxft
+
 4. install cario-ubuntu freetype2-ubuntu libxft-ubuntu fontconfig-ubuntu
    #+begin_example
    sudo yaourt libxft-ubuntu
@@ -167,26 +170,6 @@
 sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 sudo hwclock --hctosys
 sudo hwclock --set --date="YYYY-MM-DD hh:mm:ss"
-
-** configure zsh
-sudo usermod -s /bin/zsh logname
-*** Optional Configuration
-install oh-my-zsh
-   + curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh configure zsh
-   + emacs ~/.zshrc
-   + ZSH_THEME="cypher"
-   + plugins=(git git-flow gnu-utils battery python ssh-agent terminator)
-
-** Git related
-*** git config [[http:opengit.org/open/?f%3Dprogit_07-customizing-git][Git documents]]
-git config --global user.name "name"
-git config --global user.email "mailname@gmail.com"
-git config --global color.diff auto # git diff
-git config --global color.status auto # git status
-git config --global color.branch auto
-
-** Stardict dictionary
-get dictionary from:[[http://abloz.com/huzheng/stardict-dic/zh_CN/]]
 
 * Footnotes
 

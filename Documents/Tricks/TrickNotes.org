@@ -3,9 +3,7 @@
 #+OPTIONS: ^:nil
 
 * Tricks
-** Bash multi-color display <2012-05-16 Wed>
-[[http://coolshell.cn/articles/1399.html][8个实用而有趣Bash命令提示行]]
-
+** Bash multi-color display [[http://coolshell.cn/articles/1399.html][8个实用而有趣Bash命令提示行]]
 #+begin_src sh -n
   if [ "$color_prompt" = yes ]; then
       PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
@@ -15,28 +13,16 @@
   fi
   unset color_prompt force_color_prompt
 #+end_src
+*Usage:* modify ~/.bashrc file and replace the corresponding part as above.
 
-*** Usage: modify ~/.bashrc file and replace the corresponding part as above.
-** How to install Monaco font in Ubuntu <2012-05-17 Thu>
-1. [[http://www.foxhop.net/attachment/monaco_linux.ttf][Downlod Monaco]]
-
-2. sudo mkdir /usr/share/fonts/truetype/custom
-
-3. sudo mv monaco.ttf /usr/share/fonts/truetype/custom/
-
-4. sudo fc-cache -f -v
-** Drawing Tools in Unix/Linux environment <2012-05-20 日>
+** Drawing Tools in Unix/Linux environment [[http://162.105.203.93/member/yujs/BSDFiles/html/MetaPost.html][UNIX下的绘图工具]]
 *** GnuPlot与MetaPost
 在类UNIX操作系统中，值得掌握的绘图语言有两个。一个是GnuPlot，它是基于函数的绘图语言，譬如三角函数
 sin(x)等，很多数学软件选用它作图形输出接口（如著名的octave等）；另一个是MetaPost，它是基于描述的绘图
 语言，譬如由三个给定的点构成的三角形等。MetaPost由贝尔实验室的John Hobby设计，是功能最强大的描述绘图
 语言。FreeBSD提供的teTeX缺省地带着命令mpost，无需安装。补充一句，GnuPlot可以输出MetaPost文件，二者可
 以联手成为绘图工具不二之选。
-*** 为何用MetaPost？
-为什么我选用MetaPost，而不是Xfig、Dia或其他的所见即所得的绘图软件？首要的原因是我迷恋精确，而
-MetaPost是最精确的，精确到像素。如果对图形的精确性没有太多的要求和追求，大可不必选择MetaPost，把时间
-浪费在编程上。Xfig和Visio足够满足很多用户的需求。另外一个原因是MetaPost生成的eps文件可以很好地嵌入
-TeX文件，从而得到图形清晰的高质量的pdf文件—这对用TeX写作的理工科学生和学者来说，非常具有诱惑力。
+
 *** 其他绘图工具
 有时候应急，我也用GraphViz提供的dot来画精确的图，然后用dot2tex生成可嵌入的TeX文件。画精确的图，也可用
 pic或asymptote。pic是类UNIX下的经典软件（troff的一部分），画一些简单的图应急还是可以的。asymptote的开
@@ -44,4 +30,43 @@ pic或asymptote。pic是类UNIX下的经典软件（troff的一部分），画�
 近，还是C++离TeX近？有了MetaPost，asymptote多此一举。从功能的角度评说，有人把asymptote视为MetaPost的
 替代品，这是不公正的，譬如MetaPost能解方程，而asymptote不能。从功能之强大来说，MetaPost是不争的首选。
 
- [[http://162.105.203.93/member/yujs/BSDFiles/html/MetaPost.html][UNIX下的绘图工具]]
+** Add normal user into sudo group
+1. modify /etc/sudoers
+   #+begin_example
+     root ALL=(ALL) ALL
+     lzy  ALL=(ALL) ALL
+   #+end_example
+
+2. add the following codes into .bashrc
+   #+begin_example
+     #Enabling tab-completion
+     complete -cf sudo
+   complete -cf man
+   #+end_example
+
+** Subtitle configuration for mplayer
+modify ~/.mplayer/config
+#+begin_example
+  font='文泉驿正黑'
+  subcp=enca:zh:ucs-2
+#+end_example
+
+** Zsh (a powerful shell)
+*Change user login shell:* sudo usermod -s /bin/zsh login-name
+*** Optional Configuration
+install oh-my-zsh
++ curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh configure zsh
++ edit ~/.zshrc
++ ZSH_THEME="cypher"
++ plugins=(git git-flow gnu-utils battery python ssh-agent terminator)
+
+** Git related
+*** git config [[http:opengit.org/open/?f%3Dprogit_07-customizing-git][Git documents]]
+git config --global user.name "name"
+git config --global user.email "mailname@gmail.com"
+git config --global color.diff auto
+git config --global color.status auto
+git config --global color.branch auto
+
+** Stardict dictionary
+*get dictionary from:* [[http://abloz.com/huzheng/stardict-dic/zh_CN/]]
