@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; html-mode-setting.el ---
-;; Time-stamp: <2013-04-10 15:34:24 Wednesday by lzy>
+;; Time-stamp: <2013-04-25 16:41:56 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -36,6 +36,7 @@
   ;; functions definition
   (defun w3m-browse-current-buffer ()
     (interactive)
+    (require 'w3m)
     (let ((filename (concat (make-temp-file "w3m-") ".html")))
       (unwind-protect
           (progn
@@ -50,7 +51,6 @@
 
   ;; settings
   (add-to-list 'auto-mode-alist '("\\.jsp$" . html-mode))
-  (add-to-list 'auto-mode-alist '("\\.css$" . html-mode))
 
   ;; key bindings
   (lazy-set-key

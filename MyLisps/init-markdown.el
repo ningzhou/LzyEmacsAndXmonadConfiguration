@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-markdown.el ---
-;; Time-stamp: <2013-04-17 00:21:13 Wednesday by lzy>
+;; Time-stamp: <2013-04-25 16:13:00 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -30,6 +30,13 @@
 ;;   (require 'init-markdown)
 
 ;;; Code:
+
+(defun markdown-setting ()
+  "settings for markdown"
+  (setq markdown-enable-math t)
+  (setq markdown-css-path (concat my-emacs-site-lisps-path "MarkDownMode/markdown-theme.css")))
+
+(add-hook 'markdown-mode-hook 'markdown-setting)
 
 (autoload 'markdown-mode "markdown-mode"
   "Major mode for editing Markdown files" t)

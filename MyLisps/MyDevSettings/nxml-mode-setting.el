@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; nxml-mode-setting.el ---
-;; Time-stamp: <2013-04-10 15:17:51 Wednesday by lzy>
+;; Time-stamp: <2013-04-25 16:42:11 Thursday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -42,6 +42,8 @@
   (setq nxml-prefer-utf-16-to-utf-8-flag nil)
   (setq nxml-auto-insert-xml-declaration-flag t)
 
+  (add-to-list 'auto-mode-alist '("\\.css$" . nxml-mode))
+  
   ;; key bindings
   (lazy-set-key
    '(("C-x <tab>" . smart-indent)

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-autocomplete.el ---
-;; Time-stamp: <2013-04-24 11:36:28 Wednesday by lzy>
+;; Time-stamp: <2013-04-25 11:50:00 Thursday by lzy>
 
 ;; Copyright (C) 2013 chieftain
 ;;
@@ -119,6 +119,13 @@
            ac-source-imenu)
          ac-sources)))
 
+(defun ac-settings-4-markdown ()
+  "auto-complete settings for markdown mode"
+  (setq ac-sources
+        (append
+         '(ac-source-yasnippet)
+         ac-sources)))
+
 (defun ac-settings-4-nxml ()
   "auto-complete settings for html/xml etc. mode"
   (setq ac-sources
@@ -150,6 +157,7 @@
 (add-to-list 'ac-modes 'html-mode)
 (add-to-list 'ac-modes 'nxml-mode)
 (add-to-list 'ac-modes 'awk-mode)
+(add-to-list 'ac-modes 'markdown-mode)
 (add-to-list 'ac-dictionary-directories
              (concat my-emacs-site-lisps-path "AutoComplete/auto-complete-1.4-base/dict"))
 (custom-set-variables
@@ -172,6 +180,7 @@
 (add-hook 'python-mode-hook 'ac-settings-4-python)
 (add-hook 'text-mode-hook 'ac-settings-4-text)
 (add-hook 'org-mode-hook 'ac-settings-4-org)
+(add-hook 'markdown-mode-hook 'ac-settings-4-markdown)
 (add-hook 'html-mode-hook 'ac-settings-4-nxml)
 (add-hook 'xml-mode-hook 'ac-settings-4-nxml)
 (add-hook 'eshell-mode-hook 'ac-settings-4-eshell)
