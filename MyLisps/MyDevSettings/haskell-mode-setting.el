@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; haskell-mode-setting.el ---
-;; Time-stamp: <2013-04-10 15:41:26 Wednesday by lzy>
+;; Time-stamp: <2013-04-26 12:26:29 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -33,7 +33,7 @@
 
 ;;; required features:
 (load (concat my-emacs-site-lisps-path
-              "HaskellMode/haskell-mode-2.8.0/haskell-site-file.el"))
+              "HaskellMode/haskell-site-file.el"))
 
 (defun haskell-mode-setting ()
   "settings for haskell mode"

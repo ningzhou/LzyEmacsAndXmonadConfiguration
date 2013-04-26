@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; nxml-mode-setting.el ---
-;; Time-stamp: <2013-04-25 16:42:11 Thursday by lzy>
+;; Time-stamp: <2013-04-26 14:48:52 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -31,19 +31,16 @@
 
 ;;; Code:
 
+(fset 'xml-mode 'nxml-mode)
+(setq magic-mode-alist (cons '("<\\?xml " . nxml-mode) magic-mode-alist))
+(add-auto-mode 'nxml-mode (concat "\\." (regexp-opt
+                                         '("xml" "xsd" "sch" "rng" "xslt" "svg" "rss" "gpx" "tcx")) "\\'"))
+
 (defun nxml-mode-setting ()
   "settings for nxml mode"
   ;; settings
-  (setq nxml-child-indent 2)
-  (setq nxml-attribute-indent 4)
-  (setq nxml-sexp-element-flag t)
-  (setq nxml-outline-child-indent 2)
   (setq nxml-slash-auto-complete-flag t)
-  (setq nxml-prefer-utf-16-to-utf-8-flag nil)
-  (setq nxml-auto-insert-xml-declaration-flag t)
 
-  (add-to-list 'auto-mode-alist '("\\.css$" . nxml-mode))
-  
   ;; key bindings
   (lazy-set-key
    '(("C-x <tab>" . smart-indent)

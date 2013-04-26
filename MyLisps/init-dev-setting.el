@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-dev-setting.el ---
-;; Time-stamp: <2013-04-18 22:14:27 Thursday by lzy>
+;; Time-stamp: <2013-04-26 15:05:15 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -51,8 +51,9 @@
 (require 'lisp-mode-setting)           ;; lisp realted setting
 (require 'autoconf-mode-setting)       ;; autoconf setting
 (require 'sql-mode-setting)            ;; sql mode setting
+(require 'html-mode-setting)           ;; nxhtml mode setting
 (require 'nxml-mode-setting)           ;; xml mode setting
-(require 'html-mode-setting)           ;; html mode setting
+(require 'css-mode-setting)            ;; css mode setting
 (require 'python-mode-setting)         ;; python mode
 (require 'sh-mode-setting)             ;; shell mode setting
 (require 'haskell-mode-setting)        ;; haskell mode setting

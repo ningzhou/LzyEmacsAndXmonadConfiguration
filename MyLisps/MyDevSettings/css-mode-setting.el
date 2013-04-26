@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
-;;; html-mode-setting.el ---
-;; Time-stamp: <2013-04-26 15:06:00 Friday by lzy>
+;;; css-mode-setting.el ---
+;; Time-stamp: <2013-04-26 14:49:51 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -27,37 +27,25 @@
 ;;
 
 ;; Put this file into your load-path and the following into your ~/.emacs:
-;;   (require 'html-mode-setting)
+;;   (require 'css-mode-setting)
 
 ;;; Code:
 
-(defun html-mode-setting ()
-  "settings for html mode"
-  ;; functions definition
-  (defun w3m-browse-current-buffer ()
-    (interactive)
-    (require 'w3m)
-    (let ((filename (concat (make-temp-file "w3m-") ".html")))
-      (unwind-protect
-          (progn
-            (write-region (point-min) (point-max) filename)
-            (w3m-find-file filename))
-        (delete-file filename))))
-
+(defun css-mode-setting ()
+  "settings for css mode"
   ;; key bindings
   (lazy-set-key
    '(("C-x <tab>" . smart-indent)
      ("C-c C-c" . comment)
      ("C-c k" . uncomment)
      ("C-c M-a" . beginning-of-defun)
-     ("C-c M-e" . end-of-defun)
-     ("C-c C-w" . w3m-browse-current-buffer))
-   html-mode-map))
+     ("C-c M-e" . end-of-defun))
+   css-mode-map))
 
-(eval-after-load "sgml-mode"
-  '(html-mode-setting))
+(eval-after-load "css-mode"
+  '(css-mode-setting))
 
 ;;; provide features
-(provide 'html-mode-setting)
+(provide 'css-mode-setting)
 
-;;; html-mode-setting.el ends here
+;;; css-mode-setting.el ends here

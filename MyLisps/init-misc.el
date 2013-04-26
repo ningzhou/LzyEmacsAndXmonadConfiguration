@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; init-misc.el ---
-;; Time-stamp: <2013-04-24 11:23:11 Wednesday by lzy>
+;; Time-stamp: <2013-04-26 15:10:46 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -162,10 +162,7 @@
    ("C-x m" . get-mode-name)
    ("C-x k" . kill-this-buffer)
    ("C-x C-b" . ibuffer)
-   ("C-j" . newline-and-indent)
-   ("M-C-8" . (lambda () (interactive) (adjust-opacity nil -5)))
-   ("M-C-9" . (lambda () (interactive) (adjust-opacity nil 5)))
-   ("M-C-0" . (lambda () (interactive) (modify-frame-parameters nil '((alpha . 100)))))))
+   ("C-j" . newline-and-indent)))
 
 ;; cleanup tmp buffer
 (if (get-buffer ".bash_history")
@@ -178,6 +175,6 @@
     (kill-buffer "*scratch*"))
 
 ;;; provide features
-(provide 'init-misc)
+  (provide 'init-misc)
 
 ;;; init-misc.el ends here

@@ -1,6 +1,6 @@
 ;; -*- Emacs-Lisp -*-
 ;;; script-common-setting.el ---
-;; Time-stamp: <2013-04-07 16:24:21 Sunday by lzy>
+;; Time-stamp: <2013-04-26 12:10:30 Friday by lzy>
 
 ;; Copyright (C) 2013 zhengyu li
 ;;
@@ -31,7 +31,7 @@
 
 ;;; Code:
 
-(defvar script-mode-names '(sh-mode awk-mode python-mode perl-mode)
+(defvar script-mode-names '(sh-mode awk-mode python-mode perl-mode ruby-mode)
   "script mode need to add exec privilage automatically.")
 
 (defun script-add-exec-privilage ()
